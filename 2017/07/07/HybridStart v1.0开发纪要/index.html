@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="混合应用,HybridStart," />
+  <meta name="keywords" content="HybridStart,混合应用," />
 
 
 
@@ -22,16 +22,16 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-<meta name="description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推到了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
+<meta name="description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HybridStart v1.0开发纪要">
 <meta property="og:url" content="http://refined-x.com/2017/07/07/HybridStart v1.0开发纪要/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推到了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
-<meta property="og:updated_time" content="2017-07-10T04:21:11.419Z">
+<meta property="og:description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
+<meta property="og:updated_time" content="2017-07-11T12:49:42.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HybridStart v1.0开发纪要">
-<meta name="twitter:description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推到了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
+<meta name="twitter:description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -207,7 +207,7 @@
       
       
       
-        <p>自混合应用前端开发框架<code>HybridStart v1.0</code><a href="http://refined-x.com/2017/07/03/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E6%A2%B3%E7%90%86/">升级计划</a>开始后，经过近一周的开发测试，现已发布<a href="https://github.com/tower1229/HybridStart" target="_blank" rel="external">预览版</a>，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推到了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解一下升级后的HybridStart。</p>
+        <p>自混合应用前端开发框架<code>HybridStart v1.0</code><a href="http://refined-x.com/2017/07/03/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E6%A2%B3%E7%90%86/">升级计划</a>开始后，经过近一周的开发测试，现已发布<a href="https://github.com/tower1229/HybridStart" target="_blank" rel="external">预览版</a>，基本实现了最初定下的四个目标：核心易用、UI可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以web前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和UI两大部分入手，详细拆解一下升级后的HybridStart。</p>
 <h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><h3 id="移除依赖"><a href="#移除依赖" class="headerlink" title="移除依赖"></a>移除依赖</h3><p>之前的<code>core.js</code>直接集成部分第三方插件，并且内部实现也互相依赖，这对于不同技术栈的开发者来说很不友好，比如有的开发者喜欢用Vue做模板渲染，那他看到依赖jQuery后心里一定恶心无比，因此要做的第一件事就是移除核心库的依赖。</p>
 <p>移除掉jQuery势必就要自己动手做一个<code>util</code>工具类，以简化原生JavaScript语法，这里我偷了个懒直接把mui的部分代码拿过来，稍作修剪和扩充就ok了。在功能取舍方面，除了满足核心库的需求外还增加了少数几个常用操作，使这部分功能对外开放后能一定程度上发挥jQuery的作用，通过<code>app.util</code>可以获取到这个内部工具集合，经过内置示例的开发体验，应该说只要DOM操作不是很重的情况，基本可以让jQuery歇息了，当然前提是大量的jQuery语法糖都不能用了，其实用习惯了原生语法，会觉得除了单词长一点也并没有多麻烦。</p>
 <h3 id="功能梳理"><a href="#功能梳理" class="headerlink" title="功能梳理"></a>功能梳理</h3><p>框架功能都挂载在<code>app</code>对象上，主要提供这五类功能：核心功能、窗口操作、数据操作、设备访问、原生控件。</p>
@@ -245,7 +245,7 @@
 <h3 id="js插件"><a href="#js插件" class="headerlink" title="js插件"></a>js插件</h3><p>框架内置了部分常用插件，比如图片轮显、相册、各种选择器、滚动加载、图片懒加载等等，体验都还不错，部分来自<a href="http://refined-x.com/Flow-UI/docs/">Flow-UI</a>的插件库，针对移动端做了微调，使用上还是一贯的模块化。</p>
 <p>虽然有了<code>app.util</code>之后就不再提倡使用jQuery了，但如果有人在乎的话，内置jQuery的版本已经升级到3.x。</p>
 <p>原来内置在<code>core.js</code>里的<code>etpl</code>也成为了一个插件模块，用来实现前端页面渲染。应该说开发混合应用免不了大量的页面渲染，Vue当然是最好用的工具之一，但把一个功能完备的MVVM框架拿来做渲染，总觉得的有点冗余，而且依我过去的项目经验，大部分渲染其实都是单向的，也就是展示型的，需要将界面操作反应到数据中的情况不太多，在这种情况下，单从代码利用率的角度讲前端模板引擎是“实惠”的选择。</p>
-<p>但模板引擎的使用体验比Vue差太多了，先要解析模板，再应用数据，最后填充到页面中，为了减轻这部分负担插件库中提供了一个<a href="http://refined-x.com/Flow-UI/docs/#Render(%E6%B8%B2%E6%9F%93%E5%99%A8">Render</a>)插件，可以实现<code>数据=&gt;界面</code>的单向绑定，除了不是双向绑定，在渲染操作上已经接近Vue的体验了，当然差别还是有的，因为内部是使用<code>etpl</code>实现的，并没有高大上的差量更新，所以大范围的页面更新理论上效率不如Vue，这个有待低端机测试，千元以上的手机应该不太会看出差别。</p>
+<p>但模板引擎的使用体验比Vue差太多了，先要解析模板，再应用数据，最后填充到页面中，为了减轻这部分负担插件库中提供了一个<a href="http://refined-x.com/Flow-UI/docs/#Render%28%E6%B8%B2%E6%9F%93%E5%99%A8%29">Render</a>插件，可以实现<code>数据=&gt;界面</code>的单向绑定，除了不是双向绑定，在渲染操作上已经接近Vue的体验了，当然差别还是有的，因为内部是使用<code>etpl</code>实现的，并没有高大上的差量更新，所以大范围的页面更新理论上效率不如Vue，这个有待低端机测试，千元以上的手机应该不太会看出差别。</p>
 <p>当然，这些也都属于UI，可以用自己喜欢的任意方案替换掉。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>还有一些功能，散布在框架<code>sdk/</code>里的common.js和server.js中，严格来说这些代码已经不属于框架核心范畴，开发者可以根据自己的业务情况做删改，但其中有一些还是很实用的，举个例子。</p>
 <p>不知道大家有没有发现，apicloud在引擎层面对页面显示做了优化，打开一个页面前多少会有一点停顿，猜测是在页面没有完全渲染完之前不会开始进场动画，因此有动态渲染内容的页面打开会很迟钝，纯静态的页面打开就利索很多，虽然这可以有效解决布局闪动的问题，但有时候这并不是开发者想要的，而造成打开速度差异的最重要原因就是图片元素的加载，所以为了解决这个问题，我们可以先将页面里的图片”src”值赋给”data-src”，使图片不会立即加载，当页面显示完毕后再将”data-src”赋给”src”以加载图片，从而绕过引擎的优化方案，提升页面打开的响应速度，这个操作已经在框架默认的<code>sdk/common.js</code>中实现了，并在示例APP中部分应用，效果明显。</p>
@@ -288,9 +288,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/混合应用/" rel="tag">#混合应用</a>
-          
             <a href="/tags/HybridStart/" rel="tag">#HybridStart</a>
+          
+            <a href="/tags/混合应用/" rel="tag">#混合应用</a>
           
         </div>
       
