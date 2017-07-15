@@ -22,6 +22,8 @@
 html,body{height: 100%;}
 .full{position: absolute;z-index: 1;top: 0;left: 0;width: 100%;height: 100%;filter: blur(10px);}
 .bg{background: url(./asset/img2.jpg) no-repeat;}
+.toIndex{position: absolute;left: 0;top:0;height: 50px;line-height: 50px;text-align: center;width:100%;font-weight: 700;font-size:2em;}
+
 .contain{position: relative;z-index: 2;height: 100%;}
 .card{height: 400px;height: 38.2vh;margin: 20px;transition: all ease 1s;text-align: center;color: #eee;box-shadow: 0 0 12px rgba(0, 0, 0, .3);}
 .card p{transition: opacity ease 1s;opacity: 0;color: rgba(0, 0, 0, .6);}
@@ -65,7 +67,10 @@ opacity: 0;transition:all ease .3s;}
 </head>
 
 <body style="min-width: 0">
-    <div class="bg full"><h1 class="hide">雅X共赏前端作品展示</h1></div>
+    <div class="bg full">
+        <h1 class="hide">雅X共赏前端作品展示</h1>
+    </div>
+    <p><a href="/" class="toIndex" title="前端路上技术博客">前端路上</a></p>
     <h2 class="hide">前端作品</h2>
     <ul class="codepen">
         <li class="_toggle" title="代码笔"></li>
