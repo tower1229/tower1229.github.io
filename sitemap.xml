@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://refined-x.com/tags/index.html</loc>
+    
+    <lastmod>2017-08-10T00:22:31.711Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://refined-x.com/comment/index.html</loc>
+    
+    <lastmod>2017-08-10T00:21:58.083Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://refined-x.com/2017/08/08/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E4%BB%8E%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/</loc>
     
     <lastmod>2017-08-08T06:48:30.625Z</lastmod>
@@ -47,13 +61,6 @@
     <loc>http://refined-x.com/404.html</loc>
     
     <lastmod>2017-07-10T05:47:34.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://refined-x.com/comment/index.html</loc>
-    
-    <lastmod>2017-07-10T05:46:56.320Z</lastmod>
     
   </url>
   
@@ -117,13 +124,6 @@
     <loc>http://refined-x.com/2016/06/01/hello-hexo/</loc>
     
     <lastmod>2017-06-15T01:40:29.253Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://refined-x.com/tags/index.html</loc>
-    
-    <lastmod>2016-06-01T08:38:00.097Z</lastmod>
     
   </url>
   
