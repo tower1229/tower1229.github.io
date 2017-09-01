@@ -22,19 +22,22 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-<meta name="description" content="用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
-权限控制是什么在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是">
+<meta name="description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于Vue实现后台系统权限控制">
 <meta property="og:url" content="http://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
-权限控制是什么在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是">
-<meta property="og:updated_time" content="2017-08-30T06:07:55.204Z">
+<meta property="og:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
+<meta property="og:updated_time" content="2017-09-01T02:36:24.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Vue实现后台系统权限控制">
-<meta name="twitter:description" content="用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
-权限控制是什么在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是">
+<meta name="twitter:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -234,7 +237,8 @@
       
       
       
-        <p>用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文中的菜单权限控制方案由于没有使用<code>router.addRoutes()</code>实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]<a href="http://refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">用addRoutes实现动态路由</a>。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。</p>
 <h2 id="权限控制是什么"><a href="#权限控制是什么" class="headerlink" title="权限控制是什么"></a>权限控制是什么</h2><p>在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是由界面上的按钮发起，比如删除某条数据；或由用户进入某一个页面发起，比如获取某个列表数据。这两种形式覆盖了资源请求的大部分场景，因此权限控制也可以被笼统的分成菜单权限控制和按钮权限控制。</p>
 <h2 id="Vue菜单权限控制"><a href="#Vue菜单权限控制" class="headerlink" title="Vue菜单权限控制"></a>Vue菜单权限控制</h2><p>菜单是对路由的直接体现，菜单控制实际上就是路由控制。实现路由控制一个简单的方式是，在路由的before钩子里校验当前即将跳转的路由地址是否有权访问，根据校验结果决定路由是否放行，伪码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">    //权限校验</span><br><span class="line">    let pass = valid(to);</span><br><span class="line">    if(!pass)&#123;</span><br><span class="line">        return console.log(&apos;无权访问&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -458,7 +462,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#权限控制是什么"><span class="nav-number">1.</span> <span class="nav-text">权限控制是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue菜单权限控制"><span class="nav-number">2.</span> <span class="nav-text">Vue菜单权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue按钮权限控制"><span class="nav-number">3.</span> <span class="nav-text">Vue按钮权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限控制是什么"><span class="nav-number">3.</span> <span class="nav-text">权限控制是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue菜单权限控制"><span class="nav-number">4.</span> <span class="nav-text">Vue菜单权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue按钮权限控制"><span class="nav-number">5.</span> <span class="nav-text">Vue按钮权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
         </section>
