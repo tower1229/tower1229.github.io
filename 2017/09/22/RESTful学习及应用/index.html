@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="theme-next muse use-motion">
 <head>
-  <title> 再做一条贪吃蛇 | 前端路上 </title>
+  <title> RESTful学习及应用 | 前端路上 </title>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="贪吃蛇,JavaScript," />
+  <meta name="keywords" content="RESTful," />
 
 
 
@@ -22,24 +22,22 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-<meta name="description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
+<meta name="description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
+REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
+1234POST /artical           //增">
 <meta property="og:type" content="article">
-<meta property="og:title" content="再做一条贪吃蛇">
-<meta property="og:url" content="http://refined-x.com/2017/06/19/再做一条贪吃蛇/index.html">
+<meta property="og:title" content="RESTful学习及应用">
+<meta property="og:url" content="http://refined-x.com/2017/09/22/RESTful学习及应用/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
-<meta property="og:updated_time" content="2017-06-19T09:09:41.102Z">
+<meta property="og:description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
+REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
+1234POST /artical           //增">
+<meta property="og:updated_time" content="2017-09-25T00:24:34.838Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再做一条贪吃蛇">
-<meta name="twitter:description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
+<meta name="twitter:title" content="RESTful学习及应用">
+<meta name="twitter:description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
+REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
+1234POST /artical           //增">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -188,7 +186,7 @@
             
             
               
-                再做一条贪吃蛇
+                RESTful学习及应用
               
             
           </h1>
@@ -199,8 +197,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-19T11:21:17+08:00" content="2017-06-19">
-              2017-06-19
+            <time itemprop="dateCreated" datetime="2017-09-22T17:31:42+08:00" content="2017-09-22">
+              2017-09-22
             </time>
           </span>
           <span class="post-category" >
@@ -239,23 +237,31 @@
       
       
       
-        <p>贪吃蛇，呵呵。</p>
-<p>在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移一位，其后的元素挨个前移，也就是组成蛇身的每一个正方形元素都要移动位置，感觉很浪费。</p>
-<p>我的方法是，将蛇尾元素直接移到蛇头即将移动的方向上充当蛇头，身体其余节点不需要动，这样也能实现贪吃蛇的移动效果，而且只要一次DOM操作。为了验证这个方法，于是我补齐了贪吃蛇游戏的其他部分，也就是地图、食物、碰撞检测、关卡设计。</p>
-<p>先看效果：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png" alt="snake"></p>
-<p>下面简单说一下。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h3><p>贪吃蛇的所谓地图看上去其实就是一堆网格线，这里面至少包含两个信息，第一单元格尺寸，第二游戏区域尺寸，设置好这两个尺寸，循环填充横线和竖线就可以了。</p>
-<h3 id="食物"><a href="#食物" class="headerlink" title="食物"></a>食物</h3><p>贪吃蛇里的食物是随机生成位置的，总量保持一定，吃一个生成一个，这个总量通常可以根据游戏区域的大小按比例取得，比如<code>边长 * 0.5</code>，另外生成的食物不能与蛇身重叠，需要注意检测随机生成位置的可用性。</p>
-<h3 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h3><p>运动环节的思路前面说过了，在运动进行之前，要先做碰撞检测，这是驱动游戏进行的关键步骤。</p>
-<p>贪吃蛇的碰撞检测区分三种情况，分别是边界碰撞、自身碰撞、吃到食物。其中前两种会导致游戏结束，最后一种会得分，并且每吃一个食物蛇就会变长一个单元长度。</p>
-<h3 id="关卡设计"><a href="#关卡设计" class="headerlink" title="关卡设计"></a>关卡设计</h3><p>为提升挑战性，一般要给游戏设计关卡，在这个游戏中的关卡只跟刷新率有关，每得到<code>10</code>分就会进入下一关，同时游戏的刷新时间缩短为上一关的<code>80%</code>，游戏速度就会加快，也就会越来越难玩。实际上，对于贪吃蛇这个游戏来说，就算没有关卡游戏的难度也会随着蛇身变长而越来越难，因为在一个既定范围内越长就容易撞到自己，只不过这个变难的速度太慢了。</p>
-<p>对了，说到这儿想起还有一个临界点没做判断，那就是假如遇到一个超高手，把游戏玩到地图上刚好能容不下蛇身和剩余食物的时候，生成食物随机位置的程序会发现生成的随机位置不可用，从而一直试图生成新的可用位置，于是进入了死循环，这是一个美好的坑，我赌能跳进去的人，想必是不会玩这个游戏的。。。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>演示：<a href="http://refined-x.com/projects/codes/snake.html">snake</a><br>源码：<a href="https://github.com/tower1229/tower1229.github.io/blob/master/projects/codes/snake.html" target="_blank" rel="external">Github</a></p>
-<p>UI部分借助<a href="http://refined-x.com/Flow-UI/docs/">Flow-UI</a>实现</p>
+        <h2 id="RESTful是什么"><a href="#RESTful是什么" class="headerlink" title="RESTful是什么"></a>RESTful是什么</h2><p>RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是<em>Representational State Transfer</em>。</p>
+<p>REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /artical           //增加一篇文章</span><br><span class="line">DELETE /artical/1       //删除id为1的文章</span><br><span class="line">PUT /artical/1          //修改id为1的文章</span><br><span class="line">GET /articals/1         //查询id为1的文章</span><br></pre></td></tr></table></figure>
+<p>这里需要明确一个概念：<strong>资源</strong>，后端提供的所有内容都可以被定义为资源，前端用户的一切行为，本质都是与一系列后端资源互动的结果。从这个角度来讲，前端的意义就是连接用户与资源，使用户能以最简单的方式调度后端资源，并将调度结果以用户最容易接受的方式呈现出来。</p>
+<h2 id="为什么使用RESTful"><a href="#为什么使用RESTful" class="headerlink" title="为什么使用RESTful"></a>为什么使用RESTful</h2><p>前后端分离的本质是前后端以API为界限进行开发解耦，所以前后端分离的副产品是大量的API，采用RESTful架构可以让API的表现力更强，更易于被理解；对于接口开发来说，RESTful风格也更易于扩展，这对于大型项目非常重要。</p>
+<p>RESTful是无状态的，因此无论前端是什么设备，前端是什么状态，都可以无差别的请求资源，有利于后端实现分布式。</p>
+<p>RESTful允许前端索取指定格式的信息，因此可以实现一套统一的API服务于不同的前端设备。</p>
+<h2 id="如何构建RESTful-API"><a href="#如何构建RESTful-API" class="headerlink" title="如何构建RESTful API"></a>如何构建RESTful API</h2><h3 id="一、每个网址代表一种资源，网址中只能有名词"><a href="#一、每个网址代表一种资源，网址中只能有名词" class="headerlink" title="一、每个网址代表一种资源，网址中只能有名词"></a>一、每个网址代表一种资源，网址中只能有名词</h3><p>网址仅用来表示资源的名称，而不包括操作，因此只能由名词组成；但有些资源可能自带操作属性，比如转账，这时候我们应该将转账看成一种服务（名词），将转账的其他信息作为参数传递</p>
+<h3 id="二、对于资源的操作类型由HTTP动词表示"><a href="#二、对于资源的操作类型由HTTP动词表示" class="headerlink" title="二、对于资源的操作类型由HTTP动词表示"></a>二、对于资源的操作类型由HTTP动词表示</h3><p>常用的四种HTTP动词以及对应的SQL操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET（SELECT）：从服务器取出资源（一项或多项）。</span><br><span class="line">POST（CREATE）：在服务器新建一个资源。</span><br><span class="line">PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</span><br><span class="line">DELETE（DELETE）：从服务器删除资源。</span><br></pre></td></tr></table></figure>
+<h3 id="三、统一的返回结果"><a href="#三、统一的返回结果" class="headerlink" title="三、统一的返回结果"></a>三、统一的返回结果</h3><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /collection：返回资源对象的列表（数组）</span><br><span class="line">GET /collection/resource：返回单个资源对象</span><br><span class="line">POST /collection：返回新生成的资源对象</span><br><span class="line">PUT /collection/resource：返回完整的资源对象</span><br><span class="line">PATCH /collection/resource：返回完整的资源对象</span><br><span class="line">DELETE /collection/resource：返回一个空文档</span><br></pre></td></tr></table></figure>
+<h3 id="四、返回正确的状态码"><a href="#四、返回正确的状态码" class="headerlink" title="四、返回正确的状态码"></a>四、返回正确的状态码</h3><p>常用状态码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">200 ：服务器成功返回用户请求的数据</span><br><span class="line">400 ：用户发出的请求有错误</span><br><span class="line">401 ：表示用户没有权限</span><br><span class="line">403 : 表示用户得到授权（与401错误相对），但访问被禁止的</span><br><span class="line">404 ：用户发出的请求针对的是不存在的记录</span><br><span class="line">500 ：服务器发生错误，用户无法判断发出的请求是否成功</span><br></pre></td></tr></table></figure>
+<h3 id="五、允许通过HTTP内容协商"><a href="#五、允许通过HTTP内容协商" class="headerlink" title="五、允许通过HTTP内容协商"></a>五、允许通过HTTP内容协商</h3><p>客户端可以通过Accept头请求一种特定格式的表述，服务端则通过Content-Type告诉客户端资源的表述形式。若服务器不支持，它应该返回一个HTTP 406响应，表示拒绝处理该请求。</p>
+<p>通常项目中最常用的还是直接预定为JSON格式。</p>
+<h2 id="web端的应用"><a href="#web端的应用" class="headerlink" title="web端的应用"></a>web端的应用</h2><p>目前最流行的web端AJAX类库当属axios，axios与RESTful完美兼容，主要体现在以下几个方面。</p>
+<p>axios将HTTP动词直接封装为方法，正好对应RESTful的API风格，在RESTful架构中使用起来非常方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.post(`/artical`, params)</span><br><span class="line">axios.delete(`/artical/1`, params)</span><br><span class="line">axios.put(`/artical/1`, params)</span><br><span class="line">axios.get(`/artical/1`, params)</span><br></pre></td></tr></table></figure>
+<p>而且axios的返回数据包括响应正文和状态码等信息，配合拦截器很容易实现对RESTful API错误码的统一处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//错误处理</span><br><span class="line">axios.interceptors.response.use(function(response) &#123;</span><br><span class="line">  return response;</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  if (error.response) &#123;</span><br><span class="line">    switch (error.response.status) &#123;</span><br><span class="line">      case 400:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      case 401:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      case 403:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>更多axios内容参考<a href="https://www.npmjs.com/package/axios" target="_blank" rel="external">这里</a>。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>其实RESTful的绝大多数内容都是规范推荐的做法，没有什么新东西，只不过前几年后端MVC盛行的时期，没有这么重的API开发需求，在这方面就一切从简了，近来赶上前后端分离的东风，API设计又被大家重视起来了，重回规范的RESTful相当于让大家见识了一下当年规范制定者们的远见卓识，就像小时候不听话的孩子在长大的某一天里突然想起来长辈曾经的教诲一样。</p>
 
-        <p><em>前端路上原创技术文章，转载请注明出处：http://refined-x.com/2017/06/19/再做一条贪吃蛇/</em></p>
+        <p><em>前端路上原创技术文章，转载请注明出处：http://refined-x.com/2017/09/22/RESTful学习及应用/</em></p>
       
       
     </div>
@@ -279,9 +285,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/贪吃蛇/" rel="tag">#贪吃蛇</a>
-          
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="/tags/RESTful/" rel="tag">#RESTful</a>
           
         </div>
       
@@ -289,17 +293,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/16/Webpack是答案吗/" rel="next" title="Webpack是答案吗">
-                <i class="fa fa-chevron-left"></i> Webpack是答案吗
+              <a href="/2017/09/06/纯前端实现人脸识别-提取-合成/" rel="next" title="纯前端实现人脸识别-提取-合成">
+                <i class="fa fa-chevron-left"></i> 纯前端实现人脸识别-提取-合成
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/23/2017混合应用开发现状/" rel="prev" title="2017混合应用开发现状">
-                2017混合应用开发现状 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -318,7 +318,7 @@
           
             
   
-<div id="SOHUCS" sid="再做一条贪吃蛇" ></div> 
+<div id="SOHUCS" sid="RESTful学习及应用" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cyt41dRMv'; 
@@ -446,7 +446,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地图"><span class="nav-number">2.1.</span> <span class="nav-text">地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#食物"><span class="nav-number">2.2.</span> <span class="nav-text">食物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#碰撞检测"><span class="nav-number">2.3.</span> <span class="nav-text">碰撞检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关卡设计"><span class="nav-number">2.4.</span> <span class="nav-text">关卡设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RESTful是什么"><span class="nav-number">1.</span> <span class="nav-text">RESTful是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用RESTful"><span class="nav-number">2.</span> <span class="nav-text">为什么使用RESTful</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何构建RESTful-API"><span class="nav-number">3.</span> <span class="nav-text">如何构建RESTful API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、每个网址代表一种资源，网址中只能有名词"><span class="nav-number">3.1.</span> <span class="nav-text">一、每个网址代表一种资源，网址中只能有名词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、对于资源的操作类型由HTTP动词表示"><span class="nav-number">3.2.</span> <span class="nav-text">二、对于资源的操作类型由HTTP动词表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、统一的返回结果"><span class="nav-number">3.3.</span> <span class="nav-text">三、统一的返回结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、返回正确的状态码"><span class="nav-number">3.4.</span> <span class="nav-text">四、返回正确的状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、允许通过HTTP内容协商"><span class="nav-number">3.5.</span> <span class="nav-text">五、允许通过HTTP内容协商</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web端的应用"><span class="nav-number">4.</span> <span class="nav-text">web端的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
