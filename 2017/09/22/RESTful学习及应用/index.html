@@ -24,20 +24,20 @@
 
 <meta name="description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
 REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
-1234POST /artical           //增">
+1234POST /article           //增">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RESTful学习及应用">
 <meta property="og:url" content="http://refined-x.com/2017/09/22/RESTful学习及应用/index.html">
 <meta property="og:site_name" content="前端路上">
 <meta property="og:description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
 REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
-1234POST /artical           //增">
-<meta property="og:updated_time" content="2017-09-25T00:24:34.838Z">
+1234POST /article           //增">
+<meta property="og:updated_time" content="2017-09-26T09:01:42.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RESTful学习及应用">
 <meta name="twitter:description" content="RESTful是什么RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是Representational State Transfer。
 REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：
-1234POST /artical           //增">
+1234POST /article           //增">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -239,7 +239,7 @@ REST的核心原则是后端将资源发布为URI，前端通过URI访问资源�
       
         <h2 id="RESTful是什么"><a href="#RESTful是什么" class="headerlink" title="RESTful是什么"></a>RESTful是什么</h2><p>RESTful是一种API架构，符合REST设计原则的API都可以被称为RESTful，REST的全称是<em>Representational State Transfer</em>。</p>
 <p>REST的核心原则是后端将资源发布为URI，前端通过URI访问资源，并通过HTTP动词表示要对资源进行的操作，典型的RESTful API长这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /artical           //增加一篇文章</span><br><span class="line">DELETE /artical/1       //删除id为1的文章</span><br><span class="line">PUT /artical/1          //修改id为1的文章</span><br><span class="line">GET /articals/1         //查询id为1的文章</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /article           //增加一篇文章</span><br><span class="line">DELETE /article/1       //删除id为1的文章</span><br><span class="line">PUT /article/1          //修改id为1的文章</span><br><span class="line">GET /articles/1         //查询id为1的文章</span><br></pre></td></tr></table></figure>
 <p>这里需要明确一个概念：<strong>资源</strong>，后端提供的所有内容都可以被定义为资源，前端用户的一切行为，本质都是与一系列后端资源互动的结果。从这个角度来讲，前端的意义就是连接用户与资源，使用户能以最简单的方式调度后端资源，并将调度结果以用户最容易接受的方式呈现出来。</p>
 <h2 id="为什么使用RESTful"><a href="#为什么使用RESTful" class="headerlink" title="为什么使用RESTful"></a>为什么使用RESTful</h2><p>前后端分离的本质是前后端以API为界限进行开发解耦，所以前后端分离的副产品是大量的API，采用RESTful架构可以让API的表现力更强，更易于被理解；对于接口开发来说，RESTful风格也更易于扩展，这对于大型项目非常重要。</p>
 <p>RESTful是无状态的，因此无论前端是什么设备，前端是什么状态，都可以无差别的请求资源，有利于后端实现分布式。</p>
@@ -255,7 +255,7 @@ REST的核心原则是后端将资源发布为URI，前端通过URI访问资源�
 <p>通常项目中最常用的还是直接预定为JSON格式。</p>
 <h2 id="web端的应用"><a href="#web端的应用" class="headerlink" title="web端的应用"></a>web端的应用</h2><p>目前最流行的web端AJAX类库当属axios，axios与RESTful完美兼容，主要体现在以下几个方面。</p>
 <p>axios将HTTP动词直接封装为方法，正好对应RESTful的API风格，在RESTful架构中使用起来非常方便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.post(`/artical`, params)</span><br><span class="line">axios.delete(`/artical/1`, params)</span><br><span class="line">axios.put(`/artical/1`, params)</span><br><span class="line">axios.get(`/artical/1`, params)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.post(`/article`, params)</span><br><span class="line">axios.delete(`/article/1`, params)</span><br><span class="line">axios.put(`/article/1`, params)</span><br><span class="line">axios.get(`/article/1`, params)</span><br></pre></td></tr></table></figure>
 <p>而且axios的返回数据包括响应正文和状态码等信息，配合拦截器很容易实现对RESTful API错误码的统一处理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//错误处理</span><br><span class="line">axios.interceptors.response.use(function(response) &#123;</span><br><span class="line">  return response;</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  if (error.response) &#123;</span><br><span class="line">    switch (error.response.status) &#123;</span><br><span class="line">      case 400:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      case 401:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      case 403:</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>更多axios内容参考<a href="https://www.npmjs.com/package/axios" target="_blank" rel="external">这里</a>。</p>
