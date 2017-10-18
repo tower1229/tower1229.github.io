@@ -22,8 +22,6 @@
 html,body{height: 100%;}
 .full{position: absolute;z-index: 1;top: 0;left: 0;width: 100%;height: 100%;filter: blur(10px);}
 .bg{background: url(./asset/img2.jpg) no-repeat;}
-.toIndex{position: absolute;left: 0;top:0;height: 70px;line-height: 90px;text-align: center;width:100%;color:#fff;font-size:24px;z-index: 9;}
-.toIndex:hover{color:#eee;text-decoration:underline;}
 
 .contain{position: relative;z-index: 2;height: 100%;}
 .card{height: 400px;height: 38.2vh;margin: 20px;transition: all ease 1s;text-align: center;color: #eee;box-shadow: 0 0 12px rgba(0, 0, 0, .3);}
@@ -38,19 +36,8 @@ html,body{height: 100%;}
 margin:.5em;user-select:none;font-size: 18px;font-family: "Consolas", serif;}
 .codepen li a{display: block;}
 .codepen ._toggle{background:url(asset/codepoet.png) center no-repeat #ddd;background-size:contain; position: relative;cursor: pointer;}
-.codepen ._toggle:before, .codepen ._toggle:after{content: "";position: absolute;width:1em;height: 4px;background:#666;right:.9em;
-opacity: 0;transition:all ease .3s;}
-.codepen ._toggle:before{transform:rotate(45deg);top:1.1em;}
-.codepen ._toggle:after{transform:rotate(-45deg);top:1.7em;}
-.codepen ._toggle:hover{background-image:none; }
-.codepen ._toggle:hover:before, .codepen ._toggle:hover:after{opacity: 1;}
-.codepen.isopen ._toggle{ background:#f0de50;}
-.codepen.isopen ._toggle:before, .codepen.isopen ._toggle:after{opacity: 1;width:2em;top:1.5em;right:.5em;height: 2px;background:#fff;}
-.codepen.isopen ._toggle:before{transform:rotate(-45deg);}
-.codepen.isopen ._toggle:after{transform:rotate(45deg);}
 
-.codepen ._code{position: absolute;bottom:-999em; opacity: 0;transition:all ease .5s;}
-.codepen ._code._visible{position: static;opacity: 1;}
+.codepen ._code{}
 @media only screen and (max-device-width: 1200px ) {
     .wrap{padding-left:2%;padding-right:2%;width: auto;min-width: 0; padding-top: 50px;padding-bottom: 50px;overflow-y: auto;box-sizing: border-box;}
     .card{min-width: 320px;}
@@ -71,10 +58,11 @@ opacity: 0;transition:all ease .3s;}
     <div class="bg full">
         <h1 class="hide">雅X共赏前端作品展示</h1>
     </div>
-    <p><a href="/" class="toIndex" title="前端路上技术博客">前端路上</a></p>
     <h2 class="hide">前端作品</h2>
     <ul class="codepen">
-        <li class="_toggle" title="代码笔"></li>
+        <li class="_toggle" title="返回首页">
+            <a href="/" title="前端技术博客" style="opacity: 0">refined-x</a>
+        </li>
         <li class="_code">
             <a href="codes/startmenu.html" title="HTML5拖拽布局">drag</a>
         </li>
@@ -156,26 +144,7 @@ opacity: 0;transition:all ease .3s;}
             ready('./asset/img2.jpg',function(){},setbg);
         });
         $(window).on('resize', setbg);
-        //codepen
-        var codepen = $('.codepen');
-        codepen.isOpen = codepen.hasClass('isOpen');
-        codepen.on('click','._toggle',function(e){
-            e.preventDefault();
-            if(codepen.isOpen){
-                codepen.removeClass('isopen').find('._code').each(function(i,e){
-                    setTimeout(function(){
-                        $(e).removeClass('_visible');
-                    },i*120);
-                });
-            }else{
-                codepen.addClass('isopen').find('._code').each(function(i,e){
-                    setTimeout(function(){
-                        $(e).addClass('_visible');
-                    },i*150);
-                });
-            }
-            codepen.isOpen = !codepen.isOpen;
-        });
+        
     });
     seajs.use('demo');
     </script>
