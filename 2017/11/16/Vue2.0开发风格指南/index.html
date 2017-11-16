@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="theme-next muse">
 <head>
-  <title> 再做一条贪吃蛇 | 前端路上 </title>
+  <title> Vue2.0开发风格指南 | 前端路上 </title>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="贪吃蛇,JavaScript," />
+  <meta name="keywords" content="Vue," />
 
 
 
@@ -22,24 +22,25 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
-<meta name="description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
+<meta name="description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
+框架或规范约束
+组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
+组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
 <meta property="og:type" content="article">
-<meta property="og:title" content="再做一条贪吃蛇">
-<meta property="og:url" content="http://refined-x.com/2017/06/19/再做一条贪吃蛇/index.html">
+<meta property="og:title" content="Vue2.0开发风格指南">
+<meta property="og:url" content="http://refined-x.com/2017/11/16/Vue2.0开发风格指南/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
-<meta property="og:updated_time" content="2017-06-19T09:09:41.102Z">
+<meta property="og:description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
+框架或规范约束
+组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
+组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
+<meta property="og:updated_time" content="2017-11-16T07:04:26.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再做一条贪吃蛇">
-<meta name="twitter:description" content="贪吃蛇，呵呵。
-在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
-思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
+<meta name="twitter:title" content="Vue2.0开发风格指南">
+<meta name="twitter:description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
+框架或规范约束
+组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
+组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
@@ -188,7 +189,7 @@
             
             
               
-                再做一条贪吃蛇
+                Vue2.0开发风格指南
               
             
           </h1>
@@ -199,8 +200,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-19T11:21:17+08:00" content="2017-06-19">
-              2017-06-19
+            <time itemprop="dateCreated" datetime="2017-11-16T15:03:32+08:00" content="2017-11-16">
+              2017-11-16
             </time>
           </span>
           <span class="post-category" >
@@ -239,23 +240,37 @@
       
       
       
-        <p>贪吃蛇，呵呵。</p>
-<p>在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移一位，其后的元素挨个前移，也就是组成蛇身的每一个正方形元素都要移动位置，感觉很浪费。</p>
-<p>我的方法是，将蛇尾元素直接移到蛇头即将移动的方向上充当蛇头，身体其余节点不需要动，这样也能实现贪吃蛇的移动效果，而且只要一次DOM操作。为了验证这个方法，于是我补齐了贪吃蛇游戏的其他部分，也就是地图、食物、碰撞检测、关卡设计。</p>
-<p>先看效果：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png" alt="snake"></p>
-<p>下面简单说一下。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h3><p>贪吃蛇的所谓地图看上去其实就是一堆网格线，这里面至少包含两个信息，第一单元格尺寸，第二游戏区域尺寸，设置好这两个尺寸，循环填充横线和竖线就可以了。</p>
-<h3 id="食物"><a href="#食物" class="headerlink" title="食物"></a>食物</h3><p>贪吃蛇里的食物是随机生成位置的，总量保持一定，吃一个生成一个，这个总量通常可以根据游戏区域的大小按比例取得，比如<code>边长 * 0.5</code>，另外生成的食物不能与蛇身重叠，需要注意检测随机生成位置的可用性。</p>
-<h3 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h3><p>运动环节的思路前面说过了，在运动进行之前，要先做碰撞检测，这是驱动游戏进行的关键步骤。</p>
-<p>贪吃蛇的碰撞检测区分三种情况，分别是边界碰撞、自身碰撞、吃到食物。其中前两种会导致游戏结束，最后一种会得分，并且每吃一个食物蛇就会变长一个单元长度。</p>
-<h3 id="关卡设计"><a href="#关卡设计" class="headerlink" title="关卡设计"></a>关卡设计</h3><p>为提升挑战性，一般要给游戏设计关卡，在这个游戏中的关卡只跟刷新率有关，每得到<code>10</code>分就会进入下一关，同时游戏的刷新时间缩短为上一关的<code>80%</code>，游戏速度就会加快，也就会越来越难玩。实际上，对于贪吃蛇这个游戏来说，就算没有关卡游戏的难度也会随着蛇身变长而越来越难，因为在一个既定范围内越长就容易撞到自己，只不过这个变难的速度太慢了。</p>
-<p>对了，说到这儿想起还有一个临界点没做判断，那就是假如遇到一个超高手，把游戏玩到地图上刚好能容不下蛇身和剩余食物的时候，生成食物随机位置的程序会发现生成的随机位置不可用，从而一直试图生成新的可用位置，于是进入了死循环，这是一个美好的坑，我赌能跳进去的人，想必是不会玩这个游戏的。。。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>演示：<a href="http://refined-x.com/projects/codes/snake.html">snake</a><br>源码：<a href="https://github.com/tower1229/tower1229.github.io/blob/master/projects/codes/snake.html" target="_blank" rel="external">Github</a></p>
-<p>UI部分借助<a href="http://refined-x.com/Flow-UI/docs/">Flow-UI</a>实现</p>
+        <p>本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。</p>
+<h2 id="框架或规范约束"><a href="#框架或规范约束" class="headerlink" title="框架或规范约束"></a>框架或规范约束</h2><ol>
+<li>组件名推荐统一使用<code>kebab-case</code>(连字符式)，因为HTML对大小写不敏感，无法识别<code>PascalCase</code>(驼峰式)。</li>
+<li>组件的 <code>data</code> 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失去复用价值。</li>
+<li>组件的<code>Prop</code>在声明时推荐使用<code>PascalCase</code>(驼峰式)，但在模板中必须使用<code>kebab-case</code>(连字符式)，原因同样是因为HTML对大小写不敏感。</li>
+</ol>
+<h2 id="性能相关"><a href="#性能相关" class="headerlink" title="性能相关"></a>性能相关</h2><ol>
+<li><code>v-for</code>必须配合<code>key</code>使用，可以提高部分情况下Vue的渲染性能。</li>
+<li><code>scoped</code> 样式中避免使用元素选择器，因为遍历元素的效率通常很低。</li>
+</ol>
+<h2 id="健壮性相关"><a href="#健壮性相关" class="headerlink" title="健壮性相关"></a>健壮性相关</h2><ol>
+<li>组件名必须为多个单词，避免与未来的HTML元素冲突，配合<strong>框架或规范约束</strong>第一条理解。</li>
+<li>组件样式必须设置作用域，避免样式冲突，单文件组件可以选择使用<code>scope</code>特性，通用组件可以选择基于class的规则，例如<a href="http://getbem.com/" target="_blank" rel="external">BEM</a>。</li>
+<li>对于混合到Vue对象中的全局资源使用<code>$_</code>前缀，避免与未来版本的Vue属性冲突，必要时可以再添加一个命名空间，避免与其他插件属性冲突。</li>
+<li>组件命名规则：基础组件加特定前缀预示复用性，例如<code>Base</code>；单例组件用<code>The</code>前缀标识预示唯一性；耦合组件中的子组件使用父组件名做前缀预示耦合关系，例如<code>TodoList</code>和<code>TodoListItem</code>；相关组件命名用一般性描述单词开头，用修饰性单词结尾，例如<code>ColorPicker</code>、<code>ColorPickerMulti</code>、<code>ColorPickerQuery</code>。</li>
+<li>组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法，因为计算属性和方法利于复用和重构，而且模板也会看起来也更清晰易懂。</li>
+</ol>
+<h2 id="可读性相关"><a href="#可读性相关" class="headerlink" title="可读性相关"></a>可读性相关</h2><ol>
+<li>组件的<code>Prop</code> 定义应该尽量详细，至少要定义类型，利于开发期间调试和提高组件代码可读性。</li>
+<li>推荐用单文件的方式组织组件，利于提高单个组件的编辑查阅效率，即使不使用构建工具，也可以<a href="http://refined-x.com/2017/10/28/%E5%A6%82%E4%BD%95%E4%B8%8D%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91Vue%E5%85%A8%E5%AE%B6%E6%A1%B6%E9%A1%B9%E7%9B%AE/">变通的使用单文件组件开发方式</a>。</li>
+<li>组件文件的命名推荐<code>kebab-case</code>(连字符式)，与组件名写法一致。</li>
+<li>在除了DOM模板以外的任何地方使用自闭和组件写法，使代码更简洁，例如<code>&lt;my-component/&gt;</code>。</li>
+<li>组件命名应使用完整单词，避免歧义。</li>
+<li>拥有多个特性的元素应该分多行撰写，每个特性一行。</li>
+<li>指令缩写要么一直用要么一直不用，提高模板可读性。</li>
+<li>项目中的组件/实例选项声明顺序保持一致，推荐的顺序如下：<code>el,name,parent,functional,delimiters,comments,components,directives,filters,extends,mixins,inheritAttrs,model,props/propsData,data,computed,watch,lifeCircleHooks,methods,template/render,renderError</code>。</li>
+<li>项目中的元素属性书写顺序保持一致。</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>指南中的绝大多数优化项都是针对代码健壮性和可读性提出的，基本也都是比较普遍的最佳实践方式，对于有一定经验的开发者来说应该都是很熟悉的内容，或者早已形成了自己的一套习惯，如果部分条目与你所熟知的方式相违背，也不需要过于纠结，只要明确了选择背后的利弊，那就是你的“最佳实践”。</p>
 
-        <p><em>前端路上原创技术文章，转载请注明出处：http://refined-x.com/2017/06/19/再做一条贪吃蛇/</em></p>
+        <p><em>前端路上原创技术文章，转载请注明出处：http://refined-x.com/2017/11/16/Vue2.0开发风格指南/</em></p>
       
       
     </div>
@@ -279,9 +294,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/贪吃蛇/" rel="tag">#贪吃蛇</a>
-          
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="/tags/Vue/" rel="tag">#Vue</a>
           
         </div>
       
@@ -289,17 +302,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/16/Webpack是答案吗/" rel="next" title="Webpack是答案吗">
-                <i class="fa fa-chevron-left"></i> Webpack是答案吗
+              <a href="/2017/10/28/如何不用构建工具开发Vue全家桶项目/" rel="next" title="如何不用构建工具开发Vue全家桶项目">
+                <i class="fa fa-chevron-left"></i> 如何不用构建工具开发Vue全家桶项目
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/23/2017混合应用开发现状/" rel="prev" title="2017混合应用开发现状">
-                2017混合应用开发现状 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -319,7 +328,7 @@
           
             
   
-<div id="SOHUCS" sid="再做一条贪吃蛇" ></div> 
+<div id="SOHUCS" sid="Vue2.0开发风格指南" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cyt41dRMv'; 
@@ -447,7 +456,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地图"><span class="nav-number">2.1.</span> <span class="nav-text">地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#食物"><span class="nav-number">2.2.</span> <span class="nav-text">食物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#碰撞检测"><span class="nav-number">2.3.</span> <span class="nav-text">碰撞检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关卡设计"><span class="nav-number">2.4.</span> <span class="nav-text">关卡设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#框架或规范约束"><span class="nav-number">1.</span> <span class="nav-text">框架或规范约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能相关"><span class="nav-number">2.</span> <span class="nav-text">性能相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性相关"><span class="nav-number">3.</span> <span class="nav-text">健壮性相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可读性相关"><span class="nav-number">4.</span> <span class="nav-text">可读性相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
