@@ -1,155 +1,441 @@
 <!doctype html>
-<html lang="zh-cn">
-
+<html class="theme-next muse">
 <head>
-    <meta charset="utf-8">
-    <title>前端作品 | 前端路上</title>
-    <meta content="雅X共赏,前端路上,前端作品" name="Keywords">
-    <meta content="雅X共赏前端作品展示" name="Description">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit">
-    <link href="./asset/ui.css" rel="stylesheet">
-    <style>
-        /* mystyle */
-@font-face {
-    font-family: 'Consolas';
-    src: url('asset/consola.woff') format('woff'),
-         url('asset/consola.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-html,body{height: 100%;}
-.full{position: absolute;z-index: 1;top: 0;left: 0;width: 100%;height: 100%;filter: blur(10px);}
-.bg{background: url(./asset/img2.jpg) no-repeat;}
+  <title>
+  
+  
+    前端作品 | 前端路上
+  
+</title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-.contain{position: relative;z-index: 2;height: 100%;}
-.card{height: 400px;height: 38.2vh;margin: 20px;transition: all ease 1s;text-align: center;color: #eee;box-shadow: 0 0 12px rgba(0, 0, 0, .3);}
-.card p{transition: opacity ease 1s;opacity: 0;color: rgba(0, 0, 0, .6);}
-.card .url{font-family: tahoma;visibility: hidden;margin-bottom: -2em;transition: opacity ease 1s;opacity: 0;color: rgba(0, 0, 0, .5);}
-.card .check:checked + .url{visibility: visible;opacity: 1;}
-.card:hover{color: #fff;box-shadow: 0 0 24px rgba(0, 0, 0, .5);}
-.card:hover p{opacity: 1;}
 
-.codepen{position: absolute;left: 0;width:100%;bottom:0;z-index: 3; text-align: center;overflow: hidden;}
-.codepen li{ display: inline-block;width:3em;height: 3em;overflow: hidden;line-height: 3em;border-radius: 50%;background:#f0de50;color:#fff;
-margin:.5em;user-select:none;font-size: 18px;font-family: "Consolas", serif;}
-.codepen li a{display: block;}
-.codepen ._toggle{background:url(asset/codepoet.png) center no-repeat #ddd;background-size:contain; position: relative;cursor: pointer;}
+  <meta name="keywords" content="前端技术博客,前端学习,前端路上,雅X共赏,FlowUI,HybridStart,FlowCLI,VueAccessControl" />
 
-.codepen ._code{}
-@media only screen and (max-device-width: 1200px ) {
-    .wrap{padding-left:2%;padding-right:2%;width: auto;min-width: 0; padding-top: 50px;padding-bottom: 50px;overflow-y: auto;box-sizing: border-box;}
-    .card{min-width: 320px;}
-}
-    </style>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+<meta name="description" content="Talk is easy, show me the code.
+开源项目Flow-UI
+:rainbow: Flow-UI 是一套组件化UI框架，支持定制主题，主要服务于前台及中后台产品。
+
+
+Flow-CLI
+基于Nodejs/Gulp的前端自动化工具
+
+
+HybridStart
+基于apicloud的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
+
+
+vue-access-contro">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前端作品">
+<meta property="og:url" content="http://refined-x.com/projects/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="Talk is easy, show me the code.
+开源项目Flow-UI
+:rainbow: Flow-UI 是一套组件化UI框架，支持定制主题，主要服务于前台及中后台产品。
+
+
+Flow-CLI
+基于Nodejs/Gulp的前端自动化工具
+
+
+HybridStart
+基于apicloud的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
+
+
+vue-access-contro">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/flow-ui-logo.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/tower1229/Flow-CLI/master/docs/img/flow-cli-album.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hybridstart-logo.jpg">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png">
+<meta property="og:updated_time" content="2017-12-10T11:01:26.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端作品">
+<meta name="twitter:description" content="Talk is easy, show me the code.
+开源项目Flow-UI
+:rainbow: Flow-UI 是一套组件化UI框架，支持定制主题，主要服务于前台及中后台产品。
+
+
+Flow-CLI
+基于Nodejs/Gulp的前端自动化工具
+
+
+HybridStart
+基于apicloud的混合应用开发框架，可能是开发这一类混合应用的最佳实践。
+
+
+vue-access-contro">
+<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/flow-ui-logo.jpg">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="http://refined-x.com/projects/index.html" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "http://refined-x.com/projects/index.html",
+        "appid": "1585542911827735",
+        "title": "前端作品",
+        "images": [],
+        "description": "Talk is easy, show me the code.
+开源项目Flow-UI
+:rainbow: Flow-UI 是一套组件化UI框架，支持定制主题，主要服务于前台及中后台产品。
+
+
+...",
+        "pubDate":  "2017-12-10T11:01:20" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 </head>
-
-<body style="min-width: 0">
-    <div class="bg full">
-        <h1 class="hide">雅X共赏前端作品展示</h1>
-    </div>
-    <h2 class="hide">前端作品</h2>
-    <ul class="codepen">
-        <li class="_toggle" title="返回首页">
-            <a href="/" title="前端技术博客" style="opacity: 0">refined-x</a>
-        </li>
-        <li class="_code">
-            <a href="codes/startmenu.html" title="HTML5拖拽布局">drag</a>
-        </li>
-        <li class="_code">
-            <a href="codes/snake.html" title="贪吃蛇游戏">snake</a>
-        </li>
-        <li class="_code">
-            <a href="codes/tracking.html" title="人脸识别-提取-合成">tracking</a>
-        </li>
-    </ul>
-    <div class="contain">
-        <h2 class="hide">开源项目</h2>
-        <div class="flex-row align-center flex-wrap wrap" style="height: 100%;">
-                <a href="http://refined-x.com/Flow-UI/" target="_blank" class="flex-1 card bg flex-col justify-center">
-                    <h3>Flow-UI</h3>
-                    <p>轻量级的前端UI框架</p>
-                </a>
-                <a href="http://refined-x.com/Flow-CLI/" target="_blank" class="flex-1 card bg flex-col justify-center">
-                    <h3>Flow-CLI</h3>
-                    <p>基于Nodejs的前端自动化工具</p>
-                </a>
-                <a href="http://refined-x.com/WidgetsPlayground/" target="_blank" class="flex-1 card bg flex-col justify-center">
-                    <h3>WidgetsPlayground</h3>
-                    <p>前端组件开发平台</p>
-                </a>
-                <a href="http://refined-x.com/HybridStart/" target="_blank" class="flex-1 card bg flex-col justify-center">
-                    <h3>HybridStart</h3>
-                    <p>混合应用开发框架</p>
-                </a>
-        </div>
-    </div>
-
-    <script src="./asset/sea.js" id="seajsnode"></script>
-    <script>
-    seajs.config({
-        base: "http://static-zt.oss-cn-qingdao.aliyuncs.com/modules",
-        alias: {
-            "audio": "audio/audio",
-            "copy": "copy/ZeroClipboard",
-            "flv": "flv/flv",
-            "hook": "hook/hook",
-            "jquery": "jquery/1/jquery",
-            "validform": "validform/validform",
-            "My97DatePicker": "My97DatePicker/WdatePicker",
-            "raty": "raty/raty",
-            "upload": "upload/upload",
-            "makethumb": "upload/makethumb",
-            "localResizeIMG": "upload/localResizeIMG",
-            "video": "video/video",
-            "webuploader": "webuploader/webuploader"
-        },
-        localcache: {
-            timeout: 2e4
-        }
-    });
-    </script>
-    <script>
-    define('demo', function(require) {
-        var $ = require('jquery');
-        var base = require('base');
-        if(base.browser.ie<10){
-            require.async('box',function(){
-                $.box.alert('推荐使用Chrome浏览器');
-            });
-        }
-        var setbg = function() {
-            var requestAnimationFrame = window.requestAnimationFrame || function(cb) {
-                setTimeout(cb, 0);
-            };
-            $('.card').each(function(i, e) {
-                var offset = $(e).offset();
-                var style = '-' + offset.left + 'px -' + offset.top + 'px';
-                requestAnimationFrame(function() {
-                    $(e).get(0).style.backgroundPosition = style;
-                });
-            });
-        };
-        require.async('img-ready',function(ready){
-            ready('./asset/img2.jpg',function(){},setbg);
-        });
-        $(window).on('resize', setbg);
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right  ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
         
-    });
-    seajs.use('demo');
-    </script>
-    <script type="text/javascript" src="//push.zhanzhang.baidu.com/push.js"></script>
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端博客">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            前端博客
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端技术">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fire"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-给我留言">
+          <a href="/comment" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-send"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+    
+      <p>Talk is easy, show me the code.</p>
+<h3 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h3><h4 id="Flow-UI"><a href="#Flow-UI" class="headerlink" title="Flow-UI"></a>Flow-UI</h4><blockquote>
+<p>:rainbow: Flow-UI 是一套组件化UI框架，支持定制主题，主要服务于前台及中后台产品。</p>
+</blockquote>
+<p><a href="http://refined-x.com/Flow-UI/"><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/flow-ui-logo.jpg" alt="logo"></a></p>
+<h4 id="Flow-CLI"><a href="#Flow-CLI" class="headerlink" title="Flow-CLI"></a>Flow-CLI</h4><blockquote>
+<p>基于Nodejs/Gulp的前端自动化工具</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/tower1229/Flow-CLI/master/docs/img/flow-cli-album.png" alt="preview"></p>
+<h4 id="HybridStart"><a href="#HybridStart" class="headerlink" title="HybridStart"></a>HybridStart</h4><blockquote>
+<p>基于<a href="http://www.apicloud.com/" target="_blank" rel="external">apicloud</a>的混合应用开发框架，可能是开发这一类混合应用的最佳实践。</p>
+</blockquote>
+<p><a href="http://refined-x.com/HybridStart/"><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hybridstart-logo.jpg" alt="logo"></a></p>
+<h4 id="vue-access-control"><a href="#vue-access-control" class="headerlink" title="vue-access-control"></a>vue-access-control</h4><blockquote>
+<p>:gem: Vue权限管理解决方案</p>
+</blockquote>
+<p><a href="http://refined-x.com/Vue-Access-Control/"><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png" alt="logo"></a></p>
+<h3 id="代码随笔"><a href="#代码随笔" class="headerlink" title="代码随笔"></a>代码随笔</h3>
+    
+  </div>
+
+          </div>
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/4016839?s=460&v=4"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web前端开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">前端技术</span>
+              
+            </div>
+          
+        </nav>
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="/#" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tower1229" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/projects/" target="_blank" title="Projects">
+                  
+                    <i class="fa fa-fw fa-fire"></i>
+                  
+                  Projects
+                </a>
+              </span>
+            
+          
+        </div>
+        
+        
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://refined-x.com/" title="前端技术博客" target="_blank">前端技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://refined-x.com/" title="前端技术文章" target="_blank">前端技术文章</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wheelsfactory.cn/" title="轮子工厂" target="_blank">轮子工厂</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+      </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="http://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+</div>
+        
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+	<script src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+	<script src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt41dRMv"></script>
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+  
+  
+  
+  
+  
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+<script src="http://js.passport.qihucdn.com/11.0.1.js?b3626f4bd6cd1fe45d49cfdd67138a37" id="sozz"></script>
 
 </body>
-
 </html>
