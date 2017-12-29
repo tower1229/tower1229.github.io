@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://refined-x.com/projects/asset/sea.js</loc>
+    <loc>http://refined-x.com/asset/sea.js</loc>
     
     <lastmod>2017-12-29T05:55:00.693Z</lastmod>
     
@@ -93,21 +93,21 @@
   </url>
   
   <url>
-    <loc>http://refined-x.com/projects/asset/ui.css</loc>
+    <loc>http://refined-x.com/asset/ui.css</loc>
     
     <lastmod>2017-09-05T07:12:44.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://refined-x.com/projects/asset/face-min.js</loc>
+    <loc>http://refined-x.com/asset/face-min.js</loc>
     
     <lastmod>2017-09-01T03:27:25.400Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://refined-x.com/projects/asset/tracking-min.js</loc>
+    <loc>http://refined-x.com/asset/tracking-min.js</loc>
     
     <lastmod>2017-09-01T03:27:19.349Z</lastmod>
     
@@ -240,7 +240,7 @@
   </url>
   
   <url>
-    <loc>http://refined-x.com/projects/asset/alloyimage-1.1.js</loc>
+    <loc>http://refined-x.com/asset/alloyimage-1.1.js</loc>
     
     <lastmod>2013-03-28T08:25:31.110Z</lastmod>
     
