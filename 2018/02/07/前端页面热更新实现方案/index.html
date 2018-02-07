@@ -1,0 +1,548 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> 前端页面热更新实现方案 | 前端路上 </title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+<meta name="description" content="前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存在加载压力，但CS架构的问题是更新不灵活，那么有没有一种方法能结合这两种架构的优点，在加载速度和更新灵活性之间找到一个平衡点呢？这就是本文要探讨的一种方案：前端热更新。
+方案概述“前端”和“热更新”这两个词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端页面热更新实现方案">
+<meta property="og:url" content="http://refined-x.com/2018/02/07/前端页面热更新实现方案/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存在加载压力，但CS架构的问题是更新不灵活，那么有没有一种方法能结合这两种架构的优点，在加载速度和更新灵活性之间找到一个平衡点呢？这就是本文要探讨的一种方案：前端热更新。
+方案概述“前端”和“热更新”这两个词">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hot-patch.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/web-ota-qrcode.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/yijiankang-share.png">
+<meta property="og:updated_time" content="2018-02-07T02:47:59.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端页面热更新实现方案">
+<meta name="twitter:description" content="前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存在加载压力，但CS架构的问题是更新不灵活，那么有没有一种方法能结合这两种架构的优点，在加载速度和更新灵活性之间找到一个平衡点呢？这就是本文要探讨的一种方案：前端热更新。
+方案概述“前端”和“热更新”这两个词">
+<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hot-patch.png">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="http://refined-x.com/2018/02/07/前端页面热更新实现方案/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "http://refined-x.com/2018/02/07/前端页面热更新实现方案/",
+        "appid": "1585542911827735",
+        "title": "前端页面热更新实现方案",
+        "images": [],
+        "description": "前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存...",
+        "pubDate":  "2018-02-07T02:47:50" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6769174034863075",
+    enable_page_level_ads: true
+  });
+</script>
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端博客">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            前端博客
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端技术">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fire"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-给我留言">
+          <a href="/comment" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-send"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端页面热更新实现方案
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-02-07T10:46:48+08:00" content="2018-02-07">
+              2018-02-07
+            </time>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">来源：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">前端路上</span>
+              </a>
+            </span>
+          </span>
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <h2 id="前端页面热更新"><a href="#前端页面热更新" class="headerlink" title="前端页面热更新"></a>前端页面热更新</h2><p>了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存在加载压力，但CS架构的问题是更新不灵活，那么有没有一种方法能结合这两种架构的优点，在加载速度和更新灵活性之间找到一个平衡点呢？这就是本文要探讨的一种方案：前端热更新。</p>
+<h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>“前端”和“热更新”这两个词通常很少一起出现，提到热更新一般都是指APP的一种静默更新方式，这种方式会在用户使用时悄悄检测并下载增量更新包，当用户下次打开APP时自动应用更新，从而将APP“更新”这个破坏连贯性的动作隐藏于无形；前端页面的加载则相当于每次都是“全量更新”，如果能让前端页面也能用上“本地模板”，那将极大缩短前端加载时间，而且以此为前提，我们也可以实现一个前端的模板热更新机制，做到不影响页面更新的实时性。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>场景一：APP内嵌页面。</p>
+<p>比如电商类APP的首页，经常需要改版或者做活动皮肤，如何减少更新成本就成了一个大问题。使用了热更新方案我们就可以用HTML实现APP首页，页面内容以模板的形式存进localStorage，后台静默更新模板，下次启动自动生效；针对具有一定时效性的活动皮肤，我们以补丁的形式发布，补丁文件叠加在模板上产生最终的活动模板效果，对于补丁包我们可以提前加载并预存在本地，补丁包应该包含自身的生效时段信息，前端检测到时间处于活动周期内时应用补丁。最终可以做到热更新页面无论改版还是做活动，只需要前端发版就可以，完全不需要APP端参与。</p>
+<p>场景二：追求加载速度的web页面。</p>
+<p>对于web页面来说更新不是问题，加载才是最大的问题，如果个别页面希望极致提升页面展现速度，那么也可以使用该方案作为提速手段，但因为页面的所有代码都将存进localStorage，所以不适合大范围使用。</p>
+<h3 id="需求细化"><a href="#需求细化" class="headerlink" title="需求细化"></a>需求细化</h3><p>综合以上场景和需求，最终我们要做的东西是一个“壳”页面，该页面没有具体业务内容，只实现热更新功能，每次加载都先检查localStorage中是否存在模板，如果有则立即应用模板，此时页面展现出来，如果没有则进入下一步；下一步页面会请求模板管理接口获取最新模板信息，拿到模板信息后如果本地已有模板，则与本地模板比对版本信息，如果版本一致说明缓存命中，流程结束；如果本地版本不是最新，则获取最新模板并存进本地，下次页面加载时将应用最新的模板，流程结束；另一种情况是首次加载本地没有任何模板，那么将获取最新模板，保存到本地，然后应用模板，流程结束。</p>
+<p>前面说的是稳定模板的更新流程，稳定模板流程结束后会进入补丁模板更新流程。首先仍然是检查本地是否存在补丁模板，如果已存在则检测当前时间是否匹配补丁的生效时段，匹配则应用补丁，不匹配将进入下一步；下一步将获取最新补丁模板并存到本地，然后检测当前时间是否匹配最新补丁的生效时段，如果匹配则应用模板，不匹配流程结束。</p>
+<p>完整流程如图所示：<br><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hot-patch.png" alt="hot patch"></p>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><h3 id="接口数据"><a href="#接口数据" class="headerlink" title="接口数据"></a>接口数据</h3><p>根据功能需求我们需要接口返回稳定模板信息和活动模板信息，分别都包含<code>id</code>和<code>url</code>两个字段，<code>id</code>用于版本校验，<code>url</code>指向模板文件下载地址，活动模板信息还需要额外提供<code>cycle</code>字段，定义活动模板的生效时段，与之相对的我们还需要接口返回服务器当前时间，用于匹配活动模板的生效时段，最终完整的数据结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;status&quot;: &quot;Y&quot;,</span><br><span class="line">	&quot;data&quot;: &#123;</span><br><span class="line">		&quot;stableVersion&quot;: &#123;</span><br><span class="line">			&quot;id&quot;: &quot;17&quot;,</span><br><span class="line">			&quot;url&quot;: &quot;&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;activeVersion&quot;: &#123;</span><br><span class="line">			&quot;id&quot;: &quot;18&quot;,</span><br><span class="line">			&quot;url&quot;: &quot;&quot;,</span><br><span class="line">			&quot;cycle&quot;: &quot;2018,02,01-2018,02,10&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;today&quot;: &quot;2018,02,06&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="本地数据"><a href="#本地数据" class="headerlink" title="本地数据"></a>本地数据</h3><p>保存到本地的数据大致跟接口数据保持一致，只保留<code>stableVersion</code>和<code>activeVersion</code>信息，字段在<code>id</code>和<code>url</code>基础上再增加<code>template</code>用于保存模板字符串，完整本地数据结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;stableVersion&quot;: &#123;</span><br><span class="line">		&quot;id&quot;: &quot;17&quot;,</span><br><span class="line">		&quot;url&quot;: &quot;&quot;,</span><br><span class="line">		&quot;template&quot;: &quot;&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;activeVersion&quot;: &#123;</span><br><span class="line">		&quot;id&quot;: &quot;18&quot;,</span><br><span class="line">		&quot;url&quot;: &quot;&quot;,</span><br><span class="line">		&quot;cycle&quot;: &quot;2018,02,01-2018,02,10&quot;,</span><br><span class="line">		&quot;template&quot;: &quot;&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模板文件"><a href="#模板文件" class="headerlink" title="模板文件"></a>模板文件</h3><p>前端页面由三种语言构成，但我们希望只用一次请求就把模板文件拿到，所以模板是一个包含了html/css/js的文本文件，标签格式就保持普通HTML文件的写法，考虑到模板应用部分的实现，需要约定一下标签的写法，例如css必须用<code>&lt;style&gt;&lt;/style&gt;</code>标签包裹，js必须用<code>&lt;script style=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code>标签包裹，这样一来用正则表达式就很容易提取到各部分代码段。</p>
+<h3 id="模板应用"><a href="#模板应用" class="headerlink" title="模板应用"></a>模板应用</h3><p>如上段所说，获得模板文件后可以使用正则表达式拿到三种语言代码，然后只需要按照css &gt; html &gt; js的顺序依次将他们插入页面相应位置，就完成了模板应用，唯一不同的是html代码将以<code>innerHTML</code>的方式覆盖进body元素。在应用顺序上，将css放在html之前是为了避免重绘，将js放在html之后是为了能够在js中操作DOM。</p>
+<p>活动模板虽然定义为补丁，但模板构成跟稳定模板其实是相同的，应用方式也完全相同，只不过由于活动模板在稳定模板之后应用，所以活动模板的css和js都将以补丁的方式影响页面，对于普通的换皮肤需求只需要css和js就足够了，但如果希望html也能发生一些改变，根据html的覆盖式应用方式，活动模板中就需要给出一份完整的html代码，以达到修改html的目的。</p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><h3 id="示例展示"><a href="#示例展示" class="headerlink" title="示例展示"></a>示例展示</h3><p><a href="http://refined-x.com/WEB-OTA/">http://refined-x.com/WEB-OTA/</a></p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/web-ota-qrcode.png" alt="qrcode"></p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p><a href="http://o2o.zhongyishijia.com/" target="_blank" rel="external">一健康网上商城</a>APP首页即采用WEB-OTA方案实现，应付日常迭代游刃有余。</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/yijiankang-share.png" alt="yijiankang"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>整个方案的流程比较琐碎，但实现过程其实很简单，部署成本也不高，只需要后端把模板管理起来，再提供一个更新接口就行了，但这套更新机制还是有一个小问题，那就是当有新版本发布时用户并不能第一时间看到新版本，必须下次访问才能更新到新版本，这算是静默更新要付出的一点点代价吧，如果实在介意这个问题其实也容易解决，只需要在检测到远程有新版本时提示用户重启/刷新就可以了。</p>
+<p>相比较HTML5的manifest缓存方案，我认为灵活性要更高一些，但不足之处在于不支持静态文件的碎片化管理，但扩展这个功能也不复杂，无非模板信息里再扩展几个字段而已。</p>
+<p>代码在这里了，更细节的东西自己看代码吧：<a href="https://github.com/tower1229/WEB-OTA" target="_blank" rel="external">https://github.com/tower1229/WEB-OTA</a></p>
+
+        <p>前端路上原创技术文章，转载请注明出处：<a href="http://refined-x.com/2018/02/07/前端页面热更新实现方案/">http://refined-x.com/2018/02/07/前端页面热更新实现方案/</a></p>
+        <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>
+        <p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/xiaomiquan.png" alt="前端路上-知识星球" style="display:block;max-width:360px;margin:auto" /></p>
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/28/Vue2.0用户权限控制解决方案/" rel="next" title="Vue2.0用户权限控制解决方案">
+                <i class="fa fa-chevron-left"></i> Vue2.0用户权限控制解决方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            
+  
+<div id="SOHUCS" sid="前端页面热更新实现方案" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyt41dRMv'; 
+var conf = 'prod_4a4c59fe7143d67b7030c92134d6560c'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/4016839?s=460&v=4"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web前端开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">前端技术</span>
+              
+            </div>
+          
+        </nav>
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="/#" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tower1229" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/projects/" target="_blank" title="Projects">
+                  
+                    <i class="fa fa-fw fa-fire"></i>
+                  
+                  Projects
+                </a>
+              </span>
+            
+          
+        </div>
+        
+        
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://refined-x.com/" title="前端技术博客" target="_blank">前端技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wheelsfactory.cn/" title="轮子工厂" target="_blank">轮子工厂</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kejihai.com/" title="科技网站大全" target="_blank">科技网站大全</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端页面热更新"><span class="nav-number">1.</span> <span class="nav-text">前端页面热更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案概述"><span class="nav-number">2.</span> <span class="nav-text">方案概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求细化"><span class="nav-number">2.2.</span> <span class="nav-text">需求细化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-number">3.</span> <span class="nav-text">实现细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口数据"><span class="nav-number">3.1.</span> <span class="nav-text">接口数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地数据"><span class="nav-number">3.2.</span> <span class="nav-text">本地数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板文件"><span class="nav-number">3.3.</span> <span class="nav-text">模板文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板应用"><span class="nav-number">3.4.</span> <span class="nav-text">模板应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果展示"><span class="nav-number">4.</span> <span class="nav-text">效果展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例展示"><span class="nav-number">4.1.</span> <span class="nav-text">示例展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际应用"><span class="nav-number">4.2.</span> <span class="nav-text">实际应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="http://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+</div>
+        
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+	<script src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+	<script src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt41dRMv"></script>
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+  
+  
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+<script src="http://js.passport.qihucdn.com/11.0.1.js?b3626f4bd6cd1fe45d49cfdd67138a37" id="sozz"></script>
+
+</body>
+</html>
