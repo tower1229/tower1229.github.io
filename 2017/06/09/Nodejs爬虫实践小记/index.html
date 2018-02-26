@@ -1,0 +1,581 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> Nodejs爬虫实践小记 | 前端路上 </title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="Nodejs,爬虫," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+<meta name="description" content="Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。
+爬取原理
+首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片
+然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链
+通过外链继续重复第一步，从而实现自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs爬虫实践小记">
+<meta property="og:url" content="http://refined-x.com/2017/06/09/Nodejs爬虫实践小记/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。
+爬取原理
+首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片
+然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链
+通过外链继续重复第一步，从而实现自">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png">
+<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png">
+<meta property="og:updated_time" content="2017-06-16T06:03:00.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nodejs爬虫实践小记">
+<meta name="twitter:description" content="Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。
+爬取原理
+首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片
+然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链
+通过外链继续重复第一步，从而实现自">
+<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="http://refined-x.com/2017/06/09/Nodejs爬虫实践小记/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "http://refined-x.com/2017/06/09/Nodejs爬虫实践小记/",
+        "appid": "1585542911827735",
+        "title": "Nodejs爬虫实践小记",
+        "images": [],
+        "description": "Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最...",
+        "pubDate":  "2017-06-16T06:03:00" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6769174034863075",
+    enable_page_level_ads: true
+  });
+</script>
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端博客">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            前端博客
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端技术">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fire"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-给我留言">
+          <a href="/comment" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-send"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nodejs爬虫实践小记
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-09T09:13:17+08:00" content="2017-06-09">
+              2017-06-09
+            </time>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">来源：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">前端路上</span>
+              </a>
+            </span>
+          </span>
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <p>Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。</p>
+<h2 id="爬取原理"><a href="#爬取原理" class="headerlink" title="爬取原理"></a>爬取原理</h2><ul>
+<li>首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片</li>
+<li>然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链</li>
+<li>通过外链继续重复第一步，从而实现自动化抓取，这里注意需要给程序设定一个退出边界，比如当找不到下一篇的时候，或者总抓取次数达到多少的时候，防止陷入死循环</li>
+</ul>
+<h2 id="目标分析"><a href="#目标分析" class="headerlink" title="目标分析"></a>目标分析</h2><p>本次抓取目标选择的是cnBeta.com，观察发现cnBeta的新闻详细页包含相邻页面的链接，但是通过查看源代码发现，这个链接是Js生成的：</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png" alt=""></p>
+<p>这是常见的防抓取措施，通过异步请求获取关联页面链接，再由js动态生成，查看网络面板可以看到页面确实发出了一个异步请求，结果中有我们要的关联页面ID:</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png" alt=""></p>
+<p>接下来分析这个请求，可以发现有两个参数，想必都可以从HTML中找到：</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png" alt=""></p>
+<p>第一个参数<code>_csrf</code>很容易在源代码中直接搜索到了：</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png" alt=""></p>
+<p>第二个参数全文检索找不到：</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png" alt=""></p>
+<p>观察这个参数的结构，发现数据被两个逗号隔成三段，于是猜测数据是由于多部分拼接而来的，分开检索果然找到了：</p>
+<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png" alt=""></p>
+<p>但只找到了数据的后两段，开头的<code>1,</code>不知道从哪来的，鉴于只有一个字符很难检索，而且观察发现很多页面中的这个请求都是1开头，所以这里干脆写死了。。。</p>
+<p>至此对目标的分析就结束了，下面开始实现这个爬虫。</p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><p>大致思路是，从起始页面开始抓取，异步获取上一篇新闻页面的链接继续抓取，设定最大抓取次数防止陷入死循环，伪码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fetchLimit = <span class="number">50</span>;                <span class="comment">//最大抓取条数</span></span><br><span class="line"><span class="keyword">let</span> fetched = <span class="number">0</span>;                    <span class="comment">//计数器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> getNext = <span class="function"><span class="keyword">function</span>(<span class="params">_csrf, op</span>)</span>&#123;  <span class="comment">//获取下一篇文章ID</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> nextID;</span><br><span class="line">        ...</span><br><span class="line">        resolve(nextID);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fetchPage = <span class="function"><span class="keyword">function</span>(<span class="params">ID</span>)</span>&#123;       <span class="comment">//抓取程序</span></span><br><span class="line">	<span class="keyword">let</span> _csrf = ...;</span><br><span class="line">	<span class="keyword">let</span> op = ...;</span><br><span class="line">    save(ID);                       <span class="comment">//保存内容</span></span><br><span class="line">    fetched++;                      <span class="comment">//计数器累加</span></span><br><span class="line">    getNext(_csrf, op).then(<span class="function"><span class="keyword">function</span>(<span class="params">nextID</span>) </span>&#123;</span><br><span class="line">      fetchPage(nextID);            <span class="comment">//获取下一篇ID并进入循环</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetchPage(<span class="string">'STARTID'</span>);               <span class="comment">//开始抓取</span></span><br></pre></td></tr></table></figure>
+<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><p>重点是保存内容的实现，首先要获得页面HTML代码，主要用到<code>http</code>模块，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line">http.get(pageUrl, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> html=<span class="string">''</span>;</span><br><span class="line">    res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">    res.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">      html += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    res.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(html);    <span class="comment">//这里得到完整的HTML字符串  </span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>从HTML里获取信息可以使用正则匹配，或者使用<code>cheerio</code>，<code>cheerio</code>可以说实现了一个Nodejs端的jQuery，它跟jQuery的区别是需要先生成一个实例，然后的使用就跟jQuery一样了:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"><span class="keyword">const</span> $ = cheerio.load(html);</span><br><span class="line"><span class="keyword">let</span> news_title = $(<span class="string">'.cnbeta-article .title h1'</span>).text().trim().replace(<span class="regexp">/\//g</span>, <span class="string">'-'</span>);</span><br></pre></td></tr></table></figure>
+<p>保存文件主要使用<code>fs</code>模块，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line">fs.writeFile(FilePath, FileContent, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里有一个坑，我们希望将文章正文保存成与标题同名的txt文本，但标题中可能包含斜杠（<code>/</code>），当保存这样的文件时程序会将标题斜杠前的部分误认为成一个路径，从而报错，所以需要将标题中的斜杠替换掉。</p>
+<p>保存图片跟保存文本大致相同，区别主要是写入格式，需要使用二进制方式写入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http.get(img_src, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> imgData = <span class="string">""</span>;</span><br><span class="line">  res.setEncoding(<span class="string">"binary"</span>);            <span class="comment">//注意格式</span></span><br><span class="line">  res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">    imgData += chunk;</span><br><span class="line">  &#125;);</span><br><span class="line">  res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fs.writeFile(imgSavePath, imgData, <span class="string">"binary"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;    <span class="comment">//注意格式</span></span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>程序的结构和主要功能点基本就是这样。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>实现一个爬虫说起来很简单，但健壮性真的很难保证，在爬取cnBeta过程中就发现另一个301跳转的坑，url发生跳转时程序捕获的HTML是空的，无法拿到真正的内容，所以在请求响应后还需要判断响应头是否是301，如果是就要从响应信息中找到跳转后的url重新发起请求。幸亏cnBeta不需要用户登录，如果是一个必须登录才能访问的站点，抓取会麻烦很多。</p>
+<p>本项目的完整代码见 <a href="http://refined-x.com/crawler/">Nodejs crawler</a>，感谢cnBeta^ ^。</p>
+
+        <p>前端路上原创技术文章，转载请注明出处：<a href="http://refined-x.com/2017/06/09/Nodejs爬虫实践小记/">http://refined-x.com/2017/06/09/Nodejs爬虫实践小记/</a></p>
+        <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>
+        <p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/xiaomiquan.png" alt="前端路上-知识星球" style="display:block;max-width:360px;margin:auto" /></p>
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nodejs/" rel="tag">#Nodejs</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/01/hello-hexo/" rel="next" title="hello hexo!">
+                <i class="fa fa-chevron-left"></i> hello hexo!
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/Vue全家桶实践项目总结/" rel="prev" title="Vue全家桶实践项目总结">
+                Vue全家桶实践项目总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            
+  
+<div id="SOHUCS" sid="Nodejs爬虫实践小记" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyt41dRMv'; 
+var conf = 'prod_4a4c59fe7143d67b7030c92134d6560c'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/4016839?s=460&v=4"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web前端开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">前端技术</span>
+              
+            </div>
+          
+        </nav>
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="/#" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tower1229" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/projects/" target="_blank" title="Projects">
+                  
+                    <i class="fa fa-fw fa-fire"></i>
+                  
+                  Projects
+                </a>
+              </span>
+            
+          
+        </div>
+        
+        
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://refined-x.com/" title="前端技术博客" target="_blank">前端技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wheelsfactory.cn/" title="轮子工厂" target="_blank">轮子工厂</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kejihai.com/" title="科技网站大全" target="_blank">科技网站大全</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.wikimoe.com/" title="维基萌" target="_blank">维基萌</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取原理"><span class="nav-number">1.</span> <span class="nav-text">爬取原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标分析"><span class="nav-number">2.</span> <span class="nav-text">目标分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序结构"><span class="nav-number">3.1.</span> <span class="nav-text">程序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能点"><span class="nav-number">3.2.</span> <span class="nav-text">功能点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="http://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+</div>
+        
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+	<script src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+	<script src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt41dRMv"></script>
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+  
+  
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+<script src="http://js.passport.qihucdn.com/11.0.1.js?b3626f4bd6cd1fe45d49cfdd67138a37" id="sozz"></script>
+
+</body>
+</html>

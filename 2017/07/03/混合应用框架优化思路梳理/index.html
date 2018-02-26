@@ -1,0 +1,548 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> 混合应用框架优化思路梳理 | 前端路上 </title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="混合应用,HybridStart," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+<meta name="description" content="前一阵攒了个HybridStart，本来只是自己平时在混合应用项目中用用，后来发现不少前端同行也有这个需求，市面上的同类产品基本都是引擎厂家自己推出的，没办法作为通用框架，于是决定重新整理一下HybridStart，尝试把它做成一个更好用、更通用的混合应用开发框架。
+定位框架定位于混合应用开发最佳实践。
+代码层面由核心和UI两部分组成。核心提供一套固定的、足够简单的api，实现混合开发中必不可少的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="混合应用框架优化思路梳理">
+<meta property="og:url" content="http://refined-x.com/2017/07/03/混合应用框架优化思路梳理/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="前一阵攒了个HybridStart，本来只是自己平时在混合应用项目中用用，后来发现不少前端同行也有这个需求，市面上的同类产品基本都是引擎厂家自己推出的，没办法作为通用框架，于是决定重新整理一下HybridStart，尝试把它做成一个更好用、更通用的混合应用开发框架。
+定位框架定位于混合应用开发最佳实践。
+代码层面由核心和UI两部分组成。核心提供一套固定的、足够简单的api，实现混合开发中必不可少的">
+<meta property="og:updated_time" content="2017-07-03T04:43:05.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="混合应用框架优化思路梳理">
+<meta name="twitter:description" content="前一阵攒了个HybridStart，本来只是自己平时在混合应用项目中用用，后来发现不少前端同行也有这个需求，市面上的同类产品基本都是引擎厂家自己推出的，没办法作为通用框架，于是决定重新整理一下HybridStart，尝试把它做成一个更好用、更通用的混合应用开发框架。
+定位框架定位于混合应用开发最佳实践。
+代码层面由核心和UI两部分组成。核心提供一套固定的、足够简单的api，实现混合开发中必不可少的">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="http://refined-x.com/2017/07/03/混合应用框架优化思路梳理/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "http://refined-x.com/2017/07/03/混合应用框架优化思路梳理/",
+        "appid": "1585542911827735",
+        "title": "混合应用框架优化思路梳理",
+        "images": [],
+        "description": "前一阵攒了个HybridStart，本来只是自己平时在混合应用项目中用用，后来发现不少前端同行也有这个需求，市面上的同类产品基本都是引擎厂家自己推出的，没办法作为通用框架，于是决定重新整理一下H...",
+        "pubDate":  "2017-07-03T04:43:00" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6769174034863075",
+    enable_page_level_ads: true
+  });
+</script>
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端博客">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            前端博客
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端技术">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fire"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-给我留言">
+          <a href="/comment" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-send"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                混合应用框架优化思路梳理
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-03T21:01:16+08:00" content="2017-07-03">
+              2017-07-03
+            </time>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">来源：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="http://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">前端路上</span>
+              </a>
+            </span>
+          </span>
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <p>前一阵攒了个<a href="http://refined-x.com/HybridStart/docs/">HybridStart</a>，本来只是自己平时在混合应用项目中用用，后来发现不少前端同行也有这个需求，市面上的同类产品基本都是引擎厂家自己推出的，没办法作为通用框架，于是决定重新整理一下HybridStart，尝试把它做成一个更好用、更通用的混合应用开发框架。</p>
+<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>框架定位于混合应用开发最佳实践。</p>
+<p>代码层面由核心和UI两部分组成。核心提供一套固定的、足够简单的api，实现混合开发中必不可少的功能；UI由插件和前端组件组成，插件具有一定的通用性，可以适度结合核心功能，前端组件则应该保持独立性，必要时可随意替换。</p>
+<p>开发体验上结合混合开发的特点做进一步优化，包括代码组织、文件组织和一些细节优化等。</p>
+<h2 id="平台通用性"><a href="#平台通用性" class="headerlink" title="平台通用性"></a>平台通用性</h2><p>虽然框架当前版本底层基于APICloud，但各家引擎的核心功能应该是一致的，这些功能使基于web前端技术开发混合应用成为可能，通用框架只能建立在这些核心特性上，周边功能以插件、模板的形式提供，这样适度降低对引擎的依赖，使UI层面的大部分代码掌握在前端开发者手里，同时也可以降低更换引擎的成本。</p>
+<p>单从APIcloud的插件库质量来看，原生插件的效果真心不一定好过web前端插件，所以不能迷信原生，原生只是理论上效果最好，到底好不好还得看开发者的能力。</p>
+<p>更换引擎的需求也很有必要，长期来看Appcan/APICloud/Dcloud不可能一直共存，短期来看APICloud的api封装对比Dcloud有其不足之处，而且从我自己的角度，也很想在通用性上做一点尝试。</p>
+<h2 id="UI可剥离"><a href="#UI可剥离" class="headerlink" title="UI可剥离"></a>UI可剥离</h2><p>前几天对比研究了一下Dcloud，从文档各方面看好像更专业，介绍的优化手段也很极致，但演示APP的体验并没有拉开差距，测试机型是红米4高配，已经是千元机了，可能在更低端的机型上有差距？没有进一步测试。不过Dcloud的路数确实跟APICloud不一样，api设计的更底层，确实像是个规范该有的样子，问题是操作起来很麻烦，估计他们也知道这个问题，所以推出mui，mui声称只做UI，但其实还有一个很大的作用是将常用操作集成进来了，也就是说对自家引擎做了易用性封装，这就使得剥离mui的成本变得很高，需要将底层api都重新封装一遍。</p>
+<p>我对UI的理解就是一套前端组件，应该可以很容易的从功能上剥离出来，随意替换，否则就是对开发者的绑架。mui已经深度结合了Dloud，做不到单纯的剥离UI同时保留封装功能，对于不愿意使用或学习mui的开发者就不太友好，所以HybridStart要做的就是一个自由度更高的mui，功能该有的有，还可以换引擎，UI不想用可以整个拿掉，一切为了方便。</p>
+<h2 id="只解决60-的需求"><a href="#只解决60-的需求" class="headerlink" title="只解决60%的需求"></a>只解决60%的需求</h2><p>应用场景是无穷无尽的，妄图覆盖到任何程度都是徒劳。这里的60%并不是严格意义上的大多数，而是结合经验对最常用需求的猜测，在核心功能封装上取最小集合，其他功能以插件或模板的形式体现，或者干脆留给开发者自己去做。</p>
+<p>重要的不是做什么，而是不做什么。框架的开箱可用很重要，其中一个指标是冗余程度在接受范围内，否则有代码洁癖的开发者就得花时间去删改，这就违背了框架的初衷。</p>
+<p>最后，可能无论如何尝试，结果也只是满足了一小部分人的需求，其他人看看就算了，因为所有的封装理论上都是定向的，不存在哪一个框架能适应各种场景，所以从设计之初就要摒弃这种虚妄，功能不求多，只求精。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>总体思路就是这样，具体工作正在展开，有更好的建议或想看看进度，参看<a href="https://github.com/tower1229/HybridStart/projects/1" target="_blank" rel="external">这里</a>。</p>
+<p>附：最近跟APICloud的技术支持打交道比较多，体验真心不咋地。</p>
+
+        <p>前端路上原创技术文章，转载请注明出处：<a href="http://refined-x.com/2017/07/03/混合应用框架优化思路梳理/">http://refined-x.com/2017/07/03/混合应用框架优化思路梳理/</a></p>
+        <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>
+        <p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/xiaomiquan.png" alt="前端路上-知识星球" style="display:block;max-width:360px;margin:auto" /></p>
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/混合应用/" rel="tag">#混合应用</a>
+          
+            <a href="/tags/HybridStart/" rel="tag">#HybridStart</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/26/基于APICloud的混合应用开发框架/" rel="next" title="基于APICloud的混合应用开发框架">
+                <i class="fa fa-chevron-left"></i> 基于APICloud的混合应用开发框架
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/07/HybridStart v1.0开发纪要/" rel="prev" title="HybridStart v1.0开发纪要">
+                HybridStart v1.0开发纪要 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            
+  
+<div id="SOHUCS" sid="混合应用框架优化思路梳理" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyt41dRMv'; 
+var conf = 'prod_4a4c59fe7143d67b7030c92134d6560c'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/4016839?s=460&v=4"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web前端开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">前端技术</span>
+              
+            </div>
+          
+        </nav>
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="/#" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tower1229" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/projects/" target="_blank" title="Projects">
+                  
+                    <i class="fa fa-fw fa-fire"></i>
+                  
+                  Projects
+                </a>
+              </span>
+            
+          
+        </div>
+        
+        
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://refined-x.com/" title="前端技术博客" target="_blank">前端技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.wheelsfactory.cn/" title="轮子工厂" target="_blank">轮子工厂</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kejihai.com/" title="科技网站大全" target="_blank">科技网站大全</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.wikimoe.com/" title="维基萌" target="_blank">维基萌</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位"><span class="nav-number">1.</span> <span class="nav-text">定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平台通用性"><span class="nav-number">2.</span> <span class="nav-text">平台通用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI可剥离"><span class="nav-number">3.</span> <span class="nav-text">UI可剥离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只解决60-的需求"><span class="nav-number">4.</span> <span class="nav-text">只解决60%的需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="http://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+</div>
+        
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+	<script src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+	<script src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyt41dRMv"></script>
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+  
+  
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+<script src="http://js.passport.qihucdn.com/11.0.1.js?b3626f4bd6cd1fe45d49cfdd67138a37" id="sozz"></script>
+
+</body>
+</html>
