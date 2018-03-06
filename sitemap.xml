@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://refined-x.com/friends/index.html</loc>
+    
+    <lastmod>2018-03-06T02:27:19.377Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://refined-x.com/404.html</loc>
+    
+    <lastmod>2018-03-06T02:17:57.248Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://refined-x.com/about/index.html</loc>
     
     <lastmod>2018-03-05T02:51:26.764Z</lastmod>
@@ -166,13 +180,6 @@
     <loc>http://refined-x.com/baidu_verify_B2AqJXjoVD.html</loc>
     
     <lastmod>2017-07-10T05:48:23.296Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://refined-x.com/404.html</loc>
-    
-    <lastmod>2017-07-10T05:47:34.953Z</lastmod>
     
   </url>
   
