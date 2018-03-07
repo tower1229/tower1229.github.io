@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://refined-x.com/projects/index.html</loc>
+    
+    <lastmod>2018-03-07T03:50:15.892Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://refined-x.com/2018/03/07/AJAX-Cache/</loc>
     
     <lastmod>2018-03-07T03:30:36.613Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://refined-x.com/about/index.html</loc>
     
     <lastmod>2018-03-05T02:51:26.764Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://refined-x.com/projects/index.html</loc>
-    
-    <lastmod>2018-02-07T07:59:47.587Z</lastmod>
     
   </url>
   
