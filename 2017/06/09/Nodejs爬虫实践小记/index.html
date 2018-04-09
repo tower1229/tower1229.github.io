@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png">
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png">
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png">
-<meta property="og:updated_time" content="2017-06-16T06:03:00.041Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:49.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs爬虫实践小记">
 <meta name="twitter:description" content="Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。
@@ -62,7 +62,7 @@
         "title": "Nodejs爬虫实践小记",
         "images": [],
         "description": "Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最...",
-        "pubDate":  "2017-06-16T06:03:00" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -313,7 +313,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http.get(img_src, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> imgData = <span class="string">""</span>;</span><br><span class="line">  res.setEncoding(<span class="string">"binary"</span>);            <span class="comment">//注意格式</span></span><br><span class="line">  res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">    imgData += chunk;</span><br><span class="line">  &#125;);</span><br><span class="line">  res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fs.writeFile(imgSavePath, imgData, <span class="string">"binary"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;    <span class="comment">//注意格式</span></span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>程序的结构和主要功能点基本就是这样。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>实现一个爬虫说起来很简单，但健壮性真的很难保证，在爬取cnBeta过程中就发现另一个301跳转的坑，url发生跳转时程序捕获的HTML是空的，无法拿到真正的内容，所以在请求响应后还需要判断响应头是否是301，如果是就要从响应信息中找到跳转后的url重新发起请求。幸亏cnBeta不需要用户登录，如果是一个必须登录才能访问的站点，抓取会麻烦很多。</p>
-<p>本项目的完整代码见 <a href="http://refined-x.com/crawler/">Nodejs crawler</a>，感谢cnBeta^ ^。</p>
+<p>本项目的完整代码见 <a href="//refined-x.com/crawler/">Nodejs crawler</a>，感谢cnBeta^ ^。</p>
 
         <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/06/09/Nodejs爬虫实践小记/">https://refined-x.com/2017/06/09/Nodejs爬虫实践小记/</a></p>
         <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>

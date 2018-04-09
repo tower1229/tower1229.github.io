@@ -33,7 +33,7 @@
 <meta property="og:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
 正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
 权限控制">
-<meta property="og:updated_time" content="2017-09-01T02:36:24.397Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:48.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Vue实现后台系统权限控制">
 <meta name="twitter:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
@@ -50,7 +50,7 @@
         "images": [],
         "description": "写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
 正文...",
-        "pubDate":  "2017-09-01T02:36:20" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -268,7 +268,7 @@
       
       
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文中的菜单权限控制方案由于没有使用<code>router.addRoutes()</code>实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]<a href="http://refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">用addRoutes实现动态路由</a>。</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文中的菜单权限控制方案由于没有使用<code>router.addRoutes()</code>实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]<a href="//refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">用addRoutes实现动态路由</a>。</p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。</p>
 <h2 id="权限控制是什么"><a href="#权限控制是什么" class="headerlink" title="权限控制是什么"></a>权限控制是什么</h2><p>在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是由界面上的按钮发起，比如删除某条数据；或由用户进入某一个页面发起，比如获取某个列表数据。这两种形式覆盖了资源请求的大部分场景，因此权限控制也可以被笼统的分成菜单权限控制和按钮权限控制。</p>
 <h2 id="Vue菜单权限控制"><a href="#Vue菜单权限控制" class="headerlink" title="Vue菜单权限控制"></a>Vue菜单权限控制</h2><p>菜单是对路由的直接体现，菜单控制实际上就是路由控制。实现路由控制一个简单的方式是，在路由的before钩子里校验当前即将跳转的路由地址是否有权访问，根据校验结果决定路由是否放行，伪码：</p>

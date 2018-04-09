@@ -31,7 +31,7 @@
 <meta property="og:site_name" content="前端路上">
 <meta property="og:description" content="Vue是目前最流行的前端开发框架之一，与Vue-router和Vuex组成俗称的Vue全家桶，更是开发前端富交互应用的利器。配合webpack等构建工具，开发大型应用也可以得心应手。随着Vue的普及，可能一些老旧项目也希望能“渐进式”的使用Vue，或者有的项目想用Vue来做但不打算引进构建工具，这种情况该怎样愉快的开发Vue全家桶项目呢？本文将提供一种解决方案。
 构建工具的意义首先应该明白构建工具">
-<meta property="og:updated_time" content="2017-10-28T08:41:41.542Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:48.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何不用构建工具开发Vue全家桶项目">
 <meta name="twitter:description" content="Vue是目前最流行的前端开发框架之一，与Vue-router和Vuex组成俗称的Vue全家桶，更是开发前端富交互应用的利器。配合webpack等构建工具，开发大型应用也可以得心应手。随着Vue的普及，可能一些老旧项目也希望能“渐进式”的使用Vue，或者有的项目想用Vue来做但不打算引进构建工具，这种情况该怎样愉快的开发Vue全家桶项目呢？本文将提供一种解决方案。
@@ -46,7 +46,7 @@
         "title": "如何不用构建工具开发Vue全家桶项目",
         "images": [],
         "description": "Vue是目前最流行的前端开发框架之一，与Vue-router和Vuex组成俗称的Vue全家桶，更是开发前端富交互应用的利器。配合webpack等构建工具，开发大型应用也可以得心应手。随着Vue的...",
-        "pubDate":  "2017-10-28T08:41:40" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -274,7 +274,7 @@
 <p>业务模块的拆分才是开发大型Vue项目的关键，也是构建工具在这里存在的最大意义。例如基于webpack使用Vue的单文件组件功能，使一个组件的所有部分（样式、模板、逻辑）都集中在一个<code>.vue</code>文件中管理，非常的方便。</p>
 <p>除此之外构建工具通常还额外提供一些别的小恩小惠，比如实时刷新、代码压缩、md5戳等等，都不是很重要，替代方案也很多，这里就忽略它们了。</p>
 <h2 id="如何优雅的摆脱构建工具"><a href="#如何优雅的摆脱构建工具" class="headerlink" title="如何优雅的摆脱构建工具"></a>如何优雅的摆脱构建工具</h2><p>不用构建工具不难，难的是同时实现模块化，没有构建工具的帮助，我们就要自己解决组件及依赖资源的互相引用和加载。核心思路是利用Vue的异步组件特性，借助前端模块加载器实现组件按需加载，只要能通过一个异步请求返回正确的组件对象，我们仍然可以以文件的形式组织组件！</p>
-<p>下面就通过一个小例子来讲解具体如何实现这个方案。示例中用seajs作为加载器，对于借助seajs实现前端模块化开发另一篇讨论参见这里：<a href="http://refined-x.com/2017/06/16/Webpack%E6%98%AF%E7%AD%94%E6%A1%88%E5%90%97/">Webpack是答案吗</a>。</p>
+<p>下面就通过一个小例子来讲解具体如何实现这个方案。示例中用seajs作为加载器，对于借助seajs实现前端模块化开发另一篇讨论参见这里：<a href="//refined-x.com/2017/06/16/Webpack%E6%98%AF%E7%AD%94%E6%A1%88%E5%90%97/">Webpack是答案吗</a>。</p>
 <p>本文不对Vue全家桶及相关类库的使用做讲解，这部分内容请自行查阅文档。示例项目的完整代码及预览地址见文末链接。</p>
 <h3 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h3><p>项目文件被分成两类，一类是通过加载器加载的，一类的是页面文件中直接引用的，为了开发方便应该尽可能将所有文件做模块化改造，但有一部分文件不适合也没有必要，比如类库，项目通用样式，图片文件等，所以这些文件被单独拎出来，项目的整体结构如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- src/                       //模块化文件</span><br><span class="line">|    |-- assets/</span><br><span class="line">|    |-- component/</span><br><span class="line">|    |-- plugin/</span><br><span class="line">|    |-- store/</span><br><span class="line">|    |-- app.js</span><br><span class="line">|    `-- router.js</span><br><span class="line">|-- static/                   //非模块化文件</span><br><span class="line">|    |-- lib/</span><br><span class="line">|    |-- css/</span><br><span class="line">|    |-- font/</span><br><span class="line">|    `-- images/</span><br><span class="line">·-- index.html                 //入口页面</span><br></pre></td></tr></table></figure>
@@ -296,8 +296,8 @@
 <p>在全局方法<code>Vue.mixin</code>中就可以具体实现我们的插件功能了，这个插件可以这样被加载并调用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const Dropdown = require(&apos;js/plugin/dropdown&apos;);</span><br><span class="line">Vue.use(Dropdown);</span><br></pre></td></tr></table></figure>
 <p>由于插件本质上还是调用<code>Vue.mixin</code>方法，因此如果你的插件不需要参数的话，也可以省掉<code>install</code>这一层包装，这样插件模块一旦加载就会生效，也不需要调用<code>Vue.use()</code>方法了，效果一样。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这个方案有明显的局限和短板，主要是由于组件加载会发起大量的请求，使项目整体运行效率受到影响，因此需要着重强调的是，组件最好不要一次同步加载，尽量的使用异步组件，分散各界面的加载压力，另外配合<a href="http://refined-x.com/2017/06/16/Webpack%E6%98%AF%E7%AD%94%E6%A1%88%E5%90%97/">恰当的缓存方案</a>，效果应该也不错。</p>
-<p>项目代码：<a href="https://github.com/tower1229/WidgetsPlayground" target="_blank" rel="external">https://github.com/tower1229/WidgetsPlayground</a><br>预览地址：<a href="http://refined-x.com/WidgetsPlayground/">http://refined-x.com/WidgetsPlayground/</a></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这个方案有明显的局限和短板，主要是由于组件加载会发起大量的请求，使项目整体运行效率受到影响，因此需要着重强调的是，组件最好不要一次同步加载，尽量的使用异步组件，分散各界面的加载压力，另外配合<a href="//refined-x.com/2017/06/16/Webpack%E6%98%AF%E7%AD%94%E6%A1%88%E5%90%97/">恰当的缓存方案</a>，效果应该也不错。</p>
+<p>项目代码：<a href="https://github.com/tower1229/WidgetsPlayground" target="_blank" rel="external">https://github.com/tower1229/WidgetsPlayground</a><br>预览地址：//refined-x.com/WidgetsPlayground/</p>
 
         <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/10/28/如何不用构建工具开发Vue全家桶项目/">https://refined-x.com/2017/10/28/如何不用构建工具开发Vue全家桶项目/</a></p>
         <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>

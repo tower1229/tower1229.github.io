@@ -33,7 +33,7 @@
 <meta property="og:description" content="Hexo是静态页博客生成利器，同很多博主一样，前端路上原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对/source/里的所有页面应用主题模板渲染，但有一些前端作品或demo页我们不希望经过渲染，而是能保持完全自定义的样子，那该怎么用Hexo添加自定义的web页面呢？
 下面介绍两种方法。
 第一种方法是使用Hexo提供的跳过">
-<meta property="og:updated_time" content="2017-07-10T06:31:09.072Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:49.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo自定义页面的方法">
 <meta name="twitter:description" content="Hexo是静态页博客生成利器，同很多博主一样，前端路上原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对/source/里的所有页面应用主题模板渲染，但有一些前端作品或demo页我们不希望经过渲染，而是能保持完全自定义的样子，那该怎么用Hexo添加自定义的web页面呢？
@@ -49,7 +49,7 @@
         "title": "Hexo自定义页面的方法",
         "images": [],
         "description": "Hexo是静态页博客生成利器，同很多博主一样，前端路上原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对/source/...",
-        "pubDate":  "2017-07-10T06:31:00" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -267,7 +267,7 @@
       
       
       
-        <p>Hexo是静态页博客生成利器，同很多博主一样，<a href="http://refined-x.com">前端路上</a>原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对<code>/source/</code>里的所有页面应用主题模板渲染，但有一些前端作品或demo页我们不希望经过渲染，而是能保持完全自定义的样子，那该怎么用Hexo添加自定义的web页面呢？</p>
+        <p>Hexo是静态页博客生成利器，同很多博主一样，<a href="//refined-x.com">前端路上</a>原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对<code>/source/</code>里的所有页面应用主题模板渲染，但有一些前端作品或demo页我们不希望经过渲染，而是能保持完全自定义的样子，那该怎么用Hexo添加自定义的web页面呢？</p>
 <p>下面介绍两种方法。</p>
 <p>第一种方法是使用Hexo提供的跳过渲染配置，适用于整个目录的设置。具体步骤，打开博客根目录<code>_config.yml</code>，找到其中<code>skip_render</code>项，这个项目用来配置<code>/source/</code>中需要跳过渲染的文件或目录，例如希望跳过<code>/source/projects/</code>里的所有文件渲染，可以配置为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: projects/**</span><br></pre></td></tr></table></figure></p>
 <p>匹配规则是一种类似正则的规则，官方给出的参考是<a href="https://github.com/isaacs/minimatch" target="_blank" rel="external">这个</a>。另外在测试这个功能的时候发现，Hexo的内部缓存不是特别好用，有时候你修改了配置但生成出来的内容不一定及时应用了新配置，最好在生成之前执行一下<code>hexo clean</code>命令，清除掉旧的生成文件和缓存。</p>

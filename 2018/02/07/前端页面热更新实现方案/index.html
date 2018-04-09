@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/hot-patch.png">
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/web-ota-qrcode.png">
 <meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/yijiankang-share.png">
-<meta property="og:updated_time" content="2018-02-07T02:47:59.694Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:48.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端页面热更新实现方案">
 <meta name="twitter:description" content="前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存在加载压力，但CS架构的问题是更新不灵活，那么有没有一种方法能结合这两种架构的优点，在加载速度和更新灵活性之间找到一个平衡点呢？这就是本文要探讨的一种方案：前端热更新。
@@ -50,7 +50,7 @@
         "title": "前端页面热更新实现方案",
         "images": [],
         "description": "前端页面热更新了解过前端性能优化的同学应该清楚，给页面加载提速的终极方案就是CDN，这是BS架构本身的特点决定的，无论什么前端提速手段，最终都会回到客户端文件的传输上来；与之相对的CS架构则不存...",
-        "pubDate":  "2018-02-07T02:47:50" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -284,7 +284,7 @@
 <h3 id="模板文件"><a href="#模板文件" class="headerlink" title="模板文件"></a>模板文件</h3><p>前端页面由三种语言构成，但我们希望只用一次请求就把模板文件拿到，所以模板是一个包含了html/css/js的文本文件，标签格式就保持普通HTML文件的写法，考虑到模板应用部分的实现，需要约定一下标签的写法，例如css必须用<code>&lt;style&gt;&lt;/style&gt;</code>标签包裹，js必须用<code>&lt;script style=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code>标签包裹，这样一来用正则表达式就很容易提取到各部分代码段。</p>
 <h3 id="模板应用"><a href="#模板应用" class="headerlink" title="模板应用"></a>模板应用</h3><p>如上段所说，获得模板文件后可以使用正则表达式拿到三种语言代码，然后只需要按照css &gt; html &gt; js的顺序依次将他们插入页面相应位置，就完成了模板应用，唯一不同的是html代码将以<code>innerHTML</code>的方式覆盖进body元素。在应用顺序上，将css放在html之前是为了避免重绘，将js放在html之后是为了能够在js中操作DOM。</p>
 <p>活动模板虽然定义为补丁，但模板构成跟稳定模板其实是相同的，应用方式也完全相同，只不过由于活动模板在稳定模板之后应用，所以活动模板的css和js都将以补丁的方式影响页面，对于普通的换皮肤需求只需要css和js就足够了，但如果希望html也能发生一些改变，根据html的覆盖式应用方式，活动模板中就需要给出一份完整的html代码，以达到修改html的目的。</p>
-<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><h3 id="示例展示"><a href="#示例展示" class="headerlink" title="示例展示"></a>示例展示</h3><p><a href="http://refined-x.com/WEB-OTA/">http://refined-x.com/WEB-OTA/</a></p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><h3 id="示例展示"><a href="#示例展示" class="headerlink" title="示例展示"></a>示例展示</h3><p><a href="//refined-x.com/WEB-OTA/">//refined-x.com/WEB-OTA/</a></p>
 <p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/web-ota-qrcode.png" alt="qrcode"></p>
 <h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p><a href="http://o2o.zhongyishijia.com/" target="_blank" rel="external">一健康网上商城</a>APP首页即采用WEB-OTA方案实现，应付日常迭代游刃有余。</p>
 <p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/yijiankang-share.png" alt="yijiankang"></p>

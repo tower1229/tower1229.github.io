@@ -31,7 +31,7 @@
 <meta property="og:site_name" content="前端路上">
 <meta property="og:description" content="从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。
 入门Vue的官方文档就是学习Vue的最佳教程，没有之一，可能因为框架作者是设计出身，没有后端背景，因此各种抽象概念在Vue里都得以用最容易理解的方式被恰到好处的阐述，这里只简">
-<meta property="og:updated_time" content="2017-06-15T01:40:42.362Z">
+<meta property="og:updated_time" content="2018-04-09T02:26:49.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue全家桶实践项目总结">
 <meta name="twitter:description" content="从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。
@@ -46,7 +46,7 @@
         "title": "Vue全家桶实践项目总结",
         "images": [],
         "description": "从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+templat...",
-        "pubDate":  "2017-06-15T01:40:40" 
+        "pubDate":  "2018-04-09T02:26:40" 
     }
 </script>
 
@@ -275,7 +275,7 @@
 <p>Vuex完全是基于双向绑定延伸出来的东西，相当于在数据和组件之间加了一个经纪人，组件不能直接操作数据，只能像经纪人提交操作需求，由经纪人去实施操作，以此解决人多手杂造成的各种不可预料的问题，并且数据被从应用中挪了出去，专门建立了一个<code>Store</code>，这样就杜绝了组件之间数据污染的问题。jQuery应该说不太会有这个需求，因为jQuery完全是手动操作数据，根本没有<code>意料之外</code>的情况。</p>
 <h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>经过跟jQuery的对比之后，Vue的适用场景就很明显了，从开发角度讲交互越复杂的项目越适合，单页面最适合，内容类网站最不适合，如果网站中个别页面有需求也可以局部使用，例如购物车页面。</p>
 <p>当然，这一切都要建立在不兼容IE8的前提下，对于这一点我有点疑惑，因为见到有些2C的站点都在使用Vue，这些前端er是怎么把老板忽悠瘸的？</p>
-<h2 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h2><h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>这次重构的项目是为上一家公司开发的<a href="http://refined-x.com/WidgetsPlayground/">前端组件管理系统</a>，选择重构这个项目是因为对需求比较熟悉，这是一个典型的单页面应用，而且复杂度适中，比较适合用作上手练习。</p>
+<h2 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h2><h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>这次重构的项目是为上一家公司开发的<a href="//refined-x.com/WidgetsPlayground/">前端组件管理系统</a>，选择重构这个项目是因为对需求比较熟悉，这是一个典型的单页面应用，而且复杂度适中，比较适合用作上手练习。</p>
 <p>项目背景是外包类建站公司里，设计环节沉淀了大量可复用组件，设计师往往只需要微调组件就拼凑出页面，交付给前端，理论上这些组件在前端也可以复用，但实际上前端每次都要重新实现整个页面，浪费很多人力。</p>
 <h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><p>这个项目的思路是，将所有组件开发出来，统一录入到一个平台上管理，设计师可以到平台上挑选组件，并实时预览和调整组件，整个过程所见即所得，平台会将调整结果生成一串代码，只要将代码交给前端，就可以用这串代码在平台上重现设计师修改后的组件，并能一键复制组件的html/css/js代码，快速应用到项目中去，使组件部分的前端开发成本接近于零。平台需要实现以下几个功能：</p>
 <ul>
@@ -313,7 +313,7 @@
 <p>接下来要接入野狗云，实现真正的用户管理和数据统计，野狗云可以提供用户鉴权和数据存储等一系列功能，通过它只需要用js就可以开发一个完整的WEB应用。这样之前所有对<code>localStorage</code>的操作都要改成对野狗云的操作，数据到了云端也变得更可靠了。</p>
 <p>至此二次重构就完成了，业务代码总体感觉减少了很多，但总代码量估计没少多少，毕竟还增加了三个框架文件，不过经过重重拆分，文件数量从当初的三两个js变成了十来个js，模块化方面用的seajs而不是webpack，因为个人对 webpack仍然持观望态度，目前还感觉不到用它的必要性，关键是基于webpack开发的代码会夹杂很多私货，让你的代码变得<code>不原生</code>，离了他就运行不起来，这个我不太能接受，而且在多页面场景seajs配合本地缓存比webpack更有优势，当然了，他们的的区别就跟jQuery和Vue的区别一样，本质不是一个东西，关键在于使用场景，适合的就是最好的。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>经过两次重构的实践和踩坑，对Vue框架有了更深刻的认识，Vue想要用的灵活自如，对开发者的项目架构能力有一个最低要求，如果要将Vue引入底层，对基础设施建设者的规划能力也有一个最低要求，这些都是jQuery技术栈所不存在的，使用Vue的过程也是接受这些约束的过程，他们能引导开发者建立自己的规则体系，这是好事也是大势所趋，毕竟真正的自由只存在于规则中。</p>
-<p>本文的项目演示见<a href="http://refined-x.com/WidgetsPlayground/">WidgetsPlayground</a>，完整代码见<a href="https://github.com/tower1229/WidgetsPlayground" target="_blank" rel="external">Github</a>。</p>
+<p>本文的项目演示见<a href="//refined-x.com/WidgetsPlayground/">WidgetsPlayground</a>，完整代码见<a href="https://github.com/tower1229/WidgetsPlayground" target="_blank" rel="external">Github</a>。</p>
 
         <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/">https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/</a></p>
         <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>
