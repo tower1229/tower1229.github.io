@@ -268,19 +268,10 @@
       
         
           
-          结构调整
-移除style.css
-增加loader.js
+          新增1. 插件机制WEB代码无需编译，部署即可运行，因此可以很容易的实现热插拔插件机制，HybridStart内置了一个插件机制的实现DEMO，见示例APP首页“OTA-plugins(扩展插件)”。实现代码位于/views/ota/，额外引入了zip模块实现插件压缩包的解压，完整流程如下：
 
-bug 修复
-ios点击bug修复方案 #body
-
-插件机制ota
-其他
-移除默认交互数据格式约定，app.ajax()移除数据格式校验
-
-
-          
+插件
+          ...
           <div class="post-more-link text-center">
             <a class="btn" href="/2018/04/27/HybridStart v1.2.0 更新日志/#more" rel="contents">
               阅读全文 &raquo;
