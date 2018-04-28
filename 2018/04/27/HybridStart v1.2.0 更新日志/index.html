@@ -36,7 +36,7 @@
 插件列表数据格式如下：
 123456789101112131415&amp;#123;	&amp;quot;status">
 <meta property="og:image" content="http://refined-x.com/asset/hybridstart-plugin.png">
-<meta property="og:updated_time" content="2018-04-28T08:23:48.699Z">
+<meta property="og:updated_time" content="2018-04-28T08:31:33.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HybridStart v1.2.0 更新日志">
 <meta name="twitter:description" content="新增1. 插件机制WEB代码无需编译，部署即可运行，因此可以很容易的实现热插拔插件机制，HybridStart内置了一个插件机制的实现DEMO，见示例APP首页“OTA-plugins(扩展插件)”。实现代码位于/views/ota/，额外引入了zip模块实现插件压缩包的解压，完整流程如下：
@@ -54,7 +54,7 @@
         "title": "HybridStart v1.2.0 更新日志",
         "images": [],
         "description": "新增1. 插件机制WEB代码无需编译，部署即可运行，因此可以很容易的实现热插拔插件机制，HybridStart内置了一个插件机制的实现DEMO，见示例APP首页“OTA-plugins(扩展插件...",
-        "pubDate":  "2018-04-28T08:23:40" 
+        "pubDate":  "2018-04-28T08:31:30" 
     }
 </script>
 
@@ -286,6 +286,8 @@
 <p>解决方法为在body里插入一个<code>div#body</code>元素，将事件委托改在这个元素上就OK了，<code>common.js</code>里的事件委托写法做了如下兼容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $body = $(&apos;#body&apos;).length ? $(&apos;#body&apos;) : $(&apos;body&apos;);	//优先查找div#body元素</span><br><span class="line">$body.on(...</span><br></pre></td></tr></table></figure>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="1-移除默认数据格式约定"><a href="#1-移除默认数据格式约定" class="headerlink" title="1. 移除默认数据格式约定"></a>1. 移除默认数据格式约定</h3><p>不再约定默认的异步数据格式，<code>app.ajax()</code>中已经移除数据格式校验相关代码。</p>
+<h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><p><a href="http://app.mi.com/details?id=com.apicloud.A6997660453388" target="_blank" rel="external">体验APP</a></p>
+<p><a href="https://github.com/tower1229/HybridStart" target="_blank" rel="external">代码仓库</a></p>
 
         <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2018/04/27/HybridStart v1.2.0 更新日志/">https://refined-x.com/2018/04/27/HybridStart v1.2.0 更新日志/</a></p>
         <p>对文章内容有任何疑问欢迎留言讨论，或者扫描下方二维码加入“前端路上-知识星球”付费提问。</p>
@@ -449,7 +451,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增"><span class="nav-number">1.</span> <span class="nav-text">新增</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-插件机制"><span class="nav-number">1.1.</span> <span class="nav-text">1. 插件机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-UI支持沉浸式"><span class="nav-number">1.2.</span> <span class="nav-text">2. UI支持沉浸式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整"><span class="nav-number">2.</span> <span class="nav-text">调整</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-移除页面style-css文件"><span class="nav-number">2.1.</span> <span class="nav-text">1. 移除页面style.css文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-增加loader-js"><span class="nav-number">2.2.</span> <span class="nav-text">2. 增加loader.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BUG-修复"><span class="nav-number">3.</span> <span class="nav-text">BUG 修复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IOS事件委托BUG"><span class="nav-number">3.1.</span> <span class="nav-text">1. IOS事件委托BUG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-移除默认数据格式约定"><span class="nav-number">4.1.</span> <span class="nav-text">1. 移除默认数据格式约定</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增"><span class="nav-number">1.</span> <span class="nav-text">新增</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-插件机制"><span class="nav-number">1.1.</span> <span class="nav-text">1. 插件机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-UI支持沉浸式"><span class="nav-number">1.2.</span> <span class="nav-text">2. UI支持沉浸式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整"><span class="nav-number">2.</span> <span class="nav-text">调整</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-移除页面style-css文件"><span class="nav-number">2.1.</span> <span class="nav-text">1. 移除页面style.css文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-增加loader-js"><span class="nav-number">2.2.</span> <span class="nav-text">2. 增加loader.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BUG-修复"><span class="nav-number">3.</span> <span class="nav-text">BUG 修复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IOS事件委托BUG"><span class="nav-number">3.1.</span> <span class="nav-text">1. IOS事件委托BUG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-移除默认数据格式约定"><span class="nav-number">4.1.</span> <span class="nav-text">1. 移除默认数据格式约定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取"><span class="nav-number">5.</span> <span class="nav-text">获取</span></a></li></ol></div>
             
           </div>
         </section>
