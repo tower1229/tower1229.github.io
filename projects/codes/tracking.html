@@ -341,7 +341,7 @@
 
         var trackerTask;
         //开始识别
-        document.getElementById('track').addEventListener('click', function() {
+        var start = function() {
             if (!img.src) {
                 return null;
             }
@@ -351,6 +351,7 @@
             c.height = img.height;
             var stepSize = myStepSize.value();
             var trackMode = myScaleFactor.value();
+            console.log(trackMode,typeof trackMode)
             console.log(`识别步长:${stepSize}, 比例因子: ${trackMode}`);
             tracker.setStepSize(stepSize);
             tracker.setScaleFactor(trackMode);
@@ -363,7 +364,8 @@
                 prop = 1;
             }
             trackerTask = tracking.track('#img', tracker);
-        });
+        };
+        document.getElementById('track').addEventListener('click', start);
         //划线
         function plot(x, y, w, h) {
             var rect = document.createElement('div');
