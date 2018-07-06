@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://refined-x.com/friends/index.html</loc>
+    
+    <lastmod>2018-07-06T05:38:12.894Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://refined-x.com/about/index.html</loc>
     
     <lastmod>2018-07-04T02:34:36.220Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://refined-x.com/projects/index.html</loc>
     
     <lastmod>2018-04-09T02:31:12.144Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://refined-x.com/friends/index.html</loc>
-    
-    <lastmod>2018-04-09T02:26:49.313Z</lastmod>
     
   </url>
   
