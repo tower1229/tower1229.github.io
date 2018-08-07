@@ -40,7 +40,7 @@ Vue-Tree-Chart实">
 <meta property="og:image" content="https://refined-x.com/asset/nodes-2.png">
 <meta property="og:image" content="https://refined-x.com/asset/nodes-3.png">
 <meta property="og:image" content="https://refined-x.com/asset/nodes-4.png">
-<meta property="og:updated_time" content="2018-08-07T01:34:55.070Z">
+<meta property="og:updated_time" content="2018-08-07T06:40:05.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Vue实现动态组织结构图">
 <meta name="twitter:description" content="Vue-Tree-Chart最近一个项目里有个前端绘制家谱图的需求，大概是下面这个样子：
@@ -60,7 +60,7 @@ Vue-Tree-Chart实">
         "description": "Vue-Tree-Chart最近一个项目里有个前端绘制家谱图的需求，大概是下面这个样子：
 
 点击节点会弹出操作菜单，实现增删改查等操作，查阅网上资料发现，现有案例基本都是基于orgchart这个...",
-        "pubDate":  "2018-08-07T01:34:50" 
+        "pubDate":  "2018-08-07T06:40:00" 
     }
 </script>
 
@@ -314,7 +314,7 @@ Vue-Tree-Chart实">
 <p><img src="https://refined-x.com/asset/nodes-4.png" alt=""></p>
 <p>上下级的连线分成两行（TR）实现，第一行实现一个连结父节点的居中竖线，第二行实现连接每个子节点的竖线及横向连线，第一行比较简单这里不提，第二行的实现非常有意思，上图中画红框的部分分别是实现效果和标签结构。</p>
 <p>首先按照子节点数量X2来生成TD标签，然后”rightLine”、”leftLine”交替为每个TD添加class，”rightLine”为TD显示1px的右边线，”leftLine”为TD显示1px的左边线，六根一右一左的线两两合并在一起，正好呈现出三条连接每个子节点正中的2px竖线；然后除了第一个和最后一个TD标签以外，全部添加”topLine”的class，为他们添加2px的上边线，这样会呈现出一条正好连接三条竖线的横线，再拼上第一行TR的居中竖线，上下级的连线就实现出来了。</p>
-<p>看到这部分时，反正我是感觉自己的智商被碾压了。</p>
+<p>看到这部分时，反正我是感觉自己的智商被碾压了。（这部分在1.1.0版本中被重构掉了，因为用伪元素实现连线更方便）</p>
 <p>基于这个思路用Vue实现了一遍，独立成组件后<a href="https://github.com/tower1229/Vue-Tree-Chart/blob/master/lib/components/TreeChart.vue" target="_blank" rel="external">整个文件</a>代码不过百行左右。</p>
 <p>另外知识的活学活用真的非常重要，这里面的知识点一个入门前端就应该掌握，但开发的时候却完全没有想到这个思路，可能跟近几年的工作大量依赖js有关系，对HTML和CSS的敏感性降低了。总是使用自己熟悉的方式解决问题是人的共性，但这一点对开发者来说绝对不是个好习惯，需要反省。</p>
 <h2 id="二次开发"><a href="#二次开发" class="headerlink" title="二次开发"></a>二次开发</h2><p>Vue-Tree-Chart已经发布到npm，默认可以通过包管理工具将其添加到项目：</p>
