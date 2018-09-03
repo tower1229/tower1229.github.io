@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="theme-next muse">
 <head>
-  <title> 混合应用页面打开速度优化 | 前端路上 </title>
+  <title> HTML5实现文件读取、编辑、保存 | 前端路上 </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="混合应用,HybridStart," />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -23,27 +23,33 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
-<meta name="description" content="我们都知道混合应用的流畅性不如原生应用，除了不能像原生一样轻松驾驭各种狂拽酷炫的效果，混合应用还有一个难以消除的弱点在于页面打开速度上，如果有机会在同一台手机上直接对比的话，这种差距是普通人都能直观感受到的，这主要是由于web页面每次打开前需要初始化，在那一瞬间需要完成DOM创建、资源下载、样式渲染、js执行，这些时间消耗造成了按键按下与页面进场之间短暂的停顿，也造成了混合应用整体“不流畅，不跟手">
+<meta name="description" content="最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。
+HTML5读取文件HTML5读取文件主要利用的就是FileReader这个API，它的使用需要从一个构造函数开始：
+1var reader = new Fi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="混合应用页面打开速度优化">
-<meta property="og:url" content="https://refined-x.com/2017/07/21/混合应用页面打开速度优化/index.html">
+<meta property="og:title" content="HTML5实现文件读取、编辑、保存">
+<meta property="og:url" content="https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="我们都知道混合应用的流畅性不如原生应用，除了不能像原生一样轻松驾驭各种狂拽酷炫的效果，混合应用还有一个难以消除的弱点在于页面打开速度上，如果有机会在同一台手机上直接对比的话，这种差距是普通人都能直观感受到的，这主要是由于web页面每次打开前需要初始化，在那一瞬间需要完成DOM创建、资源下载、样式渲染、js执行，这些时间消耗造成了按键按下与页面进场之间短暂的停顿，也造成了混合应用整体“不流畅，不跟手">
-<meta property="og:updated_time" content="2018-04-09T02:26:48.840Z">
+<meta property="og:description" content="最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。
+HTML5读取文件HTML5读取文件主要利用的就是FileReader这个API，它的使用需要从一个构造函数开始：
+1var reader = new Fi">
+<meta property="og:updated_time" content="2018-09-03T10:17:47.394Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="混合应用页面打开速度优化">
-<meta name="twitter:description" content="我们都知道混合应用的流畅性不如原生应用，除了不能像原生一样轻松驾驭各种狂拽酷炫的效果，混合应用还有一个难以消除的弱点在于页面打开速度上，如果有机会在同一台手机上直接对比的话，这种差距是普通人都能直观感受到的，这主要是由于web页面每次打开前需要初始化，在那一瞬间需要完成DOM创建、资源下载、样式渲染、js执行，这些时间消耗造成了按键按下与页面进场之间短暂的停顿，也造成了混合应用整体“不流畅，不跟手">
+<meta name="twitter:title" content="HTML5实现文件读取、编辑、保存">
+<meta name="twitter:description" content="最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。
+HTML5读取文件HTML5读取文件主要利用的就是FileReader这个API，它的使用需要从一个构造函数开始：
+1var reader = new Fi">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
-<link rel="canonical" href="https://refined-x.com/2017/07/21/混合应用页面打开速度优化/" />
+<link rel="canonical" href="https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/" />
 <script type="application/ld+json">
     {
         "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-        "@id": "https://refined-x.com/2017/07/21/混合应用页面打开速度优化/",
+        "@id": "https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/",
         "appid": "1585542911827735",
-        "title": "混合应用页面打开速度优化",
+        "title": "HTML5实现文件读取、编辑、保存",
         "images": [],
-        "description": "我们都知道混合应用的流畅性不如原生应用，除了不能像原生一样轻松驾驭各种狂拽酷炫的效果，混合应用还有一个难以消除的弱点在于页面打开速度上，如果有机会在同一台手机上直接对比的话，这种差距是普通人都能...",
-        "pubDate":  "2018-04-09T02:26:40" 
+        "description": "最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实...",
+        "pubDate":  "2018-09-03T10:17:40" 
     }
 </script>
 
@@ -231,7 +237,7 @@
             
             
               
-                混合应用页面打开速度优化
+                HTML5实现文件读取、编辑、保存
               
             
           </h1>
@@ -242,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-21T15:15:58+08:00" content="2017-07-21">
-              2017-07-21
+            <time itemprop="dateCreated" datetime="2018-09-03T12:49:28+08:00" content="2018-09-03">
+              2018-09-03
             </time>
           </span>
           <span class="post-category" >
@@ -271,23 +277,56 @@
       
       
       
-        <p>我们都知道混合应用的流畅性不如原生应用，除了不能像原生一样轻松驾驭各种狂拽酷炫的效果，混合应用还有一个难以消除的弱点在于页面打开速度上，如果有机会在同一台手机上直接对比的话，这种差距是普通人都能直观感受到的，这主要是由于web页面每次打开前需要初始化，在那一瞬间需要完成DOM创建、资源下载、样式渲染、js执行，这些时间消耗造成了按键按下与页面进场之间短暂的停顿，也造成了混合应用整体“不流畅，不跟手”的印象，HybridStart 1.1.1版本针对性的优化了页面打开速度，下面就介绍一下具体是怎么做的。</p>
-<h2 id="怎么做优化"><a href="#怎么做优化" class="headerlink" title="怎么做优化"></a>怎么做优化</h2><p>混合应用乃至所有前端项目的优化工作，总结起来其实都是在试图消除延迟感，消除延迟感要从两方面着手，一是提升绝对速度，做到不慢；二是增加过度效果，填充停顿，让用户无瑕感知到慢；这两方面是做好优化的关键。</p>
-<h2 id="提升绝对速度"><a href="#提升绝对速度" class="headerlink" title="提升绝对速度"></a>提升绝对速度</h2><p>在混合应用中打开一个页面，会发生如下几个事件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">渲染完成 =&gt; 加载完成 =&gt; runtime就绪</span><br></pre></td></tr></table></figure>
-<p>这三个事件是依次发生的，apicloud为了保证页面打开即是显示完整的，所以会在页面<em>加载完成</em>之后开始进场动画，这里是优化的关键，我们分析一下加载完成之前都发生了什么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">载入DOM节点</span><br><span class="line">加载css/js/img</span><br><span class="line">页面渲染</span><br><span class="line">运行js</span><br><span class="line">js运行时创建DOM节点并渲染</span><br><span class="line">资源加载完成</span><br><span class="line">页面加载完成</span><br></pre></td></tr></table></figure></p>
-<p>以上所有事情都发生在页面初始化，其中远程图片的加载是最耗时的，所以图片较多的页面建议使用<a href="//refined-x.com/HybridStart/docs/#lazyload%28%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD%29">懒加载插件</a>，懒加载并不是简单的减少了第一批图片加载数量，而是将所有图片加载从初始化队列中移除，在页面打开后才开始加载，这能有效提高初始化速度，但代价是用户有大概率会看到图片加载过程，这里的取舍就需要分情况讨论了，我的建议是优先提升页面打开速度，多数情况下的图片加载过程不会造成很坏的用户体验。</p>
-<p>排除掉图片之后，通常意义上讲已经没什么可优化的地方了，但在混合应用场景下，仍然有一部分提速空间可以被压榨，那就是js资源的加载和执行，与js相关的操作有这么几项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">载入js</span><br><span class="line">执行js</span><br><span class="line">js运行时创建DOM节点并渲染</span><br></pre></td></tr></table></figure></p>
-<p>载入和执行本地js在桌面端可以被认为是实时的，但移动端的计算能力和IO能力都远差于桌面端，HybridStart中的每个页面需要加载一个配置文件和一个核心类库，核心类库运行后再异步获取页面脚本并执行，经过对比测试这些操作平均耗时在100ms左右，如果页面脚本中还有其他插件的引用或者同步创建DOM操作，那么耗时还会延长，并且会导致不同的页面打开速度差别很大。</p>
-<p>我们知道混合应用页面打开后通常有一个进场动画，这个动画的时长默认300ms，所以我们可以想办法利用这300ms，将js相关操作从初始化队列中移除，转而在动画过程中进行，多数情况下所有的js加载和执行都可以在页面动画结束前完成，对用户体验的影响几乎为零，却可以提高页面初始化的速度。</p>
-<p>具体实施过程是：先将页面底部脚本链接移除，写一段代码创建脚本节点，在合适的时机将脚本节点插入页面。关键是插入时机的选择，apicloud会监听页面加载完成事件，我们必须跳过这个时间节点，所以同步插入脚本是不行的，测试发现<code>apiready</code>事件可以跳过加载完成，而且耗时很少，完全可以被动画过程覆盖，因此就选择在<code>apiready</code>之后插入节点，可以满足需求，而且还带来一个不大不小的副产品，那就是业务代码不再需要<code>app.ready()</code>回调函数了，因为所有js的加载执行都在runtime就绪之后发生的。</p>
-<p>优化后在测试机上普通页面的打开速度较之前至少提升100ms，对于大量依赖js运行的页面提速效果更明显。</p>
-<h2 id="增加过度效果"><a href="#增加过度效果" class="headerlink" title="增加过度效果"></a>增加过度效果</h2><p>绝对速度的提升有明确的瓶颈，而且跟手机性能有很大关系，即使排除了图片和js的加载，页面初始化仍然需要处理DOM节点的创建和样式的渲染，为了保证用户体验这部分是无论如何都不能动的，但这部分操作的耗时多数情况下仍然能被用户感知到，这时我们只能使用障眼法，增加一些过度效果，减缓用户等待的焦虑感，v1.1.1中实验性的为<a href="//refined-x.com/HybridStart/docs/#list%28%E5%88%97%E8%A1%A8%29">列表组件</a>添加了触摸状态波纹效果，具体实现在<code>sdk/common.js</code>中，效果参见<a href="http://downloadpkg.apicloud.com/app/download?path=http://7xm7pq.com1.z0.glb.clouddn.com/8cb26eca4ee9f6ef2a06debb470b0eec_d" target="_blank" rel="external">v1.1.1示例APP</a>。</p>
-<p>过渡效果更多的还是需要根据业务场景自定义，这个内置效果就当抛砖引玉了。</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>项目主页：//refined-x.com/HybridStart/<br>项目文档：//refined-x.com/HybridStart/docs/</p>
-<p>另外，HybridStart项目一直都是beta状态，近期手头正好有一个小项目，准备上手操练一下，估计近期将迎来bugfixed版本。</p>
+        <p>最近自己捣鼓了一个好玩的项目<a href="https://github.com/foundpath" target="_blank" rel="external">觅迹导航</a>，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。</p>
+<h2 id="HTML5读取文件"><a href="#HTML5读取文件" class="headerlink" title="HTML5读取文件"></a>HTML5读取文件</h2><p>HTML5读取文件主要利用的就是<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="external">FileReader</a>这个API，它的使用需要从一个构造函数开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var reader = new FileReader();      // 返回一个FileReader实例</span><br></pre></td></tr></table></figure>
+<p>返回的实例具有以下3个属性：</p>
+<ul>
+<li>FileReader.result</li>
+<li>FileReader.readyState</li>
+<li>FileReader.error</li>
+</ul>
+<p>其中result属性是文件读取成功后的读取结果，数据的格式取决于使用哪个方法来启动读取操作。</p>
+<p>FileReader实例具有以下4个方法：</p>
+<ul>
+<li>FileReader.readAsText()</li>
+<li>FileReader.readAsDataURL()</li>
+<li>FileReader.readAsArrayBuffer()</li>
+<li>FileReader.abort()</li>
+</ul>
+<p>前3个方法分别是以文本、图片、其他格式读取内容，读取的对象可以是<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="external">Bolb</a>或<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/File" target="_blank" rel="external">File</a>，在读取本地文件的场景下，我们读取的实际上就是File。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader.readAsText(file);    //读取文本文件</span><br></pre></td></tr></table></figure>
+<p>FileReader.abort()方法不需要说了，就是中断文件读取。</p>
+<p>同时FileReader实例具有以下6个事件：</p>
+<ul>
+<li>FileReader.onprogress</li>
+<li>FileReader.onloadend</li>
+<li>FileReader.onloadstart</li>
+<li>FileReader.onload</li>
+<li>FileReader.onerror</li>
+<li>FileReader.onabort</li>
+</ul>
+<p>其中onload事件是我们最关心的一个，该事件将在读取操作完成时触发，在这个事件中我们才能访问到FileReader.result属性，得到读取结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reader.onload = function() &#123;</span><br><span class="line">    console.log(this.result);       //文本内容</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用FileReader读取文件的整个流程就是这样，File对象我们可以通过<code>&lt;input type=&quot;file&quot; &gt;</code>获取。</p>
+<h2 id="HTML5保存文件"><a href="#HTML5保存文件" class="headerlink" title="HTML5保存文件"></a>HTML5保存文件</h2><p>保存文件的关键是生成文件对象，可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL" target="_blank" rel="external">URL.createObjectURL()</a>方法实现，该方法能返回给定对象的URL，用在<code>&lt;a&gt;</code>标签的<code>href</code>属性上就可以创建可下载的文件链接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let DownloadDom = document.getElementById(&quot;Download&quot;);      // a标签</span><br><span class="line">DownloadDom.href = window.URL.createObjectURL(myBlob);      // 生成下载链接</span><br></pre></td></tr></table></figure>
+<p>createObjectURL()方法的参数可以是File对象或者Blob对象，前端保存文件通常是希望将已有“内容”保存成文件，这种场景我们需要的是Blob对象。</p>
+<p>Blob构造函数可以根据传入的数组数据返回Blob对象，数组可以是ArrayBuffer、ArrayBufferView、Blob、DOMString，假如我们希望将一段JSON字符串保存成JSON文件，那么可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let myBlob = new Blob([&apos;&#123;&quot;hello&quot;:&quot;world&quot;&#125;&apos;], &#123; type: &quot;application/json&quot; &#125;);     //Blob对象</span><br></pre></td></tr></table></figure>
+<p>关于Blob构造函数的详细用法可以从<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob" target="_blank" rel="external">这里</a>了解。</p>
+<p>有了createObjectURL和Blob，实际上，我们就可以封装一个方法，将任意字符串保存成文件，并点击链接下载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let saveFile = function(fileText) &#123;</span><br><span class="line">    let DownloadDom = document.getElementById(&quot;Download&quot;);</span><br><span class="line">    if (this.DownloadDom) &#123;</span><br><span class="line">        let myBlob = new Blob([fileText], &#123; type: &quot;application/json&quot; &#125;);</span><br><span class="line">        this.DownloadDom.href = window.URL.createObjectURL(myBlob);</span><br><span class="line">        console.log(&apos;下载文件已就绪&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>结合HTML5读取文本文件功能，我们还可以实现对文本文件的编辑功能，比如JSON文件压缩，实际上就是拿到文本内容后，对内容过滤空字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let fileText = reader.result;</span><br><span class="line">fileText.replace(/\s/g, &quot;&quot;);</span><br><span class="line">saveFile(fileText)</span><br></pre></td></tr></table></figure>
+<p>再补充一点内容，createObjectURL()方法还有一个对应的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/revokeObjectURL" target="_blank" rel="external">URL.revokeObjectURL()</a>方法，用来释放生成的URL对象，用法是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj_url = window.URL.createObjectURL(blob);</span><br><span class="line">var iframe = document.getElementById(&apos;viewer&apos;);</span><br><span class="line">iframe.setAttribute(&apos;src&apos;, obj_url);</span><br><span class="line">window.URL.revokeObjectURL(obj_url);</span><br></pre></td></tr></table></figure>
+<p>当obj_url已经赋值给图片之后，就可以释放这个URL对象。这里的关键在于确定URL对象已经使用完了，在我们的例子中如果也这么做，实际上是不行的，当用户点击下载链接的时候会提示网络错误，因为href指向的链接已经失效了。猜测原因是，图片加载并显示的时候已经将数据载入内存了，这时候释放URL不会影响到图片的显示；而链接地址属于“引用”，点击瞬间会去访问URL对象，如果这时候对象已经释放了就会导致链接失效。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>HTML5实现文件读取、编辑、保存其实非常简单，只不过涉及到的API兼容性都比较堪忧，以上示例仅在chrome里测试过。</p>
+<p>完整的示例代码地址：<br><a href="https://github.com/tower1229/htm5-file-operations" target="_blank" rel="external">https://github.com/tower1229/htm5-file-operations</a></p>
+<p>演示地址:<br><a href="https://refined-x.com/htm5-file-operations/">https://refined-x.com/htm5-file-operations/</a></p>
 
-        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/07/21/混合应用页面打开速度优化/">https://refined-x.com/2017/07/21/混合应用页面打开速度优化/</a></p>
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/">https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/</a></p>
         <p>对文章内容有任何疑问欢迎留言，或者扫描下方二维码加入“前端路上-知识星球”直接与我讨论。</p>
         <p><img src="/asset/xiaomiquan.png" alt="前端路上-知识星球" style="display:block;max-width:360px;margin:auto" /></p>
       
@@ -302,9 +341,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/混合应用/" rel="tag">#混合应用</a>
-          
-            <a href="/tags/HybridStart/" rel="tag">#HybridStart</a>
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
           
         </div>
       
@@ -312,17 +349,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/20/小程序上手指南/" rel="next" title="小程序上手指南">
-                <i class="fa fa-chevron-left"></i> 小程序上手指南
+              <a href="/2018/08/09/《Hybrid App开发快速指南》新课上线/" rel="next" title="《Hybrid App开发快速指南》新课上线！">
+                <i class="fa fa-chevron-left"></i> 《Hybrid App开发快速指南》新课上线！
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/08/混合应用从开发到发布/" rel="prev" title="混合应用从开发到发布">
-                混合应用从开发到发布 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -342,7 +375,7 @@
           
             
   
-<div id="SOHUCS" sid="混合应用页面打开速度优化" ></div> 
+<div id="SOHUCS" sid="HTML5实现文件读取、编辑、保存" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cyt41dRMv'; 
@@ -455,7 +488,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么做优化"><span class="nav-number">1.</span> <span class="nav-text">怎么做优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提升绝对速度"><span class="nav-number">2.</span> <span class="nav-text">提升绝对速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加过度效果"><span class="nav-number">3.</span> <span class="nav-text">增加过度效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5读取文件"><span class="nav-number">1.</span> <span class="nav-text">HTML5读取文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5保存文件"><span class="nav-number">2.</span> <span class="nav-text">HTML5保存文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
