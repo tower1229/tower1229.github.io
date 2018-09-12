@@ -37,13 +37,13 @@
 首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片
 然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链
 通过外链继续重复第一步，从而实现自">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png">
-<meta property="og:updated_time" content="2018-04-09T02:26:49.148Z">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png">
+<meta property="og:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png">
+<meta property="og:updated_time" content="2018-09-12T07:00:28.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs爬虫实践小记">
 <meta name="twitter:description" content="Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最后。
@@ -51,7 +51,7 @@
 首先爬虫程序要发起http请求得到页面HTML，进而获取到你希望得到的信息，例如正文或图片
 然后爬虫要捕获页面间的链接关系，通常是”上一篇下一篇”这种外链
 通过外链继续重复第一步，从而实现自">
-<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
+<meta name="twitter:image" content="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
 <link rel="canonical" href="https://refined-x.com/2017/06/09/Nodejs爬虫实践小记/" />
 <script type="application/ld+json">
@@ -62,7 +62,7 @@
         "title": "Nodejs爬虫实践小记",
         "images": [],
         "description": "Nodejs将前端开发语言移植到服务器端，如今一个前端开发者使用Nodejs很容易就能实现一个网络爬虫，这在之前是不可想象的，本文介绍一个简单的Nodejs爬虫的开发过程，只想看代码的直接拉到最...",
-        "pubDate":  "2018-04-09T02:26:40" 
+        "pubDate":  "2018-09-12T07:00:20" 
     }
 </script>
 
@@ -297,17 +297,17 @@
 <li>通过外链继续重复第一步，从而实现自动化抓取，这里注意需要给程序设定一个退出边界，比如当找不到下一篇的时候，或者总抓取次数达到多少的时候，防止陷入死循环</li>
 </ul>
 <h2 id="目标分析"><a href="#目标分析" class="headerlink" title="目标分析"></a>目标分析</h2><p>本次抓取目标选择的是cnBeta.com，观察发现cnBeta的新闻详细页包含相邻页面的链接，但是通过查看源代码发现，这个链接是Js生成的：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154821.png" alt=""></p>
 <p>这是常见的防抓取措施，通过异步请求获取关联页面链接，再由js动态生成，查看网络面板可以看到页面确实发出了一个异步请求，结果中有我们要的关联页面ID:</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154855.png" alt=""></p>
 <p>接下来分析这个请求，可以发现有两个参数，想必都可以从HTML中找到：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154920.png" alt=""></p>
 <p>第一个参数<code>_csrf</code>很容易在源代码中直接搜索到了：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609154946.png" alt=""></p>
 <p>第二个参数全文检索找不到：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609155011.png" alt=""></p>
 <p>观察这个参数的结构，发现数据被两个逗号隔成三段，于是猜测数据是由于多部分拼接而来的，分开检索果然找到了：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png" alt=""></p>
+<p><img src="https://refined-x.com/asset/QQ%E6%88%AA%E5%9B%BE20170609155046.png" alt=""></p>
 <p>但只找到了数据的后两段，开头的<code>1,</code>不知道从哪来的，鉴于只有一个字符很难检索，而且观察发现很多页面中的这个请求都是1开头，所以这里干脆写死了。。。</p>
 <p>至此对目标的分析就结束了，下面开始实现这个爬虫。</p>
 <h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><p>大致思路是，从起始页面开始抓取，异步获取上一篇新闻页面的链接继续抓取，设定最大抓取次数防止陷入死循环，伪码如下：</p>

@@ -33,14 +33,14 @@
 <meta property="og:description" content="贪吃蛇，呵呵。
 在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
 思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta property="og:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
-<meta property="og:updated_time" content="2018-04-09T02:26:48.335Z">
+<meta property="og:image" content="https://refined-x.com/asset/snake.png">
+<meta property="og:updated_time" content="2018-09-12T07:00:28.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再做一条贪吃蛇">
 <meta name="twitter:description" content="贪吃蛇，呵呵。
 在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
 思路这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移">
-<meta name="twitter:image" content="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png">
+<meta name="twitter:image" content="https://refined-x.com/asset/snake.png">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
 <link rel="canonical" href="https://refined-x.com/2017/06/19/再做一条贪吃蛇/" />
 <script type="application/ld+json">
@@ -53,7 +53,7 @@
         "description": "贪吃蛇，呵呵。
 在开发难度上，贪吃蛇算得上是游戏界的耻辱了，这么简单的东西，我知道你们是拒绝继续往下看的，但是，我这条贪吃蛇不一样，我这条贪吃蛇，更简单。。。
 思路这还要从一次午休说起，本来睡得...",
-        "pubDate":  "2018-04-09T02:26:40" 
+        "pubDate":  "2018-09-12T07:00:20" 
     }
 </script>
 
@@ -286,7 +286,7 @@
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这还要从一次午休说起，本来睡得迷迷糊糊突然想到一个问题，怎么优化贪吃蛇运动过程中涉及的大量DOM操作？用js做贪吃蛇游戏，思路无非是画蛇、运动、碰撞检测，蛇通常是由多个连续正方形元素组成的，蛇的运动通常做法是遍历元素，将蛇头向移动方向移一位，其后的元素挨个前移，也就是组成蛇身的每一个正方形元素都要移动位置，感觉很浪费。</p>
 <p>我的方法是，将蛇尾元素直接移到蛇头即将移动的方向上充当蛇头，身体其余节点不需要动，这样也能实现贪吃蛇的移动效果，而且只要一次DOM操作。为了验证这个方法，于是我补齐了贪吃蛇游戏的其他部分，也就是地图、食物、碰撞检测、关卡设计。</p>
 <p>先看效果：</p>
-<p><img src="https://github.com/tower1229/tower1229.github.io/raw/master/asset/snake.png" alt="snake"></p>
+<p><img src="https://refined-x.com/asset/snake.png" alt="snake"></p>
 <p>下面简单说一下。</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h3><p>贪吃蛇的所谓地图看上去其实就是一堆网格线，这里面至少包含两个信息，第一单元格尺寸，第二游戏区域尺寸，设置好这两个尺寸，循环填充横线和竖线就可以了。</p>
 <h3 id="食物"><a href="#食物" class="headerlink" title="食物"></a>食物</h3><p>贪吃蛇里的食物是随机生成位置的，总量保持一定，吃一个生成一个，这个总量通常可以根据游戏区域的大小按比例取得，比如<code>边长 * 0.5</code>，另外生成的食物不能与蛇身重叠，需要注意检测随机生成位置的可用性。</p>
