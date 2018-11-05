@@ -79,7 +79,7 @@
         <audio controls autoplay></audio>
         <div>
             <input onclick="startRecording()" id="actbtn" type="button" value="录音" />
-            <input onclick="playRecording()" type="button" value="播放" />
+            <input onclick="playRecording()" id="playbtn" type="button" value="播放" />
         </div>
     </div>
     <footer class="foot">
@@ -91,17 +91,19 @@
     <script type="text/javascript">
     var recorder;
     var status;
-    var btn = document.getElementById('actbtn');
+    var actbtn = document.getElementById('actbtn');
+    var playbtn = document.getElementById('playbtn')
 
     var audio = document.querySelector('audio');
 
     function startRecording() {
         if(status){
-            btn.value = '录音'
+            actbtn.value = '录音'
             stopRecording();
         }else{
             status = true;
-            btn.value = '停止'
+            playbtn.disabled = true
+            actbtn.value = '停止'
             HZRecorder.get(function(rec) {
                 recorder = rec;
                 recorder.start();
@@ -111,7 +113,8 @@
     }
 
     function stopRecording() {
-        status= false
+        status = false
+        playbtn.disabled = false
         recorder.stop();
     }
 
