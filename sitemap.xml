@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://refined-x.com/about/index.html</loc>
+    
+    <lastmod>2018-12-10T03:12:24.492Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://refined-x.com/projects/index.html</loc>
     
     <lastmod>2018-12-07T06:13:13.314Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://refined-x.com/2018/12/04/VueCLI3%20%E5%85%BC%E5%AE%B9%E6%80%A7%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2018-12-04T10:58:23.888Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://refined-x.com/about/index.html</loc>
-    
-    <lastmod>2018-11-14T10:47:37.331Z</lastmod>
     
   </url>
   
