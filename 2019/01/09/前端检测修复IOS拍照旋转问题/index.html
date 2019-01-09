@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="theme-next muse">
 <head>
-  <title> 如何计算一款保险的杠杆 | 前端路上 </title>
+  <title> 前端检测修复IOS拍照旋转问题 | 前端路上 </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="看风景," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -23,33 +23,30 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
-<meta name="description" content="写在前面这篇文章向大家分享一个复利计算小工具，用来模拟保险年缴保费的支出情况，并用复利的方式算出这些保费在相同年数里的理财收入，技术含量极低，但如果你像我一样近期有买保险需求的话，这个小工具可以帮助你快速衡量一款保险产品的投入产出杠杆。
-聊聊保险自从宝宝出生后，突然感觉自己的健康风险特别高，为什么呢，说白了就一个原因：收入来源单一，孩子在不断长大，父母在不断老去，家庭支出在可预见的未来越来越高，这">
+<meta name="description" content="苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。
+WEB前端环境可能在两种情况下遇到IOS拍照旋转问题，一是网页中通过input:type=file控件捕获照片文件并实时预览，二是网页中显示未经处理的苹果手机拍摄图片。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何计算一款保险的杠杆">
-<meta property="og:url" content="https://refined-x.com/2018/07/02/如何计算一款保险的杠杆/index.html">
+<meta property="og:title" content="前端检测修复IOS拍照旋转问题">
+<meta property="og:url" content="https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="写在前面这篇文章向大家分享一个复利计算小工具，用来模拟保险年缴保费的支出情况，并用复利的方式算出这些保费在相同年数里的理财收入，技术含量极低，但如果你像我一样近期有买保险需求的话，这个小工具可以帮助你快速衡量一款保险产品的投入产出杠杆。
-聊聊保险自从宝宝出生后，突然感觉自己的健康风险特别高，为什么呢，说白了就一个原因：收入来源单一，孩子在不断长大，父母在不断老去，家庭支出在可预见的未来越来越高，这">
-<meta property="og:image" content="https://refined-x.com/asset/baofei-kanghuibao.png">
-<meta property="og:image" content="https://refined-x.com/asset/interest.png">
-<meta property="og:updated_time" content="2018-07-12T01:18:28.210Z">
+<meta property="og:description" content="苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。
+WEB前端环境可能在两种情况下遇到IOS拍照旋转问题，一是网页中通过input:type=file控件捕获照片文件并实时预览，二是网页中显示未经处理的苹果手机拍摄图片。">
+<meta property="og:updated_time" content="2019-01-09T06:21:07.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何计算一款保险的杠杆">
-<meta name="twitter:description" content="写在前面这篇文章向大家分享一个复利计算小工具，用来模拟保险年缴保费的支出情况，并用复利的方式算出这些保费在相同年数里的理财收入，技术含量极低，但如果你像我一样近期有买保险需求的话，这个小工具可以帮助你快速衡量一款保险产品的投入产出杠杆。
-聊聊保险自从宝宝出生后，突然感觉自己的健康风险特别高，为什么呢，说白了就一个原因：收入来源单一，孩子在不断长大，父母在不断老去，家庭支出在可预见的未来越来越高，这">
-<meta name="twitter:image" content="https://refined-x.com/asset/baofei-kanghuibao.png">
+<meta name="twitter:title" content="前端检测修复IOS拍照旋转问题">
+<meta name="twitter:description" content="苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。
+WEB前端环境可能在两种情况下遇到IOS拍照旋转问题，一是网页中通过input:type=file控件捕获照片文件并实时预览，二是网页中显示未经处理的苹果手机拍摄图片。">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
-<link rel="canonical" href="https://refined-x.com/2018/07/02/如何计算一款保险的杠杆/" />
+<link rel="canonical" href="https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/" />
 <script type="application/ld+json">
     {
         "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-        "@id": "https://refined-x.com/2018/07/02/如何计算一款保险的杠杆/",
+        "@id": "https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/",
         "appid": "1585542911827735",
-        "title": "如何计算一款保险的杠杆",
+        "title": "前端检测修复IOS拍照旋转问题",
         "images": [],
-        "description": "写在前面这篇文章向大家分享一个复利计算小工具，用来模拟保险年缴保费的支出情况，并用复利的方式算出这些保费在相同年数里的理财收入，技术含量极低，但如果你像我一样近期有买保险需求的话，这个小工具可以...",
-        "pubDate":  "2018-07-12T01:18:20" 
+        "description": "苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋...",
+        "pubDate":  "2019-01-09T06:21:00" 
     }
 </script>
 
@@ -232,7 +229,7 @@
             
             
               
-                如何计算一款保险的杠杆
+                前端检测修复IOS拍照旋转问题
               
             
           </h1>
@@ -243,8 +240,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-02T15:06:20+08:00" content="2018-07-02">
-              2018-07-02
+            <time itemprop="dateCreated" datetime="2019-01-09T14:20:08+08:00" content="2019-01-09">
+              2019-01-09
             </time>
           </span>
           <span class="post-category" >
@@ -272,21 +269,22 @@
       
       
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这篇文章向大家分享一个复利计算小工具，用来模拟保险年缴保费的支出情况，并用复利的方式算出这些保费在相同年数里的理财收入，技术含量极低，但如果你像我一样近期有买保险需求的话，这个小工具可以帮助你快速衡量一款保险产品的投入产出杠杆。</p>
-<h2 id="聊聊保险"><a href="#聊聊保险" class="headerlink" title="聊聊保险"></a>聊聊保险</h2><p>自从宝宝出生后，突然感觉自己的健康风险特别高，为什么呢，说白了就一个原因：<strong>收入来源单一</strong>，孩子在不断长大，父母在不断老去，家庭支出在可预见的未来越来越高，这时候作为家庭经济支柱的自己如果出了问题，后果不堪设想，所以有一天我的脑子里突然响起一个声音：我要买保险。说到保险很多人第一反应是<code>骗子、坑、水深、感觉没啥用</code>，这也是我曾经的想法，但当有一天你也看到自己珍视的东西暴露在不可承受的风险之下时，可能也会重新考虑保险这件事。其实<strong>保险的本质是杠杆</strong>，这个杠杆允许你交一小笔钱，待出现风险时拿到一笔大钱，帮助家庭度过难关。在这个本质的基础上，如今的保险产品衍生出了太多花样，我花了不少时间才大致理清一个脉络，这里就不展开说了。</p>
-<h2 id="定投复利计算器"><a href="#定投复利计算器" class="headerlink" title="定投复利计算器"></a>定投复利计算器</h2><p>前面大致说了这个计算器是干什么用的，这里再详细解释一下。以我自己为例，准备买人生第一款商业保险，重疾险，对于暂时手头没有那么宽裕的人（===穷人）来说，只能选择消费型、低保额、保终身，于是就锁定了全网最便宜的消费型重疾险<a href="https://cps.qixin18.com/zt1029065/product/detail-2170-2726.html" target="_blank" rel="external">百年康惠保</a>，保额我打算先来30万，以后宽裕了再增加（maybe），缴费年限越长年费越少（总额会多一些），老夫已经30了，希望20年内缴完，所以保费情况是这样的：</p>
-<p><a href="https://cps.qixin18.com/zt1029065/product/detail-2170-2726.html" target="_blank" rel="external"><img src="https://refined-x.com/asset/baofei-kanghuibao.png" alt="此处输入图片的描述"></a></p>
-<p>每年缴3390元，缴费20年，那么此时我最想知道，同样的时间和金钱付出，如果用在普通理财产品上会有怎样的收益？假设自己可以通过理财达到跟保险保额差不太多的收益，那显然就不需要买保险了。OK，我平时工资一般就放在微信钱包-零钱通里，年化收益率大致4%，如果我把每年要缴给保险公司的3390元都放进零钱通，20年后我一共有多少钱？算法很简单，第一年投入的年费作为初始本金，到年底会获得4%的受益，然后连本带息再加上第二年的年费一起作为第二年的本金，继续按照4%的收益率计算年底收益，以此类推直到20年，得到最终结果。</p>
-<p><a href="//refined-x.com/projects/codes/interest.html">复利计算器</a>就是用来做这件事的，最终计算结果为104983，也就是10万出头，而这款产品的保额是30万，那么可以得出结论，以我的理财能力这款保险的保费杠杆可以达到3倍，这基本上是市面上杠杆最高的了，看来全网最便宜果然名不虚传。</p>
-<p><img src="https://refined-x.com/asset/interest.png" alt="此处输入图片的描述"></p>
-<p>感兴趣的可以自己来算算：<a href="//refined-x.com/projects/codes/interest.html">复利计算器</a>。</p>
-<p>这里衍生一个话题，就是什么人不需要买保险？我觉得有两种人，第一是理财收益率能达到13%的人，因为通过计算得知，只要保持这个收益率就能将<a href="https://cps.qixin18.com/zt1029065/product/detail-2170-2726.html" target="_blank" rel="external">“全网最便宜的消费型重疾险”</a>的杠杆拉平，获得跟保费大致相同的收益，但是理财讲究资金的规模效应，以多数人的资金水平不可能稳定实现这么高的收益率；第二种人可能就是所谓生意人了，把钱投入商业运作，得到多高的收益都不稀奇，难点在于稳定。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>计算器的具体实现实在太简单就不提了，有兴趣的可以自己打开调试工具看源码。这里想多说两句，大家买保险千万不要凭感觉去买，很多人不喜欢纯消费型保险，认为如果自己好人一生平安就相当于把钱白给保险公司了，首先这是事实，你得到了你需要的保障，保险公司得到了利润，天经地义，也因此保险才是一个双赢产品，得以经久不衰的经营下去。由于这种“吃亏”心理非常普遍，因此市面上带返还的产品非常受欢迎，比如有的产品会在65周岁时反保额，看上去好像很划算，其实自己算一下就知道，去掉返现以后你的总投入一点不比消费型产品少，因为这期间动辄几十年的时间，你的本金会源源不断的产生收益，正所谓时间就是金钱。</p>
-<hr>
-<p><a href="//refined-x.com/projects/codes/interest.html">复利计算器</a></p>
-<p><a href="https://cps.qixin18.com/zt1029065/product/detail-2170-2726.html" target="_blank" rel="external">“全网最便宜的消费型重疾险”</a></p>
+        <p>苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。</p>
+<p>WEB前端环境可能在两种情况下遇到IOS拍照旋转问题，一是网页中通过<code>input:type=file</code>控件捕获照片文件并实时预览，二是网页中显示未经处理的苹果手机拍摄图片。</p>
+<p><strong><a href="https://github.com/tower1229/ios-photo-repair" target="_blank" rel="external">ios-photo-repair</a></strong>是一个专门修复IOS照片旋转问题的前端工具，提供两个方法分别应对上述两种应用场景。</p>
+<h2 id="安装ios-photo-repair"><a href="#安装ios-photo-repair" class="headerlink" title="安装ios-photo-repair"></a>安装ios-photo-repair</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ios-photo-repair --save</span><br></pre></td></tr></table></figure>
+<h2 id="使用ios-photo-repair"><a href="#使用ios-photo-repair" class="headerlink" title="使用ios-photo-repair"></a>使用ios-photo-repair</h2><h3 id="修复file文件"><a href="#修复file文件" class="headerlink" title="修复file文件"></a>修复file文件</h3><p><code>fixImgFile(file, [compressOption])</code>方法接收file对象和可选的压缩配置为参数，返回promise，完成后输出修复后的图片base64。如果想顺便压缩一下，还可以传入压缩配置。输出图片统一为jpeg格式，因为只有jpeg和webp格式支持压缩比设置。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"fileinput"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;fixImgFile&#125; = <span class="built_in">require</span>(<span class="string">"ios-photo-repair"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'fileinput'</span>).onchange = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> file = evt.target.files[<span class="number">0</span>]</span><br><span class="line">    fixImgFile(file, &#123;</span><br><span class="line">        width:<span class="number">500</span>,          <span class="comment">//最大宽度，默认不限制</span></span><br><span class="line">        height:<span class="number">500</span>,         <span class="comment">//最大高度，默认不限制</span></span><br><span class="line">        ratio: <span class="number">0.9</span>          <span class="comment">//压缩比，默认不压缩</span></span><br><span class="line">    &#125;).then(base64 =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(base64) <span class="comment">// 修复并压缩后的图片base64</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修复图片标签"><a href="#修复图片标签" class="headerlink" title="修复图片标签"></a>修复图片标签</h3><p><code>fixBySelector()</code>方法接收一个DOM选择器字符串为参数，用于<code>document.querySelectorAll()</code>方法获取待修复的图片元素节点，当检测到图片方向发生旋转将自动纠正并重载图片。因为<code>&lt;img&gt;</code>元素本来就已经载入到了网页中，因此没有压缩的必要，所以该方法不支持压缩配置。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./img/ios-1.jpg"</span> <span class="attr">id</span>=<span class="string">"iosphoto"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;fixBySelector&#125; = <span class="built_in">require</span>(<span class="string">"ios-photo-repair"</span>)</span><br><span class="line"></span><br><span class="line">fixBySelector(<span class="string">'#iosphoto'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="项目信息"><a href="#项目信息" class="headerlink" title="项目信息"></a>项目信息</h2><p>repo: <a href="https://github.com/tower1229/ios-photo-repair" target="_blank" rel="external">https://github.com/tower1229/ios-photo-repair</a></p>
+<h2 id="附：parceljs使用体验"><a href="#附：parceljs使用体验" class="headerlink" title="附：parceljs使用体验"></a>附：parceljs使用体验</h2><p>这个项目使用<a href="https://parceljs.org/" target="_blank" rel="external">parceljs</a>构建，第一次使用体验特别轻便，文档寥寥几页，但必要的功能一点不少，与webpack最大的区别是parceljs只关注加载和构建，资源处理都交给第三方工具去做，所以小项目起步的配置压力没有webpack那么大，做个类库之类的项目再适合不过了。</p>
 
-        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2018/07/02/如何计算一款保险的杠杆/">https://refined-x.com/2018/07/02/如何计算一款保险的杠杆/</a></p>
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/">https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/</a></p>
         <p>对文章内容有任何疑问欢迎留言，或者扫描下方二维码加入“前端路上-知识星球”直接与我讨论。</p>
         <p><img src="/asset/xiaomiquan.png" alt="前端路上-知识星球" style="display:block;max-width:360px;margin:auto" /></p>
       
@@ -301,7 +299,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/看风景/" rel="tag">#看风景</a>
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
           
         </div>
       
@@ -309,17 +307,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/27/HybridStart v1.2.0 更新日志/" rel="next" title="HybridStart v1.2.0 更新日志">
-                <i class="fa fa-chevron-left"></i> HybridStart v1.2.0 更新日志
+              <a href="/2018/12/04/VueCLI3 兼容性配置/" rel="next" title="Vue CLI 3 浏览器兼容性配置">
+                <i class="fa fa-chevron-left"></i> Vue CLI 3 浏览器兼容性配置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/03/基于Vue实现动态组织结构图/" rel="prev" title="基于Vue实现动态组织结构图">
-                基于Vue实现动态组织结构图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -442,7 +436,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聊聊保险"><span class="nav-number">2.</span> <span class="nav-text">聊聊保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定投复利计算器"><span class="nav-number">3.</span> <span class="nav-text">定投复利计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装ios-photo-repair"><span class="nav-number">1.</span> <span class="nav-text">安装ios-photo-repair</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ios-photo-repair"><span class="nav-number">2.</span> <span class="nav-text">使用ios-photo-repair</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复file文件"><span class="nav-number">2.1.</span> <span class="nav-text">修复file文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复图片标签"><span class="nav-number">2.2.</span> <span class="nav-text">修复图片标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目信息"><span class="nav-number">3.</span> <span class="nav-text">项目信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附：parceljs使用体验"><span class="nav-number">4.</span> <span class="nav-text">附：parceljs使用体验</span></a></li></ol></div>
             
           </div>
         </section>
@@ -524,7 +518,7 @@
   
 <script type="text/javascript"> 
 var gitment = new Gitment.construct({
-    id: '如何计算一款保险的杠杆',
+    id: '前端检测修复IOS拍照旋转问题',
     owner: 'tower1229',
     repo: 'blog-comments',
     oauth: {
