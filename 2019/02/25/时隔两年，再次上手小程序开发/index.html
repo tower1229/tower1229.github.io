@@ -1,0 +1,559 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> 时隔两年，再次上手小程序开发 | 前端路上 </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="小程序," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+<meta name="description" content="小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。
+
+项目背景做宝爸快一年了，自然会花一些精力调整知识结构，关注婴幼儿成长方面的知识，现在的宝宝在营养方面普遍处于过剩状态，身边越来越常见到那种明显“富态”的宝宝，对于孩子何谓胖何谓瘦众说纷纭，为了有一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时隔两年，再次上手小程序开发">
+<meta property="og:url" content="https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。
+
+项目背景做宝爸快一年了，自然会花一些精力调整知识结构，关注婴幼儿成长方面的知识，现在的宝宝在营养方面普遍处于过剩状态，身边越来越常见到那种明显“富态”的宝宝，对于孩子何谓胖何谓瘦众说纷纭，为了有一个">
+<meta property="og:image" content="http://refined-x.com/asset/baby_assistant.png">
+<meta property="og:updated_time" content="2019-02-25T08:07:49.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="时隔两年，再次上手小程序开发">
+<meta name="twitter:description" content="小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。
+
+项目背景做宝爸快一年了，自然会花一些精力调整知识结构，关注婴幼儿成长方面的知识，现在的宝宝在营养方面普遍处于过剩状态，身边越来越常见到那种明显“富态”的宝宝，对于孩子何谓胖何谓瘦众说纷纭，为了有一个">
+<meta name="twitter:image" content="http://refined-x.com/asset/baby_assistant.png">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/",
+        "appid": "1585542911827735",
+        "title": "时隔两年，再次上手小程序开发",
+        "images": [],
+        "description": "
+小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现...",
+        "pubDate":  "2019-02-25T08:07:40" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+<body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端博客">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            前端博客
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端技术">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fire"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端周刊">
+          <a href="https://frontend-weekly.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            前端周刊
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-项目合作">
+          <a href="/programmerslife/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat"></i> <br />
+            
+            项目合作
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友情链接">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-科学上网">
+          <a href="https://secure.shadowsocks.nu/aff.php?aff=19825" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-binoculars"></i> <br />
+            
+            科学上网
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                时隔两年，再次上手小程序开发
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-02-25T16:06:43+08:00" content="2019-02-25">
+              2019-02-25
+            </time>
+          </span>
+          <span class="post-category" >
+            &nbsp; | &nbsp;
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="https://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <blockquote>
+<p>小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。</p>
+</blockquote>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>做宝爸快一年了，自然会花一些精力调整知识结构，关注婴幼儿成长方面的知识，现在的宝宝在营养方面普遍处于过剩状态，身边越来越常见到那种明显“富态”的宝宝，对于孩子何谓胖何谓瘦众说纷纭，为了有一个权威可靠的标准去衡量孩子的生长健康状况，我查了世界卫生组织提供的<a href="https://www.who.int/childgrowth/standards/en/" target="_blank" rel="external">婴幼儿成长标准</a>，标准以天为单位，提供5岁以内婴幼儿的身高、体重、BMI（衡量胖瘦）等指标的分布占比信息，也就是说任意天数的宝宝都能查到当下最符合健康成长规律的身高、体重、BMI数值，也可以查到宝宝当前的成长数据处于整体样本库中的什么位置，以此衡量宝宝的成长状态，辅助纠正宝宝的喂养问题。</p>
+<p>经过一个周的开发，目前初代版本已上线，欢迎扫码体验。</p>
+<p><img src="http://refined-x.com/asset/baby_assistant.png" alt="成长助理"></p>
+<h2 id="整体感受"><a href="#整体感受" class="headerlink" title="整体感受"></a>整体感受</h2><p>两年前小程序刚推出的时候也是我第一次接触小程序开发，当时漫无目的的做了一个DEMO项目，并写了一篇<a href="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">《小程序上手指南》</a>，内容非常粗浅，本以为时隔两年重读小程序开发文档，会有很多“硬货”，然后并没有。相比两年前小程序框架最大的改动就是引入了组件和插件两个概念，极大提升了小程序的开发体验，但其实在熟悉现代前端框架的开发者眼里，这些都是早已经过时间检验的最佳实践，没有是小程序的缺陷，有了才是顺理成章，所以这方面不能算惊喜。</p>
+<p>另外，<a href="https://developers.weixin.qq.com/wxaplugin?action=index&amp;start=0&amp;rows=20&amp;lang=zh_CN" target="_blank" rel="external">小程序插件库</a>的入口藏得有点深，竟然不在文档的一级导航上，也没有整合到开发工具中，有点奇怪。</p>
+<p>真正令我印象深刻的点有五个。</p>
+<ol>
+<li>开发工具的真机预览和调试功能特别好用，可以说完全符合预期，因为我之前没有关注这个功能的迭代过程，所以对我来说冲击很大，有种从0到100一步到位的惊艳感。</li>
+<li>文档新增的<a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0008aeea9a8978ab0086a685851c0a" target="_blank" rel="external">《小程序开发指南》</a>非常值得一读，能帮助加深对小程序整体技术架构的理解，减少一些跳坑几率。</li>
+<li>还不错的动画API。动画API其实是操作CSS动画的语法糖，目的是让CSS动画变得可编程，是很好的功能，使用体验一般吧，不好也不坏。</li>
+<li>符合开发者利益，符合用户利益。小程序框架的一些改动非常有心，比如新增的几个开放能力组件，开发者可以在用户不授权不登陆的情况下展示用户基本信息，很多本不需要用户系统，仅仅想展示一下用户头像的业务，终于有了正确的实现方式；而对用户来说，基本信息并没有被开发者获取到，减少了无意义的授权，双赢。</li>
+<li>无后端开发的典范——小程序云开发。小程序对开发者的定义从来不只是程序员群体，而是包括产品经理、设计师、甚至中学生在内的所有需要开发小程序的人，所以小程序开发框架越迭代越简单，而有了云开发之后，可以说真正做到了<strong>任何人都可以通过简单学习去开发一个功能完善的小程序</strong>。这一点下面单独展开说。</li>
+</ol>
+<h2 id="小程序云开发"><a href="#小程序云开发" class="headerlink" title="小程序云开发"></a>小程序云开发</h2><p>小程序云开发是微信官方推出的无后端开发服务。无后端开发模式不是新鲜事物，甚至经过三五年的发展这个词已经有些过气了，并不为人所知，但无后端的思想和一些典型经验在小程序云开发中体现的淋漓尽致，细节处又与业务结合的恰到好处，相比我之前了解的其他无后端服务，小程序云开发给我的感受就好像：一个从没摸过钢琴的人，一上手竟弹出肖邦的水平。</p>
+<p>无后端其实可以简单粗暴的归纳为数据库、存储空间、算力（云函数）以及其他们的运营托管服务的打包租赁，单纯拿出来说是特别简单的一个东西，而这几样东西被小程序开发工具有机的整合起来，却呈现出一种新的生命力。</p>
+<p>云开发提供的是非关系型数据库，但文档里从头到尾你看不到非关系型这几个字，只有寥寥几个简单的示例，一下就能明白这个东西该怎么用，剩下的很多文档甚至都不用看了，等到用的时候再来查就行，简单业务在小程序端就能实现数据库的增删改查；存储空间不说了，本来就简单，整合到云开发的API里之后也是一如既往的简明易懂；云函数是近一两年出的新东西，BAT三家云服务都在做，很长一段时间我不理解云函数和我50块/年的<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=y31qmczl" target="_blank" rel="external">阿里云虚拟机</a>比有什么优势，但就这样一个东西被小程序整合了用户鉴权之后，简直成了神器，复制黏贴文档上的示例代码，简单几步就能实现用户登录；结合数据库和存储服务，只要不是太复杂的业务都能靠云函数搞定。云函数用的还是Nodejs语言，实在想不出小程序开发哪里还能用得到后端，所以我说，小程序的云开发是无后端开发的典范，是对无后端技术整合的最佳实践。</p>
+<p>这也暗合张小龙在最近一次年度演讲中提到的他对技术的看法，大意是技术的价值不在于技术本身，而在于正确的应用场景。实际上微信7.0的视频动态功能里，视频配乐就应用了AI技术去匹配背景音乐，如果你还没用过这个功能，建议你马上体验一下。我个人的感受是做的特别好，甚至比很多将AI作噱头的营销PPT吹的都要好。推送的前几首音乐往往是AI匹配的，因为我经常拍的就是我儿子，我发现推送的音乐首先可以做到在情感类型上与视频内容匹配，是可爱的还是动感的还是搞笑的，都判断的很准确，这一点非常重要，可以强化视频的情感表达，让本来没有那么好玩的一个视频变得妙趣横生；然后音乐的节奏也能做到跟人物动作匹配，甚至有时候节奏还能对上人物的口型，最终的效果就是，经常让我觉得背景音乐成了视频动态的点睛之笔，这种感受恐怕只有亲身体验过人才会知道有多棒。将AI技术应用的这么好，微信团队却从没有公开提过，甚至没看过张小龙那次演讲的人，可能一辈子都不会知道微信里的这个小功能，其实运用了当下最尖端的AI技术，并且炉火纯青。</p>
+<h2 id="一些遗憾"><a href="#一些遗憾" class="headerlink" title="一些遗憾"></a>一些遗憾</h2><p>夸了这么多但总归还是有一些遗憾，主要有四点。</p>
+<ol>
+<li>canvas应用受限。我这次做的项目里涉及到数据呈现，本来希望能用canvas绘制，但canvas是原生组件，脱离webview独立渲染，导致跟swiper组件结合使用时出现异常，表现为页签滑动但是页签里的canvas不动。最后的解决方法是先用canvas绘制出来，然后截屏保存再处理成背景图片，没办法，谁让我的PS水平画不出来我想要的效果呢。</li>
+<li>官方社区还是不理想。貌似活跃了可以忽略不计的那么一点点吧，但总体来说问答数量的积累还是不够，经常有问题搜不出来，而开发中的问题如果你等着官方给你回复，估计等半天等来的答案会让你更上火，还不如百度一下来的效率。社区的搜索功能还有一个明显的槽点，搜索输入框后面的放大镜是不能点击的，只能通过回车键进入搜索结果，很难想象这个社区是微信团队做出来的。</li>
+<li>开发文档仍然有一些地方不够细致，比如canvas的一些接口和文件操作的一些接口，怎么说呢，会让你有一种不懂的时候怎么看都不懂，懂了之后再看“奥原来是这个意思啊”的感觉。</li>
+<li>开发工具表现的不太稳定，开发过程中发现canvas绘制和文件操作方面有时候跟真机表现不一致，然后不知道什么时候再看就莫名其妙的正常了，很奇妙；然后就是老生常谈的问题，编辑器不好用，而且有低级错误，在小屏笔记本上选中一段代码点鼠标右键，代码的选中状态会消失而且代码会网上滚动一行左右。</li>
+</ol>
+<h2 id="关于跨平台开发框架"><a href="#关于跨平台开发框架" class="headerlink" title="关于跨平台开发框架"></a>关于跨平台开发框架</h2><p>我关注到最近圈子里出现了一种跨平台开发框架，可以一统包括小程序在内的各种前端开发平台，妥妥的前端版“一次开发，处处运行”。优点显而易见，如果需求上同时需要一个小程序和一个H5，业务完全一样，那么代码就可以100%复用，完美。</p>
+<p>但我对这种技术架构不感冒，我倾向于用最直接的方式去开发目标平台，首先小程序自身框架做到目前的程度，是可用的，吐槽开发体验我觉得就是鸡蛋里挑骨头了。即便考虑到代码复用，我也不认为一套代码同时跑在小程序和H5上是一种好的技术架构，因为我的经验是，每个平台都有自己的业务特点，会催生出不同的业务需求，随着时间的推移，他们终究会成为不同的东西，到那个时候想要摆脱这套框架，带来的成本恐怕就是重构级的。</p>
+<p>而且这种包装本身就会带来很多问题，需要跟进平台更新，需要持续抹平平台差异，你代码复用省下的时间要能覆盖掉这些维护成本才行，可能是我没遇到合适的场景吧，我只能想到做外包的时候用一下比较省事，反正后续不需要自己维护，其他情况真的想不到了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>受限于这次的小程序项目比较简单，这次的体验还不够全面和深入，暂且总结以上几点，总体来说小程序已经做的特别好了，开发体验不错，其他细节以后有机会再深入体验吧。</p>
+
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/">https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/</a></p>
+        
+        <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto" /></p>
+        <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag">#小程序</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/2018年度总结，一个技术人的而立之年/" rel="next" title="2018年度总结，一个技术人的而立之年">
+                <i class="fa fa-chevron-left"></i> 2018年度总结，一个技术人的而立之年
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            <div id="gitment_container"></div>
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/asset/album.jpg"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">前端技术</span>
+              
+            </div>
+          
+        </nav>
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tower1229" target="_blank" title="GitHub" rel="nofollow">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://refined-x.com/programmerslife/" target="_blank" title="Wechat" rel="nofollow">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://jq.qq.com/?_wv=1027&k=5Jx8Wu0" target="_blank" title="QQ" rel="nofollow">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+        
+        
+        
+        
+        
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目背景"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体感受"><span class="nav-number">2.</span> <span class="nav-text">整体感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序云开发"><span class="nav-number">3.</span> <span class="nav-text">小程序云开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些遗憾"><span class="nav-number">4.</span> <span class="nav-text">一些遗憾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于跨平台开发框架"><span class="nav-number">5.</span> <span class="nav-text">关于跨平台开发框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="https://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+</div>
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+	
+  <link rel="stylesheet" href="/lib/gitment/default.css">
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/gitment/gitment.browser.js"></script>
+
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+  
+  
+  
+<script type="text/javascript"> 
+var gitment = new Gitment.construct({
+    id: '时隔两年，再次上手小程序开发',
+    owner: 'tower1229',
+    repo: 'blog-comments',
+    oauth: {
+      client_id: "37db014e1012d7838313",
+      client_secret: "52d07c2105210cf845870cb479ae6a4cdecae347",
+    },
+  })
+
+  gitment.render('gitment_container')
+</script>
+
+  
+</body>
+</html>
