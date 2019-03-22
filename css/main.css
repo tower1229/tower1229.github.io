@@ -1527,6 +1527,7 @@ pre .javascript .function {
   top: 0;
   bottom: 0;
   width: 0;
+  overflow: auto;
   z-index: 1040;
   box-shadow: inset 0 2px 6px #000;
   background: #222;
@@ -1554,6 +1555,25 @@ pre .javascript .function {
   padding: 20px 10px;
   color: #999;
   text-align: center;
+}
+.sidebar::-webkit-scrollbar {
+  position: absolute;
+  width: 10px;
+  margin-left: -10px;
+  -webkit-appearance: none;
+}
+.sidebar::-webkit-scrollbar-track {
+  background-color: #444d50;
+  border-right: 1px solid #2c3334;
+  border-left: 1px solid #2c3334;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #ccc;
+  background-clip: content-box;
+  background-color: #212526;
+  border-style: solid;
+  border-width: 1px 2px;
 }
 .sidebar-toggle {
   position: fixed;
@@ -1678,7 +1698,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f2ffd0;
+  background: #755546;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2481,4 +2501,15 @@ embed {
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
+}
+.booth-list {
+  overflow: hidden;
+}
+.booth-list .links-of-blogroll-item {
+  float: left;
+  width: 48%;
+  box-sizing: border-box;
+  margin: 0 1% 2%;
+  border: 1px solid #434343;
+  padding: 4px;
 }
