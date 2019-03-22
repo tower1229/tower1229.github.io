@@ -1698,7 +1698,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #755546;
+  background: #ff477f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2507,7 +2507,9 @@ embed {
 }
 .booth-list .links-of-blogroll-item {
   float: left;
-  width: 48%;
+  width: 139px;
+  height: 53px;
+  overflow: hidden;
   box-sizing: border-box;
   margin: 0 1% 2%;
   border: 1px solid #434343;
