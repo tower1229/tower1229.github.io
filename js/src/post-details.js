@@ -128,11 +128,11 @@ $(document).ready(function () {
   });
 
   // Expand sidebar on post detail page by default, when post has a toc.
-  var $tocContent = $('.post-toc-content');
+  // var $tocContent = $('.post-toc-content');
 
-    if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        NexT.utils.displaySidebar();
-      }
-    }
+  //   if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+  //     if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+  //       NexT.utils.displaySidebar();
+  //     }
+  //   }
 });

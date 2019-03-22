@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next muse">
+<html class="theme-next muse use-motion">
 <head>
   <title> 小程序上手指南 | 前端路上 </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,8 +17,6 @@
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
-
-  <link rel="alternate" href="/rss2.xml" title="前端路上" type="application/atom+xml" />
 
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
@@ -58,9 +56,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"right","display":"always"},
     fancybox: false,
-    motion: false,
+    motion: true,
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -166,42 +164,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-前端周刊">
-          <a href="https://frontend-weekly.com/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
-            
-            前端周刊
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-项目合作">
           <a href="/programmerslife/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-wechat"></i> <br />
             
             项目合作
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-进阶套装">
-          <a href="http://frontend-weekly.com/tools.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-thumbs-up"></i> <br />
-            
-            进阶套装
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-0元建站">
-          <a href="http://frontend-weekly.com/program.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-soundcloud"></i> <br />
-            
-            0元建站
           </a>
         </li>
       
@@ -411,48 +379,38 @@
           
         </nav>
         
-          <div class="feed-link motion-element">
-            <a href="/rss2.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/tower1229" target="_blank" title="GitHub" rel="nofollow">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://refined-x.com/programmerslife/" target="_blank" title="Wechat" rel="nofollow">
-                  
-                    <i class="fa fa-fw fa-weixin"></i>
-                  
-                  Wechat
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://jq.qq.com/?_wv=1027&k=5Jx8Wu0" target="_blank" title="QQ" rel="nofollow">
-                  
-                    <i class="fa fa-fw fa-qq"></i>
-                  
-                  QQ
-                </a>
-              </span>
-            
           
         </div>
         
         
         
+
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+
+            <ul class="links-of-blogroll-list booth-list" style="list-style:none">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank"><img src="/asset/booth/前端周刊.png" alt="前端周刊" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/tools.html" title="进阶套装" target="_blank"><img src="/asset/booth/进阶套装.png" alt="进阶套装" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/program.html" title="0元建站" target="_blank"><img src="/asset/booth/0元建站.png" alt="0元建站" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/#" title="虚位以待" target="_blank"><img src="/asset/booth/虚位以待.png" alt="虚位以待" /></a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
         
         
         
