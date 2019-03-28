@@ -38,7 +38,11 @@ $(document).ready(function () {
   $(document).trigger('motion:before');
 
   // Bootstrap Motion.
-  CONFIG.motion && NexT.motion.integrator.bootstrap();
+  if(CONFIG.motion){
+    NexT.motion.integrator.bootstrap();
+  } else {
+    $('.sidebar-toggle').remove()
+  }
 
   $(document).trigger('bootstrap:after');
 });
