@@ -360,7 +360,7 @@ AJAX-Cache提供什么1. 定时缓存大多数的缓存场景是，希望将某�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -368,7 +368,7 @@ AJAX-Cache提供什么1. 定时缓存大多数的缓存场景是，希望将某�
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">前端技术</span>
               
             </div>
@@ -513,5 +513,18 @@ var gitment = new Gitment.construct({
 </script>
 
   
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+
 </body>
 </html>

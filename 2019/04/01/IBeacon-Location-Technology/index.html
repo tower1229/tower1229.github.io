@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="theme-next muse">
 <head>
-  <title> Vue2.0开发风格指南 | 前端路上 </title>
+  <title> iBeacon蓝牙定位技术原理及实现 | 前端路上 </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
-  <meta name="keywords" content="Vue," />
+  <meta name="keywords" content="iBeacon,蓝牙定位," />
 
 
 
@@ -21,38 +21,27 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
-<meta name="description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
-框架或规范约束
-组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
-组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
+<meta name="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2.0开发风格指南">
-<meta property="og:url" content="https://refined-x.com/2017/11/16/Vue2.0开发风格指南/index.html">
+<meta property="og:title" content="iBeacon蓝牙定位技术原理及实现">
+<meta property="og:url" content="https://refined-x.com/2019/04/01/IBeacon-Location-Technology/index.html">
 <meta property="og:site_name" content="前端路上">
-<meta property="og:description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
-框架或规范约束
-组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
-组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
-<meta property="og:updated_time" content="2018-04-09T02:26:49.219Z">
+<meta property="og:description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。">
+<meta property="og:updated_time" content="2019-04-01T04:26:44.649Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue2.0开发风格指南">
-<meta name="twitter:description" content="本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
-框架或规范约束
-组件名推荐统一使用kebab-case(连字符式)，因为HTML对大小写不敏感，无法识别PascalCase(驼峰式)。
-组件的 data 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失">
+<meta name="twitter:title" content="iBeacon蓝牙定位技术原理及实现">
+<meta name="twitter:description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
-<link rel="canonical" href="https://refined-x.com/2017/11/16/Vue2.0开发风格指南/" />
+<link rel="canonical" href="https://refined-x.com/2019/04/01/IBeacon-Location-Technology/" />
 <script type="application/ld+json">
     {
         "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-        "@id": "https://refined-x.com/2017/11/16/Vue2.0开发风格指南/",
+        "@id": "https://refined-x.com/2019/04/01/IBeacon-Location-Technology/",
         "appid": "1585542911827735",
-        "title": "Vue2.0开发风格指南",
+        "title": "iBeacon蓝牙定位技术原理及实现",
         "images": [],
-        "description": "本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。
-框架或规范约束
-组件名推荐统一使用kebab-ca...",
-        "pubDate":  "2018-04-09T02:26:40" 
+        "description": "原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。",
+        "pubDate":  "2019-04-01T04:26:40" 
     }
 </script>
 
@@ -225,7 +214,7 @@
             
             
               
-                Vue2.0开发风格指南
+                iBeacon蓝牙定位技术原理及实现
               
             
           </h1>
@@ -236,8 +225,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-16T15:03:32+08:00" content="2017-11-16">
-              2017-11-16
+            <time itemprop="dateCreated" datetime="2019-04-01T12:25:04+08:00" content="2019-04-01">
+              2019-04-01
             </time>
           </span>
           <span class="post-category" >
@@ -265,37 +254,8 @@
       
       
       
-        <p>本文是对Vue官方风格指南的注解，过滤了极少数我认为重要性很低的项目，并将其余项按照作用相关性重新归类，便于读者针对性的选择某一方面进行参考。</p>
-<h2 id="框架或规范约束"><a href="#框架或规范约束" class="headerlink" title="框架或规范约束"></a>框架或规范约束</h2><ol>
-<li>组件名推荐统一使用<code>kebab-case</code>(连字符式)，因为HTML对大小写不敏感，无法识别<code>PascalCase</code>(驼峰式)。</li>
-<li>组件的 <code>data</code> 属性的值必须是返回一个对象的函数，如果直接用一个数据对象，则组件的多个实例之间会产生数据污染，导致失去复用价值。</li>
-<li>组件的<code>Prop</code>在声明时推荐使用<code>PascalCase</code>(驼峰式)，但在模板中必须使用<code>kebab-case</code>(连字符式)，原因同样是因为HTML对大小写不敏感。</li>
-</ol>
-<h2 id="性能相关"><a href="#性能相关" class="headerlink" title="性能相关"></a>性能相关</h2><ol>
-<li><code>v-for</code>必须配合<code>key</code>使用，可以提高部分情况下Vue的渲染性能。</li>
-<li><code>scoped</code> 样式中避免使用元素选择器，因为遍历元素的效率通常很低。</li>
-</ol>
-<h2 id="健壮性相关"><a href="#健壮性相关" class="headerlink" title="健壮性相关"></a>健壮性相关</h2><ol>
-<li>组件名必须为多个单词，避免与未来的HTML元素冲突，配合<strong>框架或规范约束</strong>第一条理解。</li>
-<li>组件样式必须设置作用域，避免样式冲突，单文件组件可以选择使用<code>scope</code>特性，通用组件可以选择基于class的规则，例如<a href="http://getbem.com/" target="_blank" rel="external">BEM</a>。</li>
-<li>对于混合到Vue对象中的全局资源使用<code>$_</code>前缀，避免与未来版本的Vue属性冲突，必要时可以再添加一个命名空间，避免与其他插件属性冲突。</li>
-<li>组件命名规则：基础组件加特定前缀预示复用性，例如<code>Base</code>；单例组件用<code>The</code>前缀标识预示唯一性；耦合组件中的子组件使用父组件名做前缀预示耦合关系，例如<code>TodoList</code>和<code>TodoListItem</code>；相关组件命名用一般性描述单词开头，用修饰性单词结尾，例如<code>ColorPicker</code>、<code>ColorPickerMulti</code>、<code>ColorPickerQuery</code>。</li>
-<li>组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法，因为计算属性和方法利于复用和重构，而且模板也会看起来也更清晰易懂。</li>
-</ol>
-<h2 id="可读性相关"><a href="#可读性相关" class="headerlink" title="可读性相关"></a>可读性相关</h2><ol>
-<li>组件的<code>Prop</code> 定义应该尽量详细，至少要定义类型，利于开发期间调试和提高组件代码可读性。</li>
-<li>推荐用单文件的方式组织组件，利于提高单个组件的编辑查阅效率，即使不使用构建工具，也可以<a href="//refined-x.com/2017/10/28/%E5%A6%82%E4%BD%95%E4%B8%8D%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91Vue%E5%85%A8%E5%AE%B6%E6%A1%B6%E9%A1%B9%E7%9B%AE/">变通的使用单文件组件开发方式</a>。</li>
-<li>组件文件的命名推荐<code>kebab-case</code>(连字符式)，与组件名写法一致。</li>
-<li>在除了DOM模板以外的任何地方使用自闭合组件写法，使代码更简洁，例如<code>&lt;my-component/&gt;</code>。</li>
-<li>组件命名应使用完整单词，避免歧义。</li>
-<li>拥有多个特性的元素应该分多行撰写，每个特性一行。</li>
-<li>指令缩写要么一直用要么一直不用，提高模板可读性。</li>
-<li>项目中的组件/实例选项声明顺序保持一致，推荐的顺序如下：<code>el,name,parent,functional,delimiters,comments,components,directives,filters,extends,mixins,inheritAttrs,model,props/propsData,data,computed,watch,lifeCircleHooks,methods,template/render,renderError</code>。</li>
-<li>项目中的元素属性书写顺序保持一致。</li>
-</ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>指南中的绝大多数优化项都是针对代码健壮性和可读性提出的，基本也都是比较普遍的最佳实践方式，对于有一定经验的开发者来说应该都是很熟悉的内容，或者早已形成了自己的一套习惯，如果部分条目与你所熟知的方式相违背，也不需要过于纠结，只要明确了选择背后的利弊，那就是你的“最佳实践”。</p>
-
-        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/11/16/Vue2.0开发风格指南/">https://refined-x.com/2017/11/16/Vue2.0开发风格指南/</a></p>
+        
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/04/01/IBeacon-Location-Technology/">https://refined-x.com/2019/04/01/IBeacon-Location-Technology/</a></p>
         
         <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto" /></p>
         <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
@@ -311,7 +271,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Vue/" rel="tag">#Vue</a>
+            <a href="/tags/iBeacon/" rel="tag">#iBeacon</a>
+          
+            <a href="/tags/蓝牙定位/" rel="tag">#蓝牙定位</a>
           
         </div>
       
@@ -319,17 +281,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/28/如何不用构建工具开发Vue全家桶项目/" rel="next" title="如何不用构建工具开发Vue全家桶项目">
-                <i class="fa fa-chevron-left"></i> 如何不用构建工具开发Vue全家桶项目
+              <a href="/2019/03/30/微信小程序iBeacon测距及稳定程序的实现/" rel="next" title="微信小程序iBeacon测距及稳定程序的实现">
+                <i class="fa fa-chevron-left"></i> 微信小程序iBeacon测距及稳定程序的实现
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/28/Vue2.0用户权限控制解决方案/" rel="prev" title="Vue2.0用户权限控制解决方案">
-                Vue2.0用户权限控制解决方案 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -442,7 +400,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#框架或规范约束"><span class="nav-number">1.</span> <span class="nav-text">框架或规范约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能相关"><span class="nav-number">2.</span> <span class="nav-text">性能相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性相关"><span class="nav-number">3.</span> <span class="nav-text">健壮性相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可读性相关"><span class="nav-number">4.</span> <span class="nav-text">可读性相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
@@ -524,7 +482,7 @@
   
 <script type="text/javascript"> 
 var gitment = new Gitment.construct({
-    id: 'Vue2.0开发风格指南',
+    id: 'iBeacon蓝牙定位技术原理及实现',
     owner: 'tower1229',
     repo: 'blog-comments',
     oauth: {
