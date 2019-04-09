@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://refined-x.com/projects/index.html</loc>
+    
+    <lastmod>2019-04-09T01:22:10.576Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://refined-x.com/2019/04/01/IBeacon-Location-Technology/</loc>
     
     <lastmod>2019-04-02T08:17:31.319Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://refined-x.com/about/index.html</loc>
     
     <lastmod>2019-03-22T04:42:08.608Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://refined-x.com/projects/index.html</loc>
-    
-    <lastmod>2019-03-12T02:47:46.761Z</lastmod>
     
   </url>
   
