@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://refined-x.com/asset/a/point-center.png">
 <meta property="og:image" content="https://refined-x.com/asset/a/checkPointIn1.png">
 <meta property="og:image" content="https://refined-x.com/asset/a/checkPointIn2.png">
-<meta property="og:updated_time" content="2019-04-27T05:58:22.992Z">
+<meta property="og:updated_time" content="2019-04-27T06:04:20.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听canvas内部元素点击事件的三种方法">
 <meta name="twitter:description" content="canvas内部元素不能像DOM元素一样方便的添加交互事件监听，因为canvas内不存在“元素”这个概念，他们仅仅是canvas绘制出来的图形。这对于交互开发来说是一个必经障碍，想要监听图形的点击事件思路很简单，只要监听canvas元素本身的点击事件，再判断点击坐标位于哪一个图形内部，就变相实现了图形点击事件。本文将介绍三种方法，判断坐标点是否位于某个canvas图形内部。
@@ -48,7 +48,7 @@
         "title": "监听canvas内部元素点击事件的三种方法",
         "images": [],
         "description": "canvas内部元素不能像DOM元素一样方便的添加交互事件监听，因为canvas内不存在“元素”这个概念，他们仅仅是canvas绘制出来的图形。这对于交互开发来说是一个必经障碍，想要监听图形的点...",
-        "pubDate":  "2019-04-27T05:58:20" 
+        "pubDate":  "2019-04-27T06:04:20" 
     }
 </script>
 
@@ -287,7 +287,7 @@
 <p>实现起来也非常简单：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">const checkPointInPolyline = (point, polylinePoints) =&gt; &#123;</span><br><span class="line">    //射线法</span><br><span class="line">  let leftSide = 0;</span><br><span class="line">  const A = point;</span><br><span class="line">  for (let i = 0; i &lt; polylinePoints.length; i++) &#123;</span><br><span class="line">    let B, C;</span><br><span class="line">    if (i === polylinePoints.length - 1) &#123;</span><br><span class="line">      B = &#123;</span><br><span class="line">        x: polylinePoints[i][0],</span><br><span class="line">        y: polylinePoints[i][1]</span><br><span class="line">      &#125;;</span><br><span class="line">      C = &#123;</span><br><span class="line">        x: polylinePoints[0][0],</span><br><span class="line">        y: polylinePoints[0][1]</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      B = &#123;</span><br><span class="line">        x: polylinePoints[i][0],</span><br><span class="line">        y: polylinePoints[i][1]</span><br><span class="line">      &#125;;</span><br><span class="line">      C = &#123;</span><br><span class="line">        x: polylinePoints[i + 1][0],</span><br><span class="line">        y: polylinePoints[i + 1][1]</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    //判断左侧相交</span><br><span class="line">    let sortByY = [B.y, C.y].sort((a,b) =&gt; a-b)</span><br><span class="line">    if (sortByY[0] &lt; A.y &amp;&amp; sortByY[1] &gt; A.y)&#123;</span><br><span class="line">      if(B.x&lt;A.x || C.x &lt; A.x)&#123;</span><br><span class="line">        leftSide++</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return leftSide % 2 === 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>射线法有一种特殊情况，当点在多变形的一条边上时需要特殊处理。但在工程中我认为也可以不处理，因为如果用户刚好点在图形的边界上，那么程序认为他没有点到也讲的过去。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上三种方法都可以实现canvas中不规则图形的点击检测。其中，像素法的优势在于不挑形状，而且在静态场景中有一定的性能优势；角度法应该说只有理论价值，实用性不佳；工程中最实用的当属射线法，局限性小，实现简单多数时候只需要知道射线法就可以了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上三种方法都可以实现canvas中不规则图形的点击检测。其中，像素法的优势在于不挑形状，而且在静态场景中有一定的性能优势；角度法应该说只有理论价值，实用性不佳；工程中最实用的当属射线法，局限性小，实现简单，多数时候只需要知道射线法就可以了。</p>
 
         <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/04/27/canvas-click/">https://refined-x.com/2019/04/27/canvas-click/</a></p>
         
