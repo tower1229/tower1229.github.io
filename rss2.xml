@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</description>
-    <pubDate>Sat, 27 Apr 2019 06:04:20 GMT</pubDate>
+    <pubDate>Sun, 28 Apr 2019 01:51:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>监听canvas内部元素点击事件的三种方法</title>
+      <title>监听Canvas内部元素点击事件的三种方法</title>
       <link>https://refined-x.com/2019/04/27/canvas-click/</link>
       <guid>https://refined-x.com/2019/04/27/canvas-click/</guid>
       <pubDate>Sat, 27 Apr 2019 05:56:42 GMT</pubDate>
