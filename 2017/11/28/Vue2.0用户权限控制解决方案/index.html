@@ -26,8 +26,8 @@
 Vue 2.0x
 Vue-router 3.x
 
-获取项目主页：//refined-x.com/Vue-Access-Control/
-git：git clone https://gi">
+获取项目主页：https//refined-x.com/Vue-Access-Control/
+git：git clone https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue2.0用户权限控制解决方案">
 <meta property="og:url" content="https://refined-x.com/2017/11/28/Vue2.0用户权限控制解决方案/index.html">
@@ -37,9 +37,9 @@ git：git clone https://gi">
 Vue 2.0x
 Vue-router 3.x
 
-获取项目主页：//refined-x.com/Vue-Access-Control/
-git：git clone https://gi">
-<meta property="og:updated_time" content="2018-11-14T01:11:17.962Z">
+获取项目主页：https//refined-x.com/Vue-Access-Control/
+git：git clone https">
+<meta property="og:updated_time" content="2019-07-05T06:55:19.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue2.0用户权限控制解决方案">
 <meta name="twitter:description" content="Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
@@ -47,8 +47,8 @@ git：git clone https://gi">
 Vue 2.0x
 Vue-router 3.x
 
-获取项目主页：//refined-x.com/Vue-Access-Control/
-git：git clone https://gi">
+获取项目主页：https//refined-x.com/Vue-Access-Control/
+git：git clone https">
 <script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
 <link rel="canonical" href="https://refined-x.com/2017/11/28/Vue2.0用户权限控制解决方案/" />
 <script type="application/ld+json">
@@ -59,7 +59,7 @@ git：git clone https://gi">
         "title": "Vue2.0用户权限控制解决方案",
         "images": [],
         "description": "Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限...",
-        "pubDate":  "2018-11-14T01:11:10" 
+        "pubDate":  "2019-07-05T06:55:10" 
     }
 </script>
 
@@ -277,10 +277,9 @@ git：git clone https://gi">
 <li>Vue 2.0x</li>
 <li>Vue-router 3.x</li>
 </ul>
-<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><p>项目主页：//refined-x.com/Vue-Access-Control/</p>
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><p>项目主页：https//refined-x.com/Vue-Access-Control/</p>
 <p>git：<code>git clone https://github.com/tower1229/Vue-Access-Control.git</code></p>
-<p>npm：<code>npm i vue-access-control</code></p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//开发</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line">//构建</span><br><span class="line">npm build</span><br></pre></td></tr></table></figure>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//开发</span><br><span class="line">npm run serve</span><br><span class="line"></span><br><span class="line">//构建</span><br><span class="line">npm build</span><br></pre></td></tr></table></figure>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h3><p>会话开始之初，先初始化一个只有登录路由的Vue实例，在根组件created钩子里将路由定向到登录页，用户登录成功后前端拿到用户token，设置axios实例统一为请求headers添加<code>{&quot;Authorization&quot;:token}</code>实现用户鉴权，然后获取当前用户的权限数据，主要包括路由权限和资源权限，之后动态添加路由，生成菜单，实现权限指令和全局权限验证方法，并为axios实例添加请求拦截器，至此完成权限控制初始化。动态加载路由后，路由组件将随之加载并渲染，而后展现前端界面。</p>
 <p>为解决浏览器刷新路由重置的问题，拿到token后要将其保存到<code>sessionStorage</code>，根组件的created钩子负责检查本地是否已有token，如果有则无需登录直接用该token获取权限并初始化，如果token有效且当前路由有权访问，将加载路由组件并正确展现；若当前路由无权访问将按路由设置跳转404；如果token失效，后端应返回4xx状态码，前端统一为axios实例添加错误拦截器，遇到4xx状态码执行退出操作，清除<code>sessionStorage</code>数据并跳转到登录页，让用户重新登录。</p>
 <h3 id="最小依赖原则"><a href="#最小依赖原则" class="headerlink" title="最小依赖原则"></a>最小依赖原则</h3><p>Vue-Access-Control的定位是单一领域解决方案，除了Vue/Vue-Router/axios之外没有其他依赖，理论上可以无障碍的应用到任何有权限控制需求的Vue项目中，项目基于<a href="https://github.com/vuejs-templates/webpack" target="_blank" rel="external">webpack</a> 模板开发构建，大多数新项目可以直接基于检出代码继续开发。需要说明的是，项目额外引入的<a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="external">Element-UI</a>和<a href="https://www.npmjs.com/package/crypto-js" target="_blank" rel="external">CryptoJS</a>仅用于开发演示界面，他们不是必须且与权限控制毫无关系，项目应用中可以自行取舍。</p>
@@ -458,7 +457,7 @@ git：git clone https://gi">
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="/#" title="虚位以待" target="_blank"><img src="/asset/booth/虚位以待.png" alt="虚位以待" /></a>
+                  <a href="/asset/爱奇艺VIP邀请.jpg" title="爱奇艺VIP" target="_blank"><img src="/asset/booth/爱奇艺VIP.png" alt="爱奇艺VIP" /></a>
                 </li>
               
             </ul>
