@@ -3,6 +3,24 @@
 
 
     
+    
+  <url>
+    <loc>https://refined-x.com/2019/07/22/weapp-plugin-dashboard/</loc>
+    <lastmod>2019-07-22T07:22:52.038Z</lastmod>
+    <data>
+        <display>
+        <title>随手开源一个微信小程序仪表盘组件</title>
+        <pubTime>2019-07-22T07:21:55.000Z</pubTime>
+        
+        <tag>小程序</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     <lastmod>2019-07-05T06:55:19.025Z</lastmod>
@@ -78,7 +96,6 @@
     </data>
     </url>
 
-    
     
     
     
@@ -462,9 +479,9 @@
         <title>纯前端实现人脸识别-提取-合成</title>
         <pubTime>2017-09-06T01:10:07.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>人脸识别</tag>
+         
+        <tag>canvas</tag>
          
          
            
