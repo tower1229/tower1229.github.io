@@ -3,12 +3,9 @@
 
 
     
-    
-    
-    
   <url>
     <loc>https://refined-x.com/2019/08/02/vip-kaikeba-vue-lesson/</loc>
-    <lastmod>2019-08-02T07:28:59.475Z</lastmod>
+    <lastmod>2019-09-06T08:53:33.153Z</lastmod>
     <data>
         <display>
         <title>阿里P7前端高级工程师，都需要掌握哪些技术栈？</title>
@@ -22,6 +19,9 @@
     </data>
     </url>
 
+    
+    
+    
     
   <url>
     <loc>https://refined-x.com/2019/08/02/top-article/</loc>
@@ -515,9 +515,9 @@
         <title>纯前端实现人脸识别-提取-合成</title>
         <pubTime>2017-09-06T01:10:07.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>人脸识别</tag>
+         
+        <tag>canvas</tag>
          
          
            
