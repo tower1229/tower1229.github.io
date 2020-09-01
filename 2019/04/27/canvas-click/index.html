@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://refined-x.com/asset/a/point-center.png">
 <meta property="og:image" content="https://refined-x.com/asset/a/checkPointIn1.png">
 <meta property="og:image" content="https://refined-x.com/asset/a/checkPointIn2.png">
-<meta property="og:updated_time" content="2019-04-28T01:51:37.327Z">
+<meta property="og:updated_time" content="2020-09-01T01:10:37.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监听Canvas内部元素点击事件的三种方法">
 <meta name="twitter:description" content="canvas内部元素不能像DOM元素一样方便的添加交互事件监听，因为canvas内不存在“元素”这个概念，他们仅仅是canvas绘制出来的图形。这对于交互开发来说是一个必经障碍，想要监听图形的点击事件思路很简单，只要监听canvas元素本身的点击事件，再判断点击坐标位于哪一个图形内部，就变相实现了图形点击事件。本文将介绍三种方法，判断坐标点是否位于某个canvas图形内部。
@@ -48,7 +48,7 @@
         "title": "监听Canvas内部元素点击事件的三种方法",
         "images": [],
         "description": "canvas内部元素不能像DOM元素一样方便的添加交互事件监听，因为canvas内不存在“元素”这个概念，他们仅仅是canvas绘制出来的图形。这对于交互开发来说是一个必经障碍，想要监听图形的点...",
-        "pubDate":  "2019-04-28T01:51:30" 
+        "pubDate":  "2020-09-01T01:10:30" 
     }
 </script>
 
@@ -282,7 +282,7 @@
 <h2 id="像素法"><a href="#像素法" class="headerlink" title="像素法"></a>像素法</h2><p>像素检测法的思路是，将canvas中的多个图形（如果有多个的话）分别离屏绘制，并用<code>getImageData()</code>方法分别获取到像素数据保存起来。当canvas元素监听到点击事件时，通过点击坐标可以直接推算出点击发生在canvas上的第几个像素，然后遍历前面保存的图形数据，看看这个像素的alpha值是不是0，如果是0说明落点不在当前图形内，否则就说明点到了这个图形。</p>
 <p>根据点击坐标得到所点击的像素序号的方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像素序号 = (纵坐标-1) * canvas宽度 + 横坐标</span><br></pre></td></tr></table></figure>
-<p>比如在宽度为 5 的画布上点击坐标<code>(3,3)</code>，根据上述公式得到像素序号是<code>(3-1) * 5 + 3 = 18</code>，如图所示：</p>
+<p>比如在宽度为 5 的画布上点击坐标<code>(3,3)</code>，根据上述公式得到像素序号是<code>(3-1) * 5 + 3 = 13</code>，如图所示：</p>
 <p><img src="https://refined-x.com/asset/a/point-center.png" alt="坐标与像素点关系"></p>
 <p>因为canvas导出的图形数据是将每个像素以<code>rgba</code>的顺序存成4个数字组成的数组，所以想访问指定像素的alpha值，只要读取这个数组的第<code>pIndex * 4 + 3</code>个值就可以了，如果这个值不为0，说明该像素可见，也就是点击到了该图形。</p>
 <p>这个方法是我认为思路最直接、结果最准确、而且对图形形状没有任何要求的方法，但这个方法有一个致命的局限，当图形需要在画布上移动时，要频繁的创建数据缓存才能保证检测结果准确，受到画布尺寸和图形数量的影响，<code>getImageData()</code>方法的性能会成为严重的瓶颈。所以如果canvas图形是静态的，这个方法非常适合，否则就不适合用这个方法了。</p>
