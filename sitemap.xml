@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://refined-x.com/projects/index.html</loc>
+    
+    <lastmod>2021-07-06T09:28:22.870Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://refined-x.com/2019/04/27/canvas-click/</loc>
     
     <lastmod>2020-09-01T01:10:37.317Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://refined-x.com/2019/08/02/vip-kaikeba-vue-lesson/</loc>
     
     <lastmod>2020-02-17T01:56:58.494Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://refined-x.com/projects/index.html</loc>
-    
-    <lastmod>2020-01-13T02:01:17.792Z</lastmod>
     
   </url>
   
