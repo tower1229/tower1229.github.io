@@ -7,7 +7,7 @@
     <link>https://refined-x.com/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>原创前端技术博客，致力于分享前端学习路上的第一手资料，专注web开发、移动端开发、混合应用开发、前端自动化、前端工程化，Nodejs开发。</description>
+    <description>原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</description>
     <pubDate>Mon, 16 Dec 2019 06:52:40 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
