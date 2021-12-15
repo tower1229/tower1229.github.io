@@ -1,0 +1,4 @@
+---
+title: o
+layout: blank
+---
