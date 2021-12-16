@@ -1,6 +1,7 @@
 ---
 title: 前端简历
 layout: blank
+comments: false
 ---
 
 ### [](#基本信息 "基本信息")基本信息
