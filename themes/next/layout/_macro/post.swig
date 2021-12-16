@@ -205,6 +205,14 @@
       {% else %}
         {{ post.content }}
       {%- endif %}
+    {#####################}
+    {### 自定义文章底部 ###}
+    {#####################}
+    {%- if not is_index %}
+      <p>前端路上原创技术文章，转载请注明出处：<a href="{{ page.permalink }}">{{ config.url }}/{{ page.path }}</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    {%- endif %}
     </div>
 
     {#####################}
