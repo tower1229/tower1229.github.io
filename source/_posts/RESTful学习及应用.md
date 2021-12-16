@@ -1,7 +1,7 @@
 ---
 title: RESTful学习及应用
 date: 2017-09-22 17:26:35
-tags:
+tags: [RESTful]
 ---
 
 ## [](#RESTful是什么 "RESTful是什么")RESTful是什么
