@@ -1,0 +1,594 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> Vue全家桶实践项目总结 | 前端路上 </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="Vue,前端组件管理系统," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+<meta name="description" content="从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。
+入门Vue的官方文档就是学习Vue的最佳教程，没有之一，可能因为框架作者是设计出身，没有后端背景，因此各种抽象概念在Vue里都得以用最容易理解的方式被恰到好处的阐述，这里只简">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue全家桶实践项目总结">
+<meta property="og:url" content="https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。
+入门Vue的官方文档就是学习Vue的最佳教程，没有之一，可能因为框架作者是设计出身，没有后端背景，因此各种抽象概念在Vue里都得以用最容易理解的方式被恰到好处的阐述，这里只简">
+<meta property="og:updated_time" content="2018-04-09T02:26:49.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue全家桶实践项目总结">
+<meta name="twitter:description" content="从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。
+入门Vue的官方文档就是学习Vue的最佳教程，没有之一，可能因为框架作者是设计出身，没有后端背景，因此各种抽象概念在Vue里都得以用最容易理解的方式被恰到好处的阐述，这里只简">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/",
+        "appid": "1585542911827735",
+        "title": "Vue全家桶实践项目总结",
+        "images": [],
+        "description": "从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+templat...",
+        "pubDate":  "2018-04-09T02:26:40" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+<body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-vcard"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-codepen"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端导航">
+          <a href="/navigation/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            前端导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-编程之外">
+          <a href="/other/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google-wallet"></i> <br />
+            
+            编程之外
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友情链接">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vue全家桶实践项目总结
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T09:12:31+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+          <span class="post-category" >
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="https://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          <span class="post-count">
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa pencil-square-o"></i>
+            </span>
+            <span class="post-meta-item-text">字数统计：</span>
+            <span>4.6k</span>
+          </span>
+          <span class="post-count">
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <span class="post-meta-item-text">阅读时长：</span>
+            <span>16min</span>
+          </span>
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <p>从前端的角度看，Vue可以说是目前最理想的前端MVVM框架，一切为界面服务，上手难度低，本文就将记录使用Vue全家桶（Vue+Vue-router+Vuex）重构一个jQuery+template项目的过程，以及期间的收获。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>Vue的官方文档就是学习Vue的最佳教程，没有之一，可能因为框架作者是设计出身，没有后端背景，因此各种抽象概念在Vue里都得以用最容易理解的方式被恰到好处的阐述，这里只简单介绍Vue、Vue-router、Vuex的概念，要全面学习建议去<a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="external">官方文档</a>。</p>
+<h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><p>Vue的核心功能是双向绑定，可以自动实现界面驱动数据变化和数据驱动界面变化，这能极大降低前端富交互应用的开发成本。同类框架不止Vue一个，但Vue的实现借助ES5原生特性，在性能方面有一定优势。</p>
+<h3 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a>Vue-router</h3><p>Vue-router是官方路由，用来组织url和组件间的映射关系，并自动将url的变化响应到组件中去，使开发者只需将关注点放在组件开发上，路由帮你解决相关的琐碎问题。</p>
+<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><p>Vuex提供一种集中式的数据管理模式，用以应对数据流向复杂的情况，比如多个组件共用数据却各自为营，可能导致该同步的数据没有同步，或者由于js中Object对象的钩子在内存里指向同一实例，导致一旦操作原数据就会污染到其他组件，这时就需要一套更有条理的数据操作模式，那就是Vuex。</p>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><h3 id="跟jQuery对比"><a href="#跟jQuery对比" class="headerlink" title="跟jQuery对比"></a>跟jQuery对比</h3><p>在了解了Vue的基本概念之后，肯定会不自觉的拿他们跟jQuery技术栈做对比，想知道这些东西对我的业务是否真的有必要。</p>
+<p>首先MVVM解决的问题能不能用jQuery解决？答案是肯定的，还记得最初做表单提交时用jQuery从一个一个的input里取值吗？这就是界面驱动数据；如果做过任何异步交互功能的话，应该都有过用jQuery将Ajax数据填充到界面中各个元素里的经验，这就是数据驱动界面。虽然能做，但有点繁琐，即便用上表单验证插件和前端模板引擎，也仍然需要在各个运行节点手动调用验证方法和渲染方法，做个网站页面还好，可当需求复杂到一定程度时，这将是很大的负担。</p>
+<p>然后是路由，路由的本质是通过操作url实现界面切换和界面保持，单页面应用必备，这个其实跟技术栈没关系，只要产生了路由需求，即使是基于jQuery的项目也不过是再造了一个路由而已，只不过jQuery时代很少做单页面应用。</p>
+<p>Vuex完全是基于双向绑定延伸出来的东西，相当于在数据和组件之间加了一个经纪人，组件不能直接操作数据，只能像经纪人提交操作需求，由经纪人去实施操作，以此解决人多手杂造成的各种不可预料的问题，并且数据被从应用中挪了出去，专门建立了一个<code>Store</code>，这样就杜绝了组件之间数据污染的问题。jQuery应该说不太会有这个需求，因为jQuery完全是手动操作数据，根本没有<code>意料之外</code>的情况。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>经过跟jQuery的对比之后，Vue的适用场景就很明显了，从开发角度讲交互越复杂的项目越适合，单页面最适合，内容类网站最不适合，如果网站中个别页面有需求也可以局部使用，例如购物车页面。</p>
+<p>当然，这一切都要建立在不兼容IE8的前提下，对于这一点我有点疑惑，因为见到有些2C的站点都在使用Vue，这些前端er是怎么把老板忽悠瘸的？</p>
+<h2 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h2><h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>这次重构的项目是为上一家公司开发的<a href="//refined-x.com/WidgetsPlayground/">前端组件管理系统</a>，选择重构这个项目是因为对需求比较熟悉，这是一个典型的单页面应用，而且复杂度适中，比较适合用作上手练习。</p>
+<p>项目背景是外包类建站公司里，设计环节沉淀了大量可复用组件，设计师往往只需要微调组件就拼凑出页面，交付给前端，理论上这些组件在前端也可以复用，但实际上前端每次都要重新实现整个页面，浪费很多人力。</p>
+<h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><p>这个项目的思路是，将所有组件开发出来，统一录入到一个平台上管理，设计师可以到平台上挑选组件，并实时预览和调整组件，整个过程所见即所得，平台会将调整结果生成一串代码，只要将代码交给前端，就可以用这串代码在平台上重现设计师修改后的组件，并能一键复制组件的html/css/js代码，快速应用到项目中去，使组件部分的前端开发成本接近于零。平台需要实现以下几个功能：</p>
+<ul>
+<li>管理组件，支持分类、搜索、排序</li>
+<li>展示组件，支持组件在线预览/编辑</li>
+<li>组件交接，支持生成组件代码和基于代码重现组件</li>
+<li>使用统计，支持统计组件的使用情况，便于进一步优化组件</li>
+</ul>
+<h3 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h3><p>第一版是用jQuery+template实现的，这个技术栈太灵活了，优点是什么需求都好做，缺点是怎么做都行，不利于理清思路，往往伴随着边做边改。</p>
+<p>组件被统一放在一个<code>widgets/</code>文件夹里，被称作组件库，因为是纯前端项目没有文件操作能力，因此组件的读取依赖一个静态json文件，这个文件充当组件库的目录，其中包括组件分类、标签、名称、日期等所有信息，数据结构大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">	&quot;title&quot;: &quot;导航类&quot;,</span><br><span class="line">	&quot;list&quot;: [&#123;</span><br><span class="line">		&quot;widget&quot;: &quot;bread-1&quot;,</span><br><span class="line">		&quot;title&quot;: &quot;图标面包屑&quot;,</span><br><span class="line">		&quot;tag&quot;: &quot;面包屑/图标&quot;,</span><br><span class="line">		&quot;author&quot;: &quot;UI&quot;,</span><br><span class="line">		&quot;date&quot;: &quot;2015-06-04&quot;</span><br><span class="line">	&#125;, </span><br><span class="line">	...]</span><br><span class="line">&#125;,</span><br><span class="line">...]</span><br></pre></td></tr></table></figure>
+<p>组件在组件库中以<code>栏目/编号</code>二级文件夹的形式存放，同时约定用存放目录作为组件代号，例如组件<code>bread-1</code>意味着该组件存放地址是<code>widgets/bread/1/</code>文件夹。</p>
+<p>当然组件的内部文件结构也必须约定下来，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">widgets</span><br><span class="line">    |-bread</span><br><span class="line">        |-1</span><br><span class="line">            |-album.jpg     //缩略图</span><br><span class="line">            |-config.json   //配置文件</span><br><span class="line">            |-script.js     //脚本模板</span><br><span class="line">            |-style.css     //样式模板</span><br><span class="line">            `-temp.htm      //界面模板</span><br></pre></td></tr></table></figure>
+<p>有了这些约定，程序就可以通过目录文件得到所有组件的信息，组件的获取、展示、检索也就可以实现了。</p>
+<p>组件里最关键的是<code>config.json</code>文件，这里面包含该组件的可配置项及其默认值，平台在展示组件时会读取这个配置文件，根据配置信息生成配置面板，这里面可以定义组件界面、样式、脚本中的所有变量，配置文件大概长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;cssConfig&quot;: &#123;</span><br><span class="line">		&quot;fontSize&quot;: &#123;</span><br><span class="line">			&quot;name&quot;: &quot;字号&quot;,</span><br><span class="line">			&quot;value&quot;: &quot;12px&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;text&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		...</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;jsConfig&quot;: &#123;</span><br><span class="line">        ...</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;showConfig&quot;: &#123;</span><br><span class="line">		&quot;viewWidth&quot;: &#123;</span><br><span class="line">			&quot;name&quot;: &quot;栅格宽度&quot;,</span><br><span class="line">			&quot;value&quot;: 12,</span><br><span class="line">			&quot;type&quot;: &quot;number&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件里的<code>cssConfig</code>、<code>showConfig</code>、<code>jsConfig</code>三个分支，就是组件中所有可以修改的变量集合，想将这些变量应用到组件上，需要借助前端模板引擎，所以组件的<code>三大件</code>在开发的时候是用模板语法写的，经过模板引擎的解析，就能得到配置后的实际html/css/js内容，例如样式模板大概是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.widget-bread-1 &#123;</span><br><span class="line">    font-size: $&#123;fontSize.value&#125;; </span><br><span class="line">    color: $&#123;textColor.value&#125;; </span><br><span class="line">&#125;</span><br><span class="line">.widget-bread-1 a &#123; </span><br><span class="line">    color: $&#123;textColor.value&#125;;</span><br><span class="line">&#125;</span><br><span class="line">.widget-bread-1 a:hover&#123;</span><br><span class="line">    color:$&#123;hoverColor.value&#125;;</span><br><span class="line">&#125;</span><br><span class="line">.widget-bread-1 .ion &#123; </span><br><span class="line">    font-size: $&#123;iconSize.value&#125;; </span><br><span class="line">    margin: 0 $&#123;iconMargin.value&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在得到组件实际代码后，只要将结果插入页面中并适时更新就行了，其中HTML和css可以直接替换文本内容，js因为是模块化引入的，只替换模块内容不会重载模块，必须将整个模块重命名后进行整体替换，因此js模块的名称是随机的。</p>
+<p>这里会有一个问题，有的组件需要在页面里多次使用，那么这个组件的js选择器就会发生冲突，这个问题的解决正好可以借助js模块的那个随机名称，我们约定在组件开发中<code>id</code>作为保留变量，由平台自动赋值一个随机字符串，这个字符串在组件实例内部相同，多次调用则不同，这样只要将<code>${id}</code>作为组件父节点的<code>id</code>或<code>class</code>，就解决了选择器冲突问题，同时也可以作为组件的css命名空间，使可能发生的css命名冲突也解决于无形。</p>
+<p>以上是项目核心功能。</p>
+<p>此外还用<code>localStorage</code>作为存储方式实现了单机版的数据统计，可以收集当前浏览器的组件使用记录，以及每个使用时的配置情况，这里主要是对本地存储的操作，但是项目自身的开发也用到了前端模板，加上组件的模板，都会在第一次加载后用<code>localStorage</code>缓存起来，这些内容的缓存策略不同，用户数据应该是永久存储，项目模板应该可以手动更新，组件模板需要视情况而定，存储的内容多了就需要清理，清理的时候一条一条的去删除就不现实了，全部删除可能误伤其他应用的存储，这里的做法是将<code>localStorage</code>操作封装，存储方法会在在<code>key</code>前加上一个特殊前缀，删除时只要遍历本地存储的<code>key</code>并且判断是否匹配前缀就知道是否是应用内的存储了，对应的取值方法也要逆向的先给<code>key</code>加上前缀再去取值。</p>
+<p>另外<code>localStorage</code>是只支持字符串存取的，为了方便我们存取对象类型，封装方法还支持自动转换，但这个转换还不能是盲目的遇到对象就转字符，取值的时候匹配到可以转对象就自动转了对象，因为有时候用户可能真的就存了一个对象字符串进去，取出的时候也希望原样拿回来，要解决这个问题需要做一个小hack，当存储方法检测到值为对象时，会转成字符串然后在前面拼上一个标识字符串，取值方法只有在检测到这个标识后才会将后面的字符串还原成对象，这种方式虽然可以满足需求，但不是很保险，因为这个前缀是固定的，理论上总是有可能遇到中奖的，不知道这个问题还有没有其他的更优解。</p>
+<p>项目的主要功能点就是这些。</p>
+<h2 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h2><h3 id="一次重构"><a href="#一次重构" class="headerlink" title="一次重构"></a>一次重构</h3><p>第一次重构只用了Vue，重构过程中首先体会到的是各种便捷，本来要调用模板引擎做的事框架顺便就做了，本来要在js里绑定事件现在模板里直接可以绑定，还有其他各种语法糖。</p>
+<p>当然，最重要的还是双向绑定，基于双向绑定可以让界面和数据自动的关联起来，让人感觉程序具有了一定的自主能动性，但为了让这种自主性正常运转，开发者必须事先规划好每一步路，这相对jQuery来说就会显得不那么自由。拿搬砖头举例，jQuery好比一个特别灵活的起重机，可以举重若轻，可以花式搬砖；Vue则像一个万能遥控器，你告诉他你要把砖头从某地搬到某地，期间发生什么情况要如何处理，按动按钮就可以自动搬砖了。</p>
+<p>两种方式各有优劣，起重机开的好可以很灵活，路上遇到坑容易躲避，缺点是你要一趟一趟的开它；按钮可以一次编程自动运行，缺点是你必须事先把路上的坑实地考察好，把别的车全部调度好，所有的情况说清楚，否则就会翻车或撞车，从jQuery转到Vue一定会感觉到这种束缚感，逼的你必须”谋而后动”，不能先上车再说。</p>
+<p>重构期间很大一部分工作就是建立Vue实例，将散布在js各个角落的数据收集到<code>data</code>中去，将操作数据的过程一点一点的集中到<code>methods</code>中去，将数据的筛选过程集中到<code>computed</code>中去，这整个过程可以清晰的回顾每一个实现细节，反思每一个实现方式是不是合理，其实也就是将原来<code>开起重机</code>的过程归纳成一个一个的<code>遥控器按钮</code>，当全部归纳完成后，Vue示例也就变成了最终我们的项目，能够自动运行。</p>
+<p>经过重构，依托Vue的各种功能使逻辑部分的代码量减少了，除此之外对项目本身来说并没有什么改进，因为没有路由所以刷新页面状态丢失问题仍然存在；因为没有使用Vuex还遇到一个数据污染的坑，只能用深拷贝解决；并且基于组件的开发模式，让代码组织更零碎了，这些问题都需要二次重构。</p>
+<h3 id="二次重构"><a href="#二次重构" class="headerlink" title="二次重构"></a>二次重构</h3><p>二次重构目标是完善路由、Vuex、代码组织、野狗云后端。</p>
+<p>虽然有了第一次重构的经验，但二次重构一开始还是有点茫然，路由和Vuex应该先上哪一个？想了想，路由做的事是”拆”，Vuex做的事是”改”，感觉改完再拆的工作量会小一点，所以先上Vuex。</p>
+<p>Vuex的概念凭空理解有点抽象，一旦用上却觉得的得心应手，而且这个东西不像路由，几乎不需要区分场景都可以用，引入Vuex后数据污染的问题自然就解决了，而且Vuex带来的 <code>action =&gt; mutation =&gt; store</code> 流程一旦接受了真的会让事情变简单，引入Vuex的过程基本就是将<code>data</code>转移到<code>store</code>，将数据操作分散到<code>actions</code>,<code>getters</code>,<code>mutations</code>中去，同时很多同步数据操作都不需要了，从而使代码量又减少了一些。</p>
+<p>之后开始引入路由，一开始拿不准应该怎么划分视图，大的视图肯定是登录、注册、主界面，问题是主界面需不需要再细分，理论上可以分的很细，但结合应用实际使用场景发现，界面的切换相对频繁，组件频繁载入和卸载的开销会很大，而且将耦合紧密的组件拆到不同的视图，需要记录很多状态信息，有点得不偿失，最终作罢，没有将主视图继续分下去。考虑到三个视图的访问重叠性不高，自然就需要将组件做成异步加载，只在访问到的时候才加载组件，Vue自身支持异步组件，所以这件事变得非常简单，只要能返回一个<code>Promise</code>，你可以使用任意方式获取组件。</p>
+<p>接下来要接入野狗云，实现真正的用户管理和数据统计，野狗云可以提供用户鉴权和数据存储等一系列功能，通过它只需要用js就可以开发一个完整的WEB应用。这样之前所有对<code>localStorage</code>的操作都要改成对野狗云的操作，数据到了云端也变得更可靠了。</p>
+<p>至此二次重构就完成了，业务代码总体感觉减少了很多，但总代码量估计没少多少，毕竟还增加了三个框架文件，不过经过重重拆分，文件数量从当初的三两个js变成了十来个js，模块化方面用的seajs而不是webpack，因为个人对 webpack仍然持观望态度，目前还感觉不到用它的必要性，关键是基于webpack开发的代码会夹杂很多私货，让你的代码变得<code>不原生</code>，离了他就运行不起来，这个我不太能接受，而且在多页面场景seajs配合本地缓存比webpack更有优势，当然了，他们的的区别就跟jQuery和Vue的区别一样，本质不是一个东西，关键在于使用场景，适合的就是最好的。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>经过两次重构的实践和踩坑，对Vue框架有了更深刻的认识，Vue想要用的灵活自如，对开发者的项目架构能力有一个最低要求，如果要将Vue引入底层，对基础设施建设者的规划能力也有一个最低要求，这些都是jQuery技术栈所不存在的，使用Vue的过程也是接受这些约束的过程，他们能引导开发者建立自己的规则体系，这是好事也是大势所趋，毕竟真正的自由只存在于规则中。</p>
+<p>本文的项目演示见<a href="//refined-x.com/WidgetsPlayground/">WidgetsPlayground</a>，完整代码见<a href="https://github.com/tower1229/WidgetsPlayground" target="_blank" rel="external">Github</a>。</p>
+
+        
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/">https://refined-x.com/2017/06/13/Vue全家桶实践项目总结/</a></p>
+        
+        <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto" /></p>
+        <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+        
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag">#Vue</a>
+          
+            <a href="/tags/前端组件管理系统/" rel="tag">#前端组件管理系统</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/09/Nodejs爬虫实践小记/" rel="next" title="Nodejs爬虫实践小记">
+                <i class="fa fa-chevron-left"></i> Nodejs爬虫实践小记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/16/Webpack是答案吗/" rel="prev" title="Webpack是答案吗">
+                Webpack是答案吗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            <div id="gitment_container"></div>
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/asset/album.jpg"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            
+            <a href="/archives/">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">文章归档</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+              <a href="/tags/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">文章标签</span>
+              </a>
+              
+            </div>
+          
+        </nav>
+        
+        <div class="links-of-author motion-element">
+          
+        </div>
+        
+        
+        
+
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+
+            <ul class="links-of-blogroll-list booth-list" style="list-style:none">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank"><img src="/asset/booth/前端周刊.png" alt="前端周刊" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/tools.html" title="进阶套装" target="_blank"><img src="/asset/booth/进阶套装.png" alt="进阶套装" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/program.html" title="0元建站" target="_blank"><img src="/asset/booth/0元建站.png" alt="0元建站" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/asset/爱奇艺VIP邀请.jpg" title="爱奇艺VIP" target="_blank"><img src="/asset/booth/爱奇艺VIP.png" alt="爱奇艺VIP" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.aliyun.com/minisite/goods?userCode=y31qmczl" title="阿里云双十一" target="_blank"><img src="/asset/booth/阿里云双十一.png" alt="阿里云双十一" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="" title="虚位以待" target="_blank"><img src="/asset/booth/虚位以待.png" alt="虚位以待" /></a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+        
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.1.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-router"><span class="nav-number">1.2.</span> <span class="nav-text">Vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuex"><span class="nav-number">1.3.</span> <span class="nav-text">Vuex</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术选型"><span class="nav-number">2.</span> <span class="nav-text">技术选型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跟jQuery对比"><span class="nav-number">2.1.</span> <span class="nav-text">跟jQuery对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用场景"><span class="nav-number">2.2.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目分析"><span class="nav-number">3.</span> <span class="nav-text">项目分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目背景"><span class="nav-number">3.1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能需求"><span class="nav-number">3.2.</span> <span class="nav-text">功能需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能分析"><span class="nav-number">3.3.</span> <span class="nav-text">功能分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构"><span class="nav-number">4.</span> <span class="nav-text">重构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一次重构"><span class="nav-number">4.1.</span> <span class="nav-text">一次重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二次重构"><span class="nav-number">4.2.</span> <span class="nav-text">二次重构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="https://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+  <span class="with-love">
+    全站字数：<span class="post-count">73.6k</span>
+  </span>
+  
+</div>
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+	
+  <link rel="stylesheet" href="/lib/gitment/default.css">
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/gitment/gitment.browser.js"></script>
+
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+  
+  
+  
+<script type="text/javascript"> 
+var gitment = new Gitment.construct({
+    id: 'Vue全家桶实践项目总结',
+    owner: 'tower1229',
+    repo: 'blog-comments',
+    oauth: {
+      client_id: "37db014e1012d7838313",
+      client_secret: "52d07c2105210cf845870cb479ae6a4cdecae347",
+    },
+  })
+
+  gitment.render('gitment_container')
+</script>
+
+  
+<script type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>

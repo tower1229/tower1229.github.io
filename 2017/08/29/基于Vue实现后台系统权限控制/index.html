@@ -1,0 +1,581 @@
+<!doctype html>
+<html class="theme-next muse">
+<head>
+  <title> 基于Vue实现后台系统权限控制 | 前端路上 </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <meta name="keywords" content="Vue," />
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+<meta name="description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vue实现后台系统权限控制">
+<meta property="og:url" content="https://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
+<meta property="og:updated_time" content="2018-04-09T02:26:48.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Vue实现后台系统权限控制">
+<meta name="twitter:description" content="写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。
+权限控制">
+<script src="//msite.baidu.com/sdk/c.js?appid=1585542911827735"></script>
+<link rel="canonical" href="https://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/" />
+<script type="application/ld+json">
+    {
+        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id": "https://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/",
+        "appid": "1585542911827735",
+        "title": "基于Vue实现后台系统权限控制",
+        "images": [],
+        "description": "写在前面本文中的菜单权限控制方案由于没有使用router.addRoutes()实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]用addRoutes实现动态路由。
+正文...",
+        "pubDate":  "2018-04-09T02:26:40" 
+    }
+</script>
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: false,
+    motion: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+<body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+  
+  
+    
+  
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端路上</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">枪在手，跟我走，前端路上不回头</p>
+</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+<nav class="site-nav">
+  
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-前端路上">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            前端路上
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端简历">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-vcard"></i> <br />
+            
+            前端简历
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端作品">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-codepen"></i> <br />
+            
+            前端作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-前端导航">
+          <a href="/navigation/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map-signs"></i> <br />
+            
+            前端导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-编程之外">
+          <a href="/other/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google-wallet"></i> <br />
+            
+            编程之外
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友情链接">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+  
+</nav> </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+  
+  
+  
+  
+  
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于Vue实现后台系统权限控制
+              
+            
+          </h1>
+        
+        <div class="post-meta">
+          
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-29T09:28:27+08:00" content="2017-08-29">
+              2017-08-29
+            </time>
+          </span>
+          <span class="post-category" >
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa fa-folder-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+              <a href="https://refined-x.com" itemprop="url" rel="index">
+                <span itemprop="name">雅X共赏</span>
+              </a>
+            </span>
+          </span>
+          <span class="post-count">
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa pencil-square-o"></i>
+            </span>
+            <span class="post-meta-item-text">字数统计：</span>
+            <span>2.8k</span>
+          </span>
+          <span class="post-count">
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            <span class="post-meta-item-text">阅读时长：</span>
+            <span>10min</span>
+          </span>
+          
+          
+          
+          
+          
+        </div>
+      </header>
+    
+    <div class="post-body" itemprop="articleBody">
+      
+      
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文中的菜单权限控制方案由于没有使用<code>router.addRoutes()</code>实现动态路由，需要将登录页独立出来单独做，基于相同思路的动态路由方案参见]<a href="//refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">用addRoutes实现动态路由</a>。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>用Vue这类双向绑定框架做后台系统再适合不过，后台系统相比普通前端项目除了数据交互更频繁以外，还有一个特别的需求就是对用户的权限控制，那么如何在一个Vue应用中实现权限控制呢？下面是我的一点经验。</p>
+<h2 id="权限控制是什么"><a href="#权限控制是什么" class="headerlink" title="权限控制是什么"></a>权限控制是什么</h2><p>在权限的世界里服务端提供的一切都是资源，资源可以由请求方法+请求地址来描述，权限是对特定资源的访问许可，所谓权限控制，也就是确保用户只能访问到被分配的资源。具体的说，前端对资源的访问通常是由界面上的按钮发起，比如删除某条数据；或由用户进入某一个页面发起，比如获取某个列表数据。这两种形式覆盖了资源请求的大部分场景，因此权限控制也可以被笼统的分成菜单权限控制和按钮权限控制。</p>
+<h2 id="Vue菜单权限控制"><a href="#Vue菜单权限控制" class="headerlink" title="Vue菜单权限控制"></a>Vue菜单权限控制</h2><p>菜单是对路由的直接体现，菜单控制实际上就是路由控制。实现路由控制一个简单的方式是，在路由的before钩子里校验当前即将跳转的路由地址是否有权访问，根据校验结果决定路由是否放行，伪码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">    //权限校验</span><br><span class="line">    let pass = valid(to);</span><br><span class="line">    if(!pass)&#123;</span><br><span class="line">        return console.log(&apos;无权访问&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种实现方式既简单又直观，用于路由总数不多的系统非常合适，但这么做本质上是将所有路由全部注册了，直接带来的缺点有两个：一、如果路由组件不是按需加载的话，应用将加载大量冗余代码；二、每次跳转都要遍历一次完整路由，是对计算能力的浪费。</p>
+<p>理想的实现方式是本地保存完整路由，但并不立即初始化Vue应用，待用户登录拿到权限后，用菜单权限筛选出可用路由，再用可用路由初始化Vue应用。也就是说，要将登录页独立出去做成一个单独的页面，登录后将用户数据保存在本地，再通过url跳转到Vue应用所在页面，Vue应用启动前通过本地用户数据完成路由筛选，然后初始化Vue应用，伪码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//main.js</span><br><span class="line">let user = sessionStorage.getItem(&apos;user&apos;);</span><br><span class="line">if (user) &#123;</span><br><span class="line">    user = JSON.parse(user);</span><br><span class="line">    //筛选得到实际路由</span><br><span class="line">    let fullPath = require(&apos;fullPath.js&apos;);</span><br><span class="line">    let routes = filter(fullPath, user.menus);</span><br><span class="line">    //创建路由对象</span><br><span class="line">    let router = new Router(&#123;routes&#125;);</span><br><span class="line">    //生成Vue实例</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        el: &apos;#app&apos;,</span><br><span class="line">        router,</span><br><span class="line">        render: h =&gt; h(App)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    location.href = &apos;/login/&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时我们还希望能直接用路由数据生成导航菜单，常规的路由数据可能无法满足菜单组件的需求，所以我们要事先在路由的<code>meta</code>里维护上菜单数据，比如菜单名称菜单图标等，只要在模板中通过<code>$router.options</code>就可以访问到当前路由数据，如果使用element-ui的菜单组件实现，代码大致是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-menu router&gt;</span><br><span class="line">    &lt;el-menu-item v-for=&quot;(route, index) in $router.options.routes[2].children&quot;</span><br><span class="line">    :route=&quot;route&quot;</span><br><span class="line">    :index=&quot;route.name&quot;&gt;</span><br><span class="line">        &lt;i class=&quot;ion&quot; v-html=&quot;route.icon&quot;&gt;&lt;/i&gt;&#123;&#123;route.name&#125;&#125;</span><br><span class="line">    &lt;/el-menu-item&gt;</span><br><span class="line">&lt;/el-menu&gt;</span><br></pre></td></tr></table></figure>
+<p>当然这样只能循环出一级菜单，如果还有二级路由需要对应二级菜单的话，就得判断并循环<code>children</code>节点，比较简单就不放更多代码了，菜单权限控制到这里就完成了。</p>
+<h2 id="Vue按钮权限控制"><a href="#Vue按钮权限控制" class="headerlink" title="Vue按钮权限控制"></a>Vue按钮权限控制</h2><p>按钮权限控制与菜单权限控制的实现思路类似，也是根据用户权限判断各个按钮的显示与否，方式无非是<code>v-if</code>或自定义指令，而且只要将<code>v-if</code>背后的权限校验逻辑抽象成方法，无论是代码量还是使用形式上都跟自定义指令几乎一样，但<code>v-if</code>的特点是它会响应数据变化，因此随着应用的运行会频繁触发权限校验，而权限在应用的整个生命周期内其实只需校验一次，为了避免无谓的程序执行，这里可以用自定义指令来实现，伪码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&apos;has&apos;, &#123;</span><br><span class="line">  bind: function (el, binding) &#123;</span><br><span class="line">    if(!has(binding.value))&#123;</span><br><span class="line">        el.parentNode.removeChild(el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//用法：</span><br><span class="line">&lt;btn v-has=&apos;get,/sources&apos;&gt;按钮&lt;/btn&gt;</span><br></pre></td></tr></table></figure>
+<p>注意在指令<code>bind</code>回调里有一个<code>has()</code>方法，这就是权限校验方法，我们同时将这个方法全局混合到Vue对象中，使应用里的每个组件都可以访问到这个方法，便于为界面上的<code>v-if</code>提供支持，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-if=&quot;has(&apos;get,/sources&apos;) &amp;&amp; something&quot;&gt;</span><br><span class="line">    一个需要同时具备&apos;get,/sources&apos;权限和somthing为真值才显示的div</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>验证方法的实现不是本文重点，只讲大致思路，假设服务端用请求方法+请求url定义资源，如”get,/resources”，那么资源权限数据应该是由于资源组成的数组，我们需要先将数组转换成对象格式，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let permissions = &#123;</span><br><span class="line">  &quot;get,/resources&quot;:true,</span><br><span class="line">  &quot;delete,/resources&quot;:true,</span><br><span class="line">  &quot;post,/resources&quot;:true,</span><br><span class="line">  &quot;put,/resources&quot;:true,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在验证方法里就可以通过直接访问permissions的属性来确定是否拥有权限，效率远高于遍历原始权限数组，代码应该是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let has = function(permission)&#123;</span><br><span class="line">  if(!permissions[permission])&#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来凡是需要依据权限实现的按钮显隐控制和界面变化都可以很方便的实现。</p>
+<p>但做按钮权限麻烦的地方不在于如何实现，而在于高昂的维护成本。我们假设按钮Btn绑定了点击回调Fn，回调Fn里发起了请求Req，请求Req需要某个资源的访问权限，最终你要根据用户是否拥有Req的权限决定Btn是否显示，而Req跟Btn之间并没有直接关联，所以我们就要人肉维护他们的关系，一个复杂项目里的按钮有个几十上百都很正常，随着业务的变更去维护这么多按钮的权限，想想都头疼。</p>
+<p>有一个方法可以绕开这个烂摊子，那就是前端放弃对视图层的控制，退到请求层面，在请求发起前集中拦截，这时可以直接根据请求方法和请求地址来校验权限，除了实现一个拦截器之外不需要额外的代码，可以说非常优雅了。以<code>axios</code>为例，拦截器大概长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">axios.interceptors.request.use(function (config) &#123;</span><br><span class="line">  let permission = config.method + config.url.replace(config.baseURL,&apos;,&apos;);</span><br><span class="line">  if(!has(permission))&#123;</span><br><span class="line">  //验证不通过</span><br><span class="line">    return Promise.reject(&#123;</span><br><span class="line">      message: `no permission`</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  return config;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>但如果仅仅这样做权限控制，界面上将显示出所有的按钮，用户看到的按钮却不一定可以点击，这种体验我认为只能停留在理论层面，根本无法应用到实际产品中。请求控制可以作为整个控制体系的第二道防线，或某些特殊情况下的辅助手段，最终还是要回到按钮控制的思路上来。</p>
+<p>那么怎样能尽可能方便的采集到每个按钮所需的权限呢？按钮和权限之间隔着两层东西，第一层是click回调，第二层是回调里的AJAX请求，不想人肉维护就得想办法突破这两层隔阂，让按钮和权限产生联系，按钮必然要绑定click事件，最理想的采集方式是在绑定事件的同时得到所需权限，让一切自然而然的发生，比如我们可以实现一个完美的<code>v-do</code>指令，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;btn v-do=&quot;Fn&quot;&gt;按钮&lt;/btn&gt;</span><br></pre></td></tr></table></figure>
+<p>如果<code>Fn</code>能以某种形式采集到内部的AJAX请求参数，并转化成权限信息传递出来就完美了，然而我没找到可行的方法，并且这种形式在应用上也存在缺陷，因为不一定每个操作按钮都会发起AJAX请求，比如编辑按钮本身并不会触发请求，真正触发请求的是另一个保存按钮，所以这个思路只是看起来很美。</p>
+<p>退而求其次的做法是让按钮和请求联系起来，比如说按钮涉及一个名称为A的请求，那么我希望权限指令可以这样写，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;btn v-has=&quot;A&quot; @click=&quot;Fn&quot;&gt;按钮&lt;/btn&gt;</span><br></pre></td></tr></table></figure>
+<p>比完美形态是差了不少，但起码不需要手动维护到<code>&#39;get,/resources&#39;</code>这个级别了，这里对A的实现可以有多种形式，比如A可以是一个包含两个属性的对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const A = &#123;</span><br><span class="line">  p: [&apos;put,/menu/**&apos;],</span><br><span class="line">  r: params =&gt; &#123;</span><br><span class="line">    return axios.put(`/menu/$&#123;params.id&#125;`, params)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//用作权限：</span><br><span class="line">&lt;btn v-has=&quot;[A]&quot; @click=&quot;Fn&quot;&gt;按钮&lt;/btn&gt;</span><br><span class="line"></span><br><span class="line">//用作请求：</span><br><span class="line">function Fn()&#123;</span><br><span class="line">    A.r().then((res) =&gt; &#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通常我们会将项目里所有的api放在一个api模块里集中管理，在写api时顺便就把权限给维护了，换来的是在组件界面里可以直接用请求名称来描述权限，而不需要来回奔波于界面和api模块之间，一定程度上实现了关注点分离，而且has指令还可以进一步做优化，例如参数只需要接收A，指令内部根据约定自动访问A.p来获取权限，还可以接收数组，允许多个权限联合校验，尽可能降低按钮权限的维护成本。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>总结一下，因为我的项目包含了管理端和客户端的所有功能，角色差异比较大，因此路由权限没有在before钩子里做，而是在登录后启动前进行路由筛选，省去了每次都要在before钩子里做校验的麻烦；按钮权限使用自定义指令实现，并且将验证方法全局混入，便于在界面上使用<code>v-if</code>；最后为axios设置拦截器，作为权限控制的第二道防线。</p>
+<p>好了，这就是我对前端权限控制的一些实践和思考，如有不当欢迎指正。</p>
+<p>最后吐槽一下Element-UI，真心难看。</p>
+
+        
+        <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/">https://refined-x.com/2017/08/29/基于Vue实现后台系统权限控制/</a></p>
+        
+        <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto" /></p>
+        <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+        
+      
+    </div>
+    <div>
+      
+        
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag">#Vue</a>
+          
+        </div>
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/08/混合应用从开发到发布/" rel="next" title="混合应用从开发到发布">
+                <i class="fa fa-chevron-left"></i> 混合应用从开发到发布
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/01/用addRoutes实现动态路由/" rel="prev" title="用addRoutes实现动态路由">
+                用addRoutes实现动态路由 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </article>
+
+    <div class="post-spread">
+      
+      
+    </div>
+  </div>
+
+          </div>
+          
+            <div id="gitment_container"></div>
+          
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/asset/album.jpg"
+               alt="雅X共赏" />
+          <p class="site-author-name" itemprop="name">雅X共赏</p>
+          <p class="site-description motion-element" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            
+            <a href="/archives/">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">文章归档</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-tags">
+              
+              <a href="/tags/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">文章标签</span>
+              </a>
+              
+            </div>
+          
+        </nav>
+        
+        <div class="links-of-author motion-element">
+          
+        </div>
+        
+        
+        
+
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+
+            <ul class="links-of-blogroll-list booth-list" style="list-style:none">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank"><img src="/asset/booth/前端周刊.png" alt="前端周刊" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/tools.html" title="进阶套装" target="_blank"><img src="/asset/booth/进阶套装.png" alt="进阶套装" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://frontend-weekly.com/program.html" title="0元建站" target="_blank"><img src="/asset/booth/0元建站.png" alt="0元建站" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/asset/爱奇艺VIP邀请.jpg" title="爱奇艺VIP" target="_blank"><img src="/asset/booth/爱奇艺VIP.png" alt="爱奇艺VIP" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.aliyun.com/minisite/goods?userCode=y31qmczl" title="阿里云双十一" target="_blank"><img src="/asset/booth/阿里云双十一.png" alt="阿里云双十一" /></a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="" title="虚位以待" target="_blank"><img src="/asset/booth/虚位以待.png" alt="虚位以待" /></a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+        
+        
+      </section>
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限控制是什么"><span class="nav-number">3.</span> <span class="nav-text">权限控制是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue菜单权限控制"><span class="nav-number">4.</span> <span class="nav-text">Vue菜单权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue按钮权限控制"><span class="nav-number">5.</span> <span class="nav-text">Vue按钮权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="https://refined-x.com" title="枪在手，跟我走，前端路上不回头" class="author" itemprop="copyrightHolder">雅X共赏</a>
+  <span class="with-love">
+    全站字数：<span class="post-count">73.6k</span>
+  </span>
+  
+</div>
+        
+      </div>
+    </footer>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+	
+  <link rel="stylesheet" href="/lib/gitment/default.css">
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/gitment/gitment.browser.js"></script>
+
+
+  
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+  
+  
+  
+<script type="text/javascript"> 
+var gitment = new Gitment.construct({
+    id: '基于Vue实现后台系统权限控制',
+    owner: 'tower1229',
+    repo: 'blog-comments',
+    oauth: {
+      client_id: "37db014e1012d7838313",
+      client_secret: "52d07c2105210cf845870cb479ae6a4cdecae347",
+    },
+  })
+
+  gitment.render('gitment_container')
+</script>
+
+  
+<script type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>
