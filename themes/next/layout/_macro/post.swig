@@ -76,7 +76,15 @@
               </span>
             {%- endif %}
           {%- endif %}
-
+          {# 作者 begin #}
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="{{ config.url }}" title="{{ description }}">{{ author }}</a>
+          </span>
+          {# 作者 end #}
           {%- if post.categories and post.categories.length and theme.post_meta.categories %}
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -126,7 +134,7 @@
               <span id="busuanzi_value_page_pv"></span>
             </span>
           {%- endif %}
-
+          
           {{- next_inject('postMeta') }}
 
           {%- if config.symbols_count_time.symbols %}
@@ -138,7 +146,7 @@
               {%- if theme.symbols_count_time.item_text_post %}
                 <span class="post-meta-item-text">{{ __('symbols_count_time.count') + __('symbol.colon') }}</span>
               {%- endif %}
-              <span>{{ symbolsCount(post) }}</span>
+              <span>{{ symbolsCount(post.content) }}</span>
             </span>
           {%- endif %}
 
@@ -150,7 +158,7 @@
               {%- if theme.symbols_count_time.item_text_post %}
                 <span class="post-meta-item-text">{{ __('symbols_count_time.time') }} &asymp;</span>
               {%- endif %}
-              <span>{{ symbolsTime(post, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+              <span>{{ symbolsTime(post.content, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
             </span>
           {%- endif %}
 

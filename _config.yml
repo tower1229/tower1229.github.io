@@ -28,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: 
+skip_render: projects/codes/**
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -114,3 +114,7 @@ algolia:
   apiKey: 'df612ce7ac69de4c788ccf1567351476'
   indexName: 'tower1229.github.io'
   chunkSize: 5000
+
+# 字数统计
+symbols_count_time:
+  exclude_codeblock: true
