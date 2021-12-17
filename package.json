@@ -7,7 +7,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "serve": "hexo server",
-    "algolia": "hexo algolia",
+    "algolia": "set HEXO_ALGOLIA_INDEXING_KEY=df612ce7ac69de4c788ccf1567351476 && hexo algolia",
     "new": "hexo new post 000Artical"
   },
   "hexo": {
@@ -21,6 +21,7 @@
     "hexo-generator-baidu-sitemap": "^0.1.9",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^2.0.0",
+    "hexo-generator-index-pin-top": "^0.2.2",
     "hexo-generator-sitemap": "^2.2.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-ejs": "^2.0.0",

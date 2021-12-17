@@ -1,6 +1,6 @@
 ---
 title: Hello Hexo Again
-tag: []
+tag: [Hexo]
 ---
 
 

@@ -89,31 +89,6 @@
 
           {{- next_inject('postMeta') }}
 
-          {%- if config.symbols_count_time.symbols %}
-          {%- if theme.symbols_count_time.separated_meta %}<br>{%- endif %}
-            <span class="post-meta-item" title="{{ __('symbols_count_time.count') }}">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              {%- if theme.symbols_count_time.item_text_post %}
-                <span class="post-meta-item-text">{{ __('symbols_count_time.count') + __('symbol.colon') }}</span>
-              {%- endif %}
-              <span>{{ symbolsCount(post) }}</span>
-            </span>
-          {%- endif %}
-
-          {%- if config.symbols_count_time.time %}
-            <span class="post-meta-item" title="{{ __('symbols_count_time.time') }}">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              {%- if theme.symbols_count_time.item_text_post %}
-                <span class="post-meta-item-text">{{ __('symbols_count_time.time') }} &asymp;</span>
-              {%- endif %}
-              <span>{{ symbolsTime(post, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
-            </span>
-          {%- endif %}
-
           {%- if post.description and (not theme.excerpt_description or not is_index) %}
             <div class="post-description">{{ post.description }}</div>
           {%- endif %}

@@ -136,7 +136,7 @@
           {%- endif %}
           
           {{- next_inject('postMeta') }}
-
+          {# 字数统计 #}
           {%- if config.symbols_count_time.symbols %}
           {%- if theme.symbols_count_time.separated_meta %}<br>{%- endif %}
             <span class="post-meta-item" title="{{ __('symbols_count_time.count') }}">
@@ -149,7 +149,7 @@
               <span>{{ symbolsCount(post.content) }}</span>
             </span>
           {%- endif %}
-
+          {# 阅读时间统计 #}
           {%- if config.symbols_count_time.time %}
             <span class="post-meta-item" title="{{ __('symbols_count_time.time') }}">
               <span class="post-meta-item-icon">
