@@ -110,4 +110,18 @@ comments: false
 - **hexo-generator-sitemap** 自动生成站点地图
 - **hexo-generator-baidu-sitemap** 同上，不过是百度版本
 
+## Hexo博文字数统计的bug
+
+在当前版本`Hexo v5.4.0 + hexo-theme-next v7.8.0`下，安装NexT主题默认继承的字数统计插件`hexo-symbols-count-time v0.7.1`会出现统计不出字数和阅读时间的问题，原因是模板里调用字数统计方法时，传的参数不符合预期，需要修改`themes\next\layout\_macro\post.swig`：
+
+```swig
+<span>{{ symbolsCount(post) }}</span>
+改为：
+<span>{{ symbolsCount(post.content) }}</span>
+
+<span>{{ symbolsTime(post, 
+改为：
+<span>{{ symbolsTime(post.content, 
+```
+
 以上就是重建博客我觉得值得记录的点，好了我要去搬运博文了 — —
