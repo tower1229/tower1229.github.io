@@ -204,7 +204,7 @@ links_settings:
   icon: link
   title: Links
   # Available values: block | inline
-  layout: block
+  layout: inline
 
 links:
   前端博客: https://refined-x.com/
