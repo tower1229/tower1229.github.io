@@ -5,7 +5,7 @@
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
+    "d": "hexo deploy",
     "serve": "hexo server",
     "algolia": "set HEXO_ALGOLIA_INDEXING_KEY=df612ce7ac69de4c788ccf1567351476 && hexo algolia",
     "new": "hexo new post 000Artical"

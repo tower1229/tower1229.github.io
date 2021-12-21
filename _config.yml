@@ -103,7 +103,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/tower1229/tower1229.github.io # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+  repo: git@github.com:tower1229/tower1229.github.io.git # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: gh-pages
 
 # 站内搜索
