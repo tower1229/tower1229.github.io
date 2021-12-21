@@ -104,7 +104,7 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/tower1229/tower1229.github.io # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-  branch: page
+  branch: gh-pages
 
 # 站内搜索
 ## Docs: https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/ALGOLIA-SEARCH.md
