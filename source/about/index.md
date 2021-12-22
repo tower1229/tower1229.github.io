@@ -4,6 +4,8 @@ layout: blank
 comments: false
 ---
 
+[![github stats](https://github-readme-stats.vercel.app/api?username=tower1229&count_private=true&show_icons=true&&bg_color=30,6aa4f2,cb1597&title_color=fff&text_color=fff&icon_color=fc0)](https://github.com/anuraghazra/github-readme-stats)
+
 ### [](#基本信息 "基本信息")基本信息
 
 #### [](#89年-男-本科-烟台 "89年/男/本科/烟台")89年/男/本科/烟台
