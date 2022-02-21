@@ -102,6 +102,21 @@
   </div>
 {%- endif %}
 
+{# 侧边栏广告 #}
+{%- if theme.sidebar_booth %}
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+      {%- for blogrollText, blogrollURL in theme.sidebar_booth %}
+        <li class="links-of-blogroll-item">
+          <a href="{{ blogrollURL }}" title="{{ blogrollText }}" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/{{ blogrollText }}.png" alt="{{ blogrollText }}" />
+          </a>
+        </li>
+      {%- endfor %}
+    </ul>
+  </div>
+{%- endif %}
+
 {# Blogroll #}
 {%- if theme.links %}
   <div class="links-of-blogroll motion-element">
@@ -118,3 +133,4 @@
     </ul>
   </div>
 {%- endif %}
+

@@ -157,7 +157,7 @@ sidebar:
   #  - always  expand for all pages automatically.
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
-  display: post
+  display: always
 
   # Sidebar padding in pixels.
   padding: 18
@@ -177,6 +177,17 @@ avatar:
 
 # Posts / Categories / Tags in sidebar.
 site_state: true
+
+# 侧边栏广告位
+
+sidebar_booth:
+  前端周刊: https://frontend-weekly.com/
+  0元建站: https://frontend-weekly.com/program.html
+  阿里云双十一: https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl
+  进阶套装: https://frontend-weekly.com/tools.html
+  早早聊年票: https://refined-x.com/asset/booth/img/早早了年票.jpg
+  虚位以待: ###
+
 
 # Social Links
 # Usage: `Key: permalink || icon`
