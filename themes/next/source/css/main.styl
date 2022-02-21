@@ -45,3 +45,18 @@ for $inject_mixin in hexo-config('injects.mixin')
 // --------------------------------------------------
 for $inject_style in hexo-config('injects.style')
   @import $inject_style;
+
+
+// 侧边栏广告
+.sidebar_booth_list{
+  text-align: left;
+  margin-left: -10px;
+}
+.sidebar_booth_list li{
+  width: 134px;
+  padding: 0;
+  margin: 0 0 10px 10px;
+}
+.sidebar_booth_list a{
+  border: 0;  
+}
