@@ -7,6 +7,7 @@
   <title>{% block title %}{% endblock %}</title>
   {{ partial('_third-party/analytics/index.swig', {}, {cache: theme.cache.enable}) }}
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
