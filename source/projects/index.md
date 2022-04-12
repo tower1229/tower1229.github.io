@@ -82,15 +82,15 @@ comments: false
 
 ## 前端作品
 
-一个前端工程师的web前端作品集，里面有我开发过程中的思考和尝试。如无特殊说明，以下项目全部为我个人开发。
+一个前端工程师的 web 前端作品集，里面有我开发过程中的思考和尝试。如无特殊说明，以下项目全部为我个人开发。
 
 ## 我的课程
 
 [**《Hybrid App 开发快速指南》**](https://gitbook.cn/gitchat/column/5b679a1d201ffa4ab88e7d5d)
 
-> 混合应用开发入门课程，将带领读者快速掌握 Hybrid App 开发能力，内容涵盖混合应用原理、混合应用开发基础、混合应用开发进阶、基于APICloud的混合应用开发最佳实践。
+> 混合应用开发入门课程，将带领读者快速掌握 Hybrid App 开发能力，内容涵盖混合应用原理、混合应用开发基础、混合应用开发进阶、基于 APICloud 的混合应用开发最佳实践。
 
-[**《基于Vue实现前端权限控制》**](https://gitbook.cn/gitchat/activity/5a1f620f52525e427b667ca6)
+[**《基于 Vue 实现前端权限控制》**](https://gitbook.cn/gitchat/activity/5a1f620f52525e427b667ca6)
 
 > Vue 是目前最流行的前端框架之一，当我们用 Vue 开发系统类或任意类型拥有多角色的项目时，前端权限控制是绕不过去的基础功能，本场 Chat 中我将为大家分享一套做权限控制的方式方法。
 
@@ -117,14 +117,6 @@ comments: false
           src="https://refined-x.com/asset/cutting-mat-logo.png" alt="cutting-mat-logo">
         <h3>CuttingMat</h3><span class="desc">为大中型前端项目/团队提供灵活、可靠、统一、规范的研发解决方案，助你的Vue项目一臂之力。</span>
       </a></li>
-    <li><a href="http://flow-ui.refined-x.com/" title="Flow-UI" target="_blank"><img
-          src="https://refined-x.com/asset/flow-ui-logo.jpg" alt="Flow-UI logo">
-        <h3>Flow-UI</h3><span class="desc">Flow-UI 可能是jQuery技术栈中定制性最强，加载性能最优的UI框架，基于Seajs/jQuery构建。</span>
-      </a></li>
-    <li><a href="http://flow-ui.refined-x.com/Flow-CLI/" title="Flow-CLI" target="_blank"><img
-          src="https://refined-x.com/asset/flow-cli-logo.jpg" alt="Flow-CLI logo">
-        <h3>Flow-CLI</h3><span class="desc">基于Nodejs/Gulp的前端自动化工具，Flow-UI专用。</span>
-      </a></li>
     <li><a href="//refined-x.com/HybridStart/" title="HybridStart" target="_blank"><img
           src="https://refined-x.com/asset/hybridstart-logo.jpg" alt="HybridStart logo">
         <h3>HybridStart</h3><span class="desc">基于APICloud的混合应用开发框架，可能是开发这类混合应用的最佳实践。</span>
@@ -142,58 +134,70 @@ comments: false
           alt="weapp-plugin-dashboard preview">
         <h3>weapp-plugin-dashboard</h3><span class="desc">微信小程序动态指针仪表盘组件。</span>
       </a></li>
+    <li><a href="http://flow-ui.refined-x.com/" title="Flow-UI" target="_blank"><img
+          src="https://refined-x.com/asset/flow-ui-logo.jpg" alt="Flow-UI logo">
+        <h3>Flow-UI</h3><span class="desc">Flow-UI 可能是jQuery技术栈中定制性最强，加载性能最优的UI框架，基于Seajs/jQuery构建。</span>
+      </a></li>
+    <li><a href="http://flow-ui.refined-x.com/Flow-CLI/" title="Flow-CLI" target="_blank"><img
+          src="https://refined-x.com/asset/flow-cli-logo.jpg" alt="Flow-CLI logo">
+        <h3>Flow-CLI</h3><span class="desc">基于Nodejs/Gulp的前端自动化工具，Flow-UI专用。</span>
+      </a></li>
   </ul>
 </div>
 
 ## 代码随笔
 
-+ [静态页组件管理系统](https://github.com/tower1229/WidgetsPlayground)
+- [videojs 视频打点插件](https://github.com/tower1229/videojs-plugin-marker)
+
+> **videojs-plugin-marker**: 视频打点，支持动态更新，支持点击事件。[项目预览](http://refined-x.com/videojs-plugin-marker/)
+
+- [静态页组件管理系统](https://github.com/tower1229/WidgetsPlayground)
 
 > 前端组件的管理、编辑、预览、应用一体化方案。[项目预览](https://refined-x.com/WidgetsPlayground/)
 
-+ [HTML5拖拽布局](https://refined-x.com/projects/codes/startmenu.html)
+- [HTML5 拖拽布局](https://refined-x.com/projects/codes/startmenu.html)
 
-> 基于HTML5拖拽API模拟Window10菜单拖拽效果
+> 基于 HTML5 拖拽 API 模拟 Window10 菜单拖拽效果
 
-+ [HTML5文件编辑保存](https://github.com/tower1229/htm5-file-operations)
+- [HTML5 文件编辑保存](https://github.com/tower1229/htm5-file-operations)
 
-> 基于HTML5 File-API实现本地文件的读取、编辑、保存。[项目预览](https://refined-x.com/htm5-file-operations/)
+> 基于 HTML5 File-API 实现本地文件的读取、编辑、保存。[项目预览](https://refined-x.com/htm5-file-operations/)
 
-+ [贪吃蛇小游戏](https://refined-x.com/projects/codes/snake.html)
+- [贪吃蛇小游戏](https://refined-x.com/projects/codes/snake.html)
 
 > 突发奇想的一个贪吃蛇实现思路，然而实际上并没有什么特别
 
-+ [前端人脸识别-提取-合成](https://github.com/tower1229/frontend-face-detection)
+- [前端人脸识别-提取-合成](https://github.com/tower1229/frontend-face-detection)
 
 > 纯前端的人脸识别应用，一次有趣的尝试，虽然效果一言难尽[项目预览](https://refined-x.com/frontend-face-detection/)
 
-+ [照片压缩&方向修正工具](https://github.com/tower1229/ios-photo-repair)
+- [照片压缩&方向修正工具](https://github.com/tower1229/ios-photo-repair)
 
-> 一个IOS拍照方向修复工具，可以修复File对象，也可以修复Image节点，上传前修复File对象时，还可以顺便压缩图片尺寸.
+> 一个 IOS 拍照方向修复工具，可以修复 File 对象，也可以修复 Image 节点，上传前修复 File 对象时，还可以顺便压缩图片尺寸.
 
-+ [星座配对·小程序](https://github.com/tower1229/weapp-star)
+- [星座配对·小程序](https://github.com/tower1229/weapp-star)
 
 > 小程序上手项目，基本应用，没啥特别的
 
-+ [Nodejs爬虫 for cnBeta](https://github.com/tower1229/crawler)
+- [Nodejs 爬虫 for cnBeta](https://github.com/tower1229/crawler)
 
 > 尝试做一个爬虫，还是很好玩的
 
-+ [WEB-OTA·前端热更新](https://github.com/tower1229/WEB-OTA)
+- [WEB-OTA·前端热更新](https://github.com/tower1229/WEB-OTA)
 
 > 对本地缓存应用潜力的深度挖掘，效果惊艳，不过使用场景有限
 
-+ [AJAX-Cache·请求缓存插件](https://github.com/tower1229/AJAX-Cache)
+- [AJAX-Cache·请求缓存插件](https://github.com/tower1229/AJAX-Cache)
 
-> 可能是市面上最好的jQuery.ajax()缓存扩展插件，需要的人自然懂
+> 可能是市面上最好的 jQuery.ajax()缓存扩展插件，需要的人自然懂
 
-+ [复利计算器](http://refined-x.com/projects/codes/interest.html)
+- [复利计算器](http://refined-x.com/projects/codes/interest.html)
 
 > 一个复利计算小工具，用来模拟年缴保费的支出情况，衡量重疾险的保费扛杆，可以用来做保险产品的性价比横向比较
 
-+ [Vue-Giant-Tree](https://github.com/tower1229/Vue-Giant-Tree)
+- [Vue-Giant-Tree](https://github.com/tower1229/Vue-Giant-Tree)
 
-> 🌳 巨树：基于ztree封装的Vue树形组件，轻松实现海量数据的高性能渲染。[项目预览](https://refined-x.com/Vue-Giant-Tree/)
+> 🌳 巨树：基于 ztree 封装的 Vue 树形组件，轻松实现海量数据的高性能渲染。[项目预览](https://refined-x.com/Vue-Giant-Tree/)
 
 ## [](#前端工程师简历 "前端工程师简历")前端工程师简历
 
