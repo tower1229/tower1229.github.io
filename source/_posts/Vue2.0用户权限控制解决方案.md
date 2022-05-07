@@ -4,7 +4,7 @@ date: 2017-11-28 10:12:39
 tags: [Vue]
 ---
 
-[Vue-Access-Control](//refined-x.com/Vue-Access-Control/)是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
+[Vue-Access-Control](//refined-x.com/Vue-Access-Control/)是一套基于 Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
 
 <!-- more -->
 
@@ -12,12 +12,12 @@ tags: [Vue]
 
 ### [](#版本要求 "版本要求")版本要求
 
-+ Vue 2.0x
-+ Vue-router 3.x
+- Vue 2.0x
+- Vue-router 3.x
 
 ### [](#获取 "获取")获取
 
-项目主页：https//refined-x.com/Vue-Access-Control/
+项目主页：//refined-x.com/Vue-Access-Control/
 
 git：`git clone https://github.com/tower1229/Vue-Access-Control.git`
 
@@ -36,13 +36,13 @@ npm build
 
 ### [](#整体思路 "整体思路")整体思路
 
-会话开始之初，先初始化一个只有登录路由的Vue实例，在根组件created钩子里将路由定向到登录页，用户登录成功后前端拿到用户token，设置axios实例统一为请求headers添加`{"Authorization":token}`实现用户鉴权，然后获取当前用户的权限数据，主要包括路由权限和资源权限，之后动态添加路由，生成菜单，实现权限指令和全局权限验证方法，并为axios实例添加请求拦截器，至此完成权限控制初始化。动态加载路由后，路由组件将随之加载并渲染，而后展现前端界面。
+会话开始之初，先初始化一个只有登录路由的 Vue 实例，在根组件 created 钩子里将路由定向到登录页，用户登录成功后前端拿到用户 token，设置 axios 实例统一为请求 headers 添加`{"Authorization":token}`实现用户鉴权，然后获取当前用户的权限数据，主要包括路由权限和资源权限，之后动态添加路由，生成菜单，实现权限指令和全局权限验证方法，并为 axios 实例添加请求拦截器，至此完成权限控制初始化。动态加载路由后，路由组件将随之加载并渲染，而后展现前端界面。
 
-为解决浏览器刷新路由重置的问题，拿到token后要将其保存到`sessionStorage`，根组件的created钩子负责检查本地是否已有token，如果有则无需登录直接用该token获取权限并初始化，如果token有效且当前路由有权访问，将加载路由组件并正确展现；若当前路由无权访问将按路由设置跳转404；如果token失效，后端应返回4xx状态码，前端统一为axios实例添加错误拦截器，遇到4xx状态码执行退出操作，清除`sessionStorage`数据并跳转到登录页，让用户重新登录。
+为解决浏览器刷新路由重置的问题，拿到 token 后要将其保存到`sessionStorage`，根组件的 created 钩子负责检查本地是否已有 token，如果有则无需登录直接用该 token 获取权限并初始化，如果 token 有效且当前路由有权访问，将加载路由组件并正确展现；若当前路由无权访问将按路由设置跳转 404；如果 token 失效，后端应返回 4xx 状态码，前端统一为 axios 实例添加错误拦截器，遇到 4xx 状态码执行退出操作，清除`sessionStorage`数据并跳转到登录页，让用户重新登录。
 
 ### [](#最小依赖原则 "最小依赖原则")最小依赖原则
 
-Vue-Access-Control的定位是单一领域解决方案，除了Vue/Vue-Router/axios之外没有其他依赖，理论上可以无障碍的应用到任何有权限控制需求的Vue项目中，项目基于[webpack](https://github.com/vuejs-templates/webpack) 模板开发构建，大多数新项目可以直接基于检出代码继续开发。需要说明的是，项目额外引入的[Element-UI](http://element-cn.eleme.io/#/zh-CN)和[CryptoJS](https://www.npmjs.com/package/crypto-js)仅用于开发演示界面，他们不是必须且与权限控制毫无关系，项目应用中可以自行取舍。
+Vue-Access-Control 的定位是单一领域解决方案，除了 Vue/Vue-Router/axios 之外没有其他依赖，理论上可以无障碍的应用到任何有权限控制需求的 Vue 项目中，项目基于[webpack](https://github.com/vuejs-templates/webpack) 模板开发构建，大多数新项目可以直接基于检出代码继续开发。需要说明的是，项目额外引入的[Element-UI](http://element-cn.eleme.io/#/zh-CN)和[CryptoJS](https://www.npmjs.com/package/crypto-js)仅用于开发演示界面，他们不是必须且与权限控制毫无关系，项目应用中可以自行取舍。
 
 ### [](#目录结构 "目录结构")目录结构
 
@@ -63,92 +63,100 @@ src/
 
 ### [](#数据格式约定 "数据格式约定")数据格式约定
 
-+ 路由权限数据必须是如下格式的对象数组，`id`和`parent_id`相同的两个路由具有上下级关系，如果希望使用自定义格式的路由数据，需要修改路由控制的相关实现，详见[**路由控制**](#路由控制)
-  
+- 路由权限数据必须是如下格式的对象数组，`id`和`parent_id`相同的两个路由具有上下级关系，如果希望使用自定义格式的路由数据，需要修改路由控制的相关实现，详见[**路由控制**](#路由控制)
+
 ```json
 [
-    {
-      "id": "1",
-      "name": "菜单1",
-      "parent_id": null,
-      "route": "route1"
-    },
-    {
-      "id": "2",
-      "name": "菜单1-1",
-      "parent_id": "1",
-      "route": "route2"
-    }
-  ]
-```
-  
-+ 资源权限数据必须是如下格式的对象数组，每个对象代表一个RESTful请求，支持带参数的url，具体格式说明见[**请求控制**](#请求控制)
-  
-```json
- [
-    {
-      "id": "2c9180895e172348015e1740805d000d",
-      "name": "账号-获取",
-      "url": "/accounts",
-      "method": "GET"
-    },
-    {
-      "id": "2c9180895e172348015e1740c30f000e",
-      "name": "账号-删除",
-      "url": "/account/**",
-      "method": "DELETE"
-    }
+  {
+    "id": "1",
+    "name": "菜单1",
+    "parent_id": null,
+    "route": "route1"
+  },
+  {
+    "id": "2",
+    "name": "菜单1-1",
+    "parent_id": "1",
+    "route": "route2"
+  }
 ]
 ```
-  
+
+- 资源权限数据必须是如下格式的对象数组，每个对象代表一个 RESTful 请求，支持带参数的 url，具体格式说明见[**请求控制**](#请求控制)
+
+```json
+[
+  {
+    "id": "2c9180895e172348015e1740805d000d",
+    "name": "账号-获取",
+    "url": "/accounts",
+    "method": "GET"
+  },
+  {
+    "id": "2c9180895e172348015e1740c30f000e",
+    "name": "账号-删除",
+    "url": "/account/**",
+    "method": "DELETE"
+  }
+]
+```
+
 ## [](#路由控制 "路由控制")路由控制
 
 路由控制包括动态注册路由和动态生成菜单两部分。
 
 ### [](#动态注册路由 "动态注册路由")动态注册路由
 
-最初实例化的路由仅包括登录和404两个路径，我们期待完整的路由是这样的：
+最初实例化的路由仅包括登录和 404 两个路径，我们期待完整的路由是这样的：
 
 ```js
-[{
-  path: '/login',
-  name: 'login',
-  component: (resolve) => require(['../views/login.vue'], resolve)
-}, {
-  path: '/404',
-  name: '404',
-  component: (resolve) => require(['../views/common/404.vue'], resolve)
-}, {
-  path: '/',
-  name: '首页',
-  component: (resolve) => require(['../views/index.vue'], resolve),
-  children: [{
-    path: '/route1',
-    name: '栏目1',
-    meta: {
-      icon: 'icon-channel1'
-    },
-    component: (resolve) => require(['../views/view1.vue'], resolve)
-  }, {
-    path: '/route2',
-    name: '栏目2',
-    meta: {
-      icon: 'ico-channel2'
-    },
-    component: (resolve) => require(['../views/view2.vue'], resolve),
-    children: [{
-      path: 'child2-1',
-      name: '子栏目2-1',
-      meta: {
-        
+[
+  {
+    path: "/login",
+    name: "login",
+    component: (resolve) => require(["../views/login.vue"], resolve),
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: (resolve) => require(["../views/common/404.vue"], resolve),
+  },
+  {
+    path: "/",
+    name: "首页",
+    component: (resolve) => require(["../views/index.vue"], resolve),
+    children: [
+      {
+        path: "/route1",
+        name: "栏目1",
+        meta: {
+          icon: "icon-channel1",
+        },
+        component: (resolve) => require(["../views/view1.vue"], resolve),
       },
-      component: (resolve) => require(['../views/route2-1.vue'], resolve)
-    }]
-  }]
-}, {
-  path: '*',
-  redirect: '/404'
-}]
+      {
+        path: "/route2",
+        name: "栏目2",
+        meta: {
+          icon: "ico-channel2",
+        },
+        component: (resolve) => require(["../views/view2.vue"], resolve),
+        children: [
+          {
+            path: "child2-1",
+            name: "子栏目2-1",
+            meta: {},
+            component: (resolve) => require(["../views/route2-1.vue"], resolve),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "*",
+    redirect: "/404",
+  },
+];
 ```
 
 那么接下来就需要获取首页以及其子路由们，思路是事先在本地存一份整个项目的完整路由数据，然后根据用户权限对完整路由进行筛选。
@@ -165,17 +173,17 @@ let hashMenus = {
 }
 ```
 
-然后遍历本地完整路由，在循环中将路径拼接成上述结构中的key格式，通过`hashMenus[route]`就可以判断路由是否匹配，具体实现见`App.vue`文件中的`getRoutes()`方法。
+然后遍历本地完整路由，在循环中将路径拼接成上述结构中的 key 格式，通过`hashMenus[route]`就可以判断路由是否匹配，具体实现见`App.vue`文件中的`getRoutes()`方法。
 
-如果后端返回的路由权限数据与约定不同，就需要自行实现筛选逻辑，只要能得到实际可用的路由数据就可以，最终使用`addRoutes()`方法将他们动态添加到路由实例中，注意404页面的模糊匹配一定要放在最后。
+如果后端返回的路由权限数据与约定不同，就需要自行实现筛选逻辑，只要能得到实际可用的路由数据就可以，最终使用`addRoutes()`方法将他们动态添加到路由实例中，注意 404 页面的模糊匹配一定要放在最后。
 
 ### [](#动态菜单 "动态菜单")动态菜单
 
-路由数据可以直接用来生成导航菜单，但路由数据是在根组件中得到的，导航菜单存在于`index.vue`组件中，显然我们需要通过某种方式共享菜单数据，方法有很多，一般来说首先想到的是Vuex，但菜单数据在整个用户会话过程中不会发生改变，这并不是Vuex的最佳使用场景，而且为了尽量减少不必要的依赖，这里用了最简单直接的方法，把菜单数据挂在根组件`data.menuData`上，在首页里用`this.$parent.menuData`获取。
+路由数据可以直接用来生成导航菜单，但路由数据是在根组件中得到的，导航菜单存在于`index.vue`组件中，显然我们需要通过某种方式共享菜单数据，方法有很多，一般来说首先想到的是 Vuex，但菜单数据在整个用户会话过程中不会发生改变，这并不是 Vuex 的最佳使用场景，而且为了尽量减少不必要的依赖，这里用了最简单直接的方法，把菜单数据挂在根组件`data.menuData`上，在首页里用`this.$parent.menuData`获取。
 
-另外，导航菜单很可能会有添加栏目图标的需求，这可以通过在路由中添加`meta`数据实现，例如将图标class或unicode存到路由meta里，模板中就可以访问到meta数据，用来生成图标标签。
+另外，导航菜单很可能会有添加栏目图标的需求，这可以通过在路由中添加`meta`数据实现，例如将图标 class 或 unicode 存到路由 meta 里，模板中就可以访问到 meta 数据，用来生成图标标签。
 
-在多角色系统中可能遇到的一个问题是，不同角色有一个名字相同但功能不同的路由，比如说*系统管理员*和*企业管理员*都有”账号管理”这个路由，但他们的操作权限和目标不同，实际上是两个完全不同的界面，而Vue不允许多个路由同名，因此路由的name必须做区分，但把区分后的name显示在前端菜单上会很不美观，为了让不同角色可以享有同一个菜单名称，我们只要将这两个路由的`meta.name`都设置成”账号管理”，在模板循环时优先使用`meta.name`就可以了。
+在多角色系统中可能遇到的一个问题是，不同角色有一个名字相同但功能不同的路由，比如说*系统管理员*和*企业管理员*都有”账号管理”这个路由，但他们的操作权限和目标不同，实际上是两个完全不同的界面，而 Vue 不允许多个路由同名，因此路由的 name 必须做区分，但把区分后的 name 显示在前端菜单上会很不美观，为了让不同角色可以享有同一个菜单名称，我们只要将这两个路由的`meta.name`都设置成”账号管理”，在模板循环时优先使用`meta.name`就可以了。
 
 菜单的具体实现可以参考`views/index.vue`。
 
@@ -192,11 +200,11 @@ let hashMenus = {
 ```js
 //获取账户列表
 const request = {
-  p: ['get,/accounts'],
-  r: params => {
-    return instance.get(`/accounts`, {params})
-  }
-}
+  p: ["get,/accounts"],
+  r: (params) => {
+    return instance.get(`/accounts`, { params });
+  },
+};
 ```
 
 权限验证方法`$_has()`的调用格式：
@@ -210,7 +218,7 @@ v-if="$_has([request])"
 
 将权限验证方法全局混入，就可以在项目中很容易的配合`v-if`实现元素显示控制，这种方式的优点在于灵活，除了可以校验权限外，还可以在判断表达式中加入运行时状态做更多样性的判断，而且可以充分利用`v-if`响应数据变化的特点，实现动态视图控制。
 
-具体实现细节参考[基于Vue实现后台系统权限控制](//refined-x.com/2017/08/29/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/)中的相关章节。
+具体实现细节参考[基于 Vue 实现后台系统权限控制](//refined-x.com/2017/08/29/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/)中的相关章节。
 
 ### [](#自定义指令 "自定义指令")自定义指令
 
@@ -218,12 +226,12 @@ v-if="$_has([request])"
 
 ```js
 //权限指令
-Vue.directive('has', {
-  bind: function(el, binding) {
+Vue.directive("has", {
+  bind: function (el, binding) {
     if (!Vue.prototype.$_has(binding.value)) {
       el.parentNode.removeChild(el);
     }
-  }
+  },
 });
 ```
 
@@ -231,16 +239,16 @@ Vue.directive('has', {
 
 ## [](#请求控制 "请求控制")请求控制
 
-请求控制是利用axios拦截器实现的，目的是将越权请求在前端拦截掉，原理是在请求拦截器中判断本次请求是否符合用户权限，以决定是否拦截。
+请求控制是利用 axios 拦截器实现的，目的是将越权请求在前端拦截掉，原理是在请求拦截器中判断本次请求是否符合用户权限，以决定是否拦截。
 
-普通请求的判断很容易，遍历后端返回的的资源权限格式，直接判断`request.method`和`request.url`是否吻合就可以了，对于带参数的url需要使用通配符，这里需要根据项目需求前后端协商一致，约定好通配符格式后，拦截器中要先将带参数的url处理成约定格式，再判断权限，方案中已经实现了以下两种通配符格式：
+普通请求的判断很容易，遍历后端返回的的资源权限格式，直接判断`request.method`和`request.url`是否吻合就可以了，对于带参数的 url 需要使用通配符，这里需要根据项目需求前后端协商一致，约定好通配符格式后，拦截器中要先将带参数的 url 处理成约定格式，再判断权限，方案中已经实现了以下两种通配符格式：
 
 ```bash
 1. 格式：/resources/:id
    示例：/resources/1
    url: /resources/**
    解释：一个名词后跟一个参数，参数通常表示名词的id
-   
+
 2. 格式：/store/:id/member
    示例：/store/1/member
    url：/store/*/member
@@ -248,7 +256,7 @@ Vue.directive('has', {
 
 ```
 
-对于第一种格式需要注意的是，如果你要发起一个url为`"/aaa/bbb"`的请求，默认会被处理成`"/aaa/**"`进行权限校验，如果这里的”bbb”并不是参数而是url的一部分，那么你需要将url改成`"/aaa/bbb/"`，在最后加一个”/“表示该url不需要转化格式。
+对于第一种格式需要注意的是，如果你要发起一个 url 为`"/aaa/bbb"`的请求，默认会被处理成`"/aaa/**"`进行权限校验，如果这里的”bbb”并不是参数而是 url 的一部分，那么你需要将 url 改成`"/aaa/bbb/"`，在最后加一个”/“表示该 url 不需要转化格式。
 
 拦截器的具体实现见`App.vue`中的`setInterceptor()`方法。
 
@@ -258,11 +266,11 @@ Vue.directive('has', {
 
 ### [](#演示说明： "演示说明：")演示说明：
 
-DEMO项目中演示了动态菜单、动态路由、按钮权限、请求拦截。
+DEMO 项目中演示了动态菜单、动态路由、按钮权限、请求拦截。
 
-演示项目后端由[rap2](http://rap2.taobao.org/)生成mock数据，登录请求通常应该是POST方式，但因为rap2的编程模式无法获取到非GET的请求参数，因此只能用GET方式登录，实际项目中不建议仿效；
+演示项目后端由[rap2](http://rap2.taobao.org/)生成 mock 数据，登录请求通常应该是 POST 方式，但因为 rap2 的编程模式无法获取到非 GET 的请求参数，因此只能用 GET 方式登录，实际项目中不建议仿效；
 
-另外登录后获取权限的接口本来不需要携带额外参数，后端可以根据请求头携带的token信息实现用户鉴权，但因为rap2的编程模式获取不到headers数据，因此只能增加一个”Authorization”参数用于生成模拟数据。
+另外登录后获取权限的接口本来不需要携带额外参数，后端可以根据请求头携带的 token 信息实现用户鉴权，但因为 rap2 的编程模式获取不到 headers 数据，因此只能增加一个”Authorization”参数用于生成模拟数据。
 
 ### [](#测试账号 "测试账号:")测试账号:
 
