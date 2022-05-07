@@ -134,11 +134,11 @@ comments: false
           alt="weapp-plugin-dashboard preview">
         <h3>weapp-plugin-dashboard</h3><span class="desc">微信小程序动态指针仪表盘组件。</span>
       </a></li>
-    <li><a href="http://flow-ui.refined-x.com/" title="Flow-UI" target="_blank"><img
+    <li><a href="http://https://flow-ui.github.io//" title="Flow-UI" target="_blank"><img
           src="https://refined-x.com/asset/flow-ui-logo.jpg" alt="Flow-UI logo">
         <h3>Flow-UI</h3><span class="desc">Flow-UI 可能是jQuery技术栈中定制性最强，加载性能最优的UI框架，基于Seajs/jQuery构建。</span>
       </a></li>
-    <li><a href="http://flow-ui.refined-x.com/Flow-CLI/" title="Flow-CLI" target="_blank"><img
+    <li><a href="http://https://flow-ui.github.io//Flow-CLI/" title="Flow-CLI" target="_blank"><img
           src="https://refined-x.com/asset/flow-cli-logo.jpg" alt="Flow-CLI logo">
         <h3>Flow-CLI</h3><span class="desc">基于Nodejs/Gulp的前端自动化工具，Flow-UI专用。</span>
       </a></li>
