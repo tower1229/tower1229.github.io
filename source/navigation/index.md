@@ -67,18 +67,18 @@ comments: false
 
 前端资源一站式导航，内容涵盖前端学习网站、前端博客网站、前端开发小工具、日常资料查询等，前端工程师的居家旅行生活必备。
 
-## 前端工具
+## 前端工具箱
 
 <ul class="nav-list">
     <li> <a href="https://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="nofollow"
-            title="在线字体格式转换工具。">
+            title="字体格式在线转换">
             <h3><i class="fa fa-terminal"></i>字体格式在线转换</h3> <span class="desc">在线字体格式转换工具。</span>
         </a> </li>
     <li> <a href="https://everythingfonts.com/ttf-to-woff#.UkVW4dJy2uk" target="_blank" rel="nofollow"
-            title="TTF字体在线转成其他格式。">
+            title="TTF字体在线转换">
             <h3><i class="fa fa-terminal"></i>TTF字体在线转换</h3> <span class="desc">TTF字体在线转成其他格式。</span>
         </a> </li>
-    <li> <a href="https://www.colorzilla.com/gradient-editor/" target="_blank" rel="nofollow" title="便捷生成CSS3渐变背景色。">
+    <li> <a href="https://www.colorzilla.com/gradient-editor/" target="_blank" rel="nofollow" title="便CSS3渐变生成工具">
             <h3><i class="fa fa-terminal"></i>CSS3渐变生成工具</h3> <span class="desc">便捷生成CSS3渐变背景色。</span>
         </a> </li>
     <li> <a href="https://www.jb51.net/tools/zhuanhuan.htm" target="_blank" rel="nofollow"
@@ -92,28 +92,47 @@ comments: false
     <li> <a href="https://icons8.com/cssload" target="_blank" rel="nofollow" title="在线生成CSS加载动画工具">
             <h3><i class="fa fa-terminal"></i>CSS生成加载动画</h3> <span class="desc">在线生成CSS加载动画工具</span>
         </a> </li>
-    <li> <a href="https://shields.io/?qqdrsign=05ebe" target="_blank" rel="nofollow" title="在线生成各种项目徽标，管理开源项目必备">
+    <li> <a href="https://shields.io/?qqdrsign=05ebe" target="_blank" rel="nofollow" title="Markdown徽标生成">
             <h3><i class="fa fa-terminal"></i>Markdown徽标生成</h3> <span class="desc">在线生成各种项目徽标，管理开源项目必备</span>
         </a> </li>
-    <li> <a href="chrome://inspect/#devices" target="_blank" rel="nofollow" title="Chrome内置远程设备调试工具地址">
+    <li> <a href="chrome://inspect/#devices" target="_blank" rel="nofollow" title="Chrome远程设备调试工具">
             <h3><i class="fa fa-terminal"></i>Chrome远程设备调试工具</h3> <span class="desc">Chrome内置远程设备调试工具地址</span>
         </a> </li>
     <li> <a href="https://www.webfx.com/tools/emoji-cheat-sheet/" target="_blank" rel="nofollow"
-            title="在线查询emoji图标代码，markdown文档必备">
+            title="emoji图标代码速查">
             <h3><i class="fa fa-terminal"></i>emoji图标代码速查</h3> <span class="desc">在线查询emoji图标代码，markdown文档必备</span>
         </a> </li>
-    <li> <a href="https://cloudconvert.com/webp-converter" target="_blank" rel="nofollow" title="webp图片格式在线互转工具">
+    <li> <a href="https://cloudconvert.com/webp-converter" target="_blank" rel="nofollow" title="webp图片格式转换">
             <h3><i class="fa fa-terminal"></i>webp图片格式转换</h3> <span class="desc">webp图片格式在线互转工具</span>
         </a> </li>
-    <li> <a href="https://carbon.now.sh/" target="_blank" rel="nofollow" title="在线美化代码并支持图片导出">
+    <li> <a href="https://tinypng.com/" target="_blank" rel="nofollow" title="在线图片压缩">
+            <h3><i class="fa fa-terminal"></i>在线图片压缩</h3> <span class="desc">支持 WebP,PNG,JPEG</span>
+        </a> </li>
+    <li> <a href="https://carbon.now.sh/" target="_blank" rel="nofollow" title="代码美化工具">
             <h3><i class="fa fa-terminal"></i>代码美化工具</h3> <span class="desc">在线美化代码并支持图片导出</span>
         </a> </li>
-    <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="PDF文档在线转成其他常见文档格式">
+    <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="PDF文档转换">
             <h3><i class="fa fa-terminal"></i>PDF文档转换</h3> <span class="desc">PDF文档在线转成其他常见文档格式</span>
         </a> </li>
-    <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="网站网速测试，网站速度检测，网站Ping检测">
+    <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="卡卡网在线ping工具">
             <h3><i class="fa fa-terminal"></i>卡卡网在线ping工具</h3> <span class="desc">网站网速测试，网站速度检测，网站Ping检测</span>
         </a> </li>
+    <li> <a href="https://vincentgarreau.com/particles.js/" target="_blank" rel="nofollow" title="粒子效果生成器">
+            <h3><i class="fa fa-terminal"></i>粒子效果生成器</h3> <span class="desc">可视化配置，一键生成配置文件，配套 sdk</span>
+        </a> </li>
+    <li> <a href="https://hype4.academy/tools/glassmorphism-generator" target="_blank" rel="nofollow" title="毛玻璃 CSS 生成器">
+            <h3><i class="fa fa-terminal"></i>毛玻璃 CSS 生成器</h3> <span class="desc">可视化配置，一键复制</span>
+        </a> </li>
+    <li> <a href="https://jnkkkk.github.io/MoreToggles.css/" target="_blank" rel="nofollow" title="各种 Witch 开关样式">
+            <h3><i class="fa fa-terminal"></i>各种 Witch 开关</h3> <span class="desc">纯 CSS 实现，引用成本低</span>
+        </a> </li>
+    <li> <a href="https://github.com/jh3y/meanderer" target="_blank" rel="nofollow" title="创建响应式 CSS_Motion 的微型库">
+            <h3><i class="fa fa-terminal"></i>响应式 CSS_Motion</h3> <span class="desc">创建响应式 CSS_Motion 的微型库</span>
+        </a> </li>
+    <li> <a href="https://svgsilh.com/zh/" target="_blank" rel="nofollow" title="免费的 SVG 图像和图标">
+            <h3><i class="fa fa-terminal"></i>免费 SVG </h3> <span class="desc">所有内容均在 Creative Commons CC0 下发布</span>
+        </a> </li>
+    
 </ul>
 
 ## 前端资源
