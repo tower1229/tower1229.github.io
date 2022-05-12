@@ -147,6 +147,10 @@ comments: false
 
 ## 代码随笔
 
+- [videojs 视频源切换插件](https://github.com/tower1229/videojs-plugin-source-switcher)
+
+> **videojs-plugin-source-switcher**: 集成界面 UI 的视频源切换，实现清晰度选择、剧集选择等。[项目预览](http://refined-x.com/videojs-plugin-source-switcher/)
+
 - [videojs 视频打点插件](https://github.com/tower1229/videojs-plugin-marker)
 
 > **videojs-plugin-marker**: 视频打点，支持动态更新，支持点击事件。[项目预览](http://refined-x.com/videojs-plugin-marker/)

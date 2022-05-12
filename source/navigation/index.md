@@ -74,10 +74,6 @@ comments: false
             title="字体格式在线转换">
             <h3><i class="fa fa-terminal"></i>字体格式在线转换</h3> <span class="desc">在线字体格式转换工具。</span>
         </a> </li>
-    <li> <a href="https://everythingfonts.com/ttf-to-woff#.UkVW4dJy2uk" target="_blank" rel="nofollow"
-            title="TTF字体在线转换">
-            <h3><i class="fa fa-terminal"></i>TTF字体在线转换</h3> <span class="desc">TTF字体在线转成其他格式。</span>
-        </a> </li>
     <li> <a href="https://www.colorzilla.com/gradient-editor/" target="_blank" rel="nofollow" title="便CSS3渐变生成工具">
             <h3><i class="fa fa-terminal"></i>CSS3渐变生成工具</h3> <span class="desc">便捷生成CSS3渐变背景色。</span>
         </a> </li>
@@ -85,9 +81,6 @@ comments: false
             title="简单的数值计算、简繁体汉字转换、escape编解码、HTML编解码等">
             <h3><i class="fa fa-terminal"></i>HTML字符串处理工具</h3> <span
                 class="desc">简单的数值计算、简繁体汉字转换、escape编解码、HTML编解码等</span>
-        </a> </li>
-    <li> <a href="https://caniuse.com/" target="_blank" rel="nofollow" title="WebApi兼容性在线速查">
-            <h3><i class="fa fa-terminal"></i>Can I Use</h3> <span class="desc">WebApi兼容性在线速查</span>
         </a> </li>
     <li> <a href="https://icons8.com/cssload" target="_blank" rel="nofollow" title="在线生成CSS加载动画工具">
             <h3><i class="fa fa-terminal"></i>CSS生成加载动画</h3> <span class="desc">在线生成CSS加载动画工具</span>
