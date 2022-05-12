@@ -125,7 +125,9 @@ comments: false
     <li> <a href="https://svgsilh.com/zh/" target="_blank" rel="nofollow" title="免费的 SVG 图像和图标">
             <h3><i class="fa fa-terminal"></i>免费 SVG </h3> <span class="desc">所有内容均在 Creative Commons CC0 下发布</span>
         </a> </li>
-    
+    <li> <a href="https://lottiefiles.com/search?q=celebrate&category=animations" target="_blank" rel="nofollow" title="lottie 动画库">
+            <h3><i class="fa fa-terminal"></i>lottie 动画库 </h3> <span class="desc">免费 lottie 动画库</span>
+        </a> </li>
 </ul>
 
 ## 前端资源
