@@ -128,6 +128,10 @@ comments: false
     <li> <a href="https://lottiefiles.com/search?q=celebrate&category=animations" target="_blank" rel="nofollow" title="lottie 动画库">
             <h3><i class="fa fa-terminal"></i>lottie 动画库 </h3> <span class="desc">免费 lottie 动画库</span>
         </a> </li>
+    <li> <a href="https://any86.github.io/any-rule/" target="_blank" rel="nofollow" title="正则大全">
+            <h3><i class="fa fa-terminal"></i>正则大全 </h3> <span class="desc">常用正则，支持搜索</span>
+        </a> </li>
+        
 </ul>
 
 ## 前端资源
