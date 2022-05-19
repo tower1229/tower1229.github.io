@@ -107,9 +107,6 @@ comments: false
     <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="PDF文档转换">
             <h3><i class="fa fa-terminal"></i>PDF文档转换</h3> <span class="desc">PDF文档在线转成其他常见文档格式</span>
         </a> </li>
-    <li> <a href="https://easypdf.com/cn" target="_blank" rel="nofollow" title="卡卡网在线ping工具">
-            <h3><i class="fa fa-terminal"></i>卡卡网在线ping工具</h3> <span class="desc">网站网速测试，网站速度检测，网站Ping检测</span>
-        </a> </li>
     <li> <a href="https://vincentgarreau.com/particles.js/" target="_blank" rel="nofollow" title="粒子效果生成器">
             <h3><i class="fa fa-terminal"></i>粒子效果生成器</h3> <span class="desc">可视化配置，一键生成配置文件，配套 sdk</span>
         </a> </li>
@@ -131,7 +128,9 @@ comments: false
     <li> <a href="https://any86.github.io/any-rule/" target="_blank" rel="nofollow" title="正则大全">
             <h3><i class="fa fa-terminal"></i>正则大全 </h3> <span class="desc">常用正则，支持搜索</span>
         </a> </li>
-        
+    <li> <a href="https://xuanfengge.com/easeing/ceaser/" target="_blank" rel="nofollow" title="动画函数生成">
+            <h3><i class="fa fa-terminal"></i>动画函数生成 </h3> <span class="desc">动画缓动函数预览及生成</span>
+        </a> </li>
 </ul>
 
 ## 前端资源
@@ -213,6 +212,10 @@ comments: false
     <li><a href="https://frontend-weekly.com/" target="_blank" rel="nofollow" title="前端周刊，给前端同学准备的每周1小时阅读清单">
             <h3><i class="fa fa-battery-half"></i>前端周刊</h3><span class="desc">前端周刊，给前端同学准备的每周1小时阅读清单</span>
         </a></li>
+    <li><a href="https://leetcode.cn/problemset/algorithms/" target="_blank" rel="nofollow" title="leetcode 中文版">
+            <h3><i class="fa fa-battery-half"></i>leetcode 中文版</h3><span class="desc">前端算法题库</span>
+        </a></li>
+        
 </ul>
 
 ## 前端社区
