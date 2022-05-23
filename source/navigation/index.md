@@ -161,6 +161,11 @@ comments: false
             title="高德地图Geojson、SVG、JSON数据导出">
             <h3><i class="fa fa-bolt"></i>Datav地图数据导出</h3> <span class="desc">高德地图Geojson、SVG、JSON数据导出</span>
         </a> </li>
+    <li> <a href="https://www.jsdelivr.com/" target="_blank" rel="nofollow"
+            title="jsDelivr - 各大前端开源库代码CDN">
+            <h3><i class="fa fa-bolt"></i>jsDelivr - 各大前端开源库代码CDN</h3> <span class="desc">各大前端开源库代码CDN</span>
+        </a> </li>
+    
 </ul>
 
 ## 前端文档
