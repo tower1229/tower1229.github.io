@@ -26,7 +26,7 @@ comments: false
 
 3. 精通 jQuery 技术栈及开发生态；自研基于 jQuery 的开源 UI 框架**FlowUI**，应用于 500+前端项目。
 
-> [项目地址](https://https://flow-ui.github.io/)
+> [项目地址](https://flow-ui.github.io/)
 
 > 自研配套 Nodejs 自动化开发工具**FlowCLI**
 
