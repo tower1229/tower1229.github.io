@@ -165,6 +165,10 @@ comments: false
             title="jsDelivr - 各大前端开源库代码CDN">
             <h3><i class="fa fa-bolt"></i>jsDelivr - 各大前端开源库代码CDN</h3> <span class="desc">各大前端开源库代码CDN</span>
         </a> </li>
+    <li> <a href="https://www.springin.org/sound-stock/" target="_blank" rel="nofollow"
+            title="Sound Stock-免费声音素材">
+            <h3><i class="fa fa-bolt"></i>免费声音素材</h3> <span class="desc">Sound Stock-免费声音素材</span>
+        </a> </li>
     
 </ul>
 
