@@ -54,7 +54,7 @@ comments: false
 
 > ……
 
-6. 其他掌握的非主力开发能力：Nodejs、Flutter、Electronjs、小程序等。
+6. 其他掌握的非主力开发能力：小程序、React、Nodejs、Electronjs 等。
 
 ### [](#管理经验 "管理经验")管理经验
 
