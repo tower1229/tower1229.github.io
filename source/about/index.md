@@ -61,6 +61,13 @@ comments: false
 
 ### [](#职业经历 "职业经历")职业经历
 
+#### 2022.9 - 今 WEB3 创业项目 核心工程师
+
+- 独立完成官网项目重构，采用 vue3 + typescript + monorepo 技术栈
+- 重点参与 web 3 创投平台项目重构，采用 vue3 + typescript + monorepo + etherjs 技术栈
+- 独立完成数字货币金融分析平台，采用 vue3 + typescript + monorepo + etherjs 技术栈
+- 独立完成数字货币跨链聚合交易平台，采用 vue3 + typescript + monorepo + etherjs + walletconnect 技术栈
+
 #### 2019.10 - 2022-9 小型 ToG 网络公司（30 人） 部门负责人
 
 - 负责前端和移动端开发团队，以及公司所有产品线的研发管理。
