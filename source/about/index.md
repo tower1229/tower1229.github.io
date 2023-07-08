@@ -63,10 +63,9 @@ comments: false
 
 #### 2022.9 - 今 WEB3 创业项目 核心工程师
 
-- 独立完成官网项目重构，采用 vue3 + typescript + monorepo 技术栈
-- 重点参与 web 3 创投平台项目重构，采用 vue3 + typescript + monorepo + etherjs 技术栈
-- 独立完成数字货币金融分析平台，采用 vue3 + typescript + monorepo + etherjs 技术栈
-- 独立完成数字货币跨链聚合交易平台，采用 vue3 + typescript + monorepo + etherjs + walletconnect 技术栈
+- 独立完成 [WEB3 创投平台](https://welaunch.work/)前端项目重构，采用 Vue3 + Typescript + monorepo + etherjs 技术栈
+- 独立完成 [去中心化交易所集成数据平台](https://wechart.io/)前端，采用 Nuxt3 + Typescript + etherjs 技术栈
+- 独立完成 [DEFI 交易所](https://wedex.finance/)，采用 Vue3 + Typescript + monorepo + etherjs + walletconnect 技术栈
 
 #### 2019.10 - 2022-9 小型 ToG 网络公司（30 人） 部门负责人
 
