@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端检测修复IOS拍照旋转问题">
+<meta property="og:url" content="https://refined-x.com/2019/01/09/%E5%89%8D%E7%AB%AF%E6%A3%80%E6%B5%8B%E4%BF%AE%E5%A4%8DIOS%E6%8B%8D%E7%85%A7%E6%97%8B%E8%BD%AC%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-09T06:38:48.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.466Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2019/01/09/%E5%89%8D%E7%AB%AF%E6%A3%80%E6%B5%8B%E4%BF%AE%E5%A4%8DIOS%E6%8B%8D%E7%85%A7%E6%97%8B%E8%BD%AC%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端检测修复IOS拍照旋转问题 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2019/01/09/%E5%89%8D%E7%AB%AF%E6%A3%80%E6%B5%8B%E4%BF%AE%E5%A4%8DIOS%E6%8B%8D%E7%85%A7%E6%97%8B%E8%BD%AC%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端检测修复IOS拍照旋转问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-09 14:38:48" itemprop="dateCreated datePublished" datetime="2019-01-09T14:38:48+08:00">2019-01-09</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>苹果手机竖向拍照会为照片添加左旋90度的拍照方向，导致在网页中展示异常。前端解决这个问题需要提取图片的exif信息，并检测照片的拍照方向orientation，再通过canvas绘制图片并纠正旋转方向，最后输出图片的base64。</p>
+<span id="more"></span>
+
+<p>WEB前端环境可能在两种情况下遇到IOS拍照旋转问题，一是网页中通过<code>input:type=file</code>控件捕获照片文件并实时预览，二是网页中显示未经处理的苹果手机拍摄图片。</p>
+<p>**<a target="_blank" rel="noopener" href="https://github.com/tower1229/ios-photo-repair">ios-photo-repair</a>**是一个专门修复IOS照片旋转问题的前端工具，提供两个方法分别应对上述两种应用场景。</p>
+<h2 id="安装ios-photo-repair"><a href="#安装ios-photo-repair" class="headerlink" title="安装ios-photo-repair"></a><a href="#%E5%AE%89%E8%A3%85ios-photo-repair" title="安装ios-photo-repair"></a>安装ios-photo-repair</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i ios-photo-repair --save</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用ios-photo-repair"><a href="#使用ios-photo-repair" class="headerlink" title="使用ios-photo-repair"></a><a href="#%E4%BD%BF%E7%94%A8ios-photo-repair" title="使用ios-photo-repair"></a>使用ios-photo-repair</h2><h3 id="修复file文件"><a href="#修复file文件" class="headerlink" title="修复file文件"></a><a href="#%E4%BF%AE%E5%A4%8Dfile%E6%96%87%E4%BB%B6" title="修复file文件"></a>修复file文件</h3><p><code>fixImgFile(file, [compressOption])</code>方法接收file对象和可选的压缩配置为参数，返回promise，完成后输出修复后的图片base64。如果想顺便压缩一下，还可以传入压缩配置。输出图片统一为jpeg格式，因为只有jpeg和webp格式支持压缩比设置。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fileinput&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;fixImgFile&#125; = <span class="built_in">require</span>(<span class="string">&quot;ios-photo-repair&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;fileinput&#x27;</span>).onchange = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> file = evt.target.files[<span class="number">0</span>]</span><br><span class="line">    fixImgFile(file, &#123;</span><br><span class="line">        <span class="attr">width</span>:<span class="number">500</span>,          <span class="comment">//最大宽度，默认不限制</span></span><br><span class="line">        <span class="attr">height</span>:<span class="number">500</span>,         <span class="comment">//最大高度，默认不限制</span></span><br><span class="line">        <span class="attr">ratio</span>: <span class="number">0.9</span>          <span class="comment">//压缩比，默认不压缩</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">base64</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(base64) <span class="comment">// 修复并压缩后的图片base64</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修复图片标签"><a href="#修复图片标签" class="headerlink" title="修复图片标签"></a><a href="#%E4%BF%AE%E5%A4%8D%E5%9B%BE%E7%89%87%E6%A0%87%E7%AD%BE" title="修复图片标签"></a>修复图片标签</h3><p><code>fixBySelector()</code>方法接收一个DOM选择器字符串为参数，用于<code>document.querySelectorAll()</code>方法获取待修复的图片元素节点，当检测到图片方向发生旋转将自动纠正并重载图片。因为<code>&lt;img&gt;</code>元素本来就已经载入到了网页中，因此没有压缩的必要，所以该方法不支持压缩配置。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./img/ios-1.jpg&quot;</span> <span class="attr">id</span>=<span class="string">&quot;iosphoto&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;fixBySelector&#125; = <span class="built_in">require</span>(<span class="string">&quot;ios-photo-repair&quot;</span>)</span><br><span class="line"></span><br><span class="line">fixBySelector(<span class="string">&#x27;#iosphoto&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目信息"><a href="#项目信息" class="headerlink" title="项目信息"></a><a href="#%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF" title="项目信息"></a>项目信息</h2><p>repo: <a target="_blank" rel="noopener" href="https://github.com/tower1229/ios-photo-repair">https://github.com/tower1229/ios-photo-repair</a></p>
+<h2 id="附：parceljs使用体验"><a href="#附：parceljs使用体验" class="headerlink" title="附：parceljs使用体验"></a><a href="#%E9%99%84%EF%BC%9Aparceljs%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C" title="附：parceljs使用体验"></a>附：parceljs使用体验</h2><p>这个项目使用<a target="_blank" rel="noopener" href="https://parceljs.org/">parceljs</a>构建，第一次使用体验特别轻便，文档寥寥几页，但必要的功能一点不少，与webpack最大的区别是parceljs只关注加载和构建，资源处理都交给第三方工具去做，所以小项目起步的配置压力没有webpack那么大，做个类库之类的项目再适合不过了。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/01/09/%E5%89%8D%E7%AB%AF%E6%A3%80%E6%B5%8B%E4%BF%AE%E5%A4%8DIOS%E6%8B%8D%E7%85%A7%E6%97%8B%E8%BD%AC%E9%97%AE%E9%A2%98/">https://refined-x.com/2019/01/09/前端检测修复IOS拍照旋转问题/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/12/04/Vue%20CLI%203%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%85%8D%E7%BD%AE/" rel="prev" title="Vue CLI 3 浏览器兼容性配置">
+      <i class="fa fa-chevron-left"></i> Vue CLI 3 浏览器兼容性配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/22/2018%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%9A%84%E8%80%8C%E7%AB%8B%E4%B9%8B%E5%B9%B4/" rel="next" title="2018年度总结，一个技术人的而立之年">
+      2018年度总结，一个技术人的而立之年 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ios-photo-repair"><span class="nav-number">1.</span> <span class="nav-text">安装ios-photo-repair</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ios-photo-repair"><span class="nav-number">2.</span> <span class="nav-text">使用ios-photo-repair</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8Dfile%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">修复file文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E5%9B%BE%E7%89%87%E6%A0%87%E7%AD%BE"><span class="nav-number">2.2.</span> <span class="nav-text">修复图片标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">3.</span> <span class="nav-text">项目信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%EF%BC%9Aparceljs%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C"><span class="nav-number">4.</span> <span class="nav-text">附：parceljs使用体验</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

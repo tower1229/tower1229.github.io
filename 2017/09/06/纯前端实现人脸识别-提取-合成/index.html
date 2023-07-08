@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近火爆朋友圈的军装照H5大家一定还记忆犹新，其原理是先提取出照片中的面部，然后与模板进行合成，官方的合成处理据说由天天P图提供技术支持，后端合成后返回给前端展示，形式很新颖效果也非常好，整个流程涉及的人脸识别和图像合成两项核心技术在前端都有对应的解决方案，因此理论上前端也可以完成人脸识别-提取-合成整个流程，实现纯前端的军装照H5效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纯前端实现人脸识别-提取-合成">
+<meta property="og:url" content="https://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="最近火爆朋友圈的军装照H5大家一定还记忆犹新，其原理是先提取出照片中的面部，然后与模板进行合成，官方的合成处理据说由天天P图提供技术支持，后端合成后返回给前端展示，形式很新颖效果也非常好，整个流程涉及的人脸识别和图像合成两项核心技术在前端都有对应的解决方案，因此理论上前端也可以完成人脸识别-提取-合成整个流程，实现纯前端的军装照H5效果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-06T08:26:42.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.473Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="前端博客,前端技术,技术博客,前端简历,前端作品,前端导航,前端路上,雅X共赏">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>纯前端实现人脸识别-提取-合成 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          纯前端实现人脸识别-提取-合成
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-06 16:26:42" itemprop="dateCreated datePublished" datetime="2017-09-06T16:26:42+08:00">2017-09-06</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近火爆朋友圈的军装照H5大家一定还记忆犹新，其原理是先提取出照片中的面部，然后与模板进行合成，官方的合成处理据说由<em>天天P图</em>提供技术支持，后端合成后返回给前端展示，形式很新颖效果也非常好，整个流程涉及的人脸识别和图像合成两项核心技术在前端都有对应的解决方案，因此理论上前端也可以完成人脸识别-提取-合成整个流程，实现纯前端的军装照H5效果。</p>
+<span id="more"></span>
+
+<h2 id="前端人脸识别"><a href="#前端人脸识别" class="headerlink" title="前端人脸识别"></a><a href="#%E5%89%8D%E7%AB%AF%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB" title="前端人脸识别"></a>前端人脸识别</h2><p>首先需要的是人脸识别，这个一听就觉得高大上的东西原理并不深奥，无非是用人的面部特征规则对图像进行匹配和识别，这项工作前端虽然可以实现，但前端实现基本就只能依据内置规则库进行匹配，这个库的质量就决定了识别质量，而通常更成熟的方案是引入机器学习，让程序不断自我修正和提高，进一步提高识别率，机器学习的前端库倒是也有，但把这两者结合起来的还没发现，因此对前端人脸识别的准确率不要报太高期望。</p>
+<p>现有的前端人脸识别库不算多，这里我们选择的是效果相对好点的<a target="_blank" rel="noopener" href="https://trackingjs.com/">trackingjs</a>，这个类库功能非常强大，库如其名，它可以完成各种追踪类的图像处理任务，人脸识别只是其众多功能之一，而且通过选配插件，还可以精确识别眼睛、鼻子等五官的位置，貌似稍微折腾一下也可以实现<em>美图秀秀</em>的效果。</p>
+<p>这里我们只用<code>trackingjs</code>实现面部识别，初始化一个面部识别任务的代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例化</span></span><br><span class="line"><span class="keyword">var</span> tracker = <span class="keyword">new</span> tracking.ObjectTracker([<span class="string">&#x27;face&#x27;</span>]);</span><br><span class="line"><span class="comment">//识别回调</span></span><br><span class="line">tracker.on(<span class="string">&#x27;track&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!event.data.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">console</span>.log(<span class="string">&#x27;画面中没有人脸&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    event.data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">rect, i</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(rect);<span class="comment">//单个面部数据</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//配置参数</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这样一个面部识别任务就初始化完成了，调用方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tracking.track(<span class="string">&#x27;#img&#x27;</span>, tracker);</span><br><span class="line"><span class="comment">//其中&#x27;#img&#x27;参数是目标图像的选择器</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在识别回调中<code>event.data</code>就是数组格式的面部数据，如果长度为0则表示图像中没有人脸或者识别失败，如果识别成功，单个面部数据的格式如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    x: number,          <span class="comment">//面部位于原图x轴方向位置</span></span><br><span class="line">    y: nuber,           <span class="comment">//面部位于原图y轴方向位置</span></span><br><span class="line">    width:number,       <span class="comment">//面部区域宽度</span></span><br><span class="line">    height:nubmer       <span class="comment">//面部区域高度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了这个面部数据就可以很容易的将该区域从原图中提取出来，前端当然就用<code>canvas</code>啦，示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.getElementById(<span class="string">&quot;img&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> faceCtx = <span class="built_in">document</span>.getElementById(<span class="string">&quot;mycanvas&quot;</span>).getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> theFace = ...; <span class="comment">//假设我们识别到了theFace</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用drawImage()方法将面部绘制出来</span></span><br><span class="line">faceCtx.drawImage(img, theFace.x, theFace.y, theFace.width, theFace.height, <span class="number">0</span>, <span class="number">0</span>, theFace.width, theFace.height);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>到这里我们已经实现了面部识别 + 提取，而且代码量也没多少，其实这里面有个小坑要在实践中才会发现，那就是<code>trackingjs</code>的配置，文档中能找到4个跟识别有关的配置，分别是：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setClassifiers(classifiers)</span><br><span class="line">setEdgesDensity(edgesDensity)</span><br><span class="line">setScaleFactor(scaleFactor)</span><br><span class="line">setStepSize(stepSize)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看不懂吧，我也看不懂，而且文档中对他们没有任何有用的说明，在测试中我只使用了后两个配置，翻译过来分别是”比例因子”和”步长”，经过枯燥的人肉测试发现，这两个参数的有效取值范围分别在<code>1 - 2</code>和<code>1.1 - 2</code>，其中<code>setStepSize</code>不能为<code>1</code>，否则会浏览器会卡死，所以从1.1开始取值，取值超过2也可以，但识别成功的概率就很低了。通过调整这两个参数绝大多数图像都可以成功识别，唯独对面部大特写很难识别，这可能需要配合另外两个参数吧，我实在没耐心继续人肉测试下去了，感兴趣的自己回去玩吧。</p>
+<h2 id="前端图像处理"><a href="#前端图像处理" class="headerlink" title="前端图像处理"></a><a href="#%E5%89%8D%E7%AB%AF%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86" title="前端图像处理"></a>前端图像处理</h2><p>经过上一步的识别+提取我们已经得到了面部图像，要实现合成军装照效果我们还需要对面部图像进行处理，使色调与模板一致，将来才能毫无违和感的融合在一起，具体到军装照这个例子我们需要将面部重新着色，并达到”做旧”的老照片效果，如果用PS想必大家都会，但在前端怎么实现呢？</p>
+<p>这里我们需要借助腾讯前端团队出品的<a target="_blank" rel="noopener" href="http://alloyteam.github.io/AlloyImage/">AlloyImage</a>，这是一个堪称<em>前端PS</em>的前端图像处理类库，比如要实现上述效果，我们只需要这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> faceImg = <span class="built_in">document</span>.getElementById(<span class="string">&quot;theFace&quot;</span>);</span><br><span class="line">faceImg.loadOnce(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    AlloyImage(<span class="built_in">this</span>).act(<span class="string">&quot;灰度处理&quot;</span>).add(</span><br><span class="line">        AlloyImage(<span class="built_in">this</span>.width, <span class="built_in">this</span>.height, <span class="string">&quot;#808080&quot;</span>)</span><br><span class="line">        .act(<span class="string">&quot;高斯模糊&quot;</span>, <span class="number">4</span>)</span><br><span class="line">        .act(<span class="string">&quot;色相/饱和度调节&quot;</span>, <span class="number">22</span>, <span class="number">45</span>, <span class="number">0</span>, <span class="literal">true</span>),</span><br><span class="line">        <span class="string">&quot;叠加&quot;</span></span><br><span class="line">    ).replace(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后你就得到了一个做旧的人脸，还是非常简单的，AlloyImage的使用基本可以说是傻瓜化，感兴趣的就自己花个五分钟去看下官方文档吧，这里不再赘述。</p>
+<p>然后就要说一下我们这个图像处理和人家<em>天天P图</em>的差距了，虽然我们得到了理想的色调，但要想把随便一张人脸与特定模板做合成，有两件事必不可少。首先是面部角度矫正，如果模板是正的而你的照片是歪的，直接暴力拼接肯定很违和，所以需要先识别出面部角度，并纠正到指定角度；然后是面部中心定位，因为人脸识别的结果提取出来后不一定是以面部中心为中心的，所以在合成之前要识别出面部中心线，并以此为依据与模板进行定位。然而这些我们都没有，所以我们只能对输入的图像的要求更高，如果输入了嘴歪眼斜的图片，结果就只能尴尬了。</p>
+<p>最后的图片合成部分就更简陋了，先将处理好的面部画到画布指定位置，然后将抠好图的脸部透明png模板铺在上面，完成。实际过程中需要处理一些小问题，比如要根据模板的面部尺寸将面部图像缩放到合适的尺寸；抠模板时要将边缘模糊处理，而且尽量保留模板本来的面部轮廓，只将五官抠掉。即便这样，合成结果还是很容易穿帮，不过纯前端处理也没有更好的办法了。</p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a><a href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA" title="效果展示"></a>效果展示</h2><p>好了，说的再多不如看个例子，示例提供三种图片输入源，分别是本地图片、远程图片、内置示例。其中内置的图片大部分是提前在PS中纠正过角度的，而且内置图片会自动匹配到我事先调校好的参数，不出意外可以直接识别出人脸；如果选择本地图片作为图片源，最好选择头部姿态垂直的正面照，同时参考内置图片的 参数设置调节参数，一次识别不成功很正常，需要多调几次；也可以使用远程图片识别，但因为canvas受到跨域策略影响，远程图片只能识别不能提取和合成。</p>
+<p>示例：<a href="/projects/codes/tracking.html">纯前端军装照合成</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a href="#%E5%90%8E%E8%AE%B0" title="后记"></a>后记</h2><p>最初是抱着好奇的心态开始捣鼓这个项目的，虽然最终的合成效果远远达不到生产要求，但整个示例撸下来后对人脸识别和图片处理技术都有了基本的认识，对canvas操作中一些细节问题的解决也略微补足了一下这方面的知识空白，算略有收获吧。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/">https://refined-x.com/2017/09/06/纯前端实现人脸识别-提取-合成/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" rel="prev" title="用addRoutes实现动态路由">
+      <i class="fa fa-chevron-left"></i> 用addRoutes实现动态路由
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/22/RESTful%E5%AD%A6%E4%B9%A0%E5%8F%8A%E5%BA%94%E7%94%A8/" rel="next" title="RESTful学习及应用">
+      RESTful学习及应用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">前端人脸识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">前端图像处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="nav-number">3.</span> <span class="nav-text">效果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

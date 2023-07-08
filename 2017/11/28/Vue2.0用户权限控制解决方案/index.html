@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Vue-Access-Control是一套基于 Vue&#x2F;Vue-Router&#x2F;axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2.0用户权限控制解决方案">
+<meta property="og:url" content="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="Vue-Access-Control是一套基于 Vue&#x2F;Vue-Router&#x2F;axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-28T02:12:39.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.461Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue2.0用户权限控制解决方案 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue2.0用户权限控制解决方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-28 10:12:39" itemprop="dateCreated datePublished" datetime="2017-11-28T10:12:39+08:00">2017-11-28</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>24k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>22 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="//refined-x.com/Vue-Access-Control/">Vue-Access-Control</a>是一套基于 Vue&#x2F;Vue-Router&#x2F;axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。</p>
+<span id="more"></span>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a href="#%E5%AE%89%E8%A3%85" title="安装"></a>安装</h2><h3 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a><a href="#%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82" title="版本要求"></a>版本要求</h3><ul>
+<li>Vue 2.0x</li>
+<li>Vue-router 3.x</li>
+</ul>
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a><a href="#%E8%8E%B7%E5%8F%96" title="获取"></a>获取</h3><p>项目主页：&#x2F;&#x2F;refined-x.com&#x2F;Vue-Access-Control&#x2F;</p>
+<p>git：<code>git clone https://github.com/tower1229/Vue-Access-Control.git</code></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a><a href="#%E8%BF%90%E8%A1%8C" title="运行"></a>运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//开发</span><br><span class="line">npm run serve</span><br><span class="line"></span><br><span class="line">//构建</span><br><span class="line">npm build</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a><a href="#%E6%A6%82%E8%BF%B0" title="概述"></a>概述</h2><h3 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a><a href="#%E6%95%B4%E4%BD%93%E6%80%9D%E8%B7%AF" title="整体思路"></a>整体思路</h3><p>会话开始之初，先初始化一个只有登录路由的 Vue 实例，在根组件 created 钩子里将路由定向到登录页，用户登录成功后前端拿到用户 token，设置 axios 实例统一为请求 headers 添加<code>&#123;&quot;Authorization&quot;:token&#125;</code>实现用户鉴权，然后获取当前用户的权限数据，主要包括路由权限和资源权限，之后动态添加路由，生成菜单，实现权限指令和全局权限验证方法，并为 axios 实例添加请求拦截器，至此完成权限控制初始化。动态加载路由后，路由组件将随之加载并渲染，而后展现前端界面。</p>
+<p>为解决浏览器刷新路由重置的问题，拿到 token 后要将其保存到<code>sessionStorage</code>，根组件的 created 钩子负责检查本地是否已有 token，如果有则无需登录直接用该 token 获取权限并初始化，如果 token 有效且当前路由有权访问，将加载路由组件并正确展现；若当前路由无权访问将按路由设置跳转 404；如果 token 失效，后端应返回 4xx 状态码，前端统一为 axios 实例添加错误拦截器，遇到 4xx 状态码执行退出操作，清除<code>sessionStorage</code>数据并跳转到登录页，让用户重新登录。</p>
+<h3 id="最小依赖原则"><a href="#最小依赖原则" class="headerlink" title="最小依赖原则"></a><a href="#%E6%9C%80%E5%B0%8F%E4%BE%9D%E8%B5%96%E5%8E%9F%E5%88%99" title="最小依赖原则"></a>最小依赖原则</h3><p>Vue-Access-Control 的定位是单一领域解决方案，除了 Vue&#x2F;Vue-Router&#x2F;axios 之外没有其他依赖，理论上可以无障碍的应用到任何有权限控制需求的 Vue 项目中，项目基于<a target="_blank" rel="noopener" href="https://github.com/vuejs-templates/webpack">webpack</a> 模板开发构建，大多数新项目可以直接基于检出代码继续开发。需要说明的是，项目额外引入的<a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/zh-CN">Element-UI</a>和<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/crypto-js">CryptoJS</a>仅用于开发演示界面，他们不是必须且与权限控制毫无关系，项目应用中可以自行取舍。</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a><a href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84" title="目录结构"></a>目录结构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  |-- api/                  <span class="comment">//接口文件</span></span><br><span class="line">  |     |-- index.js             <span class="comment">//输出通用axios实例</span></span><br><span class="line">  |     |-- account.js           <span class="comment">//按业务模块组织的接口文件，所有接口都引用./index提供的axios实例</span></span><br><span class="line">  |-- assets/</span><br><span class="line">  |-- components/</span><br><span class="line">  |-- router/</span><br><span class="line">  |     |-- fullpath.js         <span class="comment">//完整路由数据，用于匹配用户的路由权限得到实际路由</span></span><br><span class="line">  |     <span class="string">`-- index.js            //输出基础路由实例</span></span><br><span class="line"><span class="string">  |-- views/</span></span><br><span class="line"><span class="string">  |-- App.vue</span></span><br><span class="line"><span class="string">  ·-- main.js</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据格式约定"><a href="#数据格式约定" class="headerlink" title="数据格式约定"></a><a href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E7%BA%A6%E5%AE%9A" title="数据格式约定"></a>数据格式约定</h3><ul>
+<li>路由权限数据必须是如下格式的对象数组，<code>id</code>和<code>parent_id</code>相同的两个路由具有上下级关系，如果希望使用自定义格式的路由数据，需要修改路由控制的相关实现，详见<a href="#%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6"><strong>路由控制</strong></a></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;菜单1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;parent_id&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">&quot;route&quot;</span>: <span class="string">&quot;route1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;菜单1-1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;parent_id&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;route&quot;</span>: <span class="string">&quot;route2&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>资源权限数据必须是如下格式的对象数组，每个对象代表一个 RESTful 请求，支持带参数的 url，具体格式说明见<a href="#%E8%AF%B7%E6%B1%82%E6%8E%A7%E5%88%B6"><strong>请求控制</strong></a></li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;2c9180895e172348015e1740805d000d&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;账号-获取&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;/accounts&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;method&quot;</span>: <span class="string">&quot;GET&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;2c9180895e172348015e1740c30f000e&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;账号-删除&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;/account/**&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;method&quot;</span>: <span class="string">&quot;DELETE&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由控制"><a href="#路由控制" class="headerlink" title="路由控制"></a><a href="#%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6" title="路由控制"></a>路由控制</h2><p>路由控制包括动态注册路由和动态生成菜单两部分。</p>
+<h3 id="动态注册路由"><a href="#动态注册路由" class="headerlink" title="动态注册路由"></a><a href="#%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E8%B7%AF%E7%94%B1" title="动态注册路由"></a>动态注册路由</h3><p>最初实例化的路由仅包括登录和 404 两个路径，我们期待完整的路由是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/login&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;login&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/login.vue&quot;</span>], resolve),</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/404&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;404&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/common/404.vue&quot;</span>], resolve),</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;首页&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/index.vue&quot;</span>], resolve),</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&quot;/route1&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;栏目1&quot;</span>,</span><br><span class="line">        <span class="attr">meta</span>: &#123;</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;icon-channel1&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/view1.vue&quot;</span>], resolve),</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&quot;/route2&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;栏目2&quot;</span>,</span><br><span class="line">        <span class="attr">meta</span>: &#123;</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;ico-channel2&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/view2.vue&quot;</span>], resolve),</span><br><span class="line">        <span class="attr">children</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">path</span>: <span class="string">&quot;child2-1&quot;</span>,</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;子栏目2-1&quot;</span>,</span><br><span class="line">            <span class="attr">meta</span>: &#123;&#125;,</span><br><span class="line">            <span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">&quot;../views/route2-1.vue&quot;</span>], resolve),</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">redirect</span>: <span class="string">&quot;/404&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>那么接下来就需要获取首页以及其子路由们，思路是事先在本地存一份整个项目的完整路由数据，然后根据用户权限对完整路由进行筛选。</p>
+<p>筛选的实现思路是先将后端返回的路由数据处理成如下哈希结构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hashMenus = &#123;</span><br><span class="line">   <span class="string">&quot;/route1&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">   <span class="string">&quot;/route1/route1-1&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">   <span class="string">&quot;/route1/route1-2&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">   <span class="string">&quot;/route2&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后遍历本地完整路由，在循环中将路径拼接成上述结构中的 key 格式，通过<code>hashMenus[route]</code>就可以判断路由是否匹配，具体实现见<code>App.vue</code>文件中的<code>getRoutes()</code>方法。</p>
+<p>如果后端返回的路由权限数据与约定不同，就需要自行实现筛选逻辑，只要能得到实际可用的路由数据就可以，最终使用<code>addRoutes()</code>方法将他们动态添加到路由实例中，注意 404 页面的模糊匹配一定要放在最后。</p>
+<h3 id="动态菜单"><a href="#动态菜单" class="headerlink" title="动态菜单"></a><a href="#%E5%8A%A8%E6%80%81%E8%8F%9C%E5%8D%95" title="动态菜单"></a>动态菜单</h3><p>路由数据可以直接用来生成导航菜单，但路由数据是在根组件中得到的，导航菜单存在于<code>index.vue</code>组件中，显然我们需要通过某种方式共享菜单数据，方法有很多，一般来说首先想到的是 Vuex，但菜单数据在整个用户会话过程中不会发生改变，这并不是 Vuex 的最佳使用场景，而且为了尽量减少不必要的依赖，这里用了最简单直接的方法，把菜单数据挂在根组件<code>data.menuData</code>上，在首页里用<code>this.$parent.menuData</code>获取。</p>
+<p>另外，导航菜单很可能会有添加栏目图标的需求，这可以通过在路由中添加<code>meta</code>数据实现，例如将图标 class 或 unicode 存到路由 meta 里，模板中就可以访问到 meta 数据，用来生成图标标签。</p>
+<p>在多角色系统中可能遇到的一个问题是，不同角色有一个名字相同但功能不同的路由，比如说<em>系统管理员</em>和<em>企业管理员</em>都有”账号管理”这个路由，但他们的操作权限和目标不同，实际上是两个完全不同的界面，而 Vue 不允许多个路由同名，因此路由的 name 必须做区分，但把区分后的 name 显示在前端菜单上会很不美观，为了让不同角色可以享有同一个菜单名称，我们只要将这两个路由的<code>meta.name</code>都设置成”账号管理”，在模板循环时优先使用<code>meta.name</code>就可以了。</p>
+<p>菜单的具体实现可以参考<code>views/index.vue</code>。</p>
+<h2 id="视图控制"><a href="#视图控制" class="headerlink" title="视图控制"></a><a href="#%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6" title="视图控制"></a>视图控制</h2><p>视图控制的目标是根据当前用户权限决定界面元素显示与否，典型场景是对各种操作按钮的显示控制。实现视图控制的本质是实现一个权限验证方法，输入请求权限，输出是否获准。然后配合<code>v-if</code>或<code>jsx</code>或自定义指令就能灵活实现各种视图控制。</p>
+<h3 id="全局验证方法"><a href="#全局验证方法" class="headerlink" title="全局验证方法"></a><a href="#%E5%85%A8%E5%B1%80%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95" title="全局验证方法"></a>全局验证方法</h3><p>验证方法的的实现本身很简单，无非是根据后端给出的资源权限做判断，重点在于优化方法的输入输出，提升易用性，经过实践总结最终使用的方案是，将权限跟请求同时维护，验证方法接收请求对象数组为参数，返回是否具有权限的布尔值。</p>
+<p>请求对象格式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取账户列表</span></span><br><span class="line"><span class="keyword">const</span> request = &#123;</span><br><span class="line">  <span class="attr">p</span>: [<span class="string">&quot;get,/accounts&quot;</span>],</span><br><span class="line">  <span class="attr">r</span>: <span class="function">(<span class="params">params</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> instance.get(<span class="string">`/accounts`</span>, &#123; params &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>权限验证方法<code>$_has()</code>的调用格式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v-<span class="keyword">if</span>=<span class="string">&quot;$_has([request])&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>权限验证方法的具体实现见<code>App.vue</code>中<code>Vue.prototype.$_has</code>方法。</p>
+<p>将权限验证方法全局混入，就可以在项目中很容易的配合<code>v-if</code>实现元素显示控制，这种方式的优点在于灵活，除了可以校验权限外，还可以在判断表达式中加入运行时状态做更多样性的判断，而且可以充分利用<code>v-if</code>响应数据变化的特点，实现动态视图控制。</p>
+<p>具体实现细节参考<a href="//refined-x.com/2017/08/29/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">基于 Vue 实现后台系统权限控制</a>中的相关章节。</p>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4" title="自定义指令"></a>自定义指令</h3><p><code>v-if</code>的响应特性是把双刃剑，因为判断表达式在运行过程中会频繁触发，但实际上在一个用户会话周期内其权限并不会发生变化，因此如果只需要校验权限的话，用<code>v-if</code>会产生大量不必要的运算，这种情况只需在视图载入时校验一次即可，可以通过自定义指令实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//权限指令</span></span><br><span class="line">Vue.directive(<span class="string">&quot;has&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">bind</span>: <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!Vue.prototype.$_has(binding.value)) &#123;</span><br><span class="line">      el.parentNode.removeChild(el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>自定义指令内部仍然是调用全局验证方法，但优点在于只会在元素初始化时执行一次，多数情况下都应该使用自定义指令实现视图控制。</p>
+<h2 id="请求控制"><a href="#请求控制" class="headerlink" title="请求控制"></a><a href="#%E8%AF%B7%E6%B1%82%E6%8E%A7%E5%88%B6" title="请求控制"></a>请求控制</h2><p>请求控制是利用 axios 拦截器实现的，目的是将越权请求在前端拦截掉，原理是在请求拦截器中判断本次请求是否符合用户权限，以决定是否拦截。</p>
+<p>普通请求的判断很容易，遍历后端返回的的资源权限格式，直接判断<code>request.method</code>和<code>request.url</code>是否吻合就可以了，对于带参数的 url 需要使用通配符，这里需要根据项目需求前后端协商一致，约定好通配符格式后，拦截器中要先将带参数的 url 处理成约定格式，再判断权限，方案中已经实现了以下两种通配符格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 格式：/resources/:id</span><br><span class="line">   示例：/resources/1</span><br><span class="line">   url: /resources/**</span><br><span class="line">   解释：一个名词后跟一个参数，参数通常表示名词的id</span><br><span class="line"></span><br><span class="line">2. 格式：/store/:id/member</span><br><span class="line">   示例：/store/1/member</span><br><span class="line">   url：/store/*/member</span><br><span class="line">   解释：两个名词之间夹带一个参数，参数通常表示第一个名词的id</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对于第一种格式需要注意的是，如果你要发起一个 url 为<code>&quot;/aaa/bbb&quot;</code>的请求，默认会被处理成<code>&quot;/aaa/**&quot;</code>进行权限校验，如果这里的”bbb”并不是参数而是 url 的一部分，那么你需要将 url 改成<code>&quot;/aaa/bbb/&quot;</code>，在最后加一个”&#x2F;“表示该 url 不需要转化格式。</p>
+<p>拦截器的具体实现见<code>App.vue</code>中的<code>setInterceptor()</code>方法。</p>
+<p>如果你的项目还需要其他的通配符格式，只需要在拦截器中实现对应的检测和转化方法就可以了。</p>
+<h2 id="演示及说明"><a href="#演示及说明" class="headerlink" title="演示及说明"></a><a href="#%E6%BC%94%E7%A4%BA%E5%8F%8A%E8%AF%B4%E6%98%8E" title="演示及说明"></a>演示及说明</h2><h3 id="演示说明："><a href="#演示说明：" class="headerlink" title="演示说明："></a><a href="#%E6%BC%94%E7%A4%BA%E8%AF%B4%E6%98%8E%EF%BC%9A" title="演示说明："></a>演示说明：</h3><p>DEMO 项目中演示了动态菜单、动态路由、按钮权限、请求拦截。</p>
+<p>演示项目后端由<a target="_blank" rel="noopener" href="http://rap2.taobao.org/">rap2</a>生成 mock 数据，登录请求通常应该是 POST 方式，但因为 rap2 的编程模式无法获取到非 GET 的请求参数，因此只能用 GET 方式登录，实际项目中不建议仿效；</p>
+<p>另外登录后获取权限的接口本来不需要携带额外参数，后端可以根据请求头携带的 token 信息实现用户鉴权，但因为 rap2 的编程模式获取不到 headers 数据，因此只能增加一个”Authorization”参数用于生成模拟数据。</p>
+<h3 id="测试账号"><a href="#测试账号" class="headerlink" title="测试账号:"></a><a href="#%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7" title="测试账号:"></a>测试账号:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. username: root</span><br><span class="line">   password: 任意</span><br><span class="line">2. username: client</span><br><span class="line">   password: 任意</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="演示地址"><a href="#演示地址" class="headerlink" title="演示地址:"></a><a href="#%E6%BC%94%E7%A4%BA%E5%9C%B0%E5%9D%80" title="演示地址:"></a>演示地址:</h3><p><a href="https://refined-x.com/Vue-Access-Control/">https://refined-x.com/Vue-Access-Control/</a></p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">https://refined-x.com/2017/11/28/Vue2.0用户权限控制解决方案/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/16/Vue2.0%E5%BC%80%E5%8F%91%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97/" rel="prev" title="Vue2.0开发风格指南">
+      <i class="fa fa-chevron-left"></i> Vue2.0开发风格指南
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/02/07/%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%83%AD%E6%9B%B4%E6%96%B0%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/" rel="next" title="前端页面热更新实现方案">
+      前端页面热更新实现方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">版本要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96"><span class="nav-number">1.2.</span> <span class="nav-text">获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">整体思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BE%9D%E8%B5%96%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">最小依赖原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E7%BA%A6%E5%AE%9A"><span class="nav-number">2.4.</span> <span class="nav-text">数据格式约定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">路由控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E8%B7%AF%E7%94%B1"><span class="nav-number">3.1.</span> <span class="nav-text">动态注册路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%8F%9C%E5%8D%95"><span class="nav-number">3.2.</span> <span class="nav-text">动态菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">视图控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">全局验证方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">自定义指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%8E%A7%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">请求控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="nav-number">6.</span> <span class="nav-text">演示及说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">演示说明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7"><span class="nav-number">6.2.</span> <span class="nav-text">测试账号:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA%E5%9C%B0%E5%9D%80"><span class="nav-number">6.3.</span> <span class="nav-text">演示地址:</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这个博客是用Hexo构建的，最近换电脑Hexo博文源文件全部丢失了，这才发现像Hexo这种构建工具需要特别注意源文件备份，否则数据风险还挺高的。如果像我一样源文件已然丢失，其实也没有什么好的恢复方法，只能手动再配置一遍主题，再将博文搬运过来。 这个过程非常需要html转markdown工具，比如我用的这个，如果文章数量不太多，其实也花不了太多时间。而且这个重建博客的过程中往往我们会解决很多之前不完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello Hexo Again">
+<meta property="og:url" content="https://refined-x.com/2023/06/04/HelloHexoAgain/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="这个博客是用Hexo构建的，最近换电脑Hexo博文源文件全部丢失了，这才发现像Hexo这种构建工具需要特别注意源文件备份，否则数据风险还挺高的。如果像我一样源文件已然丢失，其实也没有什么好的恢复方法，只能手动再配置一遍主题，再将博文搬运过来。 这个过程非常需要html转markdown工具，比如我用的这个，如果文章数量不太多，其实也花不了太多时间。而且这个重建博客的过程中往往我们会解决很多之前不完">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-04T03:59:47.457Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.457Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2023/06/04/HelloHexoAgain/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hello Hexo Again | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2023/06/04/HelloHexoAgain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hello Hexo Again
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-04 11:59:47" itemprop="dateCreated datePublished" datetime="2023-06-04T11:59:47+08:00">2023-06-04</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这个博客是用Hexo构建的，最近换电脑Hexo博文源文件全部丢失了，这才发现像Hexo这种构建工具需要特别注意源文件备份，否则数据风险还挺高的。如果像我一样源文件已然丢失，其实也没有什么好的恢复方法，只能手动再配置一遍主题，再将博文搬运过来。</p>
+<p>这个过程非常需要html转markdown工具，比如我用的<a target="_blank" rel="noopener" href="https://devtool.tech/html-md">这个</a>，如果文章数量不太多，其实也花不了太多时间。而且这个重建博客的过程中往往我们会解决很多之前不完美而又懒得解决的问题。本文主要记录一下这两天我遇到的问题和解决过程。</p>
+<span id="more"></span>
+
+<h2 id="Hexo博客怎么备份源文件"><a href="#Hexo博客怎么备份源文件" class="headerlink" title="Hexo博客怎么备份源文件"></a>Hexo博客怎么备份源文件</h2><p>Hexo博客默认部署方式会将构建后文件也就是<code>public/</code>文件夹，直接部署到目标仓库的master分支，如果想连源文件一起交由github管理，部署方式需要改成分支部署，比如另建一个<code>page</code>分支用于发布构建后文件，将Hexo的部署配置改为：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/tower1229/tower1229.github.io</span> <span class="comment"># 你的git仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">page</span>  <span class="comment"># 你的GitHubPage发布分支</span></span><br></pre></td></tr></table></figure>
+
+<p>配合github-page在source中选择<code>page</code>分支，就可以实现Hexo博客的分支发布了。此时就可以将博客目录整体提交到master分支，别忘了忽略<code>public/</code>。</p>
+<h2 id="Hexo博客自定义layout页面"><a href="#Hexo博客自定义layout页面" class="headerlink" title="Hexo博客自定义layout页面"></a>Hexo博客自定义layout页面</h2><p>我的博客里有很多单页，比如个人简介，项目介绍这种，这些单页其实类似文章详情页，但是内容区域不要展示页面的title和发布信息之类的，也不希望展示评论组件，现有的layout都满足不了，需要自己创建一个新的layout。</p>
+<p>方法也很简单，</p>
+<ul>
+<li>复制<code>themes\next\layout\post.swig</code>到<code>themes\next\layout\blank.swig</code></li>
+<li>复制<code>themes\next\layout\_macro\post.swig</code>到<code>themes\next\layout\_macro\blank.swig</code></li>
+<li>删掉<code>themes\next\layout\blank.swig</code>中不需要的文章标题之类的内容，修改<code>&#123;&#123; partial('_macro/post.swig', &#123;post: page&#125;) &#125;&#125;</code>为<code>&#123;&#123; partial('_macro/blank.swig', &#123;post: page&#125;) &#125;&#125;</code></li>
+</ul>
+<p>然后配置主题配置增加博客导航菜单，并在<code>source/</code>文件夹创建对应的文件，比如<code>source/about/index.md</code>。页面配置更换layout，并关掉评论：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 前端简历</span><br><span class="line">layout: blank</span><br><span class="line"><span class="section">comments: false</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexo博客自定义文章底部"><a href="#Hexo博客自定义文章底部" class="headerlink" title="Hexo博客自定义文章底部"></a>Hexo博客自定义文章底部</h2><p>做过SEO的应该知道文章内容里是需要一定的关键词密度的，简单的做法在头部底部插入一段包含指定关键词的文案，重点在于这个插入段落必须在“文章正文”的部分，比如我用的<code>NexT</code>主题，正文就是<code>&lt;div class=&quot;post-body&quot;&gt;...&lt;/div&gt;</code>这个元素里，想在这里插入内容需要修改<code>themes\next\layout\_macro\post.swig</code>这个文件，根据注释文章内容开始结束位置插入你想要的内容。</p>
+<p>注意修改的时候加上非首页判断，因为NexT主题的首页和文章详情共用这个模板。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if not is_index %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新构建，所有的文章都会带上自定义底部了。但还有个小问题，如果像本站一样希望在文章末尾加一个转载地址链接，在Hexo文档里找到<code>page.permalink</code>变量作为锚文本的话，会出现中文自动编码的情况，而我们希望锚文本是可读的，这个Hexo并没有现成的变量可以实现，需要手动拼接网站域名和文章路径，像这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>前端路上原创技术文章，转载请注明出处：<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; page.permalink &#125;&#125;&quot;</span>&gt;</span>&#123;&#123; config.url &#125;&#125;/&#123;&#123; page.path &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexo首页展示文章摘要"><a href="#Hexo首页展示文章摘要" class="headerlink" title="Hexo首页展示文章摘要"></a>Hexo首页展示文章摘要</h2><p>默认使用NexT主题会发现首页把文章全文都展示出来了，我们通常希望首页展示少量摘要就好，这样可以一屏内展示更多的内容，我记得之前我用的版本是可以自动生成摘要的，其实也简单，就是自动提取内容跟的前200字符，不过最新版的NexT主题没有这个功能，想要使用摘要最方便的办法就是在正文插入more标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- more --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>标签之前的内容会作为摘要展示在首页列表上，行吧，这样也有好处，就是摘要的内容一定程度上可以自由控制，不会出现断句的情况，习惯之后也不算麻烦，文章都写了，还差多写一个标签么。</p>
+<h2 id="Hexo不需要全局安装"><a href="#Hexo不需要全局安装" class="headerlink" title="Hexo不需要全局安装"></a>Hexo不需要全局安装</h2><p>其实Hexo作为一个博客生成器，本来就没必要全局安装，只要在博客根目录的<code>package.json</code>配置好依赖和npm脚本，也可以像普通前端项目一样，拉下源码执行一下<code>npm install</code>就可以继续开发了。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;build&quot;</span>: <span class="string">&quot;hexo generate&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;clean&quot;</span>: <span class="string">&quot;hexo clean&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;deploy&quot;</span>: <span class="string">&quot;hexo deploy&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;serve&quot;</span>: <span class="string">&quot;hexo server&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;algolia&quot;</span>: <span class="string">&quot;hexo algolia&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;hexo new post Artical&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;hexo&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;5.4.0&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;hexo&quot;</span>: <span class="string">&quot;^5.4.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-algolia&quot;</span>: <span class="string">&quot;^1.3.2&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-deployer-git&quot;</span>: <span class="string">&quot;^3.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-archive&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-baidu-sitemap&quot;</span>: <span class="string">&quot;^0.1.9&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-category&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-index&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-sitemap&quot;</span>: <span class="string">&quot;^2.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-generator-tag&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-renderer-ejs&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-renderer-marked&quot;</span>: <span class="string">&quot;^4.1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-renderer-stylus&quot;</span>: <span class="string">&quot;^2.0.1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hexo-server&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexo博客必备插件"><a href="#Hexo博客必备插件" class="headerlink" title="Hexo博客必备插件"></a>Hexo博客必备插件</h2><ul>
+<li><strong>hexo-deployer-git</strong> GitHubPage部署</li>
+<li><strong>hexo-generator-sitemap</strong> 自动生成站点地图</li>
+<li><strong>hexo-generator-baidu-sitemap</strong> 同上，不过是百度版本</li>
+</ul>
+<h2 id="Hexo博文字数统计的bug"><a href="#Hexo博文字数统计的bug" class="headerlink" title="Hexo博文字数统计的bug"></a>Hexo博文字数统计的bug</h2><p>在当前版本<code>Hexo v5.4.0 + hexo-theme-next v7.8.0</code>下，安装NexT主题默认继承的字数统计插件<code>hexo-symbols-count-time v0.7.1</code>会出现统计不出字数和阅读时间的问题，原因是模板里调用字数统计方法时，传的参数不符合预期，需要修改<code>themes\next\layout\_macro\post.swig</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;&#123;&#123; symbolsCount(post) &#125;&#125;&lt;/span&gt;</span><br><span class="line">改为：</span><br><span class="line">&lt;span&gt;&#123;&#123; symbolsCount(post.content) &#125;&#125;&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;&#123;&#123; symbolsTime(post, </span><br><span class="line">改为：</span><br><span class="line">&lt;span&gt;&#123;&#123; symbolsTime(post.content, </span><br></pre></td></tr></table></figure>
+
+<p>以上就是重建博客我觉得值得记录的点，好了我要去搬运博文了 — —</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2023/06/04/HelloHexoAgain/">https://refined-x.com/2023/06/04/HelloHexoAgain/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/26/%E7%BD%91%E7%BB%9C%E8%A7%86%E9%A2%91%E7%9A%84%E9%98%B2%E7%9B%97%E4%B8%8E%E7%A0%B4%E8%A7%A3/" rel="prev" title="网络视频的防盗与破解">
+      <i class="fa fa-chevron-left"></i> 网络视频的防盗与破解
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E6%80%8E%E4%B9%88%E5%A4%87%E4%BB%BD%E6%BA%90%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Hexo博客怎么备份源文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89layout%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">Hexo博客自定义layout页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8"><span class="nav-number">3.</span> <span class="nav-text">Hexo博客自定义文章底部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%A6%96%E9%A1%B5%E5%B1%95%E7%A4%BA%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81"><span class="nav-number">4.</span> <span class="nav-text">Hexo首页展示文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E4%B8%8D%E9%9C%80%E8%A6%81%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">Hexo不需要全局安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E5%BF%85%E5%A4%87%E6%8F%92%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">Hexo博客必备插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E6%96%87%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1%E7%9A%84bug"><span class="nav-number">7.</span> <span class="nav-text">Hexo博文字数统计的bug</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

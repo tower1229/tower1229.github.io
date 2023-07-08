@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5实现文件读取、编辑、保存">
+<meta property="og:url" content="https://refined-x.com/2018/09/03/HTML5%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E3%80%81%E7%BC%96%E8%BE%91%E3%80%81%E4%BF%9D%E5%AD%98/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="最近自己捣鼓了一个好玩的项目觅迹导航，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-03T02:43:11.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.457Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="前端博客,前端技术,技术博客,前端简历,前端作品,前端导航,前端路上,雅X共赏">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2018/09/03/HTML5%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E3%80%81%E7%BC%96%E8%BE%91%E3%80%81%E4%BF%9D%E5%AD%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML5实现文件读取、编辑、保存 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2018/09/03/HTML5%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E3%80%81%E7%BC%96%E8%BE%91%E3%80%81%E4%BF%9D%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML5实现文件读取、编辑、保存
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-09-03 10:43:11" itemprop="dateCreated datePublished" datetime="2018-09-03T10:43:11+08:00">2018-09-03</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近自己捣鼓了一个好玩的项目<a target="_blank" rel="noopener" href="https://github.com/tracesr">觅迹导航</a>，核心功能已经开发完成，后续会抽时间完善一下细节，并开放使用。做这个项目的过程中涉及到本地文件的读写，而且项目的定位不涉及兼容性问题，所以就直接用HTML5实现了，这里将实现过程以及涉及到的知识点整理一下。</p>
+<span id="more"></span>
+
+<h2 id="HTML5读取文件"><a href="#HTML5读取文件" class="headerlink" title="HTML5读取文件"></a><a href="#HTML5%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6" title="HTML5读取文件"></a>HTML5读取文件</h2><p>HTML5读取文件主要利用的就是<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader">FileReader</a>这个API，它的使用需要从一个构造函数开始：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();  <span class="comment">// 返回一个FileReader实例</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>返回的实例具有以下3个属性：</p>
+<ul>
+<li>FileReader.result</li>
+<li>FileReader.readyState</li>
+<li>FileReader.error</li>
+</ul>
+<p>其中result属性是文件读取成功后的读取结果，数据的格式取决于使用哪个方法来启动读取操作。</p>
+<p>FileReader实例具有以下4个方法：</p>
+<ul>
+<li>FileReader.readAsText()</li>
+<li>FileReader.readAsDataURL()</li>
+<li>FileReader.readAsArrayBuffer()</li>
+<li>FileReader.abort()</li>
+</ul>
+<p>前3个方法分别是以文本、图片、其他格式读取内容，读取的对象可以是<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob">Bolb</a>或<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">File</a>，在读取本地文件的场景下，我们读取的实际上就是File。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reader.readAsText(file);    <span class="comment">//读取文本文件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>FileReader.abort()方法不需要说了，就是中断文件读取。</p>
+<p>同时FileReader实例具有以下6个事件：</p>
+<ul>
+<li>FileReader.onprogress</li>
+<li>FileReader.onloadend</li>
+<li>FileReader.onloadstart</li>
+<li>FileReader.onload</li>
+<li>FileReader.onerror</li>
+<li>FileReader.onabort</li>
+</ul>
+<p>其中onload事件是我们最关心的一个，该事件将在读取操作完成时触发，在这个事件中我们才能访问到FileReader.result属性，得到读取结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.result);       <span class="comment">//文本内容</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>使用FileReader读取文件的整个流程就是这样，File对象我们可以通过<code>&lt;input type=&quot;file&quot; &gt;</code>获取。</p>
+<h2 id="HTML5保存文件"><a href="#HTML5保存文件" class="headerlink" title="HTML5保存文件"></a><a href="#HTML5%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6" title="HTML5保存文件"></a>HTML5保存文件</h2><p>保存文件的关键是生成文件对象，可以使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">URL.createObjectURL()</a>方法实现，该方法能返回给定对象的URL，用在<code>&lt;a&gt;</code>标签的<code>href</code>属性上就可以创建可下载的文件链接。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> DownloadDom = <span class="built_in">document</span>.getElementById(<span class="string">&quot;Download&quot;</span>);      <span class="comment">// a标签</span></span><br><span class="line">DownloadDom.href = <span class="built_in">window</span>.URL.createObjectURL(myBlob);      <span class="comment">// 生成下载链接</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>createObjectURL()方法的参数可以是File对象或者Blob对象，前端保存文件通常是希望将已有“内容”保存成文件，这种场景我们需要的是Blob对象。</p>
+<p>Blob构造函数可以根据传入的数组数据返回Blob对象，数组可以是ArrayBuffer、ArrayBufferView、Blob、DOMString，假如我们希望将一段JSON字符串保存成JSON文件，那么可以这么做：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myBlob = <span class="keyword">new</span> Blob([<span class="string">&#x27;&#123;&quot;hello&quot;:&quot;world&quot;&#125;&#x27;</span>], &#123; <span class="attr">type</span>: <span class="string">&quot;application/json&quot;</span> &#125;);     <span class="comment">//Blob对象</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>关于Blob构造函数的详细用法可以从<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob">这里</a>了解。</p>
+<p>有了createObjectURL和Blob，实际上，我们就可以封装一个方法，将任意字符串保存成文件，并点击链接下载：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> saveFile = <span class="function"><span class="keyword">function</span>(<span class="params">fileText</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> DownloadDom = <span class="built_in">document</span>.getElementById(<span class="string">&quot;Download&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.DownloadDom) &#123;</span><br><span class="line">        <span class="keyword">let</span> myBlob = <span class="keyword">new</span> Blob([fileText], &#123; <span class="attr">type</span>: <span class="string">&quot;application/json&quot;</span> &#125;);</span><br><span class="line">        <span class="built_in">this</span>.DownloadDom.href = <span class="built_in">window</span>.URL.createObjectURL(myBlob);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;下载文件已就绪&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>结合HTML5读取文本文件功能，我们还可以实现对文本文件的编辑功能，比如JSON文件压缩，实际上就是拿到文本内容后，对内容过滤空字符：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fileText = reader.result;</span><br><span class="line">fileText.replace(<span class="regexp">/\s/g</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">saveFile(fileText)</span><br></pre></td></tr></table></figure>
+
+<p>再补充一点内容，createObjectURL()方法还有一个对应的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/revokeObjectURL">URL.revokeObjectURL()</a>方法，用来释放生成的URL对象，用法是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj_url = <span class="built_in">window</span>.URL.createObjectURL(blob);</span><br><span class="line"><span class="keyword">var</span> iframe = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;viewer&#x27;</span>);</span><br><span class="line">iframe.setAttribute(<span class="string">&#x27;src&#x27;</span>, obj_url);</span><br><span class="line"><span class="built_in">window</span>.URL.revokeObjectURL(obj_url);</span><br></pre></td></tr></table></figure>
+
+<p>当obj_url已经赋值给图片之后，就可以释放这个URL对象。这里的关键在于确定URL对象已经使用完了，在我们的例子中如果也这么做，实际上是不行的，当用户点击下载链接的时候会提示网络错误，因为href指向的链接已经失效了。猜测原因是，图片加载并显示的时候已经将数据载入内存了，这时候释放URL不会影响到图片的显示；而链接地址属于“引用”，点击瞬间会去访问URL对象，如果这时候对象已经释放了就会导致链接失效。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><a href="#%E5%B0%8F%E7%BB%93" title="小结"></a>小结</h2><p>HTML5实现文件读取、编辑、保存其实非常简单，只不过涉及到的API兼容性都比较堪忧，以上示例仅在chrome里测试过。</p>
+<p>完整的示例代码地址：<br><a target="_blank" rel="noopener" href="https://github.com/tower1229/htm5-file-operations">https://github.com/tower1229/htm5-file-operations</a></p>
+<p>演示地址:<br><a href="https://refined-x.com/htm5-file-operations/">https://refined-x.com/htm5-file-operations/</a></p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2018/09/03/HTML5%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E3%80%81%E7%BC%96%E8%BE%91%E3%80%81%E4%BF%9D%E5%AD%98/">https://refined-x.com/2018/09/03/HTML5实现文件读取、编辑、保存/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/09/%E3%80%8AHybrid%20App%E5%BC%80%E5%8F%91%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97%E3%80%8B%E6%96%B0%E8%AF%BE%E4%B8%8A%E7%BA%BF%EF%BC%81/" rel="prev" title="《Hybrid App开发快速指南》新课上线！">
+      <i class="fa fa-chevron-left"></i> 《Hybrid App开发快速指南》新课上线！
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/04/Vue%20CLI%203%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%85%8D%E7%BD%AE/" rel="next" title="Vue CLI 3 浏览器兼容性配置">
+      Vue CLI 3 浏览器兼容性配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">HTML5读取文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">HTML5保存文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

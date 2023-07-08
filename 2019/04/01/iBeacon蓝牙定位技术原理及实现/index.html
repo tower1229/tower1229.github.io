@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="蓝牙定位是iBeacon技术最常被应用的方向之一，基于蓝牙定位可以实现诸如寻路、寻车、向导等很多商业需求，觅迹导航的定位系统也是基于iBeacon技术实现的。蓝牙定位又可以分为一维定位和二维定位，本文将介绍两种蓝牙定位技术的实现原理及实现方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iBeacon蓝牙定位技术原理及实现">
+<meta property="og:url" content="https://refined-x.com/2019/04/01/iBeacon%E8%93%9D%E7%89%99%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="蓝牙定位是iBeacon技术最常被应用的方向之一，基于蓝牙定位可以实现诸如寻路、寻车、向导等很多商业需求，觅迹导航的定位系统也是基于iBeacon技术实现的。蓝牙定位又可以分为一维定位和二维定位，本文将介绍两种蓝牙定位技术的实现原理及实现方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://refined-x.com/asset/a/1wei-locate.png">
+<meta property="og:image" content="https://refined-x.com/asset/a/zhijiao-sanjiaoxing.jpg">
+<meta property="og:image" content="https://refined-x.com/asset/a/ibeacon-locate-method.png">
+<meta property="og:image" content="https://refined-x.com/asset/a/ibeacon-locate-grid.png">
+<meta property="og:image" content="https://refined-x.com/asset/a/ibeacon-locate-method.png">
+<meta property="article:published_time" content="2019-04-01T08:20:51.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.462Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="小程序">
+<meta property="article:tag" content="iBeacon">
+<meta property="article:tag" content="蓝牙定位">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://refined-x.com/asset/a/1wei-locate.png">
+
+<link rel="canonical" href="https://refined-x.com/2019/04/01/iBeacon%E8%93%9D%E7%89%99%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>iBeacon蓝牙定位技术原理及实现 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2019/04/01/iBeacon%E8%93%9D%E7%89%99%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iBeacon蓝牙定位技术原理及实现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-01 16:20:51" itemprop="dateCreated datePublished" datetime="2019-04-01T16:20:51+08:00">2019-04-01</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>蓝牙定位是iBeacon技术最常被应用的方向之一，基于蓝牙定位可以实现诸如寻路、寻车、向导等很多商业需求，<a target="_blank" rel="noopener" href="https://tracesr.github.io/">觅迹导航</a>的定位系统也是基于iBeacon技术实现的。蓝牙定位又可以分为一维定位和二维定位，本文将介绍两种蓝牙定位技术的实现原理及实现方法。</p>
+<span id="more"></span>
+
+<h2 id="一维定位"><a href="#一维定位" class="headerlink" title="一维定位"></a><a href="#%E4%B8%80%E7%BB%B4%E5%AE%9A%E4%BD%8D" title="一维定位"></a>一维定位</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a><a href="#%E5%8E%9F%E7%90%86" title="原理"></a>原理</h3><p>蓝牙定位的底层技术是蓝牙测距，关于蓝牙测距在<a href="https://refined-x.com/2019/03/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FiBeacon%E6%B5%8B%E8%B7%9D%E5%8F%8A%E7%A8%B3%E5%AE%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">《微信小程序iBeacon测距及稳定程序的实现》</a>一文中已经做了详细介绍，这里不再赘述。</p>
+<p>所谓一维定位其实就是对蓝牙测距技术的最简单应用，只要将蓝牙信标设备部署在指定点，当接收设备（手机）足够靠近信标时，就认为用户到达了指定点。之所以称之为一维定位，是因为定位结果完全依附于信标设备的位置，没有任何其他维度上的扩展。</p>
+<p><img src="https://refined-x.com/asset/a/1wei-locate.png"></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a><a href="#%E5%BA%94%E7%94%A8" title="应用"></a>应用</h3><p>这种方式通常用在固定路线的沿途部署，为路线上的用户提供定位信息。</p>
+<p>优点是部署成本和开发成本很低，缺点是只能应用在路线固定，并且定位点间隔不太密集的场景。典型的例子就是景区或者园区，景区内的路径都是经过设计的，固定而且几乎唯一；景点之间的距离也不会很近，至少在50m以上的间距。只要沿途以大致固定的间距部署信标设备，就可以为用户提供相对实时而且准确的定位信息。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a><a href="#%E5%AE%9E%E7%8E%B0" title="实现"></a>实现</h3><p>一维定位的部署非常简单，如上文所述，只要确定好信标设备的有效覆盖范围，然后沿途部署就可以。部署同时收集每个或部分信标设备的位置信息，作为程序的定位检索依据。</p>
+<p>开发方面，移动设备只要将收到的信号做距离排序，找到距离最近的一个信标设备，如果距离在指定范围内，就检索该设备的位置信息，认为用户到达了该地区。</p>
+<p>太简单了，就不多说了。</p>
+<h2 id="二维定位"><a href="#二维定位" class="headerlink" title="二维定位"></a><a href="#%E4%BA%8C%E7%BB%B4%E5%AE%9A%E4%BD%8D" title="二维定位"></a>二维定位</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a><a href="#%E5%8E%9F%E7%90%86-1" title="原理"></a>原理</h3><p>二维定位顾名思义，就是可以实现二维空间中的任意定位。定位的主要理论依据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%89%E8%BE%B9%E5%85%B3%E7%B3%BB/11034954">三角形三边关系</a>公式。</p>
+<p><img src="https://refined-x.com/asset/a/zhijiao-sanjiaoxing.jpg"></p>
+<p>如上图，已知三角形三边长度，CD是底边AB的垂线，AD和BD的长度计算公式分别为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BD = (AB2+CB2-AC2)÷2AB</span><br><span class="line">AD = (AB2-CB2+AC2)÷2AB</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>整体思路是，将信标设备在场地内按指定间距做网状部署，使用户在场地内任意点都可以接收到3个距离最近而且连线构成直角的定位点信息，如下图</p>
+<p><img src="https://refined-x.com/asset/a/ibeacon-locate-method.png"></p>
+<p>通过三角形三边关系公式，可以计算出上图中px和py的长度，也就是当前点在当前正方形网格中的坐标。</p>
+<p>再根据当前所在正方形在整个矩阵中的位置，结合部署间距，算出当前点在整个矩阵中的坐标。</p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a><a href="#%E5%BA%94%E7%94%A8-1" title="应用"></a>应用</h3><p>二维定位理论上适用于任何场景，通常用在用户活动路径不固定的自由空间中，比如展会、商场。</p>
+<p>优点是场地适应性更强，缺点是部署成本和开发成本相对较高。以商场为例，严格按照固定间距部署蓝牙信标，往往需要结合实地情况选择合适的距离，程序也要根据实际间距做相应的计算调整。另外还要考虑不规则区域的处理，往往会将一维定位和二维定位结合使用。</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a><a href="#%E5%AE%9E%E7%8E%B0-1" title="实现"></a>实现</h3><p>上面原理部分说起来有点啰嗦，看图其实很简单。</p>
+<p>假设现在有一个30m * 30m的场地，将信标设备以10m为间距网状部署，共需要16个信标，每个信标都按下图所示标注上坐标信息</p>
+<p><img src="https://refined-x.com/asset/a/ibeacon-locate-grid.png"></p>
+<p>此时用户无论在场地内的任何位置，都将身处9个正方形网格中的一个（暂不考虑临界情况），那么移动设备收到的距离最近的4个信标点，应该就是当前所在正方形的4个顶点。</p>
+<p>假设当前用户此时在左上角第一个正方形中，根据蓝牙测距结果，得到距离最近的3个信标点，对应的距离分别为<code>distance1, distance2, distance3</code>，如图</p>
+<p><img src="https://refined-x.com/asset/a/ibeacon-locate-method.png"></p>
+<p>三个顶点距离已知，部署间距已知，根据三边关系公式可以得<code>px, py</code>的值，也就是当前点在当前网格中的坐标。</p>
+<p>在这之前先要解决一个问题，那就是三个点之间的关系。我们知道三个点肯定两两连线互为直角，但到底哪两个点在横轴上，哪两个点在纵轴上。这需要结合点的坐标信息做进一步处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断三点（points）的关系</span></span><br><span class="line"><span class="keyword">let</span> xAxisPoints = [];</span><br><span class="line"><span class="keyword">let</span> yAxisPoints = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; points.length; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> point = points[i];</span><br><span class="line">  <span class="comment">//找到Y轴点</span></span><br><span class="line">  <span class="keyword">let</span> xNO = point.x;</span><br><span class="line">  <span class="keyword">let</span> yPoints = points.filter(<span class="function"><span class="params">e</span> =&gt;</span> e.x === xNO)</span><br><span class="line">  <span class="keyword">if</span> (yPoints.length &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">    yAxisPoints = yPoints.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.y - b.y)</span><br><span class="line">    <span class="keyword">if</span> (xAxisPoints.length) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//找到X轴点</span></span><br><span class="line">  <span class="keyword">let</span> yNO = point.y;</span><br><span class="line">  <span class="keyword">let</span> xPoints = points.filter(<span class="function"><span class="params">e</span> =&gt;</span> e.y === yNO)</span><br><span class="line">  <span class="keyword">if</span> (xPoints.length &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">    xAxisPoints = xPoints.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.x - b.x)</span><br><span class="line">    <span class="keyword">if</span> (yAxisPoints.length) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>至此，就很容易算出定位点的横轴坐标和纵轴坐标了，再分别加上当前网格在整个矩阵中的横坐标和纵坐标，就得到了最终的定位坐标。</p>
+<p>上例中的<code>xAxisPoints</code>和<code>yAxisPoints</code>已经对坐标信息做了排序，横轴数组第一个点的x值，以及纵轴数组第一个点的y值，就是网格在整个矩阵中的横坐标和纵坐标。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93" title="总结"></a>总结</h2><p>一维定位和二维定位分别有各自的应用场景，其中二维定位对实施能力提出了较高的要求。现实环境中往往还需要将一维定位和二维定位结合使用，这里需要程序设计上处理好两种情况的兼容。</p>
+<p>得到定位信息，往往只是项目的第一步。比如在导航系统中，定位信息需要匹配最近的目标点，整个导航功能才可以开始使用。有机会后面会对导航系统的实现，做进一步的分享。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/04/01/iBeacon%E8%93%9D%E7%89%99%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/">https://refined-x.com/2019/04/01/iBeacon蓝牙定位技术原理及实现/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 小程序</a>
+              <a href="/tags/iBeacon/" rel="tag"># iBeacon</a>
+              <a href="/tags/%E8%93%9D%E7%89%99%E5%AE%9A%E4%BD%8D/" rel="tag"># 蓝牙定位</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FiBeacon%E6%B5%8B%E8%B7%9D%E5%8F%8A%E7%A8%B3%E5%AE%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="prev" title="微信小程序iBeacon测距及稳定程序的实现">
+      <i class="fa fa-chevron-left"></i> 微信小程序iBeacon测距及稳定程序的实现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/27/%E7%9B%91%E5%90%ACCanvas%E5%86%85%E9%83%A8%E5%85%83%E7%B4%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" rel="next" title="监听Canvas内部元素点击事件的三种方法">
+      监听Canvas内部元素点击事件的三种方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.</span> <span class="nav-text">一维定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%AE%9A%E4%BD%8D"><span class="nav-number">2.</span> <span class="nav-text">二维定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8-1"><span class="nav-number">2.2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

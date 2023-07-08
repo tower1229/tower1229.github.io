@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="混合应用的概念是相对于原生应用而来的，也就是部分采用了web前端技术所开发的应用，曾经的混原之争也是相当热闹了一阵，如今已经尘埃落定，他们的各种利弊都经过了充分的讨论和验证，相信大部分开发者都已经清楚自己需要的是什么了，那么2017年的今天，混合应用开发到底是怎样一个状况呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017混合应用开发现状">
+<meta property="og:url" content="https://refined-x.com/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="混合应用的概念是相对于原生应用而来的，也就是部分采用了web前端技术所开发的应用，曾经的混原之争也是相当热闹了一阵，如今已经尘埃落定，他们的各种利弊都经过了充分的讨论和验证，相信大部分开发者都已经清楚自己需要的是什么了，那么2017年的今天，混合应用开发到底是怎样一个状况呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-23T07:22:51.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.453Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="混合应用">
+<meta property="article:tag" content="HybridStart">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2017混合应用开发现状 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2017混合应用开发现状
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-06-23 15:22:51" itemprop="dateCreated datePublished" datetime="2017-06-23T15:22:51+08:00">2017-06-23</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>混合应用的概念是相对于原生应用而来的，也就是部分采用了web前端技术所开发的应用，曾经的<em>混原之争</em>也是相当热闹了一阵，如今已经尘埃落定，他们的各种利弊都经过了充分的讨论和验证，相信大部分开发者都已经清楚自己需要的是什么了，那么2017年的今天，混合应用开发到底是怎样一个状况呢？</p>
+<span id="more"></span>
+
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a><a href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86" title="背景知识"></a>背景知识</h2><h3 id="破”壳”而出"><a href="#破”壳”而出" class="headerlink" title="破”壳”而出"></a><a href="#%E7%A0%B4%E2%80%9D%E5%A3%B3%E2%80%9D%E8%80%8C%E5%87%BA" title="破”壳”而出"></a>破”壳”而出</h3><p>一切都得有个源头。</p>
+<p>前端同学应该还记得曾经大名鼎鼎的<code>phonegap</code>，当年的<code>phonegap</code>对前端圈的影响力不亚于今天的<code>nodejs</code>，因为他们都做了同一件事：拓展前端的开发能力。<code>phonegap</code>后来有了一个叫<code>cordova</code>的分支，其实都是一个东西，它能让一名前端开发者，在几乎不需要额外技术的情况下开发APP，而且跨平台！</p>
+<p>要知道，对于处在程序员鄙视链底端的前端工程师来说，对新技能的渴求可以用嗷嗷待哺来形容，这种不自信的影响是深远的，直到今天仍然随处可见，但至少有一个影响是正面的，那就是全行业广泛的、时刻保有的、旺盛的好奇心，这使<code>phonegap/cordova</code>这种拥有恰当题材和恰当质量的项目，能够迅速积累起足够体量的第一批用户，后面就如你所知道的那样，铺天盖地的上手体验、技术讨论、野教程迅速填满了大部分的前端技术博客，让后来人想学不会都难。</p>
+<h3 id="混合应用的本质"><a href="#混合应用的本质" class="headerlink" title="混合应用的本质"></a><a href="#%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E7%9A%84%E6%9C%AC%E8%B4%A8" title="混合应用的本质"></a>混合应用的本质</h3><p>混合应用的本质是一个原生的”壳”里跑着web的芯，通常这个”壳”有两方面作用，一是提供跑web页面的<code>webview</code>，二是充当一个桥梁，将操作系统的原生功能嫁接给<code>webview</code>里的js调用，这样，就可以用web的方式去开发APP，效率和能力兼得。<code>phonegap/cordova</code>是一个存粹的”壳”，除了一个<code>webview</code>之外只提供少数几样原生功能，这样开发出来的混合应用更像是一个<code>Web APP Plus</code>，但混合应用不限于这一种形式，哪怕一个APP大部分都是原生，只有一个页面是web的，理论上这也算混合应用。</p>
+<h3 id="速度为王"><a href="#速度为王" class="headerlink" title="速度为王"></a><a href="#%E9%80%9F%E5%BA%A6%E4%B8%BA%E7%8E%8B" title="速度为王"></a>速度为王</h3><p>快速开发快速迭代是做产品的永恒追求，新产品验证需求需要快，成熟产品甩掉竞争对手也需要快。</p>
+<p>混合开发模式最突出的优点就是开发速度快，比起原生开发，本来web开发速度就很快，再加上一次开发多端发布，那就不是一般的快，而是快上加快，省下一个人的同时，开发进度还能提前，何乐而不为。</p>
+<p>当然，”省下一个人”这个说法并不准确，实际上除了少数简单项目，多数情况的APP项目即使采用混合开发模式，也不能完全摆脱掉原生开发，因为通用”壳”的功能是有限的，很多时候还是需要针对”壳”做原生开发。</p>
+<p>成也速度，败也速度。混合应用最为人诟病的缺点就是运行”慢”，受限于前端语言表现力和<code>webview</code>的能力，混合应用在精致和流畅方面恐怕永远也达不到原生水准，复杂动画的实现往往只能停留在理论层面，另外嫁接过来的功能肯定不如直接调api来的效率高，这些问题积累起来，导致混合应用整体”慢”的印象。</p>
+<p>现实世界中原生同学的抵制也算是混合应用的一大缺点吧，这里就不展开了，默哀一分钟。</p>
+<h2 id="混合应用的现状"><a href="#混合应用的现状" class="headerlink" title="混合应用的现状"></a><a href="#%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E7%9A%84%E7%8E%B0%E7%8A%B6" title="混合应用的现状"></a>混合应用的现状</h2><h3 id="机遇与挑战"><a href="#机遇与挑战" class="headerlink" title="机遇与挑战"></a><a href="#%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98" title="机遇与挑战"></a>机遇与挑战</h3><p>如今很多大厂APP也都是混合应用了，毕竟不是所有项目都需要那么极致的效果，尤其偏”内容类”的项目，如果没有大的技术变革，混合模式将是这类APP开发的首选。</p>
+<p>针对混合应用”慢”的问题，目前最有效的方法是通过自定义”壳”，将重要的部分用原生实现，其他部分用web实现，从而灵活的避免web性能短板，总有一个混合程度是你的项目能接受的。</p>
+<p>自制”壳”说起来简单，运行一个webview，为js和系统做嫁接，顺便还可以做做静态资源缓存之类的功能，甚至可以针对不同平台区别对待，但实际开发下来，需求点还是挺多的，这样一来各平台的原生开发成本就都回来了，而且如果遇到经常改需求的试水项目，一旦需求改到了原生头上，那混合的意义就不大了。</p>
+<p>混合应用还有一个<em>业界难题</em>就是页面转场动画，<code>css3</code>不是不能实现动画，无奈的是不同配置的机器跑起来的差别太大，低端安卓机下的效果令人泪奔，完全无法用于商业项目，这个问题目前只能在”壳”的层面解决，可以为每个页面跑一个<code>webview</code>，页面切换即<code>webview</code>切换，这样就可以实现原生的转场效果了，这个思路已经在<code>Appcan/APICloud</code>这些产品上实现了。</p>
+<h3 id="“壳”的演进"><a href="#“壳”的演进" class="headerlink" title="“壳”的演进"></a><a href="#%E2%80%9C%E5%A3%B3%E2%80%9D%E7%9A%84%E6%BC%94%E8%BF%9B" title="“壳”的演进"></a>“壳”的演进</h3><p>总结起来，开发一个混合应用目前有三种”壳”可以选。</p>
+<p>一是<code>phonegap/cordova</code>，已经更新到<code>7.x</code>版本了，但只对兼容平台做调整，核心插件始终是那几样，铁了心只做底层。这个方案我个人不太看好，在一个<code>webview</code>里跑整个web应用，基本上就只能定位在玩具级了，长远来看性能问题没有解决的希望，因为操作系统没有动力去为<code>webview</code>做更多优化，人家图什么？</p>
+<p>二是自己开发原生外壳，功能要啥有啥，从结果上来说是最佳方案，就是整体开发效率不高，适合成熟的团队，做成熟的项目，个人认为绝大多数项目到了后期应该都是奔着这个方向去的。</p>
+<p>第三种就是<code>Appcan/APICloud</code>之流，可以说介于前两者之间，既是通用框架，功能又比<code>phonegap/cordova</code>多，一定程度上解决了转场问题，还集成推送、更新、诊断之类的常用功能，一般的项目基本就不需要原生介入了，目的就是一个，把开发一个各方面都还差不多的APP的成本降下来。</p>
+<h3 id="云开发平台"><a href="#云开发平台" class="headerlink" title="云开发平台"></a><a href="#%E4%BA%91%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0" title="云开发平台"></a>云开发平台</h3><p>着重说一下<code>Appcan/APICloud</code>这类云平台，他们最初能吸引到用户最大的噱头是多<code>webview</code>机制，一举解决了混合应用页面转场性能问题，再针对多<code>webview</code>机制推出一整套完善的api，满足开发中的大多数基础需求，使基于平台的开发可以做到”开箱可用”，加上本土化的官方插件生态，基本上常见需求都可以在没有原生开发介入的情况下实现，这对很多小团队或者说试水项目还是很有吸引力的。</p>
+<p>之所以叫云平台，是因为他们的所有服务都在云端，包括最核心的应用引擎也就是原生外壳，我们得上传web代码然后在云端编译，然后下载APP安装包。这种模式就很敏感了，首先开发者会感觉不安全，因为我们的代码不可避免的暴露了；然后引擎不在自己手里，引擎的开发和维护就只能完全依靠平台，当遇到bug或特殊需求时，开发者除了求助就只能摊手坐等，开发进度在一定程度上是失控的。这些问题可以通过购买他们的企业服务解决，企业用户可以部署本地打包，也将得到更好的技术支持。<code>Appcan/APICloud</code>这两个平台我都深度使用过，其中Appcan就是个纯坑，bug多到令人发指，拜其所赐，”开发进度失控”的情况真的发生过，那个项目结束后果断转到APICloud，几个项目体验下来基本没bug，不过除此以外，他们在功能和服务上也就没啥区别了。</p>
+<p>如果对云平台这种模式不是特别敏感的话，就很有可能成为他们的目标用户，因为这种模式还是颇有一些优点的，从APP的名称、图片、证书等各种设置开始，到代码管理、调试机制、插件生态、云端打包、版本管理，整个开发周期里能用到的功能一应俱全，概括起来至少有以下几个优点：</p>
+<ol>
+<li>多webView + 原生动画转场，提升页面切换流畅度；</li>
+<li>多webView可以取代前端路由，降低开发门槛；</li>
+<li>官方提供插件和第三方扩展，进一步降低开发门槛；</li>
+<li>官方定制IDE集成调试、预览、同步等功能，开发体验非常好。</li>
+</ol>
+<p>为了让一名前端就能搞定APP开发，他们真做了不少工作，可以说是一种颇具性价比的混合应用开发方案。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a href="#%E5%90%8E%E8%AE%B0" title="后记"></a>后记</h2><p>介绍了目前几种混合应用开发方案后，不得不说这就是个理想与现实的较量，势单力薄的我只好选择了云平台方案，但即便平台做的再好，仍然有很多问题需要自己解决，近期将更新一个姊妹篇，讲讲基于云平台的混合应用开发框架<a target="_blank" rel="noopener" href="https://github.com/tower1229/HybridStart">HybridStart</a>。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/">https://refined-x.com/2017/06/23/2017混合应用开发现状/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8/" rel="tag"># 混合应用</a>
+              <a href="/tags/HybridStart/" rel="tag"># HybridStart</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/19/%E5%86%8D%E5%81%9A%E4%B8%80%E6%9D%A1%E8%B4%AA%E5%90%83%E8%9B%87/" rel="prev" title="再做一条贪吃蛇">
+      <i class="fa fa-chevron-left"></i> 再做一条贪吃蛇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" rel="next" title="基于APICloud的混合应用开发框架">
+      基于APICloud的混合应用开发框架 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%B4%E2%80%9D%E5%A3%B3%E2%80%9D%E8%80%8C%E5%87%BA"><span class="nav-number">1.1.</span> <span class="nav-text">破”壳”而出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">混合应用的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6%E4%B8%BA%E7%8E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">速度为王</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E7%9A%84%E7%8E%B0%E7%8A%B6"><span class="nav-number">2.</span> <span class="nav-text">混合应用的现状</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98"><span class="nav-number">2.1.</span> <span class="nav-text">机遇与挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E5%A3%B3%E2%80%9D%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">2.2.</span> <span class="nav-text">“壳”的演进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%91%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.3.</span> <span class="nav-text">云开发平台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

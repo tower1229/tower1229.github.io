@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这是一门微信小程序入门课程，通过学习本节课程可以使你快速上手小程序开发，在学习这门课之前，需要你先具备基本的前端开发能力，包括html&#x2F;css&#x2F;JavaScrip，起码你得会切图，了解js语法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序上手指南">
+<meta property="og:url" content="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="这是一门微信小程序入门课程，通过学习本节课程可以使你快速上手小程序开发，在学习这门课之前，需要你先具备基本的前端开发能力，包括html&#x2F;css&#x2F;JavaScrip，起码你得会切图，了解js语法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://refined-x.com/asset/weapp-picker.png">
+<meta property="og:image" content="https://refined-x.com/asset/weapp-tree.png">
+<meta property="article:published_time" content="2017-07-20T07:58:10.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.469Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://refined-x.com/asset/weapp-picker.png">
+
+<link rel="canonical" href="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>小程序上手指南 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小程序上手指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-20 15:58:10" itemprop="dateCreated datePublished" datetime="2017-07-20T15:58:10+08:00">2017-07-20</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是一门微信小程序入门课程，通过学习本节课程可以使你快速上手小程序开发，在学习这门课之前，需要你先具备基本的前端开发能力，包括html&#x2F;css&#x2F;JavaScrip，起码你得会切图，了解js语法。</p>
+<span id="more"></span>
+
+<h2 id="为什么学习小程序"><a href="#为什么学习小程序" class="headerlink" title="为什么学习小程序"></a><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%A8%8B%E5%BA%8F" title="为什么学习小程序"></a>为什么学习小程序</h2><p>学习小程序之前要先了解，小程序是什么，有什么独特的地方值得我们一定要去学习它，小程序是<em>基于微信实现特定功能</em>的一种载体，同样基于微信实现功能的我们知道还有公众号和微网站，那小程序的特点是什么，我们用HTML5做一个手机站不行吗，再接入微信的SDK，功能也很强大，小程序最大的特点，就是可以拥有媲美原生App的流畅体验，这一点是非常诱人的，也是相比HTML5最大的优势，尤其学到后面你会发现小程序的开发还特别简单，开发又简单体验又好，天底下哪有这么便宜的事，但小程序就是这样一个东西。</p>
+<p>小程序为什么能做到接近原生的体验呢，这是因为小程序在底层就是调用的原生组件，我们开发小程序编写的前端代码，可以理解为是调用微信内部原生组件的快捷方式，因此，开发小程序使用的必然是一种全新的语言，不可能是HTML5，本节课程就是带领大家一起来学习这门语言，并且完成一个小示例，让大家可以快速的对小程序开发有一个直观的认识。</p>
+<h2 id="小程序开发语言介绍"><a href="#小程序开发语言介绍" class="headerlink" title="小程序开发语言介绍"></a><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D" title="小程序开发语言介绍"></a>小程序开发语言介绍</h2><p>小程序的开发语言跟HTML5是非常相似的，视图层的两种语言WXML和WXSS就分别对应了HTML和CSS，逻辑层就仍然还是Javascript，为了便于理解，下面我就用小程序和HMLT5对比的方式，来讲解小程序的这三种开发语言。</p>
+<p>首先我们说区别最小的，就是小程序里的这个JS，它跟web开发中的JS只有两点区别，第一，没有任何DOM操作相关功能，这一点跟Nodejs是一样的，大家知道Js语言本身就是不包括DOM操作的，DOM操作是浏览器环境为JS做的扩展；第二点区别，小程序里的Js增加了一些微信特有的API，这个很好理解，像微信扫码啊，上传下载啊这些功能，肯定是要单独提供API的。总结一下，去掉了DOM操作，增加了一些API，另外值得一提的是小程序中的js是支持模块化的，也支持ES6。</p>
+<p>WXSS与CSS的区别，也是两点，第一，增加了一个rpx单位，这个单位具有自动适应屏幕宽度的特点，规则是1rpx &#x3D; 屏幕宽度&#x2F;750，这是个很好用的单位，可以说完美解决了屏幕适配的问题，如果你用过HTML5里的vw单位，会发现他俩是一回事，只不过1vw &#x3D; 屏幕宽度&#x2F;100，比例不太一样；第二个区别，WXSS支持的选择器类型有限，目前只支持<code>.class, #id, element, ele,ele, ::before, ::after</code>，注意，后代选择器是不支持的，这个我再开发工具里测试发现可以支持，但文档是明确说只支持上面那些，那我们就听文档的，后代选择器就不要用了。总结一下，WXSS相比CSS增加了rpx单位，不支持后代选择器；</p>
+<p>最后WXML这块的内容比较多，尤其有一部分HTML里完全没有的东西，比如说数据绑定、条件渲染、列表渲染、模板、引用，这些东西我在这里就不展开讲了，如果你之前用过任何的前端MVVM框架或者前端模板引擎，那对这块内容应该是轻车熟路的，如果说这些东西都不知道，那也没关系，自己回去把文档这块内容仔细的阅读一遍，相信都能看明白是怎么回事。</p>
+<p>这里我们就说两个东西，标签和事件，首先，标签彻底换了一套，所有的HTML标签都不能用，取而代之的是小程序提供的一套标签，官方把他们叫组件，不管叫什么，这个组件的写法和HTML标签是一样的，也是由标签名，属性，内容组成，也可以嵌套，也可以通过<code>class，id，style</code>来添加样式，但是小程序组件相对来说拥有更强大的功能，自带样式也更丰富，举个例子，</p>
+<p><img src="/asset/weapp-picker.png" alt="weapp-picker"></p>
+<p>如果要做这样一个从底部弹起的滚动选择器，想想是不是好麻烦，有很多样式和js要写，但是用小程序的组件来做，一个picker组件拿过来，全有了，</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picker</span> <span class="attr">bindchange</span>=<span class="string">&quot;pickerChange&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;index&#125;&#125;&quot;</span> <span class="attr">range</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码就这么多，样式都是自带的，工作量一下就小了很多，这是小程序在设计上非常好的一点，它在背后做了很多封装，就为了让开发者开发起来简单，实际上也达到了目的；</p>
+<p>小程序的事件与HTML5里的事件，有哪些不一样呢，第一个就是事件绑定的写法不一样了，小程序里是bind+事件名或catch+事件名，bind绑定不阻止冒泡，而catch会阻止冒泡；另外支持的事件种类也不一样，常规事件只支持<code>touchstart，touchmove，touchend，touchcancel，tap，longtap</code>，除了这些事件以外，再有的事件就是组件的自定义事件，比如picker组件就有一个change事件，可以通过bindchange来绑定处理函数；第三个区别是事件对象不一样了，</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;type&quot;</span>:<span class="string">&quot;tap&quot;</span>,</span><br><span class="line"><span class="attr">&quot;timeStamp&quot;</span>:<span class="number">895</span>,</span><br><span class="line"><span class="attr">&quot;target&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;tapTest&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dataset&quot;</span>:  &#123;</span><br><span class="line">    <span class="attr">&quot;hi&quot;</span>:<span class="string">&quot;WeChat&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">&quot;currentTarget&quot;</span>:  &#123;</span><br><span class="line">  <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;tapTest&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dataset&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;hi&quot;</span>:<span class="string">&quot;WeChat&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">&quot;detail&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;x&quot;</span>:<span class="number">53</span>,</span><br><span class="line">  <span class="attr">&quot;y&quot;</span>:<span class="number">14</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">&quot;touches&quot;</span>:[&#123;</span><br><span class="line">  <span class="attr">&quot;identifier&quot;</span>:<span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;pageX&quot;</span>:<span class="number">53</span>,</span><br><span class="line">  <span class="attr">&quot;pageY&quot;</span>:<span class="number">14</span>,</span><br><span class="line">  <span class="attr">&quot;clientX&quot;</span>:<span class="number">53</span>,</span><br><span class="line">  <span class="attr">&quot;clientY&quot;</span>:<span class="number">14</span></span><br><span class="line">&#125;],</span><br><span class="line"><span class="attr">&quot;changedTouches&quot;</span>:[&#123;</span><br><span class="line">  <span class="attr">&quot;identifier&quot;</span>:<span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;pageX&quot;</span>:<span class="number">53</span>,</span><br><span class="line">  <span class="attr">&quot;pageY&quot;</span>:<span class="number">14</span>,</span><br><span class="line">  <span class="attr">&quot;clientX&quot;</span>:<span class="number">53</span>,</span><br><span class="line">  <span class="attr">&quot;clientY&quot;</span>:<span class="number">14</span></span><br><span class="line">&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义事件会有detail属性，touch事件包括两个不同的属性，这些东西不用记，用到的时候知道去哪找就行了，总结一下，事件绑定的写法bind&#x2F;catch，事件类型6种+组件自定义事件，事件对象的内容有区别；</p>
+<h2 id="小程序开发框架介绍"><a href="#小程序开发框架介绍" class="headerlink" title="小程序开发框架介绍"></a><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D" title="小程序开发框架介绍"></a>小程序开发框架介绍</h2><p>掌握了小程序的开发语言之后，我们还必须掌握小程序的开发框架，框架故名思意就是条条框框，是用来具体的告诉你怎样开发小程序，我们先看一下小程序的目录结构，</p>
+<p><img src="/asset/weapp-tree.png" alt="weapp-tree"></p>
+<p>这是一个比较典型的微信小程序项目结构，最下面三个文件名字都叫app，一个js一个json一个wxss，这三个是固定的，就得叫这个名字，就得放在这，另外的三个文件夹分别是放页面、放样式的、放工具类的，当然你可以根据项目实际需求随便改。</p>
+<p>其中这个app.json就是小程序的配置文件，可以看到打开里面是一个对象，配置了页面和window的一些属性，具体还有哪些配置以及他们的意义可以自己到文档中去进一步的了解。</p>
+<p>然后我们就从上往下说这个目录结构，首先你会发现页面是以文件夹为组织单位的，每个页面至少要包含<code>js wxml wxss</code>这三个文件，而且这些文件都跟文件夹同名，这是一个约定，必须这么干，然后还有一个json文件是可选的，里面可以对当前页面做单独的设置。下面这个util文件夹没什么说的，不是硬性要求，可有可无。再然后app.js，这个文件是非常重要的，它主要做两件事，一是定义小程序的生命周期函数，二是可以在这里定义全局数据或全局方法，我们看代码，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">  <span class="attr">onLaunch</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//调用API从本地缓存中获取数据</span></span><br><span class="line">    <span class="keyword">var</span> logs = wx.getStorageSync(<span class="string">&#x27;logs&#x27;</span>) || []</span><br><span class="line">    logs.unshift(<span class="built_in">Date</span>.now())</span><br><span class="line">    wx.setStorageSync(<span class="string">&#x27;logs&#x27;</span>, logs)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getUserInfo</span>:<span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">this</span>.globalData.userInfo)&#123;</span><br><span class="line">      <span class="keyword">typeof</span> cb == <span class="string">&quot;function&quot;</span> &amp;&amp; cb(<span class="built_in">this</span>.globalData.userInfo)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//调用登录接口</span></span><br><span class="line">      wx.login(&#123;</span><br><span class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          wx.getUserInfo(&#123;</span><br><span class="line">            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">              that.globalData.userInfo = res.userInfo</span><br><span class="line">              <span class="keyword">typeof</span> cb == <span class="string">&quot;function&quot;</span> &amp;&amp; cb(that.globalData.userInfo)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">globalData</span>:&#123;</span><br><span class="line">    <span class="attr">userInfo</span>:<span class="literal">null</span>,</span><br><span class="line">    <span class="attr">apiKey</span>: <span class="string">&quot;c2d3e04cc633644f1c3ae3f6eea94564&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个onLaunch就可以定义一个小程序初始化的回调，下面getUserInfo显然就是一个自定义的函数了，再往下是一个globalData属性，也是自定义的，用这些配置将小程序初始化后，可以在任意页面中使用getApp()方法获取到小程序示例，进而访问到这些自定义方法或数据。</p>
+<h2 id="开发一个《星座配对》小程序"><a href="#开发一个《星座配对》小程序" class="headerlink" title="开发一个《星座配对》小程序"></a><a href="#%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E3%80%8A%E6%98%9F%E5%BA%A7%E9%85%8D%E5%AF%B9%E3%80%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F" title="开发一个《星座配对》小程序"></a>开发一个《星座配对》小程序</h2><p>《星座配对》小程序功能虽然很简单，但大多数小程序开发常用的API都用到了，是一个很好的上手项目。</p>
+<p>源码：<a target="_blank" rel="noopener" href="https://github.com/tower1229/weapp-star">weapp-star</a></p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">https://refined-x.com/2017/07/20/小程序上手指南/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 小程序</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/10/Hexo%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%B9%E6%B3%95/" rel="prev" title="Hexo自定义页面的方法">
+      <i class="fa fa-chevron-left"></i> Hexo自定义页面的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/21/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E9%A1%B5%E9%9D%A2%E6%89%93%E5%BC%80%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" rel="next" title="混合应用页面打开速度优化">
+      混合应用页面打开速度优化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">为什么学习小程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">小程序开发语言介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">小程序开发框架介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E3%80%8A%E6%98%9F%E5%BA%A7%E9%85%8D%E5%AF%B9%E3%80%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">开发一个《星座配对》小程序</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

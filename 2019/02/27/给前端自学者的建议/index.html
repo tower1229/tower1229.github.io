@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="自学可能是前端圈最主流的入行方式，因为较低的准入门槛，造就了近几年的前端热。越来越多的人想自学前端，但前端技术经过爆炸性的发展，如今早已不是当年那个HTML+CSS+Javascript打天下的时代了，这对自学者来说会造成很多困扰，不知从何学起。我自学前端6年了，本文整理了可能对新人有帮助的一些建议，希望大家在前端路上能少走弯路，也算暗合了本博客的主题了^ ^。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给前端自学者的建议">
+<meta property="og:url" content="https://refined-x.com/2019/02/27/%E7%BB%99%E5%89%8D%E7%AB%AF%E8%87%AA%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="自学可能是前端圈最主流的入行方式，因为较低的准入门槛，造就了近几年的前端热。越来越多的人想自学前端，但前端技术经过爆炸性的发展，如今早已不是当年那个HTML+CSS+Javascript打天下的时代了，这对自学者来说会造成很多困扰，不知从何学起。我自学前端6年了，本文整理了可能对新人有帮助的一些建议，希望大家在前端路上能少走弯路，也算暗合了本博客的主题了^ ^。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-27T06:49:26.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.474Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="学习方法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2019/02/27/%E7%BB%99%E5%89%8D%E7%AB%AF%E8%87%AA%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>给前端自学者的建议 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2019/02/27/%E7%BB%99%E5%89%8D%E7%AB%AF%E8%87%AA%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          给前端自学者的建议
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-27 14:49:26" itemprop="dateCreated datePublished" datetime="2019-02-27T14:49:26+08:00">2019-02-27</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>自学可能是前端圈最主流的入行方式，因为较低的准入门槛，造就了近几年的前端热。越来越多的人想自学前端，但前端技术经过爆炸性的发展，如今早已不是当年那个HTML+CSS+Javascript打天下的时代了，这对自学者来说会造成很多困扰，不知从何学起。我自学前端6年了，本文整理了可能对新人有帮助的一些建议，希望大家在<strong>前端路上</strong>能少走弯路，也算暗合了本博客的主题了^ ^。</p>
+<span id="more"></span>
+
+<h2 id="学习前端，基础先行"><a href="#学习前端，基础先行" class="headerlink" title="学习前端，基础先行"></a><a href="#%E5%AD%A6%E4%B9%A0%E5%89%8D%E7%AB%AF%EF%BC%8C%E5%9F%BA%E7%A1%80%E5%85%88%E8%A1%8C" title="学习前端，基础先行"></a>学习前端，基础先行</h2><p>自学前端一定要从基础开始学，按照html5规范，系统学习html+css+JavaScript。</p>
+<p>其中html+css属于视图开发技术，天生就是要一起学，一般两周左右可以学完；JavaScript属于逻辑层，这是一门独立的语言，自成体系。不过具体到Web前端开发中，JavaScript又可以与视图层配合，响应交互操作，实现交互效果，完成业务开发，如果你有良好的语言基础，学JavaScript也会非常快。学JavaScript开发网页，可以一并学习jQuery，不要听别人说jQuery过时就没兴趣，jQuery是对JavaScript非常良性的封装，虽然过时但至少无害，而且其中的封装思想对日后的提升大有裨益。</p>
+<p>打基础期间要耐得住寂寞，你学的这些东西相对当下的热门名词而言，会显得非常基础老旧，ES6、Typescript、Nodejs、WebPack、Vue、React、MVVM、单向数据流&#x2F;双向绑定、WPA、等等等等，都不要急于学习，他们都是基础之上开出来的花，基础好了，理解这些东西顺理成章，基础不牢，专门摘花摘果，也是空中楼阁不能持久，尤其不要过早接触高级框架，这是有害的。</p>
+<h2 id="自学的重点是理清技术脉络"><a href="#自学的重点是理清技术脉络" class="headerlink" title="自学的重点是理清技术脉络"></a><a href="#%E8%87%AA%E5%AD%A6%E7%9A%84%E9%87%8D%E7%82%B9%E6%98%AF%E7%90%86%E6%B8%85%E6%8A%80%E6%9C%AF%E8%84%89%E7%BB%9C" title="自学的重点是理清技术脉络"></a>自学的重点是理清技术脉络</h2><p>自学过程中，除了学技术本身，更重要的是理清技术脉络，用技术脉络将技术串联起来，形成系统。</p>
+<p>只有技术成了体系，才能发挥出技术真正的能力，这也是为什么我认为过早接触高级框架是有害的，因为不利于形成健全的技术体系，一旦框架本身出了问题没有解决思路，更可怕的是，即使向别人求助，都不能准确定位问题，因为问题所发生的地方，很可能不在你的技术脉络中，这就非常可悲了。</p>
+<p>基础打好以后，应该有能力模仿开发大部分日常见到的网页和效果，这时再去关注前面提到的那些技术名词，去思考他们与核心技术的关系，他们的应用场景是什么，比我现在的开发手段有什么优势，同样解决这个问题的还有哪些技术，他们横向上相比有什么异同。前端技术在几年的时间里爆炸性发展，但理清脉络后就会发现，前端开发技术核心的改动非常小，新技术无非是在开发效率、维护性、性能方面的探索。</p>
+<p>这些东西都是好的，但不是必须的，要有选择的学习。当你不知道学一个东西具体有多大用处时，那就不要学，只要搞明白它“是什么”和“为什么”就可以，毕竟时间不是无限的，但技术的深度却近乎无限，即使相对简单的html+css，很多人做了好几年都未必真的学会了。</p>
+<h2 id="视野才是最高的技术壁垒"><a href="#视野才是最高的技术壁垒" class="headerlink" title="视野才是最高的技术壁垒"></a><a href="#%E8%A7%86%E9%87%8E%E6%89%8D%E6%98%AF%E6%9C%80%E9%AB%98%E7%9A%84%E6%8A%80%E6%9C%AF%E5%A3%81%E5%9E%92" title="视野才是最高的技术壁垒"></a>视野才是最高的技术壁垒</h2><p>学前端但不要止步于前端，要探索所有的关联技术。前端开发体系只是Web开发体系的一部分，而Web开发体系又只是软件开发体系的一部分，最终，开发不过是业务的一环，而业务本身又只是商业的一环。认清自己所处的位置，尽一切可能扩大视野，有一天你会发现，视野才是最高的技术壁垒。</p>
+<h2 id="积累自己的优质证明"><a href="#积累自己的优质证明" class="headerlink" title="积累自己的优质证明"></a><a href="#%E7%A7%AF%E7%B4%AF%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BC%98%E8%B4%A8%E8%AF%81%E6%98%8E" title="积累自己的优质证明"></a>积累自己的优质证明</h2><p>工作中最核心的竞争力就是基础知识和学习能力，这两种东西等于无限大的潜力。但具体到面试中，公司更希望你能直接接手现有业务，所以对口的技术栈和一定的工作经验是首要条件。技术栈可以自己补齐，工作经验如果没有，那至少要提供足够的“证据”，证明你值得让公司为你试错。比如博客可以作为学习轨迹的证据，项目可以作为动手能力的证据，算法是基础扎实的证据，操作系统知识是视野宽阔的证据，对我个人而言，如果你能讲出一个相对完整的前端知识脉络，就是很大的加分项。注意积累和总结，等着量变引发质变的那一天。</p>
+<h2 id="关于个人项目"><a href="#关于个人项目" class="headerlink" title="关于个人项目"></a><a href="#%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE" title="关于个人项目"></a>关于个人项目</h2><p>优秀的个人项目毫无疑问是求职者最佳的名片，但对新人来说，没有经验没有技术，很可能把项目和DEMO搞混了。</p>
+<p>项目的目的一定是证明自己，而不是串联尽量多的知识点，把一个新颖又贴合实际的想法变成现实，比运用十八般武艺做出个无聊的东西要好的多。只要技术栈符合公司要求，剩下的我会更看重这个项目有哪些新颖的想法，有哪些另辟蹊径的手段，如果能有真实用户在使用，那就更好了。</p>
+<p>实际上，当你真的动手去做一个自己有兴趣的东西时，自然会不满足于对已知技术的简单应用，不由自主的就会去深挖瑕疵背后的原因，去查找更好的解决方法，而这正是日后工作中最能拉开你与同事间差距的能力——解决未知的问题。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a><a href="#%E6%9C%80%E5%90%8E" title="最后"></a>最后</h2><p>本文源自对一位读者的回信，整理截取了其中有分享价值的部分，分享给大家。但人是经历的产物，我的观点只是我的观点，不一定适合每个人，如果有不同看法，欢迎评论交流。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/02/27/%E7%BB%99%E5%89%8D%E7%AB%AF%E8%87%AA%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE/">https://refined-x.com/2019/02/27/给前端自学者的建议/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag"># 学习方法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/02/25/%E6%97%B6%E9%9A%94%E4%B8%A4%E5%B9%B4%EF%BC%8C%E5%86%8D%E6%AC%A1%E4%B8%8A%E6%89%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" rel="prev" title="时隔两年，再次上手小程序开发">
+      <i class="fa fa-chevron-left"></i> 时隔两年，再次上手小程序开发
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FiBeacon%E6%B5%8B%E8%B7%9D%E5%8F%8A%E7%A8%B3%E5%AE%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="微信小程序iBeacon测距及稳定程序的实现">
+      微信小程序iBeacon测距及稳定程序的实现 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%89%8D%E7%AB%AF%EF%BC%8C%E5%9F%BA%E7%A1%80%E5%85%88%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">学习前端，基础先行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AD%A6%E7%9A%84%E9%87%8D%E7%82%B9%E6%98%AF%E7%90%86%E6%B8%85%E6%8A%80%E6%9C%AF%E8%84%89%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">自学的重点是理清技术脉络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E9%87%8E%E6%89%8D%E6%98%AF%E6%9C%80%E9%AB%98%E7%9A%84%E6%8A%80%E6%9C%AF%E5%A3%81%E5%9E%92"><span class="nav-number">3.</span> <span class="nav-text">视野才是最高的技术壁垒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%AF%E7%B4%AF%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BC%98%E8%B4%A8%E8%AF%81%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">积累自己的优质证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">5.</span> <span class="nav-text">关于个人项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

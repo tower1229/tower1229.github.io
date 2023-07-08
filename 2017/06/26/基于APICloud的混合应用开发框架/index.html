@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="接上一篇对各种混合应用开发方案的探讨，个人觉得现阶段最适合自己的还是以APICloud为代表的混合应用云平台，对于不懂原生开发的前端来说，其他方案的坑真的踩不起，为了让踩过的坑不再坑人，我将自己基于云平台的项目经验总结并封装到了一个混合应用开发框架中去，下面就聊聊这个框架HybridStart。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于APICloud的混合应用开发框架">
+<meta property="og:url" content="https://refined-x.com/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="接上一篇对各种混合应用开发方案的探讨，个人觉得现阶段最适合自己的还是以APICloud为代表的混合应用云平台，对于不懂原生开发的前端来说，其他方案的坑真的踩不起，为了让踩过的坑不再坑人，我将自己基于云平台的项目经验总结并封装到了一个混合应用开发框架中去，下面就聊聊这个框架HybridStart。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-26T07:23:52.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.467Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="混合应用">
+<meta property="article:tag" content="HybridStart">
+<meta property="article:tag" content="APICloud">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于APICloud的混合应用开发框架 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于APICloud的混合应用开发框架
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-06-26 15:23:52" itemprop="dateCreated datePublished" datetime="2017-06-26T15:23:52+08:00">2017-06-26</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>接上一篇对<a href="//refined-x.com/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/">各种混合应用开发方案</a>的探讨，个人觉得现阶段最适合自己的还是以APICloud为代表的混合应用云平台，对于不懂原生开发的前端来说，其他方案的坑真的踩不起，为了让踩过的坑不再坑人，我将自己基于云平台的项目经验总结并封装到了一个混合应用开发框架中去，下面就聊聊这个框架<a href="//refined-x.com/HybridStart/">HybridStart</a>。</p>
+<span id="more"></span>
+
+<h2 id="为什么需要HybridStart"><a href="#为什么需要HybridStart" class="headerlink" title="为什么需要HybridStart"></a><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81HybridStart" title="为什么需要HybridStart"></a>为什么需要HybridStart</h2><h3 id="平台提供什么"><a href="#平台提供什么" class="headerlink" title="平台提供什么"></a><a href="#%E5%B9%B3%E5%8F%B0%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88" title="平台提供什么"></a>平台提供什么</h3><p>APICloud集成了包括窗口系统、应用管理、网络通信、数据存储、消息事件、设备访问、UI组件、多媒体等功能，这些功能不需要额外插件支持就可以直接调用，可以说是当之无愧的”开箱即用”，<a target="_blank" rel="noopener" href="http://docs.apicloud.com/Client-API/api">官方文档</a>对api的介绍还是非常细致的，第一次打开文档可能会觉得信息量太大，不知从何看起，这里我们就以<em>窗口系统</em>为例，介绍一下APICloud到底为我们提供了什么样的能力，以及为什么在实际项目中仍然需要对其做二次封装。</p>
+<p>多<code>webview</code>是APICloud的核心，这意味着APP像网站一样，是由若干个独立页面组成的，APP的使用过程会依次打开多个页面，这些页面形成一个堆栈，最新打开的显示在顶层，曾经打开的堆在底下，通过返回、跳转、关闭等操作可以在页面堆栈中穿梭，这些操作能力就由窗口系统提供，他至少包括以下功能：</p>
+<ul>
+<li>打开&#x2F;关闭页面</li>
+<li>打开&#x2F;关闭浮动窗口</li>
+<li>跳转页面</li>
+<li>跳转浮动窗口</li>
+<li>跨页面执行脚本</li>
+<li>本地存储</li>
+<li>页面状态监听</li>
+<li>全局事件发布&#x2F;订阅</li>
+</ul>
+<p>这些功能足以满足窗口管理中的所有需求，有一些功能甚至非常强大，比如跨页面执行脚本，意味着你可以在A页面遥控B页面执行指定脚本；还有的功能可以直接操作堆栈，比如将指定页面&#x2F;浮动窗口置顶&#x2F;置底；还有非常实用的发布订阅机制，是一种有效的穿透页面隔阂的工具。</p>
+<p>功能是够用了，但估计看完了你还是不会写代码。</p>
+<h3 id="平台欠缺什么"><a href="#平台欠缺什么" class="headerlink" title="平台欠缺什么"></a><a href="#%E5%B9%B3%E5%8F%B0%E6%AC%A0%E7%BC%BA%E4%BB%80%E4%B9%88" title="平台欠缺什么"></a>平台欠缺什么</h3><p>平台不缺功能，但我仍然有很多疑问，起码我在第一次接触到窗口系统时，心里就有很多疑问。</p>
+<p>第一个疑问，什么是浮动窗口？浮动窗口产生的背景是，安卓机上只有<code>&lt;body&gt;</code>节点产生的滚动才具有流畅的原生弹动效果，<code>&lt;div&gt;</code>或其他标签产生的滚动则很生涩，那在APP上我们要做局部滚动怎么办呢，我们通过在当前<code>webview</code>上覆盖一个小点的<code>webview</code>，来实现平顺的局部滚动，非常像web开发中的<code>&lt;iframe&gt;</code>，这就是浮动窗口。浮动窗口与主窗口具有从属关系，浮动窗口不能调用关闭方法关闭自己的父窗口。细心的同学会问，那为什么不用<code>&lt;iframe&gt;</code>呢，因为有兼容问题。</p>
+<p>第二个疑问，窗口之间怎么传参？主要有两种方式，第一种是打开窗口的方法本身支持传参，可以在新窗口通过指定api获取参数，然而这个官方方法并不是最佳方案，最大的缺点是需要等待原生功能就绪，就是说要在一个异步回调函数里才能取得参数，不够快；另一种方法是利用本地存储，在原页面存参数，打开新页面后取参数，本地存储是web能力，可以直接调用而不必等待原生功能就绪，所以效率更高；理论上还有第三第四种方法，比如用跨页面脚本执行去获取另一个页面中的变量，或者用事件监听机制让两个页面建立联系从而传参，不过这些就很奇葩了，需要说明一下理论上给url后面加<code>?a=b&amp;c=d</code>这种方式也是可以的，但在部分安卓系统上不兼容，因此不能用。</p>
+<p>第三个疑问，多页面如何同步状态？多页面机制最大的问题就是状态被分散在每个页面中，需要手动同步状态，比如打开了N个页面后用户突然退出登录了，后台页面就需要更新到非登陆状态，这时就要用到全局事件的发布和订阅了；还有一个场景是列表数据的实时更新，可以通过监听列表页面的前后台状态，使页面每次回到前台时执行更新操作。还有一个”点对点”的做法是跨页面执行脚本，可以让任意页面执行任意操作，很强大但使用场景有限。可以看到，这些操作虽然都能实现，但都挺麻烦，而且好像没有哪个是标准实现，怎样都行。</p>
+<p>第四个疑问，什么时候用<em>窗口</em>什么时候用<em>浮动窗口</em>？只要不是局部滚动页面都用<em>窗口</em>，有一种可能要用<em>浮动窗口</em>的情况是，希望在父窗口的框架下通过控制多个<em>浮动窗口</em>切换来更新局部内容，这个理论上可以，但需要量力而行，因为父子窗口的通信基本是靠跨页面脚本执行，交互多的话会很麻烦，而且<em>浮动窗口</em>的打开速度比想象的慢，开发中建议规避这种做法。</p>
+<p>第五个疑问，一个APP包含很多个页面，代码怎么组织？这个问题和上一个问题其实都应该由官方来回答，然而官方的新手指南基本上没啥用，只能自己看开源代码，然而这些官方示例的代码组织可以说一团糟，不出意外你会在一个文件夹里看到一大堆html文件，每一个文件名由栏目名称、页面名称、页面类型组成，打开html会在底部发现script标签里面写着当前页面的js代码，唯一一点<em>有组织</em>的迹象，大概就是提取了公用css和公用js，弱爆了。</p>
+<p>第六个疑问，怎么开始？给个套路？嗯，你只要通读文档，再踩上几个项目的坑，就全明白啦。</p>
+<p>可以看到，APICloud对所有的问题都有答案，甚至对有的问题有不止一个答案，唯独缺乏一个清晰的梳理，新手上来免不了要踩坑，<a href="//refined-x.com/HybridStart/">HybridStart</a>的定位就是一个基于APICloud平台的混合应用开发脚手架，把可能出现的坑都填上。</p>
+<h2 id="HybridStart提供什么"><a href="#HybridStart提供什么" class="headerlink" title="HybridStart提供什么"></a><a href="#HybridStart%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88" title="HybridStart提供什么"></a>HybridStart提供什么</h2><h3 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a><a href="#%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F" title="开发模式"></a>开发模式</h3><p>如果是跟我一样之前从未接触过APP开发的前端，我认为首先需要知道的是，APP不同于web的地方是需要很多<em>初始化</em>操作，比如判断是否已登录、数据预取、检查更新、注册推送、注册全局监听等等，经过这个过程后APP才能打开第一个页面，进入页面的生命周期。</p>
+<p>APICloud里有一个非常重要但官方没怎么强调的概念叫<em>根页面（root）</em>，就是APP启动后第一个打开的那个页面，这个页面非常特殊，相当于其他所有页面的父页面，它被关闭了意味着APP退出，他无法被其他页面调用关闭方法关闭，它是到达其他页面的必经之路。综合这些特征，这个页面非常适合用来做APP初始化，初始化完成后再立即切换到首页或者登录页，这时用户看到了第一个页面，但实际上是APP打开的第二个页面。</p>
+<p>APP启动后root页就常驻后台，对于安卓机还需要在可能返回到root页的页面上做返回键拦截，提示退出APP而不允许返回到root，因为root是个只有js代码的空白页。那么混合应用的页面生命周期就应该是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root -&gt; index(exit) &lt;=&gt; page &lt;=&gt; page ...</span><br></pre></td></tr></table></figure>
+
+<p>开发中我们第一个要实现的就是root页的初始化功能，比如检查登录状态，然后决定是跳转到登录页还是主页，然后再去实现登录页 or 主页。</p>
+<p>APP的数据交互几乎全部依靠后端接口，因此很有必要事先约定一个交互格式，方便统一做异常处理。比如最简单的先把<code>json</code>的大结构定下来，起码状态、数据、提示信息字段都得有，对于列表数据还需要一个信息总数字段，这样下来一个基本的交互格式就像这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;status&quot;</span>: <span class="string">&quot;Y&quot;</span>,  <span class="comment">//请求的状态 &quot;Y&quot;/&quot;N&quot;，也可以根据情况扩展其他</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: [&#123;...&#125;],  <span class="comment">//请求的数据 数组或对象</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span>,    <span class="comment">//【可选】服务端提示信息</span></span><br><span class="line">  <span class="attr">&quot;count&quot;</span>: [number] <span class="comment">//【可选】当获取列表数据时，需附加count数据指明列表总数，用于前端分页</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以封装一个数据请求方法，在方法里对某些情况做自动处理，比如当发现<code>status</code>不是”Y”的时候就自动提示<code>msg</code>字段的信息，就不用在每一个业务逻辑里写错误处理了。</p>
+<h3 id="代码组织"><a href="#代码组织" class="headerlink" title="代码组织"></a><a href="#%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87" title="代码组织"></a>代码组织</h3><p>稍微复杂点的APP有个几十近百的页面很正常，所以APP代码组织首先要解决的是页面组织。</p>
+<p>页面肯定得放在一起管理，但又不能直接罗列在一起，那就先建一个<code>view/</code>文件夹，然后按功能模块分二级文件夹，把会员相关页面都放进<code>member/</code>，商品页面都放进<code>product/</code>……；页面的脚本和样式也不希望内联，最好每个页面对应模板、样式、脚本三个文件，那就将他们三个也装进文件夹，以页面名称命名。这样页面文件就形成了<code>channel-page-pagefile</code>的结构，目录就变成了这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">view/</span><br><span class="line"> |--- member/     //会员栏目</span><br><span class="line"> |  |--- info/      //会员信息页</span><br><span class="line"> |  |    |--- temp.html</span><br><span class="line"> |  |    |--- style.css</span><br><span class="line"> |  |    `--- script.js</span><br><span class="line"> |  `--- <span class="built_in">set</span>/     //会员设置页</span><br><span class="line"> |      |--- temp.html</span><br><span class="line"> |      |--- style.css</span><br><span class="line"> |      `--- script.js</span><br><span class="line"> |  </span><br><span class="line"> |--- home/       //APP首页</span><br><span class="line"> |  |--- temp.html</span><br><span class="line"> |  |--- style.css</span><br><span class="line"> |  `--- script.js</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>这样即使有再多的页面，找起来也有迹可循，不至于在文件堆里看花了眼，将页面样式和脚本拆分出来也是为了开发方便，因为页面代码一旦很长，上上下下的巴拉css和js也挺痛苦的，不如拆开干净利索，反正都是本地文件，几乎没什么加载问题，将页面用文件夹的形式管理还有一个好处，就是可以将页面的独有资源放在各自文件夹内管理，比如图片就不需要全部丢进公用文件夹了，将来打开一看一大堆图片，都分不清哪个有用哪个没用。</p>
+<p>然后是脚本组织，APP开发需要写大量的js，组织js的目的就是层层过滤，将非业务代码过滤出去，使注意力可以更多的放在业务脚本的开发上。</p>
+<p>首先我们肯定要将类库剥离出来，在类库和业务之间再划分出插件、服务、公用脚本。</p>
+<p>公用脚本就是类似返回按钮的监听、图片点击的监听、兼容性处理等，每个页面都得引用它（除了root），可以把他们都抽到<code>common.js</code>里，方便统一修改；还有一些业务上常用的方法，比如格式化、查坐标等等，不是每个页面都能用到，但也很有必要集中在一起管理，暂且就叫他<code>server.js</code>；另外还有一些插件类的脚本，比如上传、表单验证，这种就分别封装成模块，一起放进<code>modules/</code>文件夹；最后是类库，也是框架的核心，我们称之为<code>core.js</code>，这里面放的是常用类库以及对引擎接口做二次封装，二次封装至少有三个好处，一是可以精简api，如果看过APICloud的文档感觉还好的话，建议去看一下Appcan的文档，那醉人的api设计，简直欲仙欲死；二是底层引擎的api假如更新了，不需要修改业务代码，只改<code>core.js</code>中对应的封装就好了；三是便于更换底层，实际上这个框架的雏形就是基于Appcan实现的，后来弃坑转到APICloud无非就是换了一套底层api，框架自身api没有大的改动。</p>
+<p>最后剩下的就是散落在各个页面里的<code>script.js</code>了，那么最终的脚本组织是这样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|--- sdk/</span><br><span class="line">|   |--- modules/</span><br><span class="line">|   |  |--- upload.js</span><br><span class="line">|   |  |--- ...</span><br><span class="line">|   |--- core.js</span><br><span class="line">|   |--- server.js</span><br><span class="line">|   `--- common.js</span><br><span class="line">|--- view/</span><br><span class="line">|   |--- page/</span><br><span class="line">|   |   |--- script.js</span><br><span class="line">|   |--- ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>css以及其他静态资源的组织就很简单了，没必要细讲，再上一个完整的目录结构吧：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- docs/       //文档(不需要上传打包平台)</span><br><span class="line">|-- error/      //app错误页</span><br><span class="line">|-- res/      //app静态资源(图片、模板等)</span><br><span class="line">|-- sdk/ </span><br><span class="line">|  |-- modules/     //插件模块</span><br><span class="line">|  |-- font/      //字体图标</span><br><span class="line">|  |-- core.js      //核心库</span><br><span class="line">|  |-- server.js    //业务方法</span><br><span class="line">|  |-- common.js    //页面公用代码</span><br><span class="line">|  `-- ui.css     //公共样式</span><br><span class="line">|-- view/       //app页面</span><br><span class="line">|-- config.js     //框架配置</span><br><span class="line">`-- config.xml    //APICloud配置</span><br></pre></td></tr></table></figure>
+
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a><a href="#%E6%8A%80%E6%9C%AF%E6%A0%88" title="技术栈"></a>技术栈</h3><p>js分的这么零碎肯定离不开模块化，因此整个项目是基于<code>seajs</code>实现的模块化加载；DOM操作用的<code>jQuery 2.x</code>，很多人觉得做混合应用还上jQuery太low，我要说多<code>webview</code>模式让混合应用真的很像一个网站，DOM操作少不了，当然你大可换成<code>zepto</code>或自己封装几个方法去用，我觉得差别不见得有多大，都是本地资源差个几KB有区别吗；模板引擎用的<code>etpl</code>，这个很有用，大量的异步数据渲染，没有模板引擎不行。</p>
+<p>类库都是直接将压缩后的代码放进<code>core.js</code>顶部，理论上可以随意增删改，但上述三个类库在其后的<code>app</code>对象实现中也有应用，因此不能直接删掉。除这三个以外的类库如果不需要可以删，比如<code>xss.js</code>，一个防御跨站脚本攻击的库。</p>
+<h2 id="HybridStart的意义"><a href="#HybridStart的意义" class="headerlink" title="HybridStart的意义"></a><a href="#HybridStart%E7%9A%84%E6%84%8F%E4%B9%89" title="HybridStart的意义"></a>HybridStart的意义</h2><h3 id="目的及原则"><a href="#目的及原则" class="headerlink" title="目的及原则"></a><a href="#%E7%9B%AE%E7%9A%84%E5%8F%8A%E5%8E%9F%E5%88%99" title="目的及原则"></a>目的及原则</h3><p>我有一点代码洁癖，体现在我不喜欢任何二次封装的东西，我希望<strong>通过最短的路径去触及功能实现的关键</strong>，所以抱着这样的目的，最开始我连官方的<code>js SDK</code>也不用，直接调用引擎api开发业务，我认为这是最快、性能最高的方式。</p>
+<p>然而事实是，<strong>引擎提供的api效率真心不高，而且可靠性堪忧</strong>，当年用Appcan开发第一个项目的时候，简直难受的想死，bug多到”举步维艰”你能想象吗，转到APICloud后虽然没有这么多明显的bug了，但部分api偶发性失灵还是有的，这种问题基本就没办法了，后来看了一些对混合应用实现原理的介绍才知道，这玩意本来就是个hack，反射弧就是比较长，体验上”不利索”啊，偶发性的失灵啊，也就可以理解了，其实难怪，要真能像调用原生一样快那还要原生干什么。</p>
+<p>所以后来我改变了思路，不能再面向引擎编程了，因为你不知道一个api背后是怎样实现的，就不知道这个api的真实使用成本，所以我开始接受二次封装，并且原则上<strong>尽量少的使用引擎能力</strong>。</p>
+<p>一开始是修改官方的<code>js SDK</code>，将无用的功能删掉，将需要的功能加上，改着改着发现这个<code>js SDK</code>跟我的需求差别太大，干脆就重写了一个，该有的有，该扩的扩，用起来很爽。随着开发的深入，越来越发现其实利用有限的几个api就可以实现绝大多数需求，如果仔细研究引擎的api，会发现真有些功能是非必需的，或者说是语法糖，怎么说呢，感觉就是api”设计的不优雅”。甚至有的功能实现还不如js模拟来的效果好，背后的开发质量可见一斑。</p>
+<p>在这样的目的和原则下，引擎api被二次封装进了<code>app</code>对象，除了常用核心方法被直接挂载在<code>app</code>上之外，还包括了<code>app.crypto</code>、<code>app.ls</code>、<code>app.window</code>、<code>app.ajax</code>几个模块。</p>
+<h3 id="app-openView"><a href="#app-openView" class="headerlink" title="app.openView"></a><a href="#app-openView" title="app.openView"></a>app.openView</h3><p><code>app</code>对象里封装了所有混合应用开发需要的功能，但是很多琐碎的功能实现都尽量的被隐藏起来了，可能开发中只需要修改一个配置就能使用，目的就是为了简化开发。这里我们就说一下<code>app.openView()</code>这个方法，这个方法用来打开一个页面，可以说是开发中最常用的方法，借此也让大家对<a href="//refined-x.com/HybridStart/">HybridStart</a>到底做了什么有一个感性的认识。</p>
+<p>首先我们看引擎本来提供的api是什么样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">api.openWin(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;page1&#x27;</span>,    <span class="comment">//为窗口命名，方便调用关闭方法将其关闭</span></span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;./page1.html&#x27;</span>,  <span class="comment">//页面路径</span></span><br><span class="line">  <span class="attr">pageParam</span>: &#123;    <span class="comment">//参数</span></span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;test&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">animation</span>: <span class="string">&#x27;push&#x27;</span>,  <span class="comment">//动画效果</span></span><br><span class="line">  <span class="attr">subType</span>: <span class="string">&#x27;form_right&#x27;</span> <span class="comment">//动画方向</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个方法的配置项还有很多，列出来的是开发中最常用到的几个，即便只是这几个配置每次写也已经够罗嗦了，<code>app.openView()</code>可以说就是对这个api 的封装，希望通过各种方式在不牺牲功能的前提下简化配置，那我们就从这几个配置入手，挨个来看怎么简化。</p>
+<p><code>name</code>属性用来为一个窗口命名，这个名称将来可以用于调用某些方法对其进行操作。我们要省掉这个配置就只能自动生成，但这个名称日后还有用，所以不能随机生成，必须有一定的规律，这里可以结合页面组织来解决，按照我们前面讲的规则组织后页面分为两种，一级页面<code>&quot;/view/channel/temp.html&quot;</code>和二级页面<code>&quot;/view/channel/page/temp.html&quot;</code>，规律还是很明显的，只要提供页面所属的<code>channel</code>名称以及如果是二级页面的话再加上<code>page</code>名称，就可以定位到这个页面，并且通过<code>channel + &quot;_&quot; + page</code>来得到一个唯一的<code>name</code>值。那我们就先假定openView方法需要<code>channel</code>和<code>page</code>两个参数，<code>page</code>是可选的，调用时将是这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.openView(<span class="string">&#x27;home&#x27;</span>);     <span class="comment">//url: &quot;/view/home/temp.html&quot;, name: &quot;home&quot;</span></span><br><span class="line"></span><br><span class="line">app.openView(<span class="string">&#x27;member&#x27;</span>,<span class="string">&#x27;set&#x27;</span>); <span class="comment">//url: &quot;/view/member/set/temp.html&quot;, name: &quot;member_set&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还不错，<code>name</code>和<code>url</code>都解决了，属性<code>pageParam</code>的处理相对复杂，我们放在后面说，先来看<code>animation</code>和<code>subType</code>。</p>
+<p>这两个属性是最应该被封装掉的，页面切换的动画类型肯定要集中到一个全局配置中管理，调用时<code>animation</code>可以省掉；动画方向配置基本上就是个伪需求，打开自然就是右推，关闭自然就是左推，分别封装进打开和关闭页面方法里就好了，<code>subType</code>也可以省掉。</p>
+<p>现在来看<code>pageParam</code>，用来给页面传参，参数格式是<code>Object</code>。好，这个需求必须有，我们要让<code>app.openView()</code>支持传参，语法将变成这个样子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.openView(param[<span class="built_in">Object</span>], channel[<span class="built_in">String</span>], page[<span class="built_in">String</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因为<code>page</code>是可选的，放在最后便于实现，因此将<code>param</code>参数放到前面。好像看上去也还行，但肯定还会有其他配置，不能一再的往上加参数吧，怎么办。</p>
+<p>这里有一条经验，页面传参多数发生在从列表页打开详细页的时候，这时我们传的参数是一个<code>id</code>，也就是一个字符串，实际上绝大多数情况下的页面传参都只是一个字符串，需要<code>Object</code>的情况不多，基于这个前提，我们将<code>param</code>参数扩展一下，既可以接受字符串也可以接受对象，当接受字符串时将该值作为参数传递给新页面，当是对象时允许该对象包含对openView方法的所有配置，当然其中也包括了页面参数，说起来有点绕，看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.openView(<span class="string">&#x27;newsID&#x27;</span>, <span class="string">&#x27;news&#x27;</span>, <span class="string">&#x27;detail&#x27;</span>);     <span class="comment">//实际开发中最常用的字符串传参</span></span><br><span class="line"></span><br><span class="line">app.openView(<span class="literal">null</span>, <span class="string">&#x27;home&#x27;</span>);         <span class="comment">//如果不需要传参，抱歉必须传一个null/undefined占位</span></span><br><span class="line"></span><br><span class="line">app.openView(&#123;              <span class="comment">//Object类型的参数得这么传</span></span><br><span class="line">  <span class="attr">param</span>: <span class="built_in">Object</span></span><br><span class="line">&#125;, <span class="string">&#x27;home&#x27;</span>);  </span><br><span class="line"></span><br><span class="line">app.openView(&#123;              <span class="comment">//这里还可以配置openView方法的其他参数</span></span><br><span class="line">  <span class="attr">duration</span>: <span class="number">350</span></span><br><span class="line">&#125;, <span class="string">&#x27;home&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样所有的问题都解决了，但有一个小瑕疵，就是没有参数必须传<code>null/undefined</code>占位，因为<code>page</code>参数已经是可省的了，<code>param</code>参数实在没办法再做判断，不过这个<code>null/undefined</code>传的也不是一点意义没有，这里又得说来话长了。</p>
+<p>前面说过给页面传参有两种方法，一种是通过api提供的<code>pageParam</code>，另一种是通过<code>localStorage</code>跨页面存取值，<code>pageParam</code>的问题是新页面取值比较慢，取值代码可能是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原生功能就绪回调</span></span><br><span class="line">app.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pageParam = api.pageParam; </span><br><span class="line">  <span class="comment">//基于pageParam的后续操作，比如页面渲染、表单验证，事件绑定</span></span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>app.ready()</code>是框架封装的原生功能就绪回调，这是一个异步回调，通常，为了提高脚本响应速度我们会把不需要原生能力的操作放在<code>app.ready()</code>之外，使其同步执行，问题在于，如果基于页面参数的后续操作恰好是不需要原生能力的，但为了等待取参数，也必须被放进<code>app.ready()</code>内执行，这就很不爽了。</p>
+<p>所以框架提倡的传参方式是用<code>localStorage</code>，在新页面可以同步取值，这种方式唯一的问题是可能造成资源浪费，各种参数放进本地，怎么清理？我的方法是约定一个专门用来传参的键<code>crossParam</code>，每次传参都写进这里，反复擦写最终留下的只是最后一次的参数值，<code>app.openView()</code>已经对此做了封装，参数将自动存进<code>localStorage.crossParam</code>，参数如果是对象类型将做<code>JSON.stringfiy()</code>处理，因此如果传的是对象，取值后需要自己做<code>JSON.parse()处理</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//同步取得页面参数</span></span><br><span class="line"><span class="keyword">var</span> param = app.ls(<span class="string">&#x27;crossParam&#x27;</span>);   </span><br><span class="line"><span class="comment">//执行不需要原生能力的操作</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">app.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//执行需要原生能力的操作</span></span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回到<code>app.openView()</code>方法第一个参数必须占位的问题，他的意义在于，当<code>app.openView()</code>检测到<code>null/undefined</code>时会将本地存储中的<code>crossParam</code>键删掉，将造成浪费的可能性降至最低。</p>
+<p>当然，官方的<code>pageParam</code>方式也没有废弃，如果传递的参数是对象的话，<code>pageParam</code>和<code>localStorage</code>两种方式都生效，通过<code>api.pageParam</code> 的方式也可以取到值。</p>
+<p>经过这些封装，打开页面的语法已经非常简单了，但<code>app.openView()</code>还有很多其他功能，比如以弹窗形式打开页面、以带标题栏的形式打开页面、打开新页面同时关闭当前页面、或者打开一个网页，这些功能的实现都相对复杂，就不一一展开了，这里只着重介绍封装思路，如果有兴趣可以去<a href="//refined-x.com/HybridStart/docs/">HybridStart 文档</a>看一看。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a href="#%E5%90%8E%E8%AE%B0" title="后记"></a>后记</h2><p>吹了半天，还得回到选型上来，我并不觉得多数项目适合这种方案，我甚至觉得只有少数项目，或者只有项目的起步时期，可以用这种方案快速上马快速迭代，我理想中的混合应用形态是原生为主web为辅的，但从一个前端的角度看，我并没有发现更好的可行性方案，有人可能会说<code>React Native</code>，但那个东西还是需要原生开发基础的好吗，而且如果APICloud在UI组件方面再进一步，貌似也可以接近<code>React Native</code>的效果。</p>
+<p>总之，如果你觉得自己的项目正好适合这个方案的话，这个框架可能对你有帮助。</p>
+<p>源码： <a target="_blank" rel="noopener" href="https://github.com/tower1229/HybridStart">Github</a></p>
+<p>框架本身就是一个演示APP，自带部分功能的演示页面，将代码同步到你的项目就可以编译下载了，如果这个项目对你有帮助的话，请去Github尽情的Star不要客气。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">https://refined-x.com/2017/06/26/基于APICloud的混合应用开发框架/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8/" rel="tag"># 混合应用</a>
+              <a href="/tags/HybridStart/" rel="tag"># HybridStart</a>
+              <a href="/tags/APICloud/" rel="tag"># APICloud</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/23/2017%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6/" rel="prev" title="2017混合应用开发现状">
+      <i class="fa fa-chevron-left"></i> 2017混合应用开发现状
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/03/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E6%A2%B3%E7%90%86/" rel="next" title="混合应用框架优化思路梳理">
+      混合应用框架优化思路梳理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81HybridStart"><span class="nav-number">1.</span> <span class="nav-text">为什么需要HybridStart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">平台提供什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E6%AC%A0%E7%BC%BA%E4%BB%80%E4%B9%88"><span class="nav-number">1.2.</span> <span class="nav-text">平台欠缺什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HybridStart%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">HybridStart提供什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">开发模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87"><span class="nav-number">2.2.</span> <span class="nav-text">代码组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">2.3.</span> <span class="nav-text">技术栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HybridStart%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">3.</span> <span class="nav-text">HybridStart的意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84%E5%8F%8A%E5%8E%9F%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">目的及原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-openView"><span class="nav-number">3.2.</span> <span class="nav-text">app.openView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

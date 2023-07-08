@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前段时间基于HybridStart开发了一个公司内部APP，重走了一遍混合应用从开发到发布的整个流程，唤起了很多坑的记忆，也为HybridStart修复了不少细节bug，下面简单回顾一下过程中值得一提的几个点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="混合应用从开发到发布">
+<meta property="og:url" content="https://refined-x.com/2017/08/08/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E4%BB%8E%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="前段时间基于HybridStart开发了一个公司内部APP，重走了一遍混合应用从开发到发布的整个流程，唤起了很多坑的记忆，也为HybridStart修复了不少细节bug，下面简单回顾一下过程中值得一提的几个点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://refined-x.com/asset/yjk-screen-1.png">
+<meta property="og:image" content="https://refined-x.com/asset/yjk-screen-5.png">
+<meta property="og:image" content="https://refined-x.com/asset/yjk-screen-2.png">
+<meta property="og:image" content="https://refined-x.com/asset/yjk-screen-3.png">
+<meta property="og:image" content="https://refined-x.com/asset/yjk-screen-4.png">
+<meta property="article:published_time" content="2017-08-08T08:03:01.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.470Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="混合应用">
+<meta property="article:tag" content="HybridStart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://refined-x.com/asset/yjk-screen-1.png">
+
+<link rel="canonical" href="https://refined-x.com/2017/08/08/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E4%BB%8E%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>混合应用从开发到发布 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/08/08/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E4%BB%8E%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          混合应用从开发到发布
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-08 16:03:01" itemprop="dateCreated datePublished" datetime="2017-08-08T16:03:01+08:00">2017-08-08</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前段时间基于<a href="//refined-x.com/HybridStart/">HybridStart</a>开发了一个公司内部APP，重走了一遍混合应用从开发到发布的整个流程，唤起了很多坑的记忆，也为HybridStart修复了不少细节bug，下面简单回顾一下过程中值得一提的几个点。</p>
+<span id="more"></span>
+
+<h2 id="开发前准备"><a href="#开发前准备" class="headerlink" title="开发前准备"></a><a href="#%E5%BC%80%E5%8F%91%E5%89%8D%E5%87%86%E5%A4%87" title="开发前准备"></a>开发前准备</h2><p>基于APICloud+HybridStart开发混合应用的门槛是极低的，一个初级水平的前端开发就应该可以从容搞定，这里有一个详细的<a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/eb9f7b6d60e18f869264e847.html">混合应用新手入门教程</a>；对于有一定经验的开发者，在做好项目准备工作之后，应该排查以下几项东西有没有准备好：</p>
+<ul>
+<li>APP图标 200x200 png格式</li>
+<li>APP启动页 1080x1920 格式不限</li>
+<li>IOS测试证书和发布证书（安卓证书平台可以自动生成）</li>
+<li>添加所需模块，移除冗余模块</li>
+<li>核对<code>config.xml</code>中的信息，包括appID、权限信息</li>
+</ul>
+<p>以上都准备就绪后就可以在平台上打包一个”自定义Loader”，安装到安卓手机上，打开IDE，开启wifi调试，进入无忧无虑的APP开发阶段了。</p>
+<h2 id="开发中可能遇到的坑"><a href="#开发中可能遇到的坑" class="headerlink" title="开发中可能遇到的坑"></a><a href="#%E5%BC%80%E5%8F%91%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91" title="开发中可能遇到的坑"></a>开发中可能遇到的坑</h2><p>安卓上的问题自4.4.2之后就比较少了，可能出现的绝大多数问题都属于表现层面上的兼容问题，基本上都是由于ROM厂商对webview的篡改导致的，这次开发的APP面向的主要用户群体是IOS用户，安卓上面没有做大规模的测试，仅在开发中遇到了一个页面切换闪白色块的问题，表现为返回到部分页面时屏幕上会随机闪现大块的白色色块，页面进场后消失。首先排查模块，发现不是模块导致的，加上受影响的页面很固定，所以猜测问题出在webview上，可能是问题页面的部分样式写法触发了渲染bug，经过对样式的排查，果然找到原因了，是一个绝对定位的伪元素引起的，加上<code>transform:translate3d(0,0,0);</code>强制开启硬件加速之后解决了问题。</p>
+<p>IOS上的问题历来是不多，但很奇葩，这次遇到的问题也算IOS上的一个经典问题了，就是把滚动元素的事件委托在<code>body</code>上无效，只能委托在<code>body</code>内的一个容器元素上，而且<code>body</code>的高度还必须自动，如果<code>body</code>高度<code>100%</code>，那么会出现更奇葩的情况，当前屏幕范围内的元素事件可以触发，滚动后新进入屏幕的元素事件不会触发，只能理解为滚动后相当于把<code>body</code>整体上移了，导致点击事件没有落在<code>body</code>元素上，而这毫无疑问是个bug。</p>
+<h2 id="IOS上架"><a href="#IOS上架" class="headerlink" title="IOS上架"></a><a href="#IOS%E4%B8%8A%E6%9E%B6" title="IOS上架"></a>IOS上架</h2><p>开发完成后最大的一个难关就是IOS上架了，这次上架总体还算顺利，被驳回一次是因为自己的疏忽，申请了一个没有必要的权限，因为HybridStart默认集成了百度地图插件并开发了定位相关的功能演示，所以在<code>config.xml</code>里申请了一个后台定位的权限，新APP并不需要定位和地图相关功能，因此将模块及相关代码都移除了，但百密一疏忘了将<code>config.xml</code>的权限删掉，导致被驳回，这里也给大家提个醒，如果要上架的话这些细节一定记得检查。</p>
+<p>混合应用IOS上架另一个最常犯的错误就是忘了屏蔽自动更新，自动更新太方便了，基本所有的APP都会做，但如果IOS版要上架苹果商店，一定记得在IOS里隐藏相关功能按钮，否则一定上不了架的。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a href="#%E5%90%8E%E8%AE%B0" title="后记"></a>后记</h2><p>经过这次项目的检验HybridStart已经准备好了应对各种类型的混合应用开发，代码仍在持续维护，文档主要内容已完成，解决方案部分和细节修缮我会抽时间完成。</p>
+<p>附：</p>
+<ol>
+<li><a href="//refined-x.com/HybridStart/">HybridStart项目主页</a></li>
+<li><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/eb9f7b6d60e18f869264e847.html">混合应用新手入门教程</a></li>
+<li>本次项目部分截屏</li>
+</ol>
+<p><img src="/asset/yjk-screen-1.png" alt="此处输入图片的描述"><br><img src="/asset/yjk-screen-5.png" alt="此处输入图片的描述"><br><img src="/asset/yjk-screen-2.png" alt="此处输入图片的描述"><br><img src="/asset/yjk-screen-3.png" alt="此处输入图片的描述"><br><img src="/asset/yjk-screen-4.png" alt="此处输入图片的描述"></p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/08/08/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E4%BB%8E%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/">https://refined-x.com/2017/08/08/混合应用从开发到发布/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8/" rel="tag"># 混合应用</a>
+              <a href="/tags/HybridStart/" rel="tag"># HybridStart</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/21/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E9%A1%B5%E9%9D%A2%E6%89%93%E5%BC%80%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" rel="prev" title="混合应用页面打开速度优化">
+      <i class="fa fa-chevron-left"></i> 混合应用页面打开速度优化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/29/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" rel="next" title="基于Vue实现后台系统权限控制">
+      基于Vue实现后台系统权限控制 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">开发前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="nav-number">2.</span> <span class="nav-text">开发中可能遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOS%E4%B8%8A%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">IOS上架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

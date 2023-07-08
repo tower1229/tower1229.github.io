@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时隔两年，再次上手小程序开发">
+<meta property="og:url" content="https://refined-x.com/2019/02/25/%E6%97%B6%E9%9A%94%E4%B8%A4%E5%B9%B4%EF%BC%8C%E5%86%8D%E6%AC%A1%E4%B8%8A%E6%89%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://refined-x.com/asset/baby_assistant.png">
+<meta property="article:published_time" content="2019-02-25T06:47:09.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.470Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://refined-x.com/asset/baby_assistant.png">
+
+<link rel="canonical" href="https://refined-x.com/2019/02/25/%E6%97%B6%E9%9A%94%E4%B8%A4%E5%B9%B4%EF%BC%8C%E5%86%8D%E6%AC%A1%E4%B8%8A%E6%89%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>时隔两年，再次上手小程序开发 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2019/02/25/%E6%97%B6%E9%9A%94%E4%B8%A4%E5%B9%B4%EF%BC%8C%E5%86%8D%E6%AC%A1%E4%B8%8A%E6%89%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          时隔两年，再次上手小程序开发
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-25 14:47:09" itemprop="dateCreated datePublished" datetime="2019-02-25T14:47:09+08:00">2019-02-25</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>小程序开发框架经过两年左右的迭代，发展的越来越成熟和完善了，无论框架层面还是开发工具层面，体验都上升了一个层次，借《宝贝成长助理》这个项目的契机，总结一下在2019年这个时间点，小程序开发的现状。</p>
+<span id="more"></span>
+
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a><a href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF" title="项目背景"></a>项目背景</h2><p>做宝爸快一年了，自然会花一些精力调整知识结构，关注婴幼儿成长方面的知识，现在的宝宝在营养方面普遍处于过剩状态，身边越来越常见到那种明显“富态”的宝宝，对于孩子何谓胖何谓瘦众说纷纭，为了有一个权威可靠的标准去衡量孩子的生长健康状况，我查了世界卫生组织提供的<a target="_blank" rel="noopener" href="https://www.who.int/childgrowth/standards/en/">婴幼儿成长标准</a>，标准以天为单位，提供5岁以内婴幼儿的身高、体重、BMI（衡量胖瘦）等指标的分布占比信息，也就是说任意天数的宝宝都能查到当下最符合健康成长规律的身高、体重、BMI数值，也可以查到宝宝当前的成长数据处于整体样本库中的什么位置，以此衡量宝宝的成长状态，辅助纠正宝宝的喂养问题。</p>
+<p>经过一个周的开发，目前初代版本已上线，欢迎扫码体验。</p>
+<p><img src="http://refined-x.com/asset/baby_assistant.png" alt="成长助理"></p>
+<h2 id="整体感受"><a href="#整体感受" class="headerlink" title="整体感受"></a><a href="#%E6%95%B4%E4%BD%93%E6%84%9F%E5%8F%97" title="整体感受"></a>整体感受</h2><p>两年前小程序刚推出的时候也是我第一次接触小程序开发，当时漫无目的的做了一个DEMO项目，并写了一篇<a href="https://refined-x.com/2017/07/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">《小程序上手指南》</a>，内容非常粗浅，本以为时隔两年重读小程序开发文档，会有很多“硬货”，然后并没有。相比两年前小程序框架最大的改动就是引入了组件和插件两个概念，极大提升了小程序的开发体验，但其实在熟悉现代前端框架的开发者眼里，这些都是早已经过时间检验的最佳实践，没有是小程序的缺陷，有了才是顺理成章，所以这方面不能算惊喜。</p>
+<p>另外，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/wxaplugin?action=index&start=0&rows=20&lang=zh_CN">小程序插件库</a>的入口藏得有点深，竟然不在文档的一级导航上，也没有整合到开发工具中，有点奇怪。</p>
+<p>真正令我印象深刻的点有五个。</p>
+<ol>
+<li>开发工具的真机预览和调试功能特别好用，可以说完全符合预期，因为我之前没有关注这个功能的迭代过程，所以对我来说冲击很大，有种从0到100一步到位的惊艳感。</li>
+<li>文档新增的<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0008aeea9a8978ab0086a685851c0a">《小程序开发指南》</a>非常值得一读，能帮助加深对小程序整体技术架构的理解，减少一些跳坑几率。</li>
+<li>还不错的动画API。动画API其实是操作CSS动画的语法糖，目的是让CSS动画变得可编程，是很好的功能，使用体验一般吧，不好也不坏。</li>
+<li>符合开发者利益，符合用户利益。小程序框架的一些改动非常有心，比如新增的几个开放能力组件，开发者可以在用户不授权不登陆的情况下展示用户基本信息，很多本不需要用户系统，仅仅想展示一下用户头像的业务，终于有了正确的实现方式；而对用户来说，基本信息并没有被开发者获取到，减少了无意义的授权，双赢。</li>
+<li>无后端开发的典范——小程序云开发。小程序对开发者的定义从来不只是程序员群体，而是包括产品经理、设计师、甚至中学生在内的所有需要开发小程序的人，所以小程序开发框架越迭代越简单，而有了云开发之后，可以说真正做到了<strong>任何人都可以通过简单学习去开发一个功能完善的小程序</strong>。这一点下面单独展开说。</li>
+</ol>
+<h2 id="小程序云开发"><a href="#小程序云开发" class="headerlink" title="小程序云开发"></a><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%BC%80%E5%8F%91" title="小程序云开发"></a>小程序云开发</h2><p>小程序云开发是微信官方推出的无后端开发服务。无后端开发模式不是新鲜事物，甚至经过三五年的发展这个词已经有些过气了，并不为人所知，但无后端的思想和一些典型经验在小程序云开发中体现的淋漓尽致，细节处又与业务结合的恰到好处，相比我之前了解的其他无后端服务，小程序云开发给我的感受就好像：一个从没摸过钢琴的人，一上手竟弹出肖邦的水平。</p>
+<p>无后端其实可以简单粗暴的归纳为数据库、存储空间、算力（云函数）以及其他们的运营托管服务的打包租赁，单纯拿出来说是特别简单的一个东西，而这几样东西被小程序开发工具有机的整合起来，却呈现出一种新的生命力。</p>
+<p>云开发提供的是非关系型数据库，但文档里从头到尾你看不到非关系型这几个字，只有寥寥几个简单的示例，一下就能明白这个东西该怎么用，剩下的很多文档甚至都不用看了，等到用的时候再来查就行，简单业务在小程序端就能实现数据库的增删改查；存储空间不说了，本来就简单，整合到云开发的API里之后也是一如既往的简明易懂；云函数是近一两年出的新东西，BAT三家云服务都在做，很长一段时间我不理解云函数和我50块&#x2F;年的<a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=y31qmczl">阿里云虚拟机</a>比有什么优势，但就这样一个东西被小程序整合了用户鉴权之后，简直成了神器，复制黏贴文档上的示例代码，简单几步就能实现用户登录；结合数据库和存储服务，只要不是太复杂的业务都能靠云函数搞定。云函数用的还是Nodejs语言，实在想不出小程序开发哪里还能用得到后端，所以我说，小程序的云开发是无后端开发的典范，是对无后端技术整合的最佳实践。</p>
+<p>这也暗合张小龙在最近一次年度演讲中提到的他对技术的看法，大意是技术的价值不在于技术本身，而在于正确的应用场景。实际上微信7.0的视频动态功能里，视频配乐就应用了AI技术去匹配背景音乐，如果你还没用过这个功能，建议你马上体验一下。我个人的感受是做的特别好，甚至比很多将AI作噱头的营销PPT吹的都要好。推送的前几首音乐往往是AI匹配的，因为我经常拍的就是我儿子，我发现推送的音乐首先可以做到在情感类型上与视频内容匹配，是可爱的还是动感的还是搞笑的，都判断的很准确，这一点非常重要，可以强化视频的情感表达，让本来没有那么好玩的一个视频变得妙趣横生；然后音乐的节奏也能做到跟人物动作匹配，甚至有时候节奏还能对上人物的口型，最终的效果就是，经常让我觉得背景音乐成了视频动态的点睛之笔，这种感受恐怕只有亲身体验过人才会知道有多棒。将AI技术应用的这么好，微信团队却从没有公开提过，甚至没看过张小龙那次演讲的人，可能一辈子都不会知道微信里的这个小功能，其实运用了当下最尖端的AI技术，并且炉火纯青。</p>
+<h2 id="一些遗憾"><a href="#一些遗憾" class="headerlink" title="一些遗憾"></a><a href="#%E4%B8%80%E4%BA%9B%E9%81%97%E6%86%BE" title="一些遗憾"></a>一些遗憾</h2><p>夸了这么多但总归还是有一些遗憾，主要有四点。</p>
+<ol>
+<li>canvas应用受限。我这次做的项目里涉及到数据呈现，本来希望能用canvas绘制，但canvas是原生组件，脱离webview独立渲染，导致跟swiper组件结合使用时出现异常，表现为页签滑动但是页签里的canvas不动。最后的解决方法是先用canvas绘制出来，然后截屏保存再处理成背景图片，没办法，谁让我的PS水平画不出来我想要的效果呢。</li>
+<li>官方社区还是不理想。貌似活跃了可以忽略不计的那么一点点吧，但总体来说问答数量的积累还是不够，经常有问题搜不出来，而开发中的问题如果你等着官方给你回复，估计等半天等来的答案会让你更上火，还不如百度一下来的效率。社区的搜索功能还有一个明显的槽点，搜索输入框后面的放大镜是不能点击的，只能通过回车键进入搜索结果，很难想象这个社区是微信团队做出来的。</li>
+<li>开发文档仍然有一些地方不够细致，比如canvas的一些接口和文件操作的一些接口，怎么说呢，会让你有一种不懂的时候怎么看都不懂，懂了之后再看“奥原来是这个意思啊”的感觉。</li>
+<li>开发工具表现的不太稳定，开发过程中发现canvas绘制和文件操作方面有时候跟真机表现不一致，然后不知道什么时候再看就莫名其妙的正常了，很奇妙；然后就是老生常谈的问题，编辑器不好用，而且有低级错误，在小屏笔记本上选中一段代码点鼠标右键，代码的选中状态会消失而且代码会网上滚动一行左右。</li>
+</ol>
+<h2 id="关于跨平台开发框架"><a href="#关于跨平台开发框架" class="headerlink" title="关于跨平台开发框架"></a><a href="#%E5%85%B3%E4%BA%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6" title="关于跨平台开发框架"></a>关于跨平台开发框架</h2><p>我关注到最近圈子里出现了一种跨平台开发框架，可以一统包括小程序在内的各种前端开发平台，妥妥的前端版“一次开发，处处运行”。优点显而易见，如果需求上同时需要一个小程序和一个H5，业务完全一样，那么代码就可以100%复用，完美。</p>
+<p>但我对这种技术架构不感冒，我倾向于用最直接的方式去开发目标平台，首先小程序自身框架做到目前的程度，是可用的，吐槽开发体验我觉得就是鸡蛋里挑骨头了。即便考虑到代码复用，我也不认为一套代码同时跑在小程序和H5上是一种好的技术架构，因为我的经验是，每个平台都有自己的业务特点，会催生出不同的业务需求，随着时间的推移，他们终究会成为不同的东西，到那个时候想要摆脱这套框架，带来的成本恐怕就是重构级的。</p>
+<p>而且这种包装本身就会带来很多问题，需要跟进平台更新，需要持续抹平平台差异，你代码复用省下的时间要能覆盖掉这些维护成本才行，可能是我没遇到合适的场景吧，我只能想到做外包的时候用一下比较省事，反正后续不需要自己维护，其他情况真的想不到了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a><a href="#%E6%9C%80%E5%90%8E" title="最后"></a>最后</h2><p>受限于这次的小程序项目比较简单，这次的体验还不够全面和深入，暂且总结以上几点，总体来说小程序已经做的特别好了，开发体验不错，其他细节以后有机会再深入体验吧。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2019/02/25/%E6%97%B6%E9%9A%94%E4%B8%A4%E5%B9%B4%EF%BC%8C%E5%86%8D%E6%AC%A1%E4%B8%8A%E6%89%8B%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">https://refined-x.com/2019/02/25/时隔两年，再次上手小程序开发/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 小程序</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/01/22/2018%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%9A%84%E8%80%8C%E7%AB%8B%E4%B9%8B%E5%B9%B4/" rel="prev" title="2018年度总结，一个技术人的而立之年">
+      <i class="fa fa-chevron-left"></i> 2018年度总结，一个技术人的而立之年
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/02/27/%E7%BB%99%E5%89%8D%E7%AB%AF%E8%87%AA%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE/" rel="next" title="给前端自学者的建议">
+      给前端自学者的建议 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%84%9F%E5%8F%97"><span class="nav-number">2.</span> <span class="nav-text">整体感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%91%E5%BC%80%E5%8F%91"><span class="nav-number">3.</span> <span class="nav-text">小程序云开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%81%97%E6%86%BE"><span class="nav-number">4.</span> <span class="nav-text">一些遗憾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">关于跨平台开发框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

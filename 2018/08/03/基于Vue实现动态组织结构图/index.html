@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基于Vue实现动态组织结构图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vue实现动态组织结构图">
+<meta property="og:url" content="https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="基于Vue实现动态组织结构图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://refined-x.com/asset/vue-tree-chart.png">
+<meta property="og:image" content="https://refined-x.com/asset/nodes-1.png">
+<meta property="og:image" content="https://refined-x.com/asset/nodes-2.png">
+<meta property="og:image" content="https://refined-x.com/asset/nodes-3.png">
+<meta property="og:image" content="https://refined-x.com/asset/nodes-4.png">
+<meta property="article:published_time" content="2018-08-03T02:34:28.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.468Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Vue-Tree-Chart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://refined-x.com/asset/vue-tree-chart.png">
+
+<link rel="canonical" href="https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于Vue实现动态组织结构图 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Vue实现动态组织结构图
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-03 10:34:28" itemprop="dateCreated datePublished" datetime="2018-08-03T10:34:28+08:00">2018-08-03</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>基于Vue实现动态组织结构图</p>
+<span id="more"></span>
+
+<h2 id="Vue-Tree-Chart"><a href="#Vue-Tree-Chart" class="headerlink" title="Vue-Tree-Chart"></a><a href="#Vue-Tree-Chart" title="Vue-Tree-Chart"></a>Vue-Tree-Chart</h2><p>最近一个项目里有个前端绘制家谱图的需求，大概是下面这个样子：</p>
+<p><img src="https://refined-x.com/asset/vue-tree-chart.png"></p>
+<p>点击节点会弹出操作菜单，实现增删改查等操作，查阅网上资料发现，现有案例基本都是基于<a target="_blank" rel="noopener" href="http://www.getorgchart.com/">orgchart</a>这个jQuery插件实现的，我们的项目是基于Vue的，不希望因为这个功能引入jQuery，所以就基于Vue实现了一个简易版的树形图&#x2F;组织结构图组件：<a target="_blank" rel="noopener" href="https://github.com/tower1229/Vue-Tree-Chart">Vue-Tree-Chart</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tower1229/Vue-Tree-Chart">Vue-Tree-Chart</a>实现了最核心的组织结构图动态绘制和点击节点回调，基于这两点已经可以满足绝大多数相关需求了，例如前端动态增删改，无非是编辑组件数据，利用Vue的数据驱动特性界面就会自动更新；服务端增删改就更简单了，前端只管请求操作接口，操作结束后拉取最新数据同步给组件就行了；组件默认界面非常简单，只引入了图表呈现所必须的少量样式，后期非常方便自定义风格；至于拖动、缩放、导出等不太普遍的需求，组件没有内置，但是在源码基础上实现这些扩展也都比较简单。</p>
+<h2 id="如何绘制结构图"><a href="#如何绘制结构图" class="headerlink" title="如何绘制结构图"></a><a href="#%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6%E7%BB%93%E6%9E%84%E5%9B%BE" title="如何绘制结构图"></a>如何绘制结构图</h2><h3 id="不靠谱的思路"><a href="#不靠谱的思路" class="headerlink" title="不靠谱的思路"></a><a href="#%E4%B8%8D%E9%9D%A0%E8%B0%B1%E7%9A%84%E6%80%9D%E8%B7%AF" title="不靠谱的思路"></a>不靠谱的思路</h3><p>拿到这个需求后我首先想到的思路是用DIV布局+JS动态计算实现，如果不考虑节点连线的话，这个思路其实勉强也能应付，大致实现分为三步：</p>
+<h4 id="一、将数据按“代”拆分"><a href="#一、将数据按“代”拆分" class="headerlink" title="一、将数据按“代”拆分"></a><a href="#%E4%B8%80%E3%80%81%E5%B0%86%E6%95%B0%E6%8D%AE%E6%8C%89%E2%80%9C%E4%BB%A3%E2%80%9D%E6%8B%86%E5%88%86" title="一、将数据按“代”拆分"></a>一、将数据按“代”拆分</h4><p>原始数据格式只能是层层深入的JSON对象：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name: &#x27;root&#x27;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">        name: &#x27;child&#x27;,</span><br><span class="line">        children: [&#123;</span><br><span class="line">            name: &#x27;grandchild&#x27;,</span><br><span class="line">            ...</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按“代”拆分后成为这样：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    [&#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;root</span></span><br><span class="line"><span class="string">    &#125;],</span></span><br><span class="line"><span class="string">    [&#123;</span></span><br><span class="line"><span class="string">        id: 1,</span></span><br><span class="line"><span class="string">        name: &#x27;</span>child<span class="string">&#x27;,</span></span><br><span class="line"><span class="string">        pid: 0</span></span><br><span class="line"><span class="string">    &#125;],</span></span><br><span class="line"><span class="string">    [&#123;</span></span><br><span class="line"><span class="string">        id: 2</span></span><br><span class="line"><span class="string">        name: &#x27;</span>grandchild<span class="string">&#x27;,</span></span><br><span class="line"><span class="string">        pid: 1</span></span><br><span class="line"><span class="string">    &#125;]</span></span><br><span class="line"><span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<p>形象一点，我想要的其实是这种结构：</p>
+<p><img src="https://refined-x.com/asset/nodes-1.png"></p>
+<h4 id="二、按“代”绘制节点"><a href="#二、按“代”绘制节点" class="headerlink" title="二、按“代”绘制节点"></a><a href="#%E4%BA%8C%E3%80%81%E6%8C%89%E2%80%9C%E4%BB%A3%E2%80%9D%E7%BB%98%E5%88%B6%E8%8A%82%E7%82%B9" title="二、按“代”绘制节点"></a>二、按“代”绘制节点</h4><p>有了上一步的数据，再将每一代的节点从上到下生成出来简直不要太容易，然后居中一下，树形结构基本就出来了：</p>
+<p><img src="https://refined-x.com/asset/nodes-2.png"></p>
+<p>这时节点的间距是相同的，我们需要在下一步中计算并更新节点间距，使他们呈现出正确的归属关系。</p>
+<h4 id="三、计算节点间距"><a href="#三、计算节点间距" class="headerlink" title="三、计算节点间距"></a><a href="#%E4%B8%89%E3%80%81%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E9%97%B4%E8%B7%9D" title="三、计算节点间距"></a>三、计算节点间距</h4><p>我们需要的是这样的效果：</p>
+<p><img src="https://refined-x.com/asset/nodes-3.png"></p>
+<p>观察图形得知，除了初代节点始终居中之外，其他节点所占空间应该等于后代节点所占空间，所以我们需要从最后一代节点开始遍历，依次向上得到父级节点应该占据的空间，从而计算出其需要的左右<code>marin</code>值，将所有包含子节点的节点应用正确的<code>margin</code>后，应该就可以得到上图的效果。</p>
+<p>另外，家谱图还需要节点间连线，如果仍然按照这个思路，用div模拟画线也可以，但这样一来计算逻辑的复杂度就比较大了，这时候已经明显感觉思路不对了，必须换方向。</p>
+<h3 id="Table的妙用"><a href="#Table的妙用" class="headerlink" title="Table的妙用"></a><a href="#Table%E7%9A%84%E5%A6%99%E7%94%A8" title="Table的妙用"></a>Table的妙用</h3><p>后来参考orgchart的实现，打开调试工具一看，怎么里面一大堆<code>&lt;table&gt;</code>标签，心想这是什么骚操作，后来仔细研究DEMO的标签结构，原来orgchart非常巧妙的利用了Table标签的特性，只要合理嵌套Table，浏览器就会自然渲染出我们需要的结果。</p>
+<p>这里补充一下Table的背景知识，在DIV+CSS刚刚盛行的年代，Table布局因为渲染慢和代码冗余被所有前端集体唾弃，Table布局渲染慢的原因是，TD是唯一一个先进入文档可能被后进入文档影响到自身尺寸的标签，如果按照普通的页面渲染逻辑加载整页Table，就会随着TD标签的载入频繁触发页面重绘，浏览器为了避免这种情况所以会对Table采用特殊的绘制逻辑，也就是等整个Table标签全部加载完，再集中一次绘制到页面上。这样的结果就是当页面完全使用Table布局的时候，整个页面加载过程是空白的，加载完之后页面会一次性突然呈现，这在弱网情况下的用户体验非常差，因此不使用Table布局成了对前端开发最基本的要求。</p>
+<p>Table的这种特性虽然不适合用来布局，但却使Table成了HTML中“最强大”的标签，比如前面我们梳理的树形插件的实现思路，其实就是对Table特性的拙劣模仿，一个多代组织结构关系完全可以只用Table标签完美实现，甚至连CSS都不需要：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">            root</span><br><span class="line">        &lt;/td/&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                        children1</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">                                    children2</span><br><span class="line">                                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                                    grandchild1</span><br><span class="line">                                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                                    grandchild2</span><br><span class="line">                                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然结构很罗嗦，但确实能实现需求。</p>
+<p>节点连线的实现同样是利用了Table的自适应性，只不过实现的更加精妙：</p>
+<p><img src="https://refined-x.com/asset/nodes-4.png"></p>
+<p>上下级的连线分成两行（TR）实现，第一行实现一个连结父节点的居中竖线，第二行实现连接每个子节点的竖线及横向连线，第一行比较简单这里不提，第二行的实现非常有意思，上图中画红框的部分分别是实现效果和标签结构。</p>
+<p>首先按照子节点数量X2来生成TD标签，然后”rightLine”、”leftLine”交替为每个TD添加class，”rightLine”为TD显示1px的右边线，”leftLine”为TD显示1px的左边线，六根一右一左的线两两合并在一起，正好呈现出三条连接每个子节点正中的2px竖线；然后除了第一个和最后一个TD标签以外，全部添加”topLine”的class，为他们添加2px的上边线，这样会呈现出一条正好连接三条竖线的横线，再拼上第一行TR的居中竖线，上下级的连线就实现出来了。</p>
+<p>看到这部分时，反正我是感觉自己的智商被碾压了。（这部分在1.1.0版本中被重构掉了，因为用伪元素实现连线更方便）</p>
+<p>基于这个思路用Vue实现了一遍，独立成组件后<a target="_blank" rel="noopener" href="https://github.com/tower1229/Vue-Tree-Chart/blob/master/lib/components/TreeChart.vue">整个文件</a>代码不过百行左右。</p>
+<p>另外知识的活学活用真的非常重要，这里面的知识点一个入门前端就应该掌握，但开发的时候却完全没有想到这个思路，可能跟近几年的工作大量依赖js有关系，对HTML和CSS的敏感性降低了。总是使用自己熟悉的方式解决问题是人的共性，但这一点对开发者来说绝对不是个好习惯，需要反省。</p>
+<h2 id="二次开发"><a href="#二次开发" class="headerlink" title="二次开发"></a><a href="#%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91" title="二次开发"></a>二次开发</h2><p>Vue-Tree-Chart已经发布到npm，默认可以通过包管理工具将其添加到项目：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-tree-chart --save</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但npm安装的是编译后的版本，如果希望比较灵活的在项目中做二次开发，可以直接将<code>&#39;lib/components/TreeChart.vue&#39;</code>文件下载到项目的组件目录（<code>&#39;src/components/&#39;</code>），直接修改<code>TreeChart.vue</code>文件就可以了。</p>
+<h2 id="vue-cli-3-0-构建库"><a href="#vue-cli-3-0-构建库" class="headerlink" title="vue-cli 3.0 构建库"></a><a href="#vue-cli-3-0-%E6%9E%84%E5%BB%BA%E5%BA%93" title="vue-cli 3.0 构建库"></a>vue-cli 3.0 构建库</h2><p>最后提一下vue-cli 3.0的<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/build-targets.html#%E5%BA%94%E7%94%A8">构建目标</a>功能，为了方便组件开发者，vue-cli 3.0在常规构建之外单独提供了针对库和Web Components组件两种构建模式，现在开发Vue插件&#x2F;组件再也不需要手动修改webpack配置了，只要为构建命令传入<code>target\name\entry</code>，就能自动将入口文件编译成库，并输出CommonJS、浏览器环境所需要的一系列文件。</p>
+<p>例如Vue-Tree-Chart的package.json文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;main&quot;</span>: <span class="string">&quot;./dist/TreeChart.common.js&quot;</span>,</span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;build-bundle&quot;</span>: <span class="string">&quot;vue-cli-service build --target lib --name TreeChart ./lib/index.js&quot;</span>,</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>npm run build-bundle</code>就会在<code>&#39;/dist&#39;</code>目里下生成一系列产出文件，其中<code>&quot;TreeChart.common.js&quot;</code>是webpack环境下需要的CommonJS包，将这个文件配置为<code>&#39;main&#39;</code>，就可以在项目中这样使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> TreeChart <span class="keyword">from</span> <span class="string">&quot;vue-tree-chart&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>导入的TreeChart对象就是一个Vue Component，可以作为全局组件或者局部组件挂载使用。</p>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a><a href="#%E9%99%84" title="附"></a>附</h2><p>Vue-Tree-Chart项目地址：<a target="_blank" rel="noopener" href="https://github.com/tower1229/Vue-Tree-Chart">https://github.com/tower1229/Vue-Tree-Chart</a></p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/">https://refined-x.com/2018/08/03/基于Vue实现动态组织结构图/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/Vue-Tree-Chart/" rel="tag"># Vue-Tree-Chart</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/07/02/%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E4%B8%80%E6%AC%BE%E4%BF%9D%E9%99%A9%E7%9A%84%E6%9D%A0%E6%9D%86/" rel="prev" title="如何计算一款保险的杠杆">
+      <i class="fa fa-chevron-left"></i> 如何计算一款保险的杠杆
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/09/%E3%80%8AHybrid%20App%E5%BC%80%E5%8F%91%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97%E3%80%8B%E6%96%B0%E8%AF%BE%E4%B8%8A%E7%BA%BF%EF%BC%81/" rel="next" title="《Hybrid App开发快速指南》新课上线！">
+      《Hybrid App开发快速指南》新课上线！ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Tree-Chart"><span class="nav-number">1.</span> <span class="nav-text">Vue-Tree-Chart</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">如何绘制结构图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E9%9D%A0%E8%B0%B1%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">不靠谱的思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%B0%86%E6%95%B0%E6%8D%AE%E6%8C%89%E2%80%9C%E4%BB%A3%E2%80%9D%E6%8B%86%E5%88%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">一、将数据按“代”拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8C%89%E2%80%9C%E4%BB%A3%E2%80%9D%E7%BB%98%E5%88%B6%E8%8A%82%E7%82%B9"><span class="nav-number">2.1.2.</span> <span class="nav-text">二、按“代”绘制节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E9%97%B4%E8%B7%9D"><span class="nav-number">2.1.3.</span> <span class="nav-text">三、计算节点间距</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table%E7%9A%84%E5%A6%99%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">Table的妙用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91"><span class="nav-number">3.</span> <span class="nav-text">二次开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-3-0-%E6%9E%84%E5%BB%BA%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">vue-cli 3.0 构建库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84"><span class="nav-number">5.</span> <span class="nav-text">附</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

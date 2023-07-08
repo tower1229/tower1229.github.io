@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="B2AqJXjoVD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"refined-x.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"appID":"IKIJDCYK66","apiKey":"df612ce7ac69de4c788ccf1567351476","indexName":"tower1229.github.io","hits":{"per_page":10},"labels":{"input_placeholder":"文章搜索","hits_empty":"没有你要找的内容: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI 可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以 web 前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和 UI 两大部分入手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HybridStart v1.0开发纪要">
+<meta property="og:url" content="https://refined-x.com/2017/07/07/HybridStart%20v1.0%E5%BC%80%E5%8F%91%E7%BA%AA%E8%A6%81/index.html">
+<meta property="og:site_name" content="前端路上">
+<meta property="og:description" content="自混合应用前端开发框架HybridStart v1.0升级计划开始后，经过近一周的开发测试，现已发布预览版，基本实现了最初定下的四个目标：核心易用、UI 可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以 web 前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和 UI 两大部分入手">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-07-07T07:33:28.000Z">
+<meta property="article:modified_time" content="2023-06-04T03:59:47.458Z">
+<meta property="article:author" content="雅X共赏">
+<meta property="article:tag" content="混合应用">
+<meta property="article:tag" content="HybridStart">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://refined-x.com/2017/07/07/HybridStart%20v1.0%E5%BC%80%E5%8F%91%E7%BA%AA%E8%A6%81/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HybridStart v1.0开发纪要 | 前端路上</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="baidu_union_verify" content="2fc8afb769e60f98d2e040da86813a43">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端路上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">枪在手，跟我走，前端路上不回头</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>前端路上</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>文章归档</a>
+
+  </li>
+        <li class="menu-item menu-item-前端简历">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-vcard"></i>前端简历</a>
+
+  </li>
+        <li class="menu-item menu-item-前端作品">
+
+    <a href="/projects/" rel="section"><i class="fa fa-fw fa-codepen"></i>前端作品</a>
+
+  </li>
+        <li class="menu-item menu-item-前端导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-fw fa-map-signs"></i>前端导航</a>
+
+  </li>
+        <li class="menu-item menu-item-编程之外">
+
+    <a href="/other/" rel="section"><i class="fa fa-fw fa-google-wallet"></i>编程之外</a>
+
+  </li>
+        <li class="menu-item menu-item-友情链接">
+
+    <a href="/friends/" rel="section"><i class="fa fa-fw fa-link"></i>友情链接</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://refined-x.com/2017/07/07/HybridStart%20v1.0%E5%BC%80%E5%8F%91%E7%BA%AA%E8%A6%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/asset/album.jpg">
+      <meta itemprop="name" content="雅X共赏">
+      <meta itemprop="description" content="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端路上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HybridStart v1.0开发纪要
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-07 15:33:28" itemprop="dateCreated datePublished" datetime="2017-07-07T15:33:28+08:00">2017-07-07</time>
+            </span>
+          
+          <span class="post-meta-item">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <span class="post-meta-item-text">作者：</span>
+            <a href="https://refined-x.com" title="原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。">雅X共赏</a>
+          </span>
+          
+
+          
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>14 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>自混合应用前端开发框架<code>HybridStart v1.0</code><a href="/2017/07/03/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E6%A2%B3%E7%90%86/">升级计划</a>开始后，经过近一周的开发测试，现已发布<a target="_blank" rel="noopener" href="https://github.com/tower1229/HybridStart">预览版</a>，基本实现了最初定下的四个目标：核心易用、UI 可剥离、开发模式清晰、开发体验优秀，这也是我理想中的以 web 前端技术为主的，混合应用开发的正确姿势。在这个过程中将一些笼统的思路细化并落地，也将一些过去思路不对的地方推倒了重构，在通用性方面也做了更多的考量，下面就从核心和 UI 两大部分入手，详细拆解一下升级后的 HybridStart。</p>
+<span id="more"></span>
+
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a><a href="#%E6%A0%B8%E5%BF%83" title="核心"></a>核心</h2><h3 id="移除依赖"><a href="#移除依赖" class="headerlink" title="移除依赖"></a><a href="#%E7%A7%BB%E9%99%A4%E4%BE%9D%E8%B5%96" title="移除依赖"></a>移除依赖</h3><p>之前的<code>core.js</code>直接集成部分第三方插件，并且内部实现也互相依赖，这对于不同技术栈的开发者来说很不友好，比如有的开发者喜欢用 Vue 做模板渲染，那他看到依赖 jQuery 后心里一定恶心无比，因此要做的第一件事就是移除核心库的依赖。</p>
+<p>移除掉 jQuery 势必就要自己动手做一个<code>util</code>工具类，以简化原生 JavaScript 语法，这里我偷了个懒直接把 mui 的部分代码拿过来，稍作修剪和扩充就 ok 了。在功能取舍方面，除了满足核心库的需求外还增加了少数几个常用操作，使这部分功能对外开放后能一定程度上发挥 jQuery 的作用，通过<code>app.util</code>可以获取到这个内部工具集合，经过内置示例的开发体验，应该说只要 DOM 操作不是很重的情况，基本可以让 jQuery 歇息了，当然前提是大量的 jQuery 语法糖都不能用了，其实用习惯了原生语法，会觉得除了单词长一点也并没有多麻烦。</p>
+<h3 id="功能梳理"><a href="#功能梳理" class="headerlink" title="功能梳理"></a><a href="#%E5%8A%9F%E8%83%BD%E6%A2%B3%E7%90%86" title="功能梳理"></a>功能梳理</h3><p>框架功能都挂载在<code>app</code>对象上，主要提供这五类功能：核心功能、窗口操作、数据操作、设备访问、原生控件。</p>
+<h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a><a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD" title="核心功能"></a>核心功能</h4><p>核心功能以 APP 运行周期内的事件或操作为主，比如各种事件监听、按键监听，全局事件的发布&#x2F;订阅，原生能力就绪的回调方法等，这些方法都直接挂载在<code>app</code>对象上，例如<code>app.ready(callback)</code>。</p>
+<p>着重说一下原生能力就绪回调，HybridStart 里一个典型的页面 js 文件是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * script</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params"><span class="built_in">require</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">&quot;sdk/common&quot;</span>);</span><br><span class="line">  <span class="keyword">var</span> $ = app.util;</span><br><span class="line">  <span class="comment">//立即执行</span></span><br><span class="line"></span><br><span class="line">  app.ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//runtime就绪</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到正文明显被<code>app.ready()</code>方法分隔成上下两部分，上面空白处的代码将在页面加载后立即执行，ready 回调内的代码将等待原生能力就绪后被执行，我们鼓励将所有不需要原生能力的操作放在上面，以提升脚本响应速度，这个没什么问题。</p>
+<p>但可能遇到的一个问题是，如果一个依赖原生能力的功能被开发者立即执行了，将会因为 runtime 未就绪而报错，也就是说需要开发者明确的知道那些功能依赖 runtime 哪些不依赖，如果试图解决这个问题很容易想到的一个办法是，将所有依赖 runtime 的功能在内部用 ready 方法包裹一下，这样表面上可以解决问题，但因为 ready 的异步特性，可能导致代码执行顺序与书写顺序不一致，这无疑是不可接受的。最终在两者间做了妥协，将这些功能在内部用另一个 readyEval 方法包裹，readyEval 方法仅仅在检测到 runtime 未就绪时给控制台抛出调试信息，而不会中断后续代码的执行，算是一个容错性的处理吧。</p>
+<h4 id="窗口操作"><a href="#窗口操作" class="headerlink" title="窗口操作"></a><a href="#%E7%AA%97%E5%8F%A3%E6%93%8D%E4%BD%9C" title="窗口操作"></a>窗口操作</h4><p>窗口操作包括对 window 和 frame 的常用操作，比如打开、关闭、移动、执行脚本等，这些方法都挂载在<code>app.window</code>对象上，例如<code>app.window.open()</code>。</p>
+<p>作为最基础也最常用的操作，封装目标就是易用，比如打开窗口这个操作，即便有了<code>app.window.open()</code>也仍然觉得不够简单，因此进一步封装了<code>app.openView()</code>，可以说让绝大多数场景下的打开窗口变得极致简单了，看下两个方法的对比：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.window.open(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&quot;./view/member/index/temp.html&quot;</span>,</span><br><span class="line">  <span class="attr">pageParam</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">123</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.openView(<span class="number">123</span>, <span class="string">&quot;member&quot;</span>, <span class="string">&quot;index&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>openView 方法的详细介绍可以参见<a href="//refined-x.com/2017/06/26/%E5%9F%BA%E4%BA%8EAPICloud%E7%9A%84%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">这里</a>，openView 的参数传递是借助本地存储实现的，这次升级也为其配套了一个获取参数的方法<code>app.getParam()</code>，专门用来获取 openView 方法传递的参数，并且支持对象类型的存取。</p>
+<h4 id="内建机制"><a href="#内建机制" class="headerlink" title="内建机制"></a><a href="#%E5%86%85%E5%BB%BA%E6%9C%BA%E5%88%B6" title="内建机制"></a>内建机制</h4><p>简化开发另一个很重要的方向是内建机制，举个例子，实现会员退出登录，需要跳转到登录页同时关闭所有后台页面，关闭后台页面的功能 apicloud 提供了，但本着<em>尽量不使用特定平台提供的特殊能力</em>原则，这个功能在框架中用另一种方式实现了，而且使用起来超简单，比如可以这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.openView(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">closeback</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;member&quot;</span>,</span><br><span class="line">  <span class="string">&quot;login&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>内部实现是，每一个页面打开后会在 window 上挂载一个”isBack”属性，通过监听本窗口的前后台状态更改这个属性的值，当 openView 方法的 closeback 被设置为<code>true</code>时，将在打开新页面前在本地存储埋下一个标记，新页面打开后通过这个标记得知自己的任务，然后发布一个相应的全局事件，所有页面都能通过这个事件得知自己的任务，比如任务是<em>关闭后台页面</em>，那么就会检查自己的<code>window.isBack</code>属性，发现是真值就关闭自身，从而完成这个任务。</p>
+<p>其实就是利用全局通信能力建立起来的关闭机制，依据这个思路，还可以扩展出打开新窗口同时关闭自身的方法，比如订单提交场景，提交成功后通常会跳转到一个提示页，但是我们不希望从这个提示页可以返回到刚才的提交订单页，所以希望打开提示页的同时关闭订单页，那么实现的代码将是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.openView(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">closeself</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;shop&quot;</span>,</span><br><span class="line">  <span class="string">&quot;orderSubmitSuccess&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><code>closeself</code>与<code>closeback</code>的区别仅仅是给当前页面增加了一个”closeByNew”的属性，然后本地存储埋了另外一个标记，发布了另外一个任务，新页面打开后照例发布全局事件公布任务，订单页收到任务后发现自己具有”closeByNew”属性，于是关闭了自身。</p>
+<p>这些功能都集成在 openView 方法的配置中，说起来很罗嗦，用起来确特别简单，这类问题只在安卓系统上有，因为 IOS 没有返回键，只要界面不提供返回按钮用户是不可能随意返回上一个页面的。</p>
+<p>框架另外还做了一件事，就是为 frame 页面的 window 对象扩展了一个”selfTop”属性，属性值是当前 frame 距离屏幕顶部的距离，这个值当在 frame 需要打开带界面的原生插件时很有用，比如打开百度地图，需要你指定地图距离屏幕顶部的距离，如果 frame 不知道自己距离屏幕顶部有多远，就不可能知道这个值应该是多少，这也算一个隐性需求，不用不知道，用了都说好。</p>
+<h4 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a><a href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C" title="数据操作"></a>数据操作</h4><p>数据操作分为数据请求和数据存储两块内容。</p>
+<p><strong>数据请求</strong>也就是<code>app.ajax()</code>方法，主要用来异步获取数据，当然也包括上传和下载，但他们都被单独封装成了插件，这里不做讨论。</p>
+<p><code>app.ajax()</code>在易用性上的改进体现为增加了默认错误处理，约定交互格式以及格式检查，api 风格几乎照搬<code>jQuery.ajax</code>，没有太多值得说的。在此基础上<code>app.ajax()</code>还针对 APP 开发场景做了两项功能扩展，一是请求加密，二是快照式缓存。</p>
+<p>请求加密通过默认集成的加密模块<code>app.crypto</code>实现，加密算法为 3DES，加密后的所有 Ajax 请求将集中发送到一个 url 地址，本次请求的真实 url 和参数以特定方式组织并加密，并将密文以参数形式发送，服务端需要有对应的解密方法得知请求 url 和参数，并将返回数据也做 3DES 加密返回给前端，前端解密后得到真实数据，整个过程中的关键是 3DES 算法的<code>secret</code>，这个值使用 apicloud 提供的加密存储方式存储，APP 被反编译也无法拿到这个密匙，因此理论上实现不可逆加密。至于加密请求为什么要集中发送到一个 url，其实是因为之前有的项目后端是这样处理的，如果要修改这个加密逻辑其实也很简单，详细的加密过程参考文档，这里不做赘述（如果发现文档没写完，也请不要奇怪- -!）。</p>
+<p>ajax 缓存功能 apicloud 的原生接口也有提供，不过他的缓存是没有更新机制的，一次缓存终生使用，除非做全局的缓存清理，简单说，这个功能很鸡肋。<code>app.ajax()</code>专门增加了一种快照式缓存，每一次请求成功后都会将结果保存为快照，下次这个请求再发起时会先将快照结果返回，待真实数据到达后再返回真实数据，也就是说启用快照缓存的请求将执行两次回调，这个听起来有点奇葩，但应用场景确很普遍，比如说打开一个列表页，通常要有一个 loading 然后请求到数据后显示到页面上，而使用快照缓存的结果是，打开页面马上呈现最近一次的数据，待新数据拿到后再更新一次页面，我认为这是体验更佳的方式。</p>
+<p>可能有的同学会想，如果单纯只是渲染页面还好，万一请求数据后还有一些业务操作，那你执行两次肯定是不行的，没错，为了解决这个问题，快照数据如果是对象的话，会自动为这个数据增加一个”snapshoot”属性，你可以通过检测这个属性来得知当前数据是否为快照，以避免业务操作重复执行。</p>
+<p>快照缓存目前来看的问题是，没有做新数据与快照是否相同的检测，导致如果两次数据相同，也会让页面白白重新渲染一次，后续会考虑改进这个功能。</p>
+<p><strong>数据存储</strong>模块提供本地数据的增删改查功能，适用于少量应用数据的存储方法挂载在<code>app.storage</code>对象上，比如<code>app.storage.val()</code>。</p>
+<p>因为是依托<code>localStorage</code>实现的，所以原来不支持对象类型的存取，这次升级支持了对象类型，其实也就是内部自动做了转化；另外增加了一个<code>app.storage.clear()</code>方法，用来清除存储的数据，但我们常常会有一些数据是希望能不受影响的、持久的存储，比如用户信息、权限等等，那么可以将这些值的 key 加到配置文件中的<code>appcfg.set.safeStorage</code>安全存储项目里，多个值用逗号隔开，”clear”方法默认会跳过不清理这些存储项，除非启用强制清理。</p>
+<p>顺带说另外一个相关的配置<code>appcfg.set.temporary</code>临时存储，这个配置的意思是这些值每次 APP 退出后都将自动清除。</p>
+<h5 id="设备访问"><a href="#设备访问" class="headerlink" title="设备访问"></a><a href="#%E8%AE%BE%E5%A4%87%E8%AE%BF%E9%97%AE" title="设备访问"></a>设备访问</h5><p>设备访问能力提供对手机硬件的信息获取和其他操作能力，比如获取系统信息、拨打电话、安装文件等等，他们被挂载在<code>app.device</code>对象上，例如<code>app.device.call()</code>。</p>
+<p>这部分就是单纯的封装引擎功能，没什么可说的，目前支持的功能并不很多，因为这些东西我用的不多，不确定哪些是必要的，所以这部分有待后期观察，再做调整。</p>
+<h4 id="原生控件"><a href="#原生控件" class="headerlink" title="原生控件"></a><a href="#%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6" title="原生控件"></a>原生控件</h4><p>原生控件就是系统自带的 UI 控件，比如 loading、alert、confirm、actionSheet 等，因为还比较常用所以直接挂载到了<code>app</code>对象上，比如<code>app.alert()</code>。</p>
+<p>这部分一开始我还纠结要不要封装，因为他们应该归到 UI 层面，既然是 UI 的东西核心里不应该集成，但想了想，目前 apicloud 没有一个拿得出手的同类插件，总得有东西用啊，所以就封装进来了。这肯定不是个长久之计，因为大部分安卓系统的原生控件实在太丑，这个后期再想想办法，争取解决掉。</p>
+<p>目前有一个不成熟的思路是用 web 来做，但 web 有一个致命的问题是可能受到 frame 窗口的限制，无法做到模态，还可能被其他控件遮挡，这个问题可以通过打开一个透明 window 来解决，在这个 window 上显示控件，操作后再隐藏到底层去，可能的问题有两个，一个是响应速度不知道够不够快，再就是跨窗口通信内容比较多，可能导致实现很复杂，进一步拖慢速度。最好还是找到一个靠谱的原生插件。</p>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a><a href="#UI" title="UI"></a>UI</h2><h3 id="css-组件"><a href="#css-组件" class="headerlink" title="css 组件"></a><a href="#css%E7%BB%84%E4%BB%B6" title="css组件"></a>css 组件</h3><p>框架自带一套 css 组件放在<code>sdk/ui.css</code>中，这次经过小幅修改，着重删掉了一些冗余代码和微调了部分组件的样式。</p>
+<p>为了实现<em>UI 可剥离</em>，放弃了之前做的主题功能，这个主题功能简单说就是页面一开始是隐藏的，模板引擎解析得到主题 css 后动态插入页面才让页面显示出来，从性能角度讲放弃这种做法也算是走上了正道，但我记得之前在一次项目中发现，部分安卓机会出现页面打开之初先按照物理分辨率解析，随后布局抖动再恢复为像素分辨率，感觉是 webview 打开过程发生了一个异步的调整，这个体验是毁灭性的，主题功能的另一个作用就是解决这个问题，不过现在我已经找不到那台测试机了，目前这个问题是否还存在是未知的，有待经过实际项目检验。</p>
+<p>如果不满意这套 UI 是可以直接抛弃掉的，跟框架其他部分几乎没有耦合，如果感觉还能凑合用，换主题功能就只能通过修改<code>less</code>文件来实现了，<code>less</code>文件估计将在文档写完后放出，在这之前暂时只能手动改样式了。</p>
+<h3 id="js-插件"><a href="#js-插件" class="headerlink" title="js 插件"></a><a href="#js%E6%8F%92%E4%BB%B6" title="js插件"></a>js 插件</h3><p>框架内置了部分常用插件，比如图片轮显、相册、各种选择器、滚动加载、图片懒加载等等，体验都还不错，部分来自<a href="//refined-x.com/Flow-UI/docs/">Flow-UI</a>的插件库，针对移动端做了微调，使用上还是一贯的模块化。</p>
+<p>虽然有了<code>app.util</code>之后就不再提倡使用 jQuery 了，但如果有人在乎的话，内置 jQuery 的版本已经升级到 3.x。</p>
+<p>原来内置在<code>core.js</code>里的<code>etpl</code>也成为了一个插件模块，用来实现前端页面渲染。应该说开发混合应用免不了大量的页面渲染，Vue 当然是最好用的工具之一，但把一个功能完备的 MVVM 框架拿来做渲染，总觉得的有点冗余，而且依我过去的项目经验，大部分渲染其实都是单向的，也就是展示型的，需要将界面操作反应到数据中的情况不太多，在这种情况下，单从代码利用率的角度讲前端模板引擎是“实惠”的选择。</p>
+<p>但模板引擎的使用体验比 Vue 差太多了，先要解析模板，再应用数据，最后填充到页面中，为了减轻这部分负担插件库中提供了一个<a target="_blank" rel="noopener" href="https://flow-ui.github.io/docs.html#Render(%E6%B8%B2%E6%9F%93%E5%99%A8)">Render</a>插件，可以实现<code>数据=&gt;界面</code>的单向绑定，除了不是双向绑定，在渲染操作上已经接近 Vue 的体验了，当然差别还是有的，因为内部是使用<code>etpl</code>实现的，并没有高大上的差量更新，所以大范围的页面更新理论上效率不如 Vue，这个有待低端机测试，千元以上的手机应该不太会看出差别。</p>
+<p>当然，这些也都属于 UI，可以用自己喜欢的任意方案替换掉。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a href="#%E5%85%B6%E4%BB%96" title="其他"></a>其他</h2><p>还有一些功能，散布在框架<code>sdk/</code>里的 common.js 和 server.js 中，严格来说这些代码已经不属于框架核心范畴，开发者可以根据自己的业务情况做删改，但其中有一些还是很实用的，举个例子。</p>
+<p>不知道大家有没有发现，apicloud 在引擎层面对页面显示做了优化，打开一个页面前多少会有一点停顿，猜测是在页面没有完全渲染完之前不会开始进场动画，因此有动态渲染内容的页面打开会很迟钝，纯静态的页面打开就利索很多，虽然这可以有效解决布局闪动的问题，但有时候这并不是开发者想要的，而造成打开速度差异的最重要原因就是图片元素的加载，所以为了解决这个问题，我们可以先将页面里的图片”src”值赋给”data-src”，使图片不会立即加载，当页面显示完毕后再将”data-src”赋给”src”以加载图片，从而绕过引擎的优化方案，提升页面打开的响应速度，这个操作已经在框架默认的<code>sdk/common.js</code>中实现了，并在示例 APP 中部分应用，效果明显。</p>
+<p>common.js 和 server.js 中还有很多实用的功能，比如图片自动缓存、给按钮添加点击效果、封装获取经纬度功能、通过经纬度反查地址功能、推送功能等等，具体有啥就自己去看吧，这里不一一列举了。</p>
+<h2 id="体验"><a href="#体验" class="headerlink" title="体验"></a><a href="#%E4%BD%93%E9%AA%8C" title="体验"></a>体验</h2><h3 id="瓶颈明显"><a href="#瓶颈明显" class="headerlink" title="瓶颈明显"></a><a href="#%E7%93%B6%E9%A2%88%E6%98%8E%E6%98%BE" title="瓶颈明显"></a>瓶颈明显</h3><p>混合应用目前的体验确实不理想，为此我还特地对比性的研究了下 Dcloud，感觉文档好专业好极客，各种优化手段好极致，但他们的体验 APP 也并有明显的流畅性差异，所以我甚至认为，这就是以 web 技术为主的混合应用开发模式的瓶颈，这种体验跟当下大家对主流 APP 的期待已经产生了不小的差距，做混合应用很重要的一项工作就是修补这些瑕疵。</p>
+<p>要说 apicloud 跟 Dcloud 完全没差别也是不准确的，粗略的看至少有两点 apicloud 不如 Dcloud 做的好，第一是 apicloud 的后台页面更容易被回收，当连续打开几个 apicloud 应用页面后切到其他稍微重一点的 APP 操作一会儿，再切回 apicloud，然后返回上一个页面会发现页面已经空白了，需要重新渲染；同样的手机同样的场景 Dcloud 应用不存在这个问题。第二是 apicloud 缺少页面预加载功能，Dcloud 的示例应用中利用预加载做了列表到详细页最佳实践，有力证明了预加载的价值，而这个需求被提交给 apicloud 后，管理员的回复是</p>
+<blockquote>
+<p>“打开页面其实用不着进行预加载，正常的 openWin 打开然后加载已经足够了。”</p>
+</blockquote>
+<p>最终示例 APP 中只能勉强用 frame 模拟了详细页预加载，用 frame 模拟的缺点有两个，一是 frame 无法实现“推入”效果，只能“飞入”，因此可能与 APP 的全局页面切换效果相违背；第二点更致命，因为 frame 是依赖 window 的，也就是说不同的列表页无法共享预加载的详细页，即便同一个列表页只要退出了，下次进来也需要重新预加载详细页。</p>
+<h3 id="曲线救国"><a href="#曲线救国" class="headerlink" title="曲线救国"></a><a href="#%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD" title="曲线救国"></a>曲线救国</h3><p>刚开始接触混合应用时很喜欢搞一些看上去“很原生”的效果，比如划出菜单、滑动选项卡式列表之类的，后来发现实现是能实现，但结果太糟糕了，因为这些东西太重了，不是 web 能消费得起的，不要用 web 的弱点去死磕。</p>
+<p>在整体的体验把控上我的看法是，只要功能实现了，有没有某个特效是第二位的，APP 的流畅体验和赏心悦目永远是第一位的，尤其要避免任何反常的界面表现，比如 web 特有的布局抖动和界面先空白后闪现，都会给用户造成“不稳定”的心理暗示，这些问题稍微用点心其实都可以克服。比如 frame 第一次打开就会出现典型的闪动现象，这时候就需要做预加载，可以参考示例 APP 的首页第四个栏目，在做了预加载之后有效避免了闪动，而且可以秒开。</p>
+<p>像侧滑菜单这种东西，多数情况都可以用一个从左往右打开的页面来代替，流畅性有保证，开发难度也低，不一定非得是侧滑到屏幕一半。</p>
+<p>web 开发的优势在于布局的灵活性，利用好这一点有时候能让原本不那么好的体验变得可以接受，比如给列表页实现占位元素，实现成本非常低，却能有效降低等待加载的焦虑感，可以参考示例 APP 的<em>列表到详细页</em>。</p>
+<p>总结起来，从绝对性能上混合不可能比得过原生，混合能做的就是用各种手段提高用户的忍耐阈值，或者转移用户的注意力。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a href="#%E5%90%8E%E8%AE%B0" title="后记"></a>后记</h2><p>文档正在撰写中，目前线上的文档版本仅供娱乐。</p>
+<p>未经实际项目检验，渴望暴风雨猛烈抽打，感兴趣的<a target="_blank" rel="noopener" href="https://github.com/tower1229/HybridStart">戳此</a>Star。</p>
+
+    
+    
+    
+      <p>前端路上原创技术文章，转载请注明出处：<a href="https://refined-x.com/2017/07/07/HybridStart%20v1.0%E5%BC%80%E5%8F%91%E7%BA%AA%E8%A6%81/">https://refined-x.com/2017/07/07/HybridStart v1.0开发纪要/</a></p>
+      <p><img src="/asset/wechat.jpg" alt="看风景-公众号" style="display:block;max-width:360px;margin:auto"></p>
+      <p style="color:#000;text-align:center;font-weight:bold">不甘平庸的你，快来跟我一起充电吧，关注看风景，获取更多精彩内容。</p>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8/" rel="tag"># 混合应用</a>
+              <a href="/tags/HybridStart/" rel="tag"># HybridStart</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/03/%E6%B7%B7%E5%90%88%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E6%A2%B3%E7%90%86/" rel="prev" title="混合应用框架优化思路梳理">
+      <i class="fa fa-chevron-left"></i> 混合应用框架优化思路梳理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/10/Hexo%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%B9%E6%B3%95/" rel="next" title="Hexo自定义页面的方法">
+      Hexo自定义页面的方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83"><span class="nav-number">1.</span> <span class="nav-text">核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">移除依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A2%B3%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">功能梳理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.1.</span> <span class="nav-text">核心功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">窗口操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">内建机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.4.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E8%AE%BF%E9%97%AE"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">设备访问</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6"><span class="nav-number">1.2.5.</span> <span class="nav-text">原生控件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI"><span class="nav-number">2.</span> <span class="nav-text">UI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#css-%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">css 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">js 插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E9%AA%8C"><span class="nav-number">4.</span> <span class="nav-text">体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%93%B6%E9%A2%88%E6%98%8E%E6%98%BE"><span class="nav-number">4.1.</span> <span class="nav-text">瓶颈明显</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD"><span class="nav-number">4.2.</span> <span class="nav-text">曲线救国</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="雅X共赏"
+      src="/asset/album.jpg">
+  <p class="site-author-name" itemprop="name">雅X共赏</p>
+  <div class="site-description" itemprop="description">原创前端技术博客，致力于分享前端学习路上的第一手资料。专注web前端开发、移动端开发、前端工程化、前端职业发展，做最有价值的前端技术学习网站。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tower1229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tower1229" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tower1229@foxmail.com" title="E-Mail → mailto:tower1229@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <ul class="links-of-blogroll-list sidebar_booth_list">
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="前端周刊" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/前端周刊.png" alt="前端周刊" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/program.html" title="0元建站" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/0元建站.png" alt="0元建站" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.aliyun.com/activity/daily/bestoffer?userCode=y31qmczl" title="阿里云双十一" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/阿里云双十一.png" alt="阿里云双十一" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/tools.html" title="进阶套装" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/进阶套装.png" alt="进阶套装" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/asset/booth/img/早早了年票.jpg" title="早早聊年票" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/早早聊年票.png" alt="早早聊年票" />
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="虚位以待" target="_blank" />
+            <img src="https://refined-x.com/asset/booth/虚位以待.png" alt="虚位以待" />
+          </a>
+        </li>
+    </ul>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://refined-x.com/" title="https:&#x2F;&#x2F;refined-x.com&#x2F;">前端技术博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://frontend-weekly.com/" title="https:&#x2F;&#x2F;frontend-weekly.com&#x2F;" rel="noopener" target="_blank">前端周刊</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yugasun.com/" title="https:&#x2F;&#x2F;yugasun.com&#x2F;" rel="noopener" target="_blank">Yuga Sun的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.u3xyz.com/" title="https:&#x2F;&#x2F;www.u3xyz.com&#x2F;" rel="noopener" target="_blank">右三的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jeffjade.com/" title="https:&#x2F;&#x2F;jeffjade.com&#x2F;" rel="noopener" target="_blank">晚晴幽草轩</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.shuizhongyueming.com/" title="http:&#x2F;&#x2F;www.shuizhongyueming.com&#x2F;" rel="noopener" target="_blank">水中月明的Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/coco1s/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;coco1s&#x2F;" rel="noopener" target="_blank">coco</a>
+        </li>
+    </ul>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备17013688号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-fire"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">雅X共赏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">91k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/lib/algoliasearch-lite.umd.js"></script>
+<script src="/lib/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
