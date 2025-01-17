@@ -493,7 +493,7 @@ yandex_site_verification:
 baidu_site_verification: B2AqJXjoVD
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
-baidu_push: true
+baidu_push: false
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
@@ -957,10 +957,10 @@ vendors:
   gitalk_css:
 
   # Algolia Search
-  # algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-  # instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
-  algolia_search: /lib/algoliasearch-lite.umd.js
-  instant_search: /lib/instantsearch.production.min.js
+  algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
+  instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
+  # algolia_search: /lib/algoliasearch-lite.umd.js
+  # instant_search: /lib/instantsearch.production.min.js
 
   # Mermaid
   # mermaid: //cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js
