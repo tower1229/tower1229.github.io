@@ -98,14 +98,27 @@ comments: false
 
 <div class="comp-cards">
   <ul>
-    <li><a href="https://tracesr.github.io/" title="觅迹导航" target="_blank"><img
+    <li>
+      <a href="https://github-card.refined-x.com/" title="StartMenu" target="_blank">
+        <div class="logo_wrap"><img src="https://refined-x.com/asset/github-card-logo.png" alt="Github Card" /></div>
+        <h3>Github Card</h3>
+        <span class="desc">精美 Github Card 生成器，生成精美的 Github 贡献数据卡片，支持 contribute 和 linktree 两种风格，根据贡献数据计算评级（S+\S\A\B\C\D），情绪价值拉满。</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://tracesr.github.io/" title="觅迹导航" target="_blank">
+        <img
           src="https://refined-x.com/asset/tracesr.png" alt="Tracesr logo">
-        <h3>觅迹寻路</h3><span class="desc">觅迹，轻量级室内导航解决方案。应用于商超、景点、园区等区域寻路场景，结合使用场景可以扩展全局消息、商户消息等多样化营销功能。</span>
-      </a></li>
-    <li><a href="https://mp.weixin.qq.com/s/CVQWLJ5Wn9gcAP4NCEhNqw" title="成长助理" target="_blank">
+        <h3>觅迹寻路</h3>
+        <span class="desc">觅迹，轻量级室内导航解决方案。应用于商超、景点、园区等区域寻路场景，结合使用场景可以扩展全局消息、商户消息等多样化营销功能。</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://mp.weixin.qq.com/s/CVQWLJ5Wn9gcAP4NCEhNqw" title="成长助理" target="_blank">
         <div class="logo_wrap"><img src="https://refined-x.com/asset/baby_assistant2.png" alt="成长助理"></div>
         <h3>宝贝成长助理（小程序）</h3><span class="desc">引用世界卫生组织儿童生长标准数据，测算宝宝的成长健康状态，预防婴幼儿肥胖，辅助调节宝宝喂养。</span>
-      </a></li>
+      </a>
+    </li>
   </ul>
 </div>
 
