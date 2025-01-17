@@ -830,7 +830,7 @@ mermaid:
 # Use velocity to animate everything.
 # For more information: http://velocityjs.org
 motion:
-  enable: false
+  enable: true
   async: false
   transition:
     # Transition variants:
@@ -932,8 +932,8 @@ vendors:
 
   # Pangu
   # pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
-  # pangu: //cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
-  pangu: /lib/pangu.min.js
+  pangu: //cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
+  # pangu: /lib/pangu.min.js
 
   # Quicklink
   # quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
