@@ -1,62 +1,23 @@
-if (hexo-config('sidebar.position') == 'right') {
-  .sidebar {
-    right: 0 - $sidebar-desktop;
++desktop-large() {
+  .sidebar-dimmer {
+    display: none;
+  }
 
-    &.sidebar-active {
-      right: 0;
+  .sidebar-active {
+    // Note: $sidebar-width-expanded + $content-desktop-large should be less than desktop-large threshold
+    // Otherwise a horizontal scrollbar will appear
+    if ($sidebar-toggle-alignment == 'right') {
+      padding-right: $sidebar-width-expanded;
+
+      .footer-fixed {
+        right: $sidebar-width-expanded;
+      }
+    } else {
+      padding-left: $sidebar-width-expanded;
+
+      .footer-fixed {
+        left: $sidebar-width-expanded;
+      }
     }
-  }
-
-  .sidebar-toggle, .back-to-top {
-    left: auto;
-    right: $b2t-position-right;
-
-    +tablet-mobile() {
-      right: $b2t-position-right-mobile;
-    }
-  }
-
-  .book-mark-link {
-    left: $b2t-position-right;
-  }
-} else {
-  .sidebar {
-    left: 0 - $sidebar-desktop;
-
-    &.sidebar-active {
-      left: 0;
-    }
-  }
-}
-
-.sidebar {
-  width: $sidebar-desktop;
-  z-index: $zindex-2;
-  the-transition-ease-out();
-
-  a, span.exturl {
-    border-bottom-color: $black-light;
-    color: $grey-dark;
-
-    &:hover {
-      border-bottom-color: $gainsboro;
-      color: $gainsboro;
-    }
-  }
-}
-
-.links-of-blogroll-item {
-  if (hexo-config('links_settings.layout') == 'inline') {
-    display: inline-block;
-  }
-  padding: 2px 10px;
-
-  a, span.exturl {
-    box-sizing: border-box;
-    display: inline-block;
-    max-width: 280px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
