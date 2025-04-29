@@ -49,10 +49,10 @@ darkmode: false
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+  small: /asset/favicon/favicon-16x16.png
+  medium: /asset/favicon/favicon-32x32.png
+  apple_touch_icon: /asset/favicon/apple-touch-icon.png
+  safari_pinned_tab: /asset/favicon/apple-touch-icon.png
   #android_manifest: /manifest.json
 
 # Custom Logo (Warning: Do not support scheme Mist)
