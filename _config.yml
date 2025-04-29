@@ -111,8 +111,11 @@ deploy:
 algolia:
   applicationID: "J30KHZUH66"
   apiKey: "67f88cb03576125fcaaa0c2d0d652034"
-  indexName: "refined-x.com"
+  indexName: "refined_x_com_j30khzuh66_articles"
   chunkSize: 5000
+  attributesToDisplay: "headline,content"
+  imageAttribute: "image"
+  noInteractive: true
 
 # 字数统计
 symbols_count_time:
