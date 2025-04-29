@@ -10,6 +10,8 @@ tags: [AI, ChromeExtension, NewCountdownTimer]
 
 什么意思呢，就是说一个工作专注的的人在上班时间是不可能喝好茶的。
 
+<!-- more -->
+
 我已经不知道多少次在工作中忘了时间把茶泡坏，为了解决这个问题，我曾找到一个叫 “countDown timer” 的 chrome 扩展，可以一次预置多组倒计时，泡上茶后启动对应时间的倒计时，结束后就有声音和系统通知提醒，可以及时把我从 IDE 的窗口 里拖出来。除了界面丑点，这个插件一度完美解决了我的问题，不过近期 chrome 安全策略更新，这个插件不符合新规被禁用了，那就找个替代品吧，结果整个 chrome 商店翻了一遍愣是没有第二个能满足需求的，我又回到了时常因为泡茶失败而懊恼的生活。
 
 在一次又一次看着飘逸杯里的浓茶无能狂怒后，终于在昨天，我忍无可忍，决定复刻一个“New Countdown Timer”。
@@ -20,11 +22,13 @@ tags: [AI, ChromeExtension, NewCountdownTimer]
 
 让 AI 写需求文档也得自己先写个简要版本，但我懒得写，那就找一个包含基础功能的同类插件让 AI 自由发挥，于是我找到了这款：
 
-![竞品插件][https://refined-x.com/asset/new-countdown-timer/竞品插件.png]
+![竞品插件](https://refined-x.com/asset/new-countdown-timer/竞品插件.png)
 
 把它的界面截图下来：
 
-![竞品1][https://refined-x.com/asset/new-countdown-timer/竞品1.png]![竞品2][https://refined-x.com/asset/new-countdown-timer/竞品2.png]![竞品3][https://refined-x.com/asset/new-countdown-timer/竞品3.png]
+![竞品1](https://refined-x.com/asset/new-countdown-timer/竞品1.png)
+![竞品2](https://refined-x.com/asset/new-countdown-timer/竞品2.png)
+![竞品3](https://refined-x.com/asset/new-countdown-timer/竞品3.png)
 
 交给 AI：
 
@@ -248,7 +252,7 @@ _locales目录下的消息文件
 
 然后就得到了这个：
 
-![icon][https://refined-x.com/asset/new-countdown-timer/icon128.png]
+![icon](https://refined-x.com/asset/new-countdown-timer/icon128.png)
 
 妈的，完美！
 
@@ -280,7 +284,7 @@ _locales目录下的消息文件
 基于新的需求插件应该包含两个主要界面：1. 定时器列表；2. 创建/编辑定时器；检查需求文档各个部分确保符合新需求
 ```
 
-终于，我得到了完全体的[需求文档][https://github.com/tower1229/countdown-chrome/blob/main/docs/Chrome%E5%80%92%E8%AE%A1%E6%97%B6%E6%8F%92%E4%BB%B6%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3.md]
+终于，我得到了完全体的[需求文档](https://github.com/tower1229/countdown-chrome/blob/main/docs/Chrome%E5%80%92%E8%AE%A1%E6%97%B6%E6%8F%92%E4%BB%B6%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3.md)
 
 扭头就拿着文档打开新会话：
 
@@ -290,13 +294,13 @@ _locales目录下的消息文件
 
 继续吭哧吭哧的`开发=>运行=>报错=>开发……`
 
-![history][https://refined-x.com/asset/new-countdown-timer/history.png]
+![history](https://refined-x.com/asset/new-countdown-timer/history.png)
 
 **开发完成，提交审核。**
 
 最终全部调试完成，总用时 5-6 个小时，来到提交 chrome 审核环节，审核资料也都是 AI 写的，效果很好，写命题短文这种事应该是目前 AI 最擅长的方向之一。
 
-![提交审核][https://refined-x.com/asset/new-countdown-timer/提交审核.png]
+![提交审核](https://refined-x.com/asset/new-countdown-timer/提交审核.png)
 
 **回顾与总结。**
 

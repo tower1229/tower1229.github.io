@@ -29,8 +29,8 @@
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "^0.7.1",
-    "striptags": "^3.2.0",
-    "nth-check": "^2.1.1"
+    "nth-check": "^2.1.1",
+    "striptags": "^3.2.0"
   },
   "devDependencies": {
     "minimist": "^1.2.8"
