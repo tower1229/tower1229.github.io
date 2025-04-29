@@ -10,29 +10,29 @@ comments: false
 
 #### [](#89年-男-本科-烟台 "89年/男/本科/烟台")89 年/男/本科/烟台
 
-我从 2011 年开始自学前端开发，曾在党建、教育、医疗等行业的多家公司担任过前端开发负责人和架构师。目前，我的工作重心是研发团队搭建，优化前端技术栈以及开发流程。我也在积极拥抱与 Web3 相关的机会。 我的主要技术栈是 Vue3，掌握的其他开发能力包括：React、小程序、Uniapp、Nodejs、Electronjs 等。
+2011 年自学前端开发，历经 jQuery、Seajs、Webpack、Nodejs、Vue1/2/3、Canvas、小程序、Uniapp、Vite、React、Nextjs、ReactNative、Monorepo、Typescript、Game、EVM、Solana、ZKP 等主要技术栈。曾在党建、教育、医疗等行业的多家公司担任过前端负责人和架构师。目前，我的主力技术栈是 React+Typescript，积极拥抱与 Web3 相关的机会。
 
 ### [](#技术能力 "技术能力")技术能力
 
-1.  开发了一个开源的前端访问控制框架，名为**Vue-Access-Control**，这可能是同类产品中最早的解决方案之一。目前，它在 Github 上有超过 1000 个 Star，并被纳入官方的 vue-awesome 库中。
+1.  独立开发基于 Vue2 的前端访问控制框架 **Vue-Access-Control**，可能是同类产品中最早的解决方案。目前，它在 Github 上有超过 1000 个 Star，并被纳入官方的 vue-awesome 库中。
 
 - [项目地址](https://github.com/tower1229/Vue-Access-Control)
 
-2.  熟悉 Vue 及其开发生态。在 Vue 的基础上开发了一个名为 **cutting-mat** 的开源前端开发框架，它解决了协同开发的问题。
+2.  在 Vue 全家桶基础上开发了前端开发脚手架 **cutting-mat** ，主要解决前后端协同开发问题。
 
 - [项目介绍](https://cutting-mat.github.io/)
 
 - [架构图](https://cutting-mat.github.io/assets/img/CuttingMat%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1.png)
 
-3.  精通 jQuery 及其开发生态。曾基于 jQuery 开发了一个名为 **FlowUI** 的开源 UI 框架，该框架已被用于 500 多个前端项目。
+3.  虽然现在没什么用，但却是精通 jQuery 及其插件开发，曾独立开发开源 UI 框架 **FlowUI**，曾被用于 500+ 线上项目。
 
 - [项目地址](https://flow-ui.github.io/)
-- 开发了一个基于 Node.js 的自动化开发工具，名为 **FlowCLI** 。
-- 开发了一个 jQuery 插件库，有 30 多个插件，几乎涵盖了所有的网站开发需求。
-- 开发了一个前端组件库，有 50 多个组件，提供设计、预览和应用服务
-- 开发了一个字体图标库，作为私人图标字体。
+- 包含基于 Node.js 的自动化开发工具，名为 **FlowCLI** 。
+- 包含 jQuery 插件库，有 30 多个插件，几乎涵盖了所有的网站开发需求。
+- 包含前端组件库，有 50 多个组件，提供设计、预览和应用服务
+- 包含字体图标库，作为私人图标字体。
 
-4.  熟悉混合应用开发，开发了一个开源的混合应用开发框架，名为 **HybridStart** ，已经应用于 20 多个应用项目。
+4.  熟悉混合应用开发，独立开发了开源的混合应用开发框架 **HybridStart** ，曾应用于 20+ 线上项目。
 
 - [项目地址](https://github.com/tower1229/HybridStart)
 
@@ -154,5 +154,3 @@ github: [https://github.com/tower1229](https://github.com/tower1229)
 邮箱: [tower1229@foxmail.com](mailto:tower1229@foxmail.com)
 
 技术交流群：361917044
-
-> 本文经 ChatGPT4 润色
