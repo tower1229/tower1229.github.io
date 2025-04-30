@@ -30,7 +30,6 @@ tags: [AI, ChromeExtension, NewCountdownTimer]
 <img src="https://refined-x.com/asset/new-countdown-timer/竞品1.png" style="display:inline-block;height:220px">
 <img src="https://refined-x.com/asset/new-countdown-timer/竞品2.png" style="display:inline-block;height:220px">
 <img src="https://refined-x.com/asset/new-countdown-timer/竞品3.png" style="display:inline-block;height:220px">
-
 </div>
 
 交给 AI：
@@ -191,7 +190,7 @@ AI 给了我这个：
 
 把前端技术栈改成 react，然后第 7 点往后的部分没用都删掉，把结果保存到一个 markdown 文件中，然后拿着这份文件让 AI 帮我做一下准备工作：
 
-> 我要开发一个 chrome 倒计时插件，首先根据需求文档为我在当前文件夹初始化项目，然后梳理出需要准备的外部资料，比如设计素材、上架chrome 插件商店的资料等
+> 我要开发一个 chrome 倒计时插件，首先根据需求文档为我在当前文件夹初始化项目，然后梳理出需要准备的外部资料，比如设计素材、上架 chrome 插件商店的资料等
 
 然后 AI 帮我初始化了一个类库都是两年前版本的前端项目，哎，手动升级一下，凑合用吧。
 
@@ -304,6 +303,14 @@ _locales目录下的消息文件
 整个项目到现在总共用了 6~7 个小时就来到提交审核环节，审核资料也都是 AI 写的，效果很好，写命题短文这种事是目前 AI 最擅长的。
 
 ![提交审核](https://refined-x.com/asset/new-countdown-timer/提交审核.png)
+
+放几个插件截图
+
+<div style="text-align:center">
+<img src="https://refined-x.com/asset/new-countdown-timer/s1.png" style="display:inline-block;height:220px">
+<img src="https://refined-x.com/asset/new-countdown-timer/s2.png" style="display:inline-block;height:220px">
+<img src="https://refined-x.com/asset/new-countdown-timer/s3.png" style="display:inline-block;height:220px">
+</div>
 
 **回顾与总结。**
 
