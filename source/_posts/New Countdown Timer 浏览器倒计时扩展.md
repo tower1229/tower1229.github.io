@@ -44,10 +44,10 @@ New Countdown Timer 经过优化，资源占用极低，运行流畅，不会拖
 
 <div style="display: flex; gap: 24px; align-items: center; justify-content: flex-start; margin-top: 24px;">
   <a href="https://chromewebstore.google.com/detail/new-countdown-timer/bidfonlkphldhabglikfailiocajegmn?authuser=0&hl=zh-CN" target="_blank" rel="noopener noreferrer">
-    <img src="/asset/new-countdown-timer/install-chrome.png" alt="通过 Chrome 商店安装" style="height: 60px;" />
+    <img src="/asset/new-countdown-timer/install-chrome.png" alt="通过 Chrome 商店安装" style="width: 300px;" />
   </a>
   <a href="https://microsoftedge.microsoft.com/addons/detail/new-countdown-timer/inneoamppnbnoddhjapeeecilobndfpp" target="_blank" rel="noopener noreferrer">
-    <img src="/asset/new-countdown-timer/install-edge.png" alt="通过 Edge 商店安装" style="height: 60px;" />
+    <img src="/asset/new-countdown-timer/install-edge.png" alt="通过 Edge 商店安装" style="width: 300px;" />
   </a>
 </div>
 
