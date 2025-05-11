@@ -28,6 +28,15 @@ New Countdown Timer 是一款多功能的浏览器倒计时工具，帮助你以
 - **💻 数字健康**：为屏幕时间或特定在线活动设定限制。
 - **🏋️ 健身伙伴**：计时锻炼间隔或休息时间。
 
+### 界面截图
+
+<div style="display: flex; gap: 24px; align-items: center; justify-content: flex-start; margin-top: 24px;">
+    <img src="/asset/new-countdown-timer/1.png" style="width: 300px;" />
+    <img src="/asset/new-countdown-timer/2.png" style="width: 300px;" />
+    <img src="/asset/new-countdown-timer/3.png" style="width: 300px;" />
+    <img src="/asset/new-countdown-timer/4.png" style="width: 300px;" />
+</div>
+
 ### 隐私优先
 
 你的隐私至关重要。New Countdown Timer 完全在本地运行，不收集或传输任何个人数据。你的自定义计时器设置通过浏览器内置的存储和同步 API 安全保存和同步。
