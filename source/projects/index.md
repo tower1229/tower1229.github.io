@@ -99,7 +99,7 @@ comments: false
 <div class="comp-cards">
   <ul>
     <li>
-      <a href="https://github-card.refined-x.com/" title="StartMenu" target="_blank">
+      <a href="https://github-card.refined-x.workers.dev/" title="StartMenu" target="_blank">
         <div class="logo_wrap"><img src="https://refined-x.com/asset/github-card-logo.png" alt="Github Card" /></div>
         <h3>Github Card</h3>
         <span class="desc">精美 Github Card 生成器，生成精美的 Github 贡献数据卡片，支持 contribute 和 linktree 两种风格，根据贡献数据计算评级（S+\S\A\B\C\D），情绪价值拉满。</span>
