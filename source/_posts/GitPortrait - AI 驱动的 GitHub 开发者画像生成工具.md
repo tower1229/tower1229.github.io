@@ -52,3 +52,5 @@ GitPortrait 是一个专注于将 GitHub 开发者数据转化为可视化画像
 ![](https://refined-x.com/asset/git-portrait/Snipaste_2026-01-04_14-29-14.png)
 
 ![](https://refined-x.com/asset/git-portrait/Snipaste_2026-01-04_14-29-26.png)
+
+![](https://refined-x.com/asset/git-portrait/card-show.jpg)
