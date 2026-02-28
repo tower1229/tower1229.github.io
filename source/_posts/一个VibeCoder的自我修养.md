@@ -8,6 +8,8 @@ tags: [VibeCode, Cursor, 最佳实践]
 
 <!-- more -->
 
+![一个VibeCoder的自我修养配图](/asset/a/vibecoder_ziwoxiuyang.png)
+
 ## 什么是 Vibe Coding
 
 很早就有人说按照 AI 的发展速度程序员很快就会被取代，世界将不再需要程序员。这是一种根据表象做出的简单线性推导，但由于忽略了驱动这一切的内在本质，所以结论存疑。

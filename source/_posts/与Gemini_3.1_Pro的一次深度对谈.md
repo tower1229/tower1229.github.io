@@ -224,3 +224,5 @@ tags: [思考, 对话, AI]
 <p>。</p>
 </div></div>
 </div>
+
+原始对话公开链接： https://g.co/gemini/share/fbba0de5e0e0
