@@ -8,4 +8,4 @@ tags:
 
 # Hello Obsidian
 
-![[hello-obsidian.png]]
+![hello-obsidian](/asset/hello-obsidian.png)
