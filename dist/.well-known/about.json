@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "name": "臧涛",
+  "canonicalUrl": "https://refined-x.com/about/",
+  "profileUrl": "https://refined-x.com/api/profile.json",
+  "articlesUrl": "https://refined-x.com/api/articles.json",
+  "topicsUrl": "https://refined-x.com/api/topics.json",
+  "searchIndexUrl": "https://refined-x.com/api/search-index.json",
+  "openapiUrl": "https://refined-x.com/openapi.json",
+  "llmsTxtUrl": "https://refined-x.com/llms.txt",
+  "llmsFullTxtUrl": "https://refined-x.com/llms-full.txt",
+  "policy": {
+    "access": "public-read-only",
+    "sourceOfTruth": "Published pages and generated static endpoints on refined-x.com"
+  }
+}

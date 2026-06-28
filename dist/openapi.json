@@ -1,0 +1,126 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Refined X Public Static API",
+    "version": "1.0.0",
+    "description": "Refined X 构建期生成的只读公开数据接口。"
+  },
+  "servers": [
+    {
+      "url": "https://refined-x.com/"
+    }
+  ],
+  "paths": {
+    "/api/profile.json": {
+      "get": {
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "公开个人资料",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/articles.json": {
+      "get": {
+        "operationId": "getArticles",
+        "responses": {
+          "200": {
+            "description": "公开文章索引",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/topics.json": {
+      "get": {
+        "operationId": "getTopics",
+        "responses": {
+          "200": {
+            "description": "公开主题索引",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search-index.json": {
+      "get": {
+        "operationId": "getSearchIndex",
+        "responses": {
+          "200": {
+            "description": "公开静态搜索索引",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Profile": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "url",
+          "sameAs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uri"
+          },
+          "name": {
+            "type": "string"
+          },
+          "jobTitle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sameAs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      }
+    }
+  }
+}

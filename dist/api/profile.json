@@ -1,0 +1,15 @@
+{
+  "id": "https://refined-x.com/#person",
+  "name": "臧涛",
+  "jobTitle": "前端技术负责人 / 架构师",
+  "description": "2011 年进入前端开发领域，具备前端架构、工程化、团队管理及跨行业交付经验。",
+  "url": "https://refined-x.com/",
+  "sameAs": [
+    "https://github.com/tower1229"
+  ],
+  "email": "tower1229@foxmail.com",
+  "cooperation": {
+    "title": "合作联系",
+    "description": "可就前端架构、工程化、团队建设及软件项目合作进行交流。"
+  }
+}
