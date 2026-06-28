@@ -1,0 +1,25 @@
+{
+  "outputDirectory": "./dist",
+  "redirects": [
+    {
+      "source": "/navigation",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/navigation/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/other",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/other/",
+      "destination": "/about/",
+      "statusCode": 301
+    }
+  ]
+}
