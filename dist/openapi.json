@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Refined X Public Static API",
+    "title": "Refined-X Public Static API",
     "version": "1.0.0",
-    "description": "Refined X 构建期生成的只读公开数据接口。"
+    "description": "Refined-X 构建期生成的只读公开数据接口。"
   },
   "servers": [
     {

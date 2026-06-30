@@ -1,10 +1,10 @@
-# 关于臧涛
+# 关于师兄
 
-2011 年进入前端开发领域，具备前端架构、工程化、团队管理及跨行业交付经验。
+2011 年进入前端开发领域，持续实践前端架构、工程化、团队管理与 AI 协作。
 
 ## 联系与链接
 
-- 网站：https://refined-x.com/
+- 网站：https://refined-x.com/about/
 - https://github.com/tower1229
 - 邮箱：tower1229@foxmail.com
 

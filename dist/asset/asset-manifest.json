@@ -85,6 +85,11 @@
     "sha256": "cce16eb7c6ea243ad3f4f56cbb0b18b363f2742e97757e84040a317a3c66035e"
   },
   {
+    "file": "avatar.jpg",
+    "source": "99_System/Assets/avatar.jpg",
+    "sha256": "e95aa017b629abf398d30ce6380184d3af8b4ab3d8e681c4505e48875f8745cf"
+  },
+  {
     "file": "baby_assistant.png",
     "source": "99_System/Assets/baby_assistant.png",
     "sha256": "4fd592aaa9df14ee3469107740e35836548ba54872cf08259cf525bd0c34dee2"

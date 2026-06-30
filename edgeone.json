@@ -13,12 +13,67 @@
     },
     {
       "source": "/other",
-      "destination": "/about/",
+      "destination": "/about",
       "statusCode": 301
     },
     {
       "source": "/other/",
-      "destination": "/about/",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/about/index.html",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/page/:page",
+      "destination": "/writing/page/:page",
+      "statusCode": 301
+    },
+    {
+      "source": "/page/:page/",
+      "destination": "/writing/page/:page",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/iBeacon",
+      "destination": "/topics/ibeacon",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/iBeacon/",
+      "destination": "/topics/ibeacon",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/iBeacon/index.html",
+      "destination": "/topics/ibeacon",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Hexo",
+      "destination": "/topics/hexo",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Hexo/",
+      "destination": "/topics/hexo",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Hexo/index.html",
+      "destination": "/topics/hexo",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/who-is-zangtao",
+      "destination": "/answers/who-is-shixiong",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/who-is-zangtao/",
+      "destination": "/answers/who-is-shixiong",
       "statusCode": 301
     }
   ]
