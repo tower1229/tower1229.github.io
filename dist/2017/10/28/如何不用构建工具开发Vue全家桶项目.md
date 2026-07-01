@@ -163,4 +163,4 @@ Vue.use(Dropdown);
 这个方案有明显的局限和短板，主要是由于组件加载会发起大量的请求，使项目整体运行效率受到影响，因此需要着重强调的是，组件最好不要一次同步加载，尽量的使用异步组件，分散各界面的加载压力，另外配合[恰当的缓存方案](//refined-x.com/2017/06/16/Webpack%E6%98%AF%E7%AD%94%E6%A1%88%E5%90%97/)，效果应该也不错。
 
 项目代码：[https://github.com/tower1229/WidgetsPlayground](https://github.com/tower1229/WidgetsPlayground)  
-预览地址：//refined-x.com/WidgetsPlayground/
+项目地址：[https://github.com/tower1229/WidgetsPlayground](https://github.com/tower1229/WidgetsPlayground)

@@ -121,5 +121,4 @@ HTML5实现文件读取、编辑、保存其实非常简单，只不过涉及到
 完整的示例代码地址：  
 [https://github.com/tower1229/htm5-file-operations](https://github.com/tower1229/htm5-file-operations)
 
-演示地址:  
-[https://refined-x.com/htm5-file-operations/](https://refined-x.com/htm5-file-operations/)
+演示地址:

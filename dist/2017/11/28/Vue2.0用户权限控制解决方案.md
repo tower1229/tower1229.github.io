@@ -5,7 +5,7 @@ pubDate: 2017-11-28T02:12:39.000Z
 tags: ["Vue"]
 ---
 
-[Vue-Access-Control](//refined-x.com/Vue-Access-Control/)是一套基于 Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
+[Vue-Access-Control](https://github.com/tower1229/Vue-Access-Control) 是一套基于 Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
 
 
 
@@ -18,7 +18,7 @@ tags: ["Vue"]
 
 ### 获取
 
-项目主页：//refined-x.com/Vue-Access-Control/
+项目主页：[https://github.com/tower1229/Vue-Access-Control](https://github.com/tower1229/Vue-Access-Control)
 
 git：`git clone https://github.com/tower1229/Vue-Access-Control.git`
 
@@ -285,4 +285,4 @@ DEMO 项目中演示了动态菜单、动态路由、按钮权限、请求拦截
 
 ### 演示地址:
 
-[https://refined-x.com/Vue-Access-Control/](https://refined-x.com/Vue-Access-Control/)
+[https://github.com/tower1229/Vue-Access-Control](https://github.com/tower1229/Vue-Access-Control)

@@ -40,7 +40,7 @@
 <p>考虑到页面独有样式通常不多，所以从页面文件夹中移除style.css文件，页面样式可以直接写在<code>temp.html</code>头部，减少文件引用，提升页面加载速度。</p>
 <h3 id="2-增加loaderjs">2. 增加loader.js</h3>
 <p>将原来页面底部的一大坨异步非阻塞加载脚本的代码整理成<code>loader.js</code>统一调用。所谓异步非阻塞的意思是绕过APICloud的加载等待机制，使新开窗口能第一时间进场，在进场动画过程中加载页面脚本，以提升页面进场动画的响应速度。</p>
-<p>由此带来的问题是页面脚本只能在真机环境下运行，让js调试非常不方便，关于调试方面的建议可以参考<a href="https://refined-x.com/HybridStart/docs/#solution-speed">进场动画提速</a></p>
+<p>由此带来的问题是页面脚本只能在真机环境下运行，让js调试非常不方便，关于调试方面的建议可以参考<a href="https://tower1229.github.io/HybridStart/docs/#solution-speed">进场动画提速</a></p>
 <h2 id="bug-修复">BUG 修复</h2>
 <h3 id="1-ios事件委托bug">1. IOS事件委托BUG</h3>
 <p>这个BUG的复现条件为，在IOS环境下将多个页面元素（比如列表项）的点击事件委托在body元素上，当元素多到足以页面发生滚动时，非首屏的元素将不响应点击事件。框架在<code>common.js</code>中默认提供的<code>[active]</code>跳转属性受到该BUG影响，示例APP的首页列表在IOS上会出现非首屏内容无法点击的问题。</p>

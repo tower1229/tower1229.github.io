@@ -139,4 +139,4 @@ http.get(img_src, function(res) {
 
 实现一个爬虫说起来很简单，但健壮性真的很难保证，在爬取cnBeta过程中就发现另一个301跳转的坑，url发生跳转时程序捕获的HTML是空的，无法拿到真正的内容，所以在请求响应后还需要判断响应头是否是301，如果是就要从响应信息中找到跳转后的url重新发起请求。幸亏cnBeta不需要用户登录，如果是一个必须登录才能访问的站点，抓取会麻烦很多。
 
-本项目的完整代码见 [Nodejs crawler](//refined-x.com/crawler/)，感谢cnBeta^ ^。
+本项目的完整代码见 [Nodejs crawler](https://github.com/tower1229/crawler)，感谢cnBeta^ ^。
