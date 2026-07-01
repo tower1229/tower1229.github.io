@@ -557,27 +557,27 @@
     {
       "url": "/answers/contact",
       "q": "如何联系师兄？",
-      "a": "可发送邮件至 tower1229@foxmail.com，或通过 GitHub 账号 tower1229 联系。"
+      "a": "可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。"
     },
     {
       "url": "/answers/what-can-help-with",
       "q": "师兄可以提供哪些帮助？",
-      "a": "可以就前端架构、工程化、团队建设及软件项目合作进行交流。"
+      "a": "可以就前端架构、AI 赋能研发（如私有 Agent 搭建）、Web3 前端开发及团队建设等进行交流与合作。"
     },
     {
       "url": "/answers/who-is-shixiong",
       "q": "师兄是谁？",
-      "a": "师兄是一名前端技术负责人和架构师，2011 年进入前端开发领域，长期从事前端架构、工程化、团队管理及跨行业交付。"
+      "a": "师兄是一名前端技术负责人和架构师。在拥有扎实前端架构底盘的基础上，目前正作为独立技术探索者，积极拥抱 AI 辅助研发（VibeCoding）与 Web3 技术。"
     },
     {
       "url": "/answers/projects-and-writing",
       "q": "在哪里查看师兄的项目和文章？",
-      "a": "文章可从首页、写作页和主题页浏览，公开项目集中在项目页。"
+      "a": "文章可从首页、主题页浏览。公开项目中，最受关注的是获 1k+ Star 的 Vue-Access-Control 权限框架和 HybridStart 混合应用框架。"
     },
     {
       "url": "/answers/public-data-source",
       "q": "Refined X 的公开数据从哪里来？",
-      "a": "所有公开页面和机器可读制品都由同一组经确认的公开内容在构建期生成；它们不代表私人知识库的全部内容。"
+      "a": "本站是一个 Agent-Friendly 站点，数据均由统一公开内容库在构建期生成，并对外提供网页及 llms.txt 等机读物料，不包含私人知识库的未公开数据。"
     }
   ],
   "items": [
@@ -1184,31 +1184,31 @@
     {
       "type": "answer",
       "title": "如何联系师兄？",
-      "excerpt": "可发送邮件至 tower1229@foxmail.com，或通过 GitHub 账号 tower1229 联系。",
+      "excerpt": "可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。",
       "url": "/answers/contact"
     },
     {
       "type": "answer",
       "title": "师兄可以提供哪些帮助？",
-      "excerpt": "可以就前端架构、工程化、团队建设及软件项目合作进行交流。",
+      "excerpt": "可以就前端架构、AI 赋能研发（如私有 Agent 搭建）、Web3 前端开发及团队建设等进行交流与合作。",
       "url": "/answers/what-can-help-with"
     },
     {
       "type": "answer",
       "title": "师兄是谁？",
-      "excerpt": "师兄是一名前端技术负责人和架构师，2011 年进入前端开发领域，长期从事前端架构、工程化、团队管理及跨行业交付。",
+      "excerpt": "师兄是一名前端技术负责人和架构师。在拥有扎实前端架构底盘的基础上，目前正作为独立技术探索者，积极拥抱 AI 辅助研发（VibeCoding）与 Web3 技术。",
       "url": "/answers/who-is-shixiong"
     },
     {
       "type": "answer",
       "title": "在哪里查看师兄的项目和文章？",
-      "excerpt": "文章可从首页、写作页和主题页浏览，公开项目集中在项目页。",
+      "excerpt": "文章可从首页、主题页浏览。公开项目中，最受关注的是获 1k+ Star 的 Vue-Access-Control 权限框架和 HybridStart 混合应用框架。",
       "url": "/answers/projects-and-writing"
     },
     {
       "type": "answer",
       "title": "Refined X 的公开数据从哪里来？",
-      "excerpt": "所有公开页面和机器可读制品都由同一组经确认的公开内容在构建期生成；它们不代表私人知识库的全部内容。",
+      "excerpt": "本站是一个 Agent-Friendly 站点，数据均由统一公开内容库在构建期生成，并对外提供网页及 llms.txt 等机读物料，不包含私人知识库的未公开数据。",
       "url": "/answers/public-data-source"
     }
   ]
