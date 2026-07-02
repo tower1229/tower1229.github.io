@@ -241,4 +241,4 @@ export function createAskHandler({
   };
 }
 
-export default createAskHandler();
+export const onRequest = createAskHandler();
