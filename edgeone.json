@@ -75,6 +75,16 @@
       "source": "/answers/who-is-zangtao/",
       "destination": "/answers/who-is-shixiong",
       "statusCode": 301
+    },
+    {
+      "source": "/archives",
+      "destination": "/writing",
+      "statusCode": 301
+    },
+    {
+      "source": "/archives/",
+      "destination": "/writing",
+      "statusCode": 301
     }
   ]
 }
