@@ -1,6 +1,6 @@
 import{t as e}from"./ask-search.afRUQF7H.js";var t=class extends Error{code;status;constructor(e,t,n=0){super(t),this.name=`PublicAskError`,this.code=e,this.status=n}};function n(e){return typeof e==`string`?e:Array.isArray(e)?e.map(e=>typeof e==`string`?e:e&&typeof e==`object`&&`text`in e&&typeof e.text==`string`?e.text:``).join(``):``}function r(e,r){let i=e.split(`
 `).filter(e=>e.startsWith(`data:`)).map(e=>e.slice(5).trimStart()).join(`
-`);if(!i||i===`[DONE]`)return i===`[DONE]`;let a;try{a=JSON.parse(i)}catch{throw new t(`invalid_stream`,`服务返回了无法解析的流。`)}if(a.error)throw new t(a.error.code??`stream_error`,a.error.message??`回答生成中断。`);let o=a.choices?.[0],s=n(o?.delta?.content??o?.message?.content);return s&&r(s),!1}async function i(e,t){let n=e.getReader(),i=new TextDecoder,a=``,o=!1;for(;!o;){let{done:e,value:s}=await n.read();a+=i.decode(s,{stream:!e}).replaceAll(`\r
+`);if(!i||i===`[DONE]`)return i===`[DONE]`;let a;try{a=JSON.parse(i)}catch{throw new t(`invalid_stream`,`服务返回了无法解析的流。`)}if(a.error){let e=String(a.error.code??``).toLowerCase();throw e.includes(`429`)||e.includes(`rate_limit`)?new t(`capacity_limited`,`公开问答当前已达到使用上限，请稍后再试。`,429):new t(`stream_error`,`公开问答服务暂时不可用。`)}let o=a.choices?.[0],s=n(o?.delta?.content??o?.message?.content);return s&&r(s),!1}async function i(e,t){let n=e.getReader(),i=new TextDecoder,a=``,o=!1;for(;!o;){let{done:e,value:s}=await n.read();a+=i.decode(s,{stream:!e}).replaceAll(`\r
 `,`
 `);let c=a.indexOf(`
 
