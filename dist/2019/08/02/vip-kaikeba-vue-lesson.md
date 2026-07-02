@@ -11,8 +11,8 @@ tags: ["推广"]
 
 
 
-![](/asset/vip-kaikeba-vue-lesson-1.png) 
-![](/asset/vip-kaikeba-vue-lesson-2.png)
+![Web 全栈架构师所需技术栈 XMind 导图（上）](/asset/vip-kaikeba-vue-lesson-1.png) 
+![Web 全栈架构师所需技术栈 XMind 导图（下）](/asset/vip-kaikeba-vue-lesson-2.png)
 
 除去 xmind 外，还额外分享一套vip视频，廖雪峰联合一位精通 Vue / React / 前端工程化(源码级)的百度前端架构师Dyson，专门选取了 **Vue源码** 和 **组件设计与开发** 两大难点（他擅长的方向之一就是Vue框架），经过 1个月梳理和准备录制出来的视频，一定能帮大家加深对Vue的理解和学习。
 
@@ -70,7 +70,7 @@ tags: ["推广"]
 
 相信大家看了详细内容后，已经了解到干货含量如何，这次共有**200个免费报名****vip视频的权限（超额之后需要付费观看）**，机会难得，需要的读者朋友尽快报名～
 
-![](/asset/vip-kaikeba-vue-lesson-3.png)
+![Vue 源码解析 VIP 课程报名二维码](/asset/vip-kaikeba-vue-lesson-3.png)
 
  
 

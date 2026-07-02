@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Refined-X Public Static API",
-    "version": "1.0.0",
-    "description": "Refined-X 构建期生成的只读公开数据接口。"
+    "title": "Refined-X Public APIs",
+    "version": "1.1.0",
+    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55 Ask endpoint。"
   },
   "servers": [
     {
@@ -11,6 +11,59 @@
     }
   ],
   "paths": {
+    "/ask": {
+      "post": {
+        "operationId": "askPublicContent",
+        "description": "按 NLWeb v0.55 查询 Refined-X 公开内容。Accept: text/event-stream 时返回标准 SSE。",
+        "servers": [
+          {
+            "url": "https://ask.refined-x.com"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NlWebAskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "NLWeb answer 或 failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "非法 NLWeb 请求",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "请求或预算限流",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/profile.json": {
       "get": {
         "operationId": "getProfile",
@@ -118,6 +171,84 @@
           "email": {
             "type": "string",
             "format": "email"
+          }
+        }
+      },
+      "NlWebAskRequest": {
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "properties": {
+          "query": {
+            "type": "object",
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "additionalProperties": true
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "prefer": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "const": "0.55"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "NlWebResponse": {
+        "type": "object",
+        "required": [
+          "_meta"
+        ],
+        "properties": {
+          "_meta": {
+            "type": "object",
+            "required": [
+              "response_type",
+              "version"
+            ],
+            "properties": {
+              "response_type": {
+                "enum": [
+                  "answer",
+                  "elicitation",
+                  "promise",
+                  "failure"
+                ]
+              },
+              "version": {
+                "const": "0.55"
+              }
+            }
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "error": {
+            "type": "object",
+            "additionalProperties": true
           }
         }
       }

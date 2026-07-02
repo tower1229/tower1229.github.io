@@ -17,7 +17,7 @@ tags: ["小程序","iBeacon","蓝牙定位"]
 
 所谓一维定位其实就是对蓝牙测距技术的最简单应用，只要将蓝牙信标设备部署在指定点，当接收设备（手机）足够靠近信标时，就认为用户到达了指定点。之所以称之为一维定位，是因为定位结果完全依附于信标设备的位置，没有任何其他维度上的扩展。
 
-![](/asset/1wei-locate.png)
+![iBeacon 一维定位原理示意](/asset/1wei-locate.png)
 
 ### 应用
 
@@ -39,7 +39,7 @@ tags: ["小程序","iBeacon","蓝牙定位"]
 
 二维定位顾名思义，就是可以实现二维空间中的任意定位。定位的主要理论依据[三角形三边关系](https://baike.baidu.com/item/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%89%E8%BE%B9%E5%85%B3%E7%B3%BB/11034954)公式。
 
-![](/asset/zhijiao-sanjiaoxing.jpg)
+![直角三角形三边关系定位原理示意](/asset/zhijiao-sanjiaoxing.jpg)
 
 如上图，已知三角形三边长度，CD是底边AB的垂线，AD和BD的长度计算公式分别为
 
@@ -51,7 +51,7 @@ AD = (AB2-CB2+AC2)÷2AB
 
 整体思路是，将信标设备在场地内按指定间距做网状部署，使用户在场地内任意点都可以接收到3个距离最近而且连线构成直角的定位点信息，如下图
 
-![](/asset/ibeacon-locate-method.png)
+![iBeacon 二维定位网格与最近信标点示意](/asset/ibeacon-locate-method.png)
 
 通过三角形三边关系公式，可以计算出上图中px和py的长度，也就是当前点在当前正方形网格中的坐标。
 
@@ -69,13 +69,13 @@ AD = (AB2-CB2+AC2)÷2AB
 
 假设现在有一个30m \* 30m的场地，将信标设备以10m为间距网状部署，共需要16个信标，每个信标都按下图所示标注上坐标信息
 
-![](/asset/ibeacon-locate-grid.png)
+![30m×30m 场地 iBeacon 网状部署坐标示意](/asset/ibeacon-locate-grid.png)
 
 此时用户无论在场地内的任何位置，都将身处9个正方形网格中的一个（暂不考虑临界情况），那么移动设备收到的距离最近的4个信标点，应该就是当前所在正方形的4个顶点。
 
 假设当前用户此时在左上角第一个正方形中，根据蓝牙测距结果，得到距离最近的3个信标点，对应的距离分别为`distance1, distance2, distance3`，如图
 
-![](/asset/ibeacon-locate-method.png)
+![iBeacon 二维定位网格与最近信标点示意](/asset/ibeacon-locate-method.png)
 
 三个顶点距离已知，部署间距已知，根据三边关系公式可以得`px, py`的值，也就是当前点在当前网格中的坐标。
 

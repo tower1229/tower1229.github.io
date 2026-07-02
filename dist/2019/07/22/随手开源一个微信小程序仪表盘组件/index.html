@@ -28,7 +28,7 @@
 <p>最近在一个小程序项目中做了个动态仪表盘效果，感觉有点复用价值，就顺便给组件化了，丰富了几个常用配置，绘制元素根据尺寸自适应，差不多具备了一个自定义组件的基本素质。</p>
 <p>开发非常简单没有值得说的点，开发之外却是一步一个坑。</p>
 <p>先来预览下效果：</p>
-<p><img src="/asset/weapp-plugin-dashboard.gif" alt=""></p>
+<p><img src="/asset/weapp-plugin-dashboard.gif" alt="微信小程序仪表盘组件动态效果演示"></p>
 <p>感兴趣的直接看源码：</p>
 <p><a href="https://github.com/tower1229/weapp-plugin-dashboard">https://github.com/tower1229/weapp-plugin-dashboard</a></p>
 <p>下面是踩坑过程。</p>
@@ -65,7 +65,7 @@
 <p>只有这样安装的模块才算数，一开始我随手创建了个<code>package.json</code>文件写上依赖包名称，然后执行<code>npm i</code>，虽然模块也下载了，但会在下一步的开发者工具中报错，提示找不到npm包，可能是因为<code>package.json</code>文件不规范，但是文档没有告知怎样的<code>package.json</code>才算规范。</p>
 <p>安装完毕后，在开发者工具中看不到<code>node_modules/</code>这个目录，因为此时这些模块小程序还并不支持，需要再构建一下才能用。</p>
 <p>首先，在开发者工具的项目配置里开启<strong>使用npm模块</strong>，然后执行“工具-构建npm”操作，成功后会产出一个<code>miniprogram_npm/</code>文件夹，这个文件夹是可以在开发者工具中看到的，到这一步npm包才算真的安装成功，可以在小程序项目中正常调用了。</p>
-<p><img src="/asset/useComponent.png" alt=""></p>
+<p><img src="/asset/useComponent.png" alt="小程序项目中引用 npm 自定义组件的配置示例"></p>
 <h2 id="结语">结语</h2>
 <p>再放一遍项目地址吧，注意项目里的代码是开发工程的代码，需要运行构建命令（<code>npm run build</code>）才能得到小程序组件代码。想在项目里使用组件也可以直接npm安装<code>weapp-plugin-dashboard</code>，具体步骤前面说过了。</p>
 <p>Github：<a href="https://github.com/tower1229/weapp-plugin-dashboard">https://github.com/tower1229/weapp-plugin-dashboard</a></p>

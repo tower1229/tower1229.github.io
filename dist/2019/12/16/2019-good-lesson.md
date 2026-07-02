@@ -30,6 +30,6 @@ tags: ["学习方法"]
 7. 所谓副业的话题
 8. 职场切忌自作聪明
 
-![](https://frontend-weekly.com/img/a/%E8%81%8C%E5%9C%BA%E7%9A%84%E7%9C%9F%E7%9B%B8.jpg)
+![《职场的真相》年度课程封面](https://frontend-weekly.com/img/a/%E8%81%8C%E5%9C%BA%E7%9A%84%E7%9C%9F%E7%9B%B8.jpg)
 
 对了，课程2019-12-20号开课，之后不提供回放，过期后想买也买不到了，截止发文当天，只有四天时间，你还犹豫吗？

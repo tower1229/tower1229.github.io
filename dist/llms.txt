@@ -8,6 +8,7 @@
 - [公开个人资料 JSON](/api/profile.json)
 - [OpenAPI](/openapi.json)
 - [完整语料](/llms-full.txt)
+- NLWeb v0.55 Ask: POST https://ask.refined-x.com/ask
 
 ## 常见问题
 
