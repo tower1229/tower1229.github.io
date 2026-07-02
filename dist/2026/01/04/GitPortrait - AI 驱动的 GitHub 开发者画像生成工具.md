@@ -1,6 +1,6 @@
 ---
 title: "GitPortrait - AI 驱动的 GitHub 开发者画像生成工具"
-description: "GitPortrait 是一个专注于将 GitHub 开发者数据转化为可视化画像和可分享卡片的创新平台，为程序员和工程师提供个性化的代码贡献分析和 AI 驱动的洞察。 核心功能 多维度数据可视化 GitHub 数据深度分析：自动分析用户的代码贡献、仓库活跃度、技术栈偏好等多维度数据 可分享卡片生成：一键生成精美的个人开…"
+description: "GitPortrait 使用 GitHub 数据与 AI 分析生成开发者画像，展示代码贡献、仓库活跃度、技术栈偏好和可分享的个性化卡片。"
 pubDate: 2026-01-04T06:51:12.000Z
 tags: ["Github","AI","Portrait"]
 ---

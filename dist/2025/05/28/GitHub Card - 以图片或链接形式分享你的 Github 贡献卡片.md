@@ -1,6 +1,6 @@
 ---
 title: "GitHub Card - 以图片或链接形式分享你的 Github 贡献卡片"
-description: "GitHub Card 是一个在线工具，能够将 GitHub 用户资料转换为精美的个人名片。通过 OAuth 认证获取用户 GitHub 数据，自动生成包含贡献统计、编程语言分析等信息的可视化卡片。用户可以选择不同模板定制个性化展示，支持一键下载高清图片或者复制分享链接，便于分享到社交平台，并提供了开发者排行榜功能。适…"
+description: "GitHub Card 将 GitHub 资料与贡献数据生成可分享的开发者卡片，支持多种模板、高清图片下载、链接分享和排行榜。"
 pubDate: 2025-05-28T12:44:15.000Z
 tags: ["GitHub Card"]
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Hello Hexo Again"
-description: "这个博客是用 Hexo 构建的，最近换电脑 Hexo 博文源文件全部丢失了，这才发现像 Hexo 这种构建工具需要特别注意源文件备份，否则数据风险还挺高的。如果像我一样源文件已然丢失，其实也没有什么好的恢复方法，只能手动再配置一遍主题，再将博文搬运过来。 这个过程非常需要 html 转 markdown 工具，比如我用…"
+description: "记录 Hexo 博客源文件丢失后的恢复过程，包括主题重建、HTML 转 Markdown、历史文章迁移和源文件备份教训。"
 pubDate: 2023-05-06T02:27:47.000Z
 tags: ["Hexo"]
 ---

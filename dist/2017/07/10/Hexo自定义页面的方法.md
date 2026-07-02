@@ -1,6 +1,6 @@
 ---
 title: "Hexo自定义页面的方法"
-description: "Hexo是静态页博客生成利器，同很多博主一样，前端路上原创技术博客也是使用Hexo生成并托管在Github Page上的，但在使用Hexo的过程中遇到一个小问题，Hexo默认会对/source/里的所有页面应用主题模板渲染，但有一些前端作品或demo页我们不希望经过渲染，而是能保持完全自定义的样子，那该怎么用Hexo添…"
+description: "介绍如何在 Hexo 中创建不经过主题模板渲染的自定义页面，用于托管前端作品、Demo 或其他独立 HTML 内容。"
 pubDate: 2017-07-10T07:44:25.000Z
 tags: ["Hexo"]
 ---

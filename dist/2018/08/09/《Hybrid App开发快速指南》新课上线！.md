@@ -1,6 +1,6 @@
 ---
 title: "《Hybrid App开发快速指南》新课上线！"
-description: "混合应用开发作为技术热点的时代已经过去了，但作为一种轻便可靠的开发手段，却早已在前端开发领域落了地。 我四年前就开始从事混合应用开发，从Cordova到Appcan再到APICloud，经年累月的摸索，逐渐形成一套对前端开发者更友好的混合开发最佳实践。对于刚接触混合开发的新人，与其自己摸索文档或者到论坛里发帖求助，最快…"
+description: "《Hybrid App 开发快速指南》课程介绍，基于 Cordova、AppCan 与 APICloud 项目经验整理面向前端开发者的混合应用实践。"
 pubDate: 2018-08-09T02:40:46.000Z
 tags: ["看风景","HybridStart"]
 ---

@@ -1,6 +1,6 @@
 ---
 title: "New Countdown Timer——AI 全流程驱动的 Chrome 扩展开发实录"
-description: "红茶中当以滇红最为馥郁，滇红中又以金芽最为鲜甜。 金芽红茶取自茶株芽头，通常一杯金芽的最佳饮用周期是前六泡，第 1-2 泡茶质未开，汤色偏白，醇浓中略带茶涩，仿佛人之青年；第 3-4 泡茶质舒展，汤色微红，口感香甜醇厚，仿佛人至中年，这也是一杯金芽的最佳饮用时期；第 5-6 泡茶质疏软，茶涩尽褪，口感柔滑中不失爽口，仿…"
+description: "New Countdown Timer Chrome 扩展开发实录，复盘从需求、设计、编码到发布的 AI 全流程协作方式及其真实边界。"
 pubDate: 2025-04-29T06:33:43.000Z
 tags: ["AI","ChromeExtension","NewCountdownTimer"]
 ---

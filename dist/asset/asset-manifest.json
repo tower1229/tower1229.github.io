@@ -215,6 +215,11 @@
     "sha256": "76280413d46ee9643e9dcedd4e77472fa1b00dd2390638dd3ef20ab1154a726d"
   },
   {
+    "file": "og-default.png",
+    "source": "99_System/Assets/og-default.png",
+    "sha256": "655300d48d00a9f8921a0b5cdcde5e7ab17135bf467bb6f94656dd72e47686f4"
+  },
+  {
     "file": "point-center.png",
     "source": "99_System/Assets/point-center.png",
     "sha256": "351d66fefd156e74133fdf2533621ac1a31d8fa064fc2f71c3075851849d9400"
