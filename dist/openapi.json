@@ -14,10 +14,27 @@
     "/ask": {
       "post": {
         "operationId": "askPublicContent",
-        "description": "按 NLWeb v0.55 查询 Refined-X 公开内容。Accept: text/event-stream 时返回标准 SSE。",
+        "description": "按 NLWeb v0.55 查询 Refined-X 公开内容。匿名客户端只能使用 list；浏览器生成模式需逐请求提供 Turnstile token。响应最多 128 KiB，服务端时限为 45 秒。Accept: text/event-stream 时返回缓冲式标准 SSE。",
         "servers": [
           {
             "url": "https://ask.refined-x.com"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "PublicAskApiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cf-turnstile-response",
+            "in": "header",
+            "required": false,
+            "description": "浏览器使用 summarize 模式时必填的一次性 Turnstile token。",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -43,6 +60,26 @@
           },
           "400": {
             "description": "非法 NLWeb 请求",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "缺失、无效或已撤销的机器 API Key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "需要或未通过浏览器挑战",
             "content": {
               "application/json": {
                 "schema": {
@@ -179,6 +216,7 @@
         "required": [
           "query"
         ],
+        "additionalProperties": false,
         "properties": {
           "query": {
             "type": "object",
@@ -192,15 +230,37 @@
                 "maxLength": 500
               }
             },
-            "additionalProperties": true
+            "additionalProperties": false
           },
           "context": {
             "type": "object",
-            "additionalProperties": true
+            "maxProperties": 0,
+            "additionalProperties": false
           },
           "prefer": {
             "type": "object",
-            "additionalProperties": true
+            "additionalProperties": false,
+            "properties": {
+              "streaming": {
+                "type": "boolean"
+              },
+              "response_format": {
+                "const": "conversational_search"
+              },
+              "mode": {
+                "enum": [
+                  "list",
+                  "summarize",
+                  "list, summarize"
+                ]
+              },
+              "accept-language": {
+                "type": "string"
+              },
+              "user-agent": {
+                "type": "string"
+              }
+            }
           },
           "meta": {
             "type": "object",
@@ -209,7 +269,7 @@
                 "const": "0.55"
               }
             },
-            "additionalProperties": true
+            "additionalProperties": false
           }
         }
       },
@@ -251,6 +311,14 @@
             "additionalProperties": true
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "PublicAskApiKey": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "pask_<key_id>_<secret>",
+        "description": "运营者签发的 Trusted Machine Client API Key。"
       }
     }
   }
