@@ -10,9 +10,7 @@
 
 ## 简历
 
-**89 年/男/本科/烟台**
-
-2011 年自学前端开发，历经 jQuery 前端富交互、Seajs Javascript 模块化、Webpack 前端工程化、Nodejs 全栈开发、Vue1/2/3 前端框架、Canvas 网页图形、微信小程序、Uniapp/ReactNative 混合应用、React 前端框架、Nextjs/Nuxtjs SSR 混合渲染框架、Monorepo、Typescript、EVM/Solana DAPP 开发等技术栈。曾在党建、教育、医疗等行业的多家公司担任技术部门负责人和架构师。目前，我的主力技术栈是 React + Typescript，积极拥抱 AI 相关的工作机会。
+2011 年自学前端开发，历经 jQuery 前端富交互、Seajs Javascript 模块化、Webpack 前端工程化、Nodejs 全栈开发、Vue1/2/3 前端框架、Canvas 网页图形、微信小程序、Uniapp/ReactNative 混合应用、React 前端框架、Nextjs/Nuxtjs SSR 混合渲染框架、Monorepo、Typescript、EVM/Solana DAPP 开发等技术栈。曾在党建、教育、医疗等行业的多家公司担任技术部门负责人和架构师。目前，我的主力技术栈是 ~~React + Typescript~~ Codex + Cursor + Antigravity。
 
 ## 能力概览
 

@@ -11,66 +11,6 @@ tags: ["思考","对话","AI"]
 
 > _**Tips**: 我手动为不影响主旨的“彩虹屁”加了删除线，便于看客跳过，一定程度上提高阅读体验。_
 
-<style>
-.chat-container {
-    background-color: #1a1a1c;
-    border-radius: 12px;
-    padding: 30px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    color: #e0e0e0;
-    line-height: 1.8;
-    margin: 30px 0;
-    font-size: 15px;
-}
-.chat-row {
-    display: flex;
-    margin-bottom: 28px;
-    width: 100%;
-}
-.chat-row.user {
-    justify-content: flex-end;
-}
-.chat-row.gemini {
-    justify-content: flex-start;
-}
-.chat-row.user .chat-bubble {
-    background-color: #2e2e32;
-    color: #e8e8e8;
-    border-radius: 16px 16px 4px 16px;
-    max-width: 85%;
-    padding: 16px 24px;
-}
-.chat-row.gemini .chat-bubble {
-    max-width: 85%;
-    padding: 0 10px;
-    color: #d1d1d1;
-}
-.chat-row.gemini .avatar {
-    margin-right: 16px;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-    margin-top: 4px;
-}
-.chat-row.gemini .avatar svg {
-    width: 100%;
-    height: 100%;
-}
-.chat-bubble p {
-    margin: 0 0 1em 0;
-}
-.chat-bubble p:last-child {
-    margin-bottom: 0;
-}
-.chat-container strong {
-    color: #fff;
-    font-weight: 600;
-}
-.chat-container .del {
-    color: #999;
-    text-decoration: line-through;
-}
-</style>
 <div class="chat-container">
 
 <div class="chat-row user"><div class="chat-bubble">
