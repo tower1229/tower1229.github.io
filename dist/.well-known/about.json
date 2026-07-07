@@ -9,6 +9,12 @@
   "openapiUrl": "https://refined-x.com/openapi.json",
   "llmsTxtUrl": "https://refined-x.com/llms.txt",
   "llmsFullTxtUrl": "https://refined-x.com/llms-full.txt",
+  "nlweb": {
+    "version": "0.55",
+    "askUrl": "https://ask.refined-x.com/ask",
+    "mcpUrl": "https://ask.refined-x.com/mcp",
+    "healthUrl": "https://ask.refined-x.com/health"
+  },
   "policy": {
     "access": "public-read-only",
     "sourceOfTruth": "Published pages and generated static endpoints on refined-x.com"

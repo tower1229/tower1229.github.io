@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Refined-X Public APIs",
-    "version": "1.1.0",
-    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55 Ask endpoint。"
+    "version": "1.2.0",
+    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55 实时能力。静态 JSON 供索引与镜像；Ask 与 MCP 托管于 ask.refined-x.com，共用检索与限流策略。"
   },
   "servers": [
     {
@@ -94,6 +94,86 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "operationId": "mcpStreamableHttp",
+        "summary": "MCP Streamable HTTP",
+        "description": "Model Context Protocol 无状态端点（Streamable HTTP）。JSON-RPC 2.0 方法：initialize、tools/list、tools/call。当前暴露 ask 工具，语义与 POST /ask 一致。匿名客户端默认 list 模式；summarize 需 Bearer API Key。端点 URL：https://ask.refined-x.com/mcp",
+        "servers": [
+          {
+            "url": "https://ask.refined-x.com"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "PublicAskApiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "jsonrpc",
+                  "method"
+                ],
+                "properties": {
+                  "jsonrpc": {
+                    "const": "2.0"
+                  },
+                  "id": {},
+                  "method": {
+                    "enum": [
+                      "initialize",
+                      "tools/list",
+                      "tools/call"
+                    ]
+                  },
+                  "params": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC result 或 error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "未授权的模式或凭据",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "请求或预算限流",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }

@@ -11,6 +11,7 @@
 - [OpenAPI](https://refined-x.com/openapi.json)
 - [完整语料](https://refined-x.com/llms-full.txt)
 - NLWeb v0.55 Ask: POST https://ask.refined-x.com/ask
+- NLWeb v0.55 MCP: POST https://ask.refined-x.com/mcp（tool: ask，Streamable HTTP）
 
 ## 写作专栏
 
@@ -20,14 +21,12 @@
 
 ## 常见问题
 
+- [本站有哪些 Agent 友好特性？](https://refined-x.com/answers/agent-friendly/): 本站专为 AI 智能体打造了 Agent-friendly 特性，提供标准的 OpenAPI 接口、全站 Markdown 语料库（llms.txt）、以及符合 NLWeb 协议的自然语言交互接口。
 - [如何联系师兄？](https://refined-x.com/answers/contact/): 可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。
 - [如何与师兄合作？](https://refined-x.com/answers/cooperation/): 可围绕前端架构、工程化、团队建设、AI 辅助研发或相关工作机会展开交流；联系时请说明背景、目标、时间范围和预期合作方式。
-- [师兄可以提供哪些帮助？](https://refined-x.com/answers/what-can-help-with/): 可以就前端架构、AI 赋能研发（如私有 Agent 搭建）、Web3 前端开发及团队建设等进行交流与合作。
 - [师兄是谁？](https://refined-x.com/answers/who-is-shixiong/): 师兄是一名前端技术负责人和架构师。在拥有扎实前端架构底盘的基础上，目前正作为独立技术探索者，积极拥抱 AI 辅助研发（VibeCoding）与 Web3 技术。
 - [师兄有哪些 AI 实践？](https://refined-x.com/answers/ai-practice/): 目前的公开实践主要包括 Cursor 与 Codex 辅助研发、复杂任务的上下文与规则管理、任务拆分和人工验收，以及借助 AI 学习企业级 Agent 开发。
 - [师兄有哪些开源项目？](https://refined-x.com/answers/open-source-projects/): 代表项目包括 Vue Access Control、HybridStart、Vue Tree Chart、Flow CLI 与 Flow UI，覆盖权限控制、混合应用、前端组件和工程化工具。
-- [在哪里查看师兄的项目和文章？](https://refined-x.com/answers/projects-and-writing/): 文章可从首页、主题页浏览。公开项目中，最受关注的是获 1k+ Star 的 Vue-Access-Control 权限框架和 HybridStart 混合应用框架。
-- [Refined X 的公开数据从哪里来？](https://refined-x.com/answers/public-data-source/): 本站是一个 Agent-Friendly 站点，数据均由统一公开内容库在构建期生成，并对外提供网页及 llms.txt 等机读物料，不包含私人知识库的未公开数据。
 
 ## 最近文章
 
