@@ -1,0 +1,11 @@
+{
+  "specVersion": "draft",
+  "entries": [
+    {
+      "identifier": "urn:air:refined-x.com:public-ask",
+      "displayName": "Refined-X Public Ask",
+      "mediaType": "application/mcp-server-card+json",
+      "url": "https://refined-x.com/.well-known/mcp/server-card.json"
+    }
+  ]
+}

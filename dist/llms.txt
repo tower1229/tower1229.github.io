@@ -10,6 +10,9 @@
 - [公开个人资料 JSON](https://refined-x.com/api/profile.json)
 - [OpenAPI](https://refined-x.com/openapi.json)
 - [完整语料](https://refined-x.com/llms-full.txt)
+- [MCP Catalog](https://refined-x.com/.well-known/mcp/catalog.json)
+- [MCP Server Card](https://refined-x.com/.well-known/mcp/server-card.json)
+- [MCP discovery shim](https://refined-x.com/.well-known/mcp.json)
 - NLWeb v0.55 Ask: POST https://ask.refined-x.com/ask
 - NLWeb v0.55 MCP: POST https://ask.refined-x.com/mcp（tool: ask，Streamable HTTP）
 

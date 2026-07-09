@@ -9,6 +9,9 @@
   "openapiUrl": "https://refined-x.com/openapi.json",
   "llmsTxtUrl": "https://refined-x.com/llms.txt",
   "llmsFullTxtUrl": "https://refined-x.com/llms-full.txt",
+  "mcpCatalogUrl": "https://refined-x.com/.well-known/mcp/catalog.json",
+  "mcpServerCardUrl": "https://refined-x.com/.well-known/mcp/server-card.json",
+  "mcpJsonUrl": "https://refined-x.com/.well-known/mcp.json",
   "nlweb": {
     "version": "0.55",
     "askUrl": "https://ask.refined-x.com/ask",
