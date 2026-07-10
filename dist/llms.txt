@@ -15,7 +15,7 @@
 - [MCP discovery shim](https://refined-x.com/.well-known/mcp.json)
 - NLWeb v0.55-compatible restricted /ask subset: POST https://ask.refined-x.com/ask
 - MCP ask: POST https://ask.refined-x.com/mcp（tool: ask，Streamable HTTP）
-- Capability boundary: Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.
+- Capability boundary: Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.
 
 ## 写作专栏
 

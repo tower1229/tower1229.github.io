@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
   "name": "com.refined-x/public-ask",
   "version": "1.0.0",
-  "description": "Refined-X Public Ask: NLWeb v0.55-compatible restricted /ask subset. Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
+  "description": "Refined-X Public Ask: NLWeb v0.55-compatible restricted /ask subset. Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
   "title": "Refined-X Public Ask",
   "websiteUrl": "https://refined-x.com/",
   "remotes": [
@@ -44,12 +44,7 @@
         "list",
         "summarize",
         "SSE",
-        "MCP ask",
-        "query.topic",
-        "query.content_type",
-        "query.published_after",
-        "query.published_before",
-        "query.max_results"
+        "MCP ask"
       ],
       "unsupported": [
         "/await",

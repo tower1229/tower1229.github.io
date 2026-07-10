@@ -24,12 +24,7 @@
       "list",
       "summarize",
       "SSE",
-      "MCP ask",
-      "query.topic",
-      "query.content_type",
-      "query.published_after",
-      "query.published_before",
-      "query.max_results"
+      "MCP ask"
     ],
     "unsupported": [
       "/await",
@@ -41,7 +36,7 @@
       "long-term memory"
     ],
     "notes": [
-      "Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results.",
+      "Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP.",
       "Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
     ]
   },

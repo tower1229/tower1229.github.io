@@ -3,7 +3,7 @@
   "info": {
     "title": "Refined-X Public APIs",
     "version": "1.2.0",
-    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55-compatible restricted /ask subset。静态 JSON 供索引与镜像；Ask 与 MCP 托管于 ask.refined-x.com，共用检索与限流策略。Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
+    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55-compatible restricted /ask subset。静态 JSON 供索引与镜像；Ask 与 MCP 托管于 ask.refined-x.com，共用检索与限流策略。Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
   },
   "servers": [
     {
@@ -293,7 +293,7 @@
       },
       "NlWebAskRequest": {
         "type": "object",
-        "description": "NLWeb v0.55-compatible restricted /ask subset. Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
+        "description": "NLWeb v0.55-compatible restricted /ask subset. Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
         "required": [
           "query"
         ],
@@ -309,42 +309,6 @@
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 500
-              },
-              "topic": {
-                "type": "string",
-                "enum": [
-                  "ai",
-                  "frontend",
-                  "reflection"
-                ],
-                "description": "按博客主题过滤：AI 实践、前端工程、工程判断与复盘。"
-              },
-              "content_type": {
-                "type": "string",
-                "enum": [
-                  "article",
-                  "answer",
-                  "profile",
-                  "project",
-                  "page"
-                ],
-                "description": "按公开内容类型过滤。"
-              },
-              "published_after": {
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "description": "发布日期下界，闭区间，格式 YYYY-MM-DD。"
-              },
-              "published_before": {
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "description": "发布日期上界，闭区间，格式 YYYY-MM-DD。"
-              },
-              "max_results": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 8,
-                "description": "最多返回的引用来源数量。"
               }
             },
             "additionalProperties": false
