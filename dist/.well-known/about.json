@@ -14,9 +14,36 @@
   "mcpJsonUrl": "https://refined-x.com/.well-known/mcp.json",
   "nlweb": {
     "version": "0.55",
+    "capability": "NLWeb v0.55-compatible restricted /ask subset",
     "askUrl": "https://ask.refined-x.com/ask",
     "mcpUrl": "https://ask.refined-x.com/mcp",
-    "healthUrl": "https://ask.refined-x.com/health"
+    "healthUrl": "https://ask.refined-x.com/health",
+    "supported": [
+      "POST /ask",
+      "conversational_search",
+      "list",
+      "summarize",
+      "SSE",
+      "MCP ask",
+      "query.topic",
+      "query.content_type",
+      "query.published_after",
+      "query.published_before",
+      "query.max_results"
+    ],
+    "unsupported": [
+      "/await",
+      "promise responses",
+      "elicitation",
+      "chatgpt_app",
+      "arbitrary extension fields",
+      "result actions",
+      "long-term memory"
+    ],
+    "notes": [
+      "Supports POST /ask with conversational_search, list, summarize, buffered SSE, MCP ask over Streamable HTTP, and allowlisted query controls: topic, content_type, published_after, published_before, max_results.",
+      "Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
+    ]
   },
   "policy": {
     "access": "public-read-only",
