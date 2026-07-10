@@ -135,6 +135,16 @@
     "sha256": "d8224dbaadaff9c1306c0347dc7e15fb1296274bfd5897e037b6b6e53e262e62"
   },
   {
+    "file": "hero-dark.png",
+    "source": "99_System/Assets/hero-dark.png",
+    "sha256": "66a9cf8eef4cea70fd537522a63237442f28789012eebc68be43e7cd7c3b3414"
+  },
+  {
+    "file": "hero-light.png",
+    "source": "99_System/Assets/hero-light.png",
+    "sha256": "c0c3a506d6461e3d6307de55ba099a06f94e941ed50349ce3e5ac6b917bc8fd9"
+  },
+  {
     "file": "history.png",
     "source": "99_System/Assets/history.png",
     "sha256": "5043780e24a3976b5644888ee9f2196419e6fbfbd83a4fd32081808d1a47cef6"
