@@ -85,6 +85,11 @@
     "sha256": "cce16eb7c6ea243ad3f4f56cbb0b18b363f2742e97757e84040a317a3c66035e"
   },
   {
+    "file": "auto_theme.png",
+    "source": "99_System/Assets/auto_theme.png",
+    "sha256": "8332e7c63c6ca09d63706c609a1abe580896e817dd4a1435554ff2b3d37c4de0"
+  },
+  {
     "file": "avatar.jpg",
     "source": "99_System/Assets/avatar.jpg",
     "sha256": "d9a18ef25dbf7cd9f21ebb1c0244db1fc1c760d26c92cf6a541caab5a582ee2c"
