@@ -1,5 +1,5 @@
 {
-  "count": 37,
+  "count": 41,
   "topics": [
     {
       "name": "对话",
@@ -283,6 +283,29 @@
       ]
     },
     {
+      "name": "去中心化",
+      "slug": "去中心化",
+      "url": "https://refined-x.com/topics/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "title": "我们为什么需要一个私人 Agent",
+          "description": "本文探讨了大语言模型从“工具”到“劳动力”的革命性转变，以及私人 Agent 如何连接物理世界，打破平台收租模式，最终实现个人数据主权与点对点高效价值交换。",
+          "llmSummary": "本文讨论了 Agent 的本质，以及它将如何重塑经济协作模式。核心结论是，Agent 凭借独立产出价值的劳动力属性，将打破传统的平台垄断，带来一个人人拥有数据主权、点对点高效交易的去中心化时代。如果你正在思考 AI 时代下个人生存范式与平台经济的演变，可以优先关注本文的宏观推演；但如果你仅仅寻找开发 Agent 的具体代码教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "pubDate": "2026-07-13T07:25:29.000Z",
+          "tags": [
+            "Agent",
+            "数据主权",
+            "去中心化",
+            "MCP"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
+        }
+      ]
+    },
+    {
       "name": "人脸识别",
       "slug": "人脸识别",
       "url": "https://refined-x.com/topics/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
@@ -300,6 +323,29 @@
             "人脸识别"
           ],
           "markdownUrl": "https://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90.md"
+        }
+      ]
+    },
+    {
+      "name": "数据主权",
+      "slug": "数据主权",
+      "url": "https://refined-x.com/topics/%E6%95%B0%E6%8D%AE%E4%B8%BB%E6%9D%83/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "title": "我们为什么需要一个私人 Agent",
+          "description": "本文探讨了大语言模型从“工具”到“劳动力”的革命性转变，以及私人 Agent 如何连接物理世界，打破平台收租模式，最终实现个人数据主权与点对点高效价值交换。",
+          "llmSummary": "本文讨论了 Agent 的本质，以及它将如何重塑经济协作模式。核心结论是，Agent 凭借独立产出价值的劳动力属性，将打破传统的平台垄断，带来一个人人拥有数据主权、点对点高效交易的去中心化时代。如果你正在思考 AI 时代下个人生存范式与平台经济的演变，可以优先关注本文的宏观推演；但如果你仅仅寻找开发 Agent 的具体代码教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "pubDate": "2026-07-13T07:25:29.000Z",
+          "tags": [
+            "Agent",
+            "数据主权",
+            "去中心化",
+            "MCP"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
     },
@@ -483,6 +529,29 @@
             "最佳实践"
           ],
           "markdownUrl": "https://refined-x.com/2026/02/27/%E4%B8%80%E4%B8%AAVibeCoder%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md"
+        }
+      ]
+    },
+    {
+      "name": "Agent",
+      "slug": "agent",
+      "url": "https://refined-x.com/topics/agent/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "title": "我们为什么需要一个私人 Agent",
+          "description": "本文探讨了大语言模型从“工具”到“劳动力”的革命性转变，以及私人 Agent 如何连接物理世界，打破平台收租模式，最终实现个人数据主权与点对点高效价值交换。",
+          "llmSummary": "本文讨论了 Agent 的本质，以及它将如何重塑经济协作模式。核心结论是，Agent 凭借独立产出价值的劳动力属性，将打破传统的平台垄断，带来一个人人拥有数据主权、点对点高效交易的去中心化时代。如果你正在思考 AI 时代下个人生存范式与平台经济的演变，可以优先关注本文的宏观推演；但如果你仅仅寻找开发 Agent 的具体代码教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "pubDate": "2026-07-13T07:25:29.000Z",
+          "tags": [
+            "Agent",
+            "数据主权",
+            "去中心化",
+            "MCP"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
     },
@@ -939,6 +1008,29 @@
             "Javascript"
           ],
           "markdownUrl": "https://refined-x.com/2017/06/19/%E5%86%8D%E5%81%9A%E4%B8%80%E6%9D%A1%E8%B4%AA%E5%90%83%E8%9B%87.md"
+        }
+      ]
+    },
+    {
+      "name": "MCP",
+      "slug": "mcp",
+      "url": "https://refined-x.com/topics/mcp/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "title": "我们为什么需要一个私人 Agent",
+          "description": "本文探讨了大语言模型从“工具”到“劳动力”的革命性转变，以及私人 Agent 如何连接物理世界，打破平台收租模式，最终实现个人数据主权与点对点高效价值交换。",
+          "llmSummary": "本文讨论了 Agent 的本质，以及它将如何重塑经济协作模式。核心结论是，Agent 凭借独立产出价值的劳动力属性，将打破传统的平台垄断，带来一个人人拥有数据主权、点对点高效交易的去中心化时代。如果你正在思考 AI 时代下个人生存范式与平台经济的演变，可以优先关注本文的宏观推演；但如果你仅仅寻找开发 Agent 的具体代码教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
+          "pubDate": "2026-07-13T07:25:29.000Z",
+          "tags": [
+            "Agent",
+            "数据主权",
+            "去中心化",
+            "MCP"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
     },

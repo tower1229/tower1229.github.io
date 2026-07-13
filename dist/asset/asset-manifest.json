@@ -240,6 +240,36 @@
     "sha256": "351d66fefd156e74133fdf2533621ac1a31d8fa064fc2f71c3075851849d9400"
   },
   {
+    "file": "private-agent-01-economic-network.png",
+    "source": "99_System/Assets/private-agent-01-economic-network.png",
+    "sha256": "a6ae8ff3cc61dad4e0d4603c022cd7073be78a1c167cfd3dc2896c02532ebfb7"
+  },
+  {
+    "file": "private-agent-02-the-mirror.png",
+    "source": "99_System/Assets/private-agent-02-the-mirror.png",
+    "sha256": "8a5225fbe4a2c6a61a3a08fd794e1f4ec4dee096ee4e8452396eba73c986442a"
+  },
+  {
+    "file": "private-agent-03-infrastructure.png",
+    "source": "99_System/Assets/private-agent-03-infrastructure.png",
+    "sha256": "c65360cf729e4655e4b76d26e1d987ae02d35306827a3d211c9797d3215a5780"
+  },
+  {
+    "file": "private-agent-04-stella-duality.png",
+    "source": "99_System/Assets/private-agent-04-stella-duality.png",
+    "sha256": "93e82c598dfa4df5ce013b68273566517f1344640fb3e71a72aef4085940dc16"
+  },
+  {
+    "file": "private-agent-05-mcp-architecture.png",
+    "source": "99_System/Assets/private-agent-05-mcp-architecture.png",
+    "sha256": "1807d62cd80fa520ed6955aa73a9614bfce40c9fd0c191ff2e04ce41dd9b22ce"
+  },
+  {
+    "file": "private-agent-06-p2p-exchange.png",
+    "source": "99_System/Assets/private-agent-06-p2p-exchange.png",
+    "sha256": "223c6713214733a5734ffde2bd0b71b646dc5029d67eb7d969120683b8a373e3"
+  },
+  {
     "file": "rssi-distance-computed-1.jpg",
     "source": "99_System/Assets/rssi-distance-computed-1.jpg",
     "sha256": "a049a10fc1ea38fabe26b517ed141a141450546ab78a471e9994abaf04217681"
