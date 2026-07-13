@@ -19,9 +19,9 @@
 
 ## 写作专栏
 
+- [私人 Agent](https://refined-x.com/writing/agent/)
 - [AI 实践](https://refined-x.com/writing/ai/)
 - [前端工程](https://refined-x.com/writing/frontend/)
-- [私人 Agent](https://refined-x.com/writing/agent/)
 
 ## 常见问题
 
