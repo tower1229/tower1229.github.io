@@ -35,7 +35,7 @@
       "healthUrl": "https://ask.refined-x.com/health",
       "aboutUrl": "https://refined-x.com/.well-known/about.json",
       "openapiUrl": "https://refined-x.com/openapi.json",
-      "siteDescription": "欢迎来到师兄的林间小屋——一个专注前端工程与 AI 实践的个人博客。记录十余年前端架构与工程化经验，以及 AI 辅助研发、Agent 协作和职业复盘。",
+      "siteDescription": "欢迎访问师兄的林间小屋（Refined-X）。在这里，我全面记录了过去十余年在前端架构设计、复杂项目工程化落地方面的实战经验，同时深入分享在 AI 辅助研发、Agent 人机协作模式探索以及职业生涯发展过程中的深度思考与复盘。致力于将技术沉淀转化为高价值认知，与你共同在技术演进的大潮中保持敏锐洞察并实现持续成长。",
       "access": "public-read-only",
       "capability": "NLWeb v0.55-compatible restricted /ask subset",
       "supported": [
