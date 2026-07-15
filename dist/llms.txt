@@ -19,7 +19,7 @@
 
 ## 写作专栏
 
-- [私人 Agent](https://refined-x.com/writing/agent/)
+- [数字主权](https://refined-x.com/writing/digital-sovereignty/)
 - [AI 实践](https://refined-x.com/writing/ai/)
 - [前端工程](https://refined-x.com/writing/frontend/)
 
