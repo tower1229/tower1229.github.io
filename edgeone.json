@@ -85,6 +85,36 @@
       "source": "/archives/",
       "destination": "/writing",
       "statusCode": 301
+    },
+    {
+      "source": "/writing/agent",
+      "destination": "/writing/digital-sovereignty",
+      "statusCode": 301
+    },
+    {
+      "source": "/writing/agent/",
+      "destination": "/writing/digital-sovereignty",
+      "statusCode": 301
+    },
+    {
+      "source": "/series/agent",
+      "destination": "/series/digital-sovereignty",
+      "statusCode": 301
+    },
+    {
+      "source": "/series/agent/",
+      "destination": "/series/digital-sovereignty",
+      "statusCode": 301
+    },
+    {
+      "source": "/topics/agent",
+      "destination": "/topics/digital-sovereignty",
+      "statusCode": 301
+    },
+    {
+      "source": "/topics/agent/",
+      "destination": "/topics/digital-sovereignty",
+      "statusCode": 301
     }
   ]
 }
