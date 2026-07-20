@@ -590,14 +590,14 @@
     {
       "url": "/answers/contact/",
       "q": "如何联系师兄？",
-      "a": "可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。",
-      "full": "- 邮箱：[tower1229@foxmail.com](mailto:tower1229@foxmail.com)\r\n- GitHub：[tower1229](https://github.com/tower1229)\r\n- 技术交流群（QQ）：361917044"
+      "a": "可发送邮件、添加微信 refined_x、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。",
+      "full": "- 邮箱：[tower1229@foxmail.com](mailto:tower1229@foxmail.com)\r\n- 微信：refined_x\r\n- GitHub：[tower1229](https://github.com/tower1229)\r\n- 技术交流群（QQ）：361917044"
     },
     {
       "url": "/answers/cooperation/",
       "q": "如何与师兄合作？",
       "a": "可围绕前端架构、工程化、团队建设、AI 辅助研发或相关工作机会展开交流；联系时请说明背景、目标、时间范围和预期合作方式。",
-      "full": "欢迎就以下方向交流或合作：\r\n\r\n- 前端架构、工程化与复杂项目交付\r\n- 研发流程、质量体系与团队建设\r\n- AI 辅助研发、VibeCoding 与 Agent 协作\r\n- 资深前端架构师、技术负责人等工作机会\r\n\r\n为了更快判断是否匹配，联系时建议附上项目背景、希望解决的问题、时间范围和预期合作方式。可通过邮箱 [tower1229@foxmail.com](mailto:tower1229@foxmail.com) 或 [GitHub](https://github.com/tower1229) 联系；更完整的经历见[关于师兄](/about/)。"
+      "full": "欢迎就以下方向交流或合作：\r\n\r\n- 前端架构、工程化与复杂项目交付\r\n- 研发流程、质量体系与团队建设\r\n- AI 辅助研发、VibeCoding 与 Agent 协作\r\n- 资深前端架构师、技术负责人等工作机会\r\n\r\n为了更快判断是否匹配，联系时建议附上项目背景、希望解决的问题、时间范围和预期合作方式。可通过邮箱 [tower1229@foxmail.com](mailto:tower1229@foxmail.com)、微信 refined_x 或 [GitHub](https://github.com/tower1229) 联系；更完整的经历见[关于师兄](/about/)。"
     },
     {
       "url": "/answers/who-is-shixiong/",
@@ -1257,7 +1257,7 @@
     {
       "type": "answer",
       "title": "如何联系师兄？",
-      "excerpt": "可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。",
+      "excerpt": "可发送邮件、添加微信 refined_x、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。",
       "url": "/answers/contact/"
     },
     {

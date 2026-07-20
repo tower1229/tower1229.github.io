@@ -26,7 +26,7 @@
 ## 常见问题
 
 - [本站有哪些 Agent 友好特性？](https://refined-x.com/answers/agent-friendly/): 本站专为 AI 智能体打造了 Agent-friendly 特性，提供标准的 OpenAPI 接口、全站 Markdown 语料库（llms.txt）、以及符合 NLWeb 协议的自然语言交互接口。
-- [如何联系师兄？](https://refined-x.com/answers/contact/): 可发送邮件、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。
+- [如何联系师兄？](https://refined-x.com/answers/contact/): 可发送邮件、添加微信 refined_x、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。
 - [如何与师兄合作？](https://refined-x.com/answers/cooperation/): 可围绕前端架构、工程化、团队建设、AI 辅助研发或相关工作机会展开交流；联系时请说明背景、目标、时间范围和预期合作方式。
 - [师兄是谁？](https://refined-x.com/answers/who-is-shixiong/): 师兄是一名前端技术负责人和架构师。在拥有扎实前端架构底盘的基础上，目前正作为独立技术探索者，积极拥抱 AI 辅助研发（VibeCoding）与 Web3 技术。
 - [师兄有哪些 AI 实践？](https://refined-x.com/answers/ai-practice/): 目前的公开实践主要包括 Cursor 与 Codex 辅助研发、复杂任务的上下文与规则管理、任务拆分和人工验收，以及借助 AI 学习企业级 Agent 开发。

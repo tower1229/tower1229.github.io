@@ -7,6 +7,7 @@
 - 网站：https://refined-x.com/about/
 - https://github.com/tower1229
 - 邮箱：tower1229@foxmail.com
+- 微信：refined_x
 
 ## 简历
 
@@ -89,4 +90,5 @@
 - **Blog** [https://refined-x.com](https://refined-x.com/)
 - **Github** [https://github.com/tower1229](https://github.com/tower1229)
 - **邮箱** [tower1229@foxmail.com](mailto:tower1229@foxmail.com)
+- **微信** refined_x
 - **技术交流群** 361917044

@@ -288,6 +288,10 @@
           "email": {
             "type": "string",
             "format": "email"
+          },
+          "wechat": {
+            "type": "string",
+            "description": "微信号"
           }
         }
       },
