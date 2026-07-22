@@ -1,29 +1,29 @@
 # Refined-X
 
-> 师兄的公开文章、项目与个人资料。
+> Public articles, projects, and profile for 师兄.
 
-## 核心资料
+## Core
 
-- [关于师兄](https://refined-x.com/about.md)
-- [作品](https://refined-x.com/projects/)
-- [常见问题](https://refined-x.com/answers/)
-- [公开个人资料 JSON](https://refined-x.com/api/profile.json)
+- [About 师兄](https://refined-x.com/about.md)
+- [Projects](https://refined-x.com/projects/)
+- [Answers](https://refined-x.com/answers/)
+- [Profile JSON](https://refined-x.com/api/profile.json)
 - [OpenAPI](https://refined-x.com/openapi.json)
-- [完整语料](https://refined-x.com/llms-full.txt)
+- [Full corpus](https://refined-x.com/llms-full.txt)
 - [MCP Catalog](https://refined-x.com/.well-known/mcp/catalog.json)
 - [MCP Server Card](https://refined-x.com/.well-known/mcp/server-card.json)
 - [MCP discovery shim](https://refined-x.com/.well-known/mcp.json)
 - NLWeb v0.55-compatible restricted /ask subset: POST https://ask.refined-x.com/ask
-- MCP ask: POST https://ask.refined-x.com/mcp（tool: ask，Streamable HTTP）
+- MCP ask: POST https://ask.refined-x.com/mcp (tool: ask, Streamable HTTP)
 - Capability boundary: Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.
 
-## 写作专栏
+## Series
 
 - [个人数字主权](https://refined-x.com/writing/digital-sovereignty/)
 - [AI 实践](https://refined-x.com/writing/ai/)
 - [前端工程](https://refined-x.com/writing/frontend/)
 
-## 常见问题
+## Answers
 
 - [本站有哪些 Agent 友好特性？](https://refined-x.com/answers/agent-friendly/): 本站专为 AI 智能体打造了 Agent-friendly 特性，提供标准的 OpenAPI 接口、全站 Markdown 语料库（llms.txt）、以及符合 NLWeb 协议的自然语言交互接口。
 - [如何联系师兄？](https://refined-x.com/answers/contact/): 可发送邮件、添加微信 refined_x、通过 GitHub 账号联系，或加入技术交流QQ群（361917044）。
@@ -32,7 +32,7 @@
 - [师兄有哪些 AI 实践？](https://refined-x.com/answers/ai-practice/): 目前的公开实践主要包括 Cursor 与 Codex 辅助研发、复杂任务的上下文与规则管理、任务拆分和人工验收，以及借助 AI 学习企业级 Agent 开发。
 - [师兄有哪些开源项目？](https://refined-x.com/answers/open-source-projects/): 代表项目包括 Vue Access Control、HybridStart、Vue Tree Chart、Flow CLI 与 Flow UI，覆盖权限控制、混合应用、前端组件和工程化工具。
 
-## 最近文章
+## Recent articles
 
 - [AI 时代，重新成为自己数字生活的主体](https://refined-x.com/2026/07/20/ai-era-personal-digital-sovereignty.md): 本文从个人数据难以完整迁移、用户画像不可见以及平台代理权扩张出发，提出个人数字主权由所有权、解释权和行动权构成，并推演个人数据仓库、可纠正的私人 Agent、公开数字接口、身份授权审计、开放发现与信用网络五层最小架构。文章进一步讨论 AI Agent 可能同时加速平台控制与去中介化协作，主张通过开放协议、可迁移数据和个人可控代理，重建人在数字生活中的主体地位。
 - [我们为什么需要一个私人 Agent](https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md): 本文讨论了 Agent 的本质，以及它将如何重塑经济协作模式。核心结论是，Agent 凭借独立产出价值的劳动力属性，将打破传统的平台垄断，带来一个人人拥有数据主权、点对点高效交易的去中心化时代。如果你正在思考 AI 时代下个人生存范式与平台经济的演变，可以优先关注本文的宏观推演；但如果你仅仅寻找开发 Agent 的具体代码教程，则不建议阅读。

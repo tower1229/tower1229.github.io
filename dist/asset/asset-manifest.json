@@ -1,452 +1,452 @@
 [
   {
     "file": "1.png",
-    "source": "99_System/Assets/1.png",
+    "source": "../99_System/Assets/1.png",
     "sha256": "5f19d2cfcc72b842a15a0b92631cd7c5cefc3222441f927dfc06bda68a21c934"
   },
   {
     "file": "1wei-locate.png",
-    "source": "99_System/Assets/1wei-locate.png",
+    "source": "../99_System/Assets/1wei-locate.png",
     "sha256": "32d4bf2bb6afa60ac81090e190612e61e75a56fa8a5b83b2b74b9f66d364f4df"
   },
   {
     "file": "2.png",
-    "source": "99_System/Assets/2.png",
+    "source": "../99_System/Assets/2.png",
     "sha256": "161c092098f7eeec7d89064b553f4f6d0b74cb3032663dd31dafc1dfc3d541a4"
   },
   {
     "file": "3.png",
-    "source": "99_System/Assets/3.png",
+    "source": "../99_System/Assets/3.png",
     "sha256": "bba395f200f17624a7aaa43babdd2440601fe8838429a38c8ce63ecfcdf13144"
   },
   {
     "file": "4.png",
-    "source": "99_System/Assets/4.png",
+    "source": "../99_System/Assets/4.png",
     "sha256": "d86d96e185af0ecae651048882de4474abd08d426fc13d6bc1ce516a4dc89e40"
   },
   {
     "file": "QQ截图20170609154821.png",
-    "source": "99_System/Assets/QQ截图20170609154821.png",
+    "source": "../99_System/Assets/QQ截图20170609154821.png",
     "sha256": "176ea89aad91b5710cd6cac0bb2486b0bc4fa45270a98b5863b00a9c94ab0537"
   },
   {
     "file": "QQ截图20170609154855.png",
-    "source": "99_System/Assets/QQ截图20170609154855.png",
+    "source": "../99_System/Assets/QQ截图20170609154855.png",
     "sha256": "5ab080873afe5bac72604e42d306ecc8771b4938362d9a804538d1f9eb25a259"
   },
   {
     "file": "QQ截图20170609154920.png",
-    "source": "99_System/Assets/QQ截图20170609154920.png",
+    "source": "../99_System/Assets/QQ截图20170609154920.png",
     "sha256": "98526477d631e15031b964fb9326db8c70c2df3eb9cef37ae9afd5970a6d0332"
   },
   {
     "file": "QQ截图20170609154946.png",
-    "source": "99_System/Assets/QQ截图20170609154946.png",
+    "source": "../99_System/Assets/QQ截图20170609154946.png",
     "sha256": "af75201426514dc4fd9ed40a60449e0b331663a2a25d1cacc0fa56fc1dee0e97"
   },
   {
     "file": "QQ截图20170609155011.png",
-    "source": "99_System/Assets/QQ截图20170609155011.png",
+    "source": "../99_System/Assets/QQ截图20170609155011.png",
     "sha256": "27662d5f282be001a66b44fae3dac83397945b85cdfc1b4f90d74489e7ad3058"
   },
   {
     "file": "QQ截图20170609155046.png",
-    "source": "99_System/Assets/QQ截图20170609155046.png",
+    "source": "../99_System/Assets/QQ截图20170609155046.png",
     "sha256": "60da936871dfa67d13f07c4b04955e5b29318cd7e08d61795f909692264df2c9"
   },
   {
     "file": "Snipaste_2026-01-04_14-24-12.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-24-12.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-24-12.png",
     "sha256": "8c04067c700fcabda7ae5251eb6bd7f7440099b072a5043773603b11439e3176"
   },
   {
     "file": "Snipaste_2026-01-04_14-25-09.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-25-09.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-25-09.png",
     "sha256": "920b96f37df16a1cb42921f9241224ce1e48899fa9553c85f2508e209ca723c0"
   },
   {
     "file": "Snipaste_2026-01-04_14-28-26.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-28-26.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-28-26.png",
     "sha256": "104f35da85cb9e0526ac245e7198600e050e5cb70c8af426536d04306251ef07"
   },
   {
     "file": "Snipaste_2026-01-04_14-28-50.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-28-50.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-28-50.png",
     "sha256": "6314406b6b4ab3c1190a38f23293156cfa1181e3351214f2cf49e2dc65cf0b3f"
   },
   {
     "file": "Snipaste_2026-01-04_14-29-14.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-29-14.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-29-14.png",
     "sha256": "228f3b7ea22da32ce3f9ef0c2e48d04cb529e14194e4571717a3c5f8c45a0967"
   },
   {
     "file": "Snipaste_2026-01-04_14-29-26.png",
-    "source": "99_System/Assets/Snipaste_2026-01-04_14-29-26.png",
+    "source": "../99_System/Assets/Snipaste_2026-01-04_14-29-26.png",
     "sha256": "cce16eb7c6ea243ad3f4f56cbb0b18b363f2742e97757e84040a317a3c66035e"
   },
   {
     "file": "auto_theme.png",
-    "source": "99_System/Assets/auto_theme.png",
+    "source": "../99_System/Assets/auto_theme.png",
     "sha256": "8332e7c63c6ca09d63706c609a1abe580896e817dd4a1435554ff2b3d37c4de0"
   },
   {
     "file": "avatar.jpg",
-    "source": "99_System/Assets/avatar.jpg",
+    "source": "../99_System/Assets/avatar.jpg",
     "sha256": "d9a18ef25dbf7cd9f21ebb1c0244db1fc1c760d26c92cf6a541caab5a582ee2c"
   },
   {
     "file": "baby_assistant.png",
-    "source": "99_System/Assets/baby_assistant.png",
+    "source": "../99_System/Assets/baby_assistant.png",
     "sha256": "4fd592aaa9df14ee3469107740e35836548ba54872cf08259cf525bd0c34dee2"
   },
   {
     "file": "baofei-kanghuibao.png",
-    "source": "99_System/Assets/baofei-kanghuibao.png",
+    "source": "../99_System/Assets/baofei-kanghuibao.png",
     "sha256": "966d1895b714afb5c4dc52f0ef18fe92de014abc536d46758c054d3e95213a57"
   },
   {
     "file": "card-show.jpg",
-    "source": "99_System/Assets/card-show.jpg",
+    "source": "../99_System/Assets/card-show.jpg",
     "sha256": "e7ecb5ff40a37d7b92363bea615659a0879eb8c8273b0f5a0146dc2842010c75"
   },
   {
     "file": "checkPointIn1.png",
-    "source": "99_System/Assets/checkPointIn1.png",
+    "source": "../99_System/Assets/checkPointIn1.png",
     "sha256": "e8cc5219d6e7e4510c12bf5efa6840ca80f48860bdca171de1ca79673bd0b2fd"
   },
   {
     "file": "checkPointIn2.png",
-    "source": "99_System/Assets/checkPointIn2.png",
+    "source": "../99_System/Assets/checkPointIn2.png",
     "sha256": "28c554290bd8395e5aea5b0e8d2a5801e5abbab07a959500d4b0ed789af7a5b2"
   },
   {
     "file": "code-xiaomiquan.png",
-    "source": "99_System/Assets/code-xiaomiquan.png",
+    "source": "../99_System/Assets/code-xiaomiquan.png",
     "sha256": "45e8d9cc44ffe291ab8e2f1e575ac233ab3bbe438b8b37f21ec26a28933e9cd5"
   },
   {
     "file": "course-hybrid.png",
-    "source": "99_System/Assets/course-hybrid.png",
+    "source": "../99_System/Assets/course-hybrid.png",
     "sha256": "126675ec6e889c20acc8d3e5e0bfc49f2cf57b5e4f25db5bbcd5289c3bdb8a80"
   },
   {
     "file": "digital-sovereignty-01-action-hijack.png",
-    "source": "99_System/Assets/digital-sovereignty-01-action-hijack.png",
+    "source": "../99_System/Assets/digital-sovereignty-01-action-hijack.png",
     "sha256": "62281914a0960de1f5690928431099e8f9d440b91829d375d7d88b9fd271e0a3"
   },
   {
     "file": "digital-sovereignty-02-architecture-layers.png",
-    "source": "99_System/Assets/digital-sovereignty-02-architecture-layers.png",
+    "source": "../99_System/Assets/digital-sovereignty-02-architecture-layers.png",
     "sha256": "07f091fe43336bc0ae1d813bafda6ad7fd33ba432ef40125e6ff44950ae59a3a"
   },
   {
     "file": "digital-sovereignty-03-grassroots-spark.png",
-    "source": "99_System/Assets/digital-sovereignty-03-grassroots-spark.png",
+    "source": "../99_System/Assets/digital-sovereignty-03-grassroots-spark.png",
     "sha256": "a02e366923230b6647770b46a4ca45c36067c501ee3b234dc2e20d7f79779f96"
   },
   {
     "file": "gaussian-function.png",
-    "source": "99_System/Assets/gaussian-function.png",
+    "source": "../99_System/Assets/gaussian-function.png",
     "sha256": "9169b17d5bd0650aaebecc0853588f1cb6abaf93fae36b1dc594be3c8515aa93"
   },
   {
     "file": "hello-obsidian.png",
-    "source": "99_System/Assets/hello-obsidian.png",
+    "source": "../99_System/Assets/hello-obsidian.png",
     "sha256": "d8224dbaadaff9c1306c0347dc7e15fb1296274bfd5897e037b6b6e53e262e62"
   },
   {
     "file": "hero-dark.png",
-    "source": "99_System/Assets/hero-dark.png",
+    "source": "../99_System/Assets/hero-dark.png",
     "sha256": "66a9cf8eef4cea70fd537522a63237442f28789012eebc68be43e7cd7c3b3414"
   },
   {
     "file": "hero-light.png",
-    "source": "99_System/Assets/hero-light.png",
+    "source": "../99_System/Assets/hero-light.png",
     "sha256": "c0c3a506d6461e3d6307de55ba099a06f94e941ed50349ce3e5ac6b917bc8fd9"
   },
   {
     "file": "history.png",
-    "source": "99_System/Assets/history.png",
+    "source": "../99_System/Assets/history.png",
     "sha256": "5043780e24a3976b5644888ee9f2196419e6fbfbd83a4fd32081808d1a47cef6"
   },
   {
     "file": "hls-watermark.png",
-    "source": "99_System/Assets/hls-watermark.png",
+    "source": "../99_System/Assets/hls-watermark.png",
     "sha256": "db3c767d4573ea29f45260ef8756dac3fdd01de59230da23f54b0213d67b8d19"
   },
   {
     "file": "hot-patch.png",
-    "source": "99_System/Assets/hot-patch.png",
+    "source": "../99_System/Assets/hot-patch.png",
     "sha256": "34035b13aacf3e7848dc9284ef4b4217f8a11e7567ea4d075e485c8a4fa45f78"
   },
   {
     "file": "hybridstart-plugin.png",
-    "source": "99_System/Assets/hybridstart-plugin.png",
+    "source": "../99_System/Assets/hybridstart-plugin.png",
     "sha256": "e4a1aafb76573ae2029884788607ba9f105a6d37427e78cbc7fef1b974666db0"
   },
   {
     "file": "ibeacon-locate-grid.png",
-    "source": "99_System/Assets/ibeacon-locate-grid.png",
+    "source": "../99_System/Assets/ibeacon-locate-grid.png",
     "sha256": "8253f3acb11e54c46b6363a70282f5857a7da2972a41fe042a404b759ae03005"
   },
   {
     "file": "ibeacon-locate-method.png",
-    "source": "99_System/Assets/ibeacon-locate-method.png",
+    "source": "../99_System/Assets/ibeacon-locate-method.png",
     "sha256": "bbfcfe41e0ce37676ea58158da577f1b0129ad67588bed2cde8977bad19e8d87"
   },
   {
     "file": "install-chrome.png",
-    "source": "99_System/Assets/install-chrome.png",
+    "source": "../99_System/Assets/install-chrome.png",
     "sha256": "484a43d7df713d7726413815af5ec6490e2291a3749eb1bf1de7c9654f5c5dfb"
   },
   {
     "file": "install-edge.png",
-    "source": "99_System/Assets/install-edge.png",
+    "source": "../99_System/Assets/install-edge.png",
     "sha256": "60a53fe0dbe9cec3dd9340d55fa817effc4ba8a7494f968f47c28e30fd5d503a"
   },
   {
     "file": "interest.png",
-    "source": "99_System/Assets/interest.png",
+    "source": "../99_System/Assets/interest.png",
     "sha256": "a7934441e9e62836dee41730f38e30468723f49dcb40bf5ddbe03d77975deb43"
   },
   {
     "file": "logo-chatgpt.png",
-    "source": "99_System/Assets/logo-chatgpt.png",
+    "source": "../99_System/Assets/logo-chatgpt.png",
     "sha256": "60a8f90335e9813d760b0864a23829713ca0b41f4eb471aa80255f84789c9a86"
   },
   {
     "file": "method1-chart.png",
-    "source": "99_System/Assets/method1-chart.png",
+    "source": "../99_System/Assets/method1-chart.png",
     "sha256": "a66b85e0c3172cd79f33bc789b5f6a4bb3195f1761676eeaf411b0bc31bb3de6"
   },
   {
     "file": "method2-chart.png",
-    "source": "99_System/Assets/method2-chart.png",
+    "source": "../99_System/Assets/method2-chart.png",
     "sha256": "7ebb3b7e4b0071c2c68e3794e1f1ce16aea314bc04044df98ce646f4374102a8"
   },
   {
     "file": "nodes-1.png",
-    "source": "99_System/Assets/nodes-1.png",
+    "source": "../99_System/Assets/nodes-1.png",
     "sha256": "c977c6e595d1e408081b38cb93fbc48435097237448c9205a484a272ac2db855"
   },
   {
     "file": "nodes-2.png",
-    "source": "99_System/Assets/nodes-2.png",
+    "source": "../99_System/Assets/nodes-2.png",
     "sha256": "2a992d114ba6d420527caa048adef60c775b00d0ef103e3a05c0c266d723b8f7"
   },
   {
     "file": "nodes-3.png",
-    "source": "99_System/Assets/nodes-3.png",
+    "source": "../99_System/Assets/nodes-3.png",
     "sha256": "edf839c0b451b6e977dc3c91255f6580577efd38713a1f9cc78f7a8f87cfde43"
   },
   {
     "file": "nodes-4.png",
-    "source": "99_System/Assets/nodes-4.png",
+    "source": "../99_System/Assets/nodes-4.png",
     "sha256": "76280413d46ee9643e9dcedd4e77472fa1b00dd2390638dd3ef20ab1154a726d"
   },
   {
     "file": "og-default.png",
-    "source": "99_System/Assets/og-default.png",
+    "source": "../99_System/Assets/og-default.png",
     "sha256": "0b02613e1b3da965e99f6073506e9bbae84d8fb2aa1513d0d552cf5e456675ea"
   },
   {
     "file": "point-center.png",
-    "source": "99_System/Assets/point-center.png",
+    "source": "../99_System/Assets/point-center.png",
     "sha256": "351d66fefd156e74133fdf2533621ac1a31d8fa064fc2f71c3075851849d9400"
   },
   {
     "file": "private-agent-01-decentralized-swarm.png",
-    "source": "99_System/Assets/private-agent-01-decentralized-swarm.png",
+    "source": "../99_System/Assets/private-agent-01-decentralized-swarm.png",
     "sha256": "4539747995ca60a826c4cc1e6f7eab29b4204d375d22878dfadb973bd2cd591c"
   },
   {
     "file": "private-agent-02-the-mirror.png",
-    "source": "99_System/Assets/private-agent-02-the-mirror.png",
+    "source": "../99_System/Assets/private-agent-02-the-mirror.png",
     "sha256": "8a5225fbe4a2c6a61a3a08fd794e1f4ec4dee096ee4e8452396eba73c986442a"
   },
   {
     "file": "private-agent-03-infrastructure-sketch.png",
-    "source": "99_System/Assets/private-agent-03-infrastructure-sketch.png",
+    "source": "../99_System/Assets/private-agent-03-infrastructure-sketch.png",
     "sha256": "4869426d7fe2419527ce94663a343359ff551a0b535f7c7be1fe2092b5c6f3d1"
   },
   {
     "file": "private-agent-04-stella-duality.png",
-    "source": "99_System/Assets/private-agent-04-stella-duality.png",
+    "source": "../99_System/Assets/private-agent-04-stella-duality.png",
     "sha256": "93e82c598dfa4df5ce013b68273566517f1344640fb3e71a72aef4085940dc16"
   },
   {
     "file": "private-agent-05-mcp-architecture.png",
-    "source": "99_System/Assets/private-agent-05-mcp-architecture.png",
+    "source": "../99_System/Assets/private-agent-05-mcp-architecture.png",
     "sha256": "1807d62cd80fa520ed6955aa73a9614bfce40c9fd0c191ff2e04ce41dd9b22ce"
   },
   {
     "file": "private-agent-06-p2p-exchange.png",
-    "source": "99_System/Assets/private-agent-06-p2p-exchange.png",
+    "source": "../99_System/Assets/private-agent-06-p2p-exchange.png",
     "sha256": "223c6713214733a5734ffde2bd0b71b646dc5029d67eb7d969120683b8a373e3"
   },
   {
     "file": "rssi-distance-computed-1.jpg",
-    "source": "99_System/Assets/rssi-distance-computed-1.jpg",
+    "source": "../99_System/Assets/rssi-distance-computed-1.jpg",
     "sha256": "a049a10fc1ea38fabe26b517ed141a141450546ab78a471e9994abaf04217681"
   },
   {
     "file": "rssi-distance-computed-2.jpg",
-    "source": "99_System/Assets/rssi-distance-computed-2.jpg",
+    "source": "../99_System/Assets/rssi-distance-computed-2.jpg",
     "sha256": "be5f10255aeab93c7815ff75765594c925a9a245d4c0a8a99e76f10f15e02696"
   },
   {
     "file": "s1.png",
-    "source": "99_System/Assets/s1.png",
+    "source": "../99_System/Assets/s1.png",
     "sha256": "17b8ac544583023c179a212203f1443996c029b674a1143bae0bc2f9e7f699a9"
   },
   {
     "file": "s2.png",
-    "source": "99_System/Assets/s2.png",
+    "source": "../99_System/Assets/s2.png",
     "sha256": "6e44ef8824ca6a52e24d32e81fdbc027f613a563e4adeb6f8cff4968b0876aa6"
   },
   {
     "file": "s3.png",
-    "source": "99_System/Assets/s3.png",
+    "source": "../99_System/Assets/s3.png",
     "sha256": "c66efc2fa373a355a82ce39271d5242a9437e71680eb3278861d8f8253a90bce"
   },
   {
     "file": "snake.png",
-    "source": "99_System/Assets/snake.png",
+    "source": "../99_System/Assets/snake.png",
     "sha256": "9bf2ba8b6cc82386e63036e33c7e245f9aa38ef4bf24091cfca6cd0b3454507a"
   },
   {
     "file": "stabilization-1.png",
-    "source": "99_System/Assets/stabilization-1.png",
+    "source": "../99_System/Assets/stabilization-1.png",
     "sha256": "4b7eb32465a1bb6a47ed385dbec68d28b5b731c72b2f77fb4fc9f31ee75fa9d8"
   },
   {
     "file": "stabilization-2.png",
-    "source": "99_System/Assets/stabilization-2.png",
+    "source": "../99_System/Assets/stabilization-2.png",
     "sha256": "6d665b3feb4c0f9985a91e8687e25a48f2f573026ec256266435eea80883e53e"
   },
   {
     "file": "stabilization-3.png",
-    "source": "99_System/Assets/stabilization-3.png",
+    "source": "../99_System/Assets/stabilization-3.png",
     "sha256": "232ff551eac7603563f91bba128c797c8751a41cb7bf0d02d0d394a8c8d9b784"
   },
   {
     "file": "useComponent.png",
-    "source": "99_System/Assets/useComponent.png",
+    "source": "../99_System/Assets/useComponent.png",
     "sha256": "2be8b54eb3ef4ef4805077cb75947ca73d279b90dea59e4f34628b85fbc12a7a"
   },
   {
     "file": "vibecoder_ziwoxiuyang.png",
-    "source": "99_System/Assets/vibecoder_ziwoxiuyang.png",
+    "source": "../99_System/Assets/vibecoder_ziwoxiuyang.png",
     "sha256": "e6fe4121b4cebde326a00d68a92ccf0766da470ebaeb8802d8c373b8c5c26e28"
   },
   {
     "file": "vip-kaikeba-vue-lesson-1.png",
-    "source": "99_System/Assets/vip-kaikeba-vue-lesson-1.png",
+    "source": "../99_System/Assets/vip-kaikeba-vue-lesson-1.png",
     "sha256": "8934093918e61f4f49e3b5c6603aa67ede1b38a8922b76627547067a4ba550ce"
   },
   {
     "file": "vip-kaikeba-vue-lesson-2.png",
-    "source": "99_System/Assets/vip-kaikeba-vue-lesson-2.png",
+    "source": "../99_System/Assets/vip-kaikeba-vue-lesson-2.png",
     "sha256": "8afb1c98b5ad1242fbbad3ca136879de20e71910c782fbc3c63220496d0660ab"
   },
   {
     "file": "vip-kaikeba-vue-lesson-3.png",
-    "source": "99_System/Assets/vip-kaikeba-vue-lesson-3.png",
+    "source": "../99_System/Assets/vip-kaikeba-vue-lesson-3.png",
     "sha256": "a90cd3a8849093baceffe9f2a63892229c18b45da46917613a146fa9b44d9b84"
   },
   {
     "file": "vue-tree-chart.png",
-    "source": "99_System/Assets/vue-tree-chart.png",
+    "source": "../99_System/Assets/vue-tree-chart.png",
     "sha256": "b44697284a38135bfbc86946529782d24670ddf38010e5f00980528acdc89092"
   },
   {
     "file": "weapp-picker.png",
-    "source": "99_System/Assets/weapp-picker.png",
+    "source": "../99_System/Assets/weapp-picker.png",
     "sha256": "444b759972bc01720f2f45d340d9fd19e1882373dc6ff3b1bc1311858aebb287"
   },
   {
     "file": "weapp-plugin-dashboard.gif",
-    "source": "99_System/Assets/weapp-plugin-dashboard.gif",
+    "source": "../99_System/Assets/weapp-plugin-dashboard.gif",
     "sha256": "e3914555ea88b2e09b9fce72521c0d261ef71169587fbf79ba9187434a035d8a"
   },
   {
     "file": "weapp-tree.png",
-    "source": "99_System/Assets/weapp-tree.png",
+    "source": "../99_System/Assets/weapp-tree.png",
     "sha256": "4b3fff58ac4bc34053ccda29eecbf17c5d0b2d7cea5bd425299c0c83c27d0aa0"
   },
   {
     "file": "web-ota-qrcode.png",
-    "source": "99_System/Assets/web-ota-qrcode.png",
+    "source": "../99_System/Assets/web-ota-qrcode.png",
     "sha256": "c9e90fffdcff288b419a6eaf3e9f7de983c5343c9dce2c107597073d5592b81d"
   },
   {
     "file": "wechat.jpg",
-    "source": "99_System/Assets/wechat.jpg",
+    "source": "../99_System/Assets/wechat.jpg",
     "sha256": "cfb3f1000691850cd4dafd2d0ce283f952a5073e9d1bea2c40b9e235fccc09d5"
   },
   {
     "file": "yijiankang-share.png",
-    "source": "99_System/Assets/yijiankang-share.png",
+    "source": "../99_System/Assets/yijiankang-share.png",
     "sha256": "c75a5f09046ffac66b56747d3ff38242d9526a171cd2593b64e7034027f6162f"
   },
   {
     "file": "yjk-screen-1.png",
-    "source": "99_System/Assets/yjk-screen-1.png",
+    "source": "../99_System/Assets/yjk-screen-1.png",
     "sha256": "f3db798398a9d30bdf8ab875c1a1104077d0d309e9f2f6c87cacb2fcc5f4dbbf"
   },
   {
     "file": "yjk-screen-2.png",
-    "source": "99_System/Assets/yjk-screen-2.png",
+    "source": "../99_System/Assets/yjk-screen-2.png",
     "sha256": "2f318073992619b9bfefdfcc2cb9ac7b4591726b10aedbfeffb7a95c7e8201df"
   },
   {
     "file": "yjk-screen-3.png",
-    "source": "99_System/Assets/yjk-screen-3.png",
+    "source": "../99_System/Assets/yjk-screen-3.png",
     "sha256": "e2779b29062e354413952744d067bad03f3f6128087f0b491ac781016781bc87"
   },
   {
     "file": "yjk-screen-4.png",
-    "source": "99_System/Assets/yjk-screen-4.png",
+    "source": "../99_System/Assets/yjk-screen-4.png",
     "sha256": "efd489ec8eadb954d3b8559375de1cee36f0b99f61246d3cdb80194748b1a975"
   },
   {
     "file": "yjk-screen-5.png",
-    "source": "99_System/Assets/yjk-screen-5.png",
+    "source": "../99_System/Assets/yjk-screen-5.png",
     "sha256": "a9928051bdc159ba8ef3743d5e3b2dc74b10a4205d0ee20ac51237732fbdb34a"
   },
   {
     "file": "zhijiao-sanjiaoxing.jpg",
-    "source": "99_System/Assets/zhijiao-sanjiaoxing.jpg",
+    "source": "../99_System/Assets/zhijiao-sanjiaoxing.jpg",
     "sha256": "7ea9c5e6d217b4d25ce528891a42eb640528cb4bd3889fc27e3e2759419980c8"
   },
   {
     "file": "亲子沟通课.png",
-    "source": "99_System/Assets/亲子沟通课.png",
+    "source": "../99_System/Assets/亲子沟通课.png",
     "sha256": "eef01d358b338fe35a3c84c0031a720f76cf195103fd82ed3260b2f36fa5e322"
   },
   {
     "file": "提交审核.png",
-    "source": "99_System/Assets/提交审核.png",
+    "source": "../99_System/Assets/提交审核.png",
     "sha256": "64351da3f2b2ceea02271a8b4c12660a5aae0933be0923e9d3289b8ace9531d7"
   },
   {
     "file": "竞品1.png",
-    "source": "99_System/Assets/竞品1.png",
+    "source": "../99_System/Assets/竞品1.png",
     "sha256": "ca700c281ca5a3d1475a5ecdb794982ca5039ff7c5614029a179be2c8b8c014c"
   },
   {
     "file": "竞品2.png",
-    "source": "99_System/Assets/竞品2.png",
+    "source": "../99_System/Assets/竞品2.png",
     "sha256": "a358f28b09d6d82cba4c1fb5e94519aceb9270048bd9311911d178e941f8c8b4"
   },
   {
     "file": "竞品3.png",
-    "source": "99_System/Assets/竞品3.png",
+    "source": "../99_System/Assets/竞品3.png",
     "sha256": "7aa957fb13f2e5fc61a175a8e41ca8fd984e227036d2d1247f0ffdea5944a088"
   },
   {
     "file": "竞品插件.png",
-    "source": "99_System/Assets/竞品插件.png",
+    "source": "../99_System/Assets/竞品插件.png",
     "sha256": "4132f3c481c5a4bf439a0268ece84e364f0aba41cb309e503f9e2aa51f3e94c7"
   }
 ]

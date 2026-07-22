@@ -3,7 +3,7 @@
   "info": {
     "title": "Refined-X Public APIs",
     "version": "1.2.0",
-    "description": "Refined-X 构建期只读数据接口与 NLWeb v0.55-compatible restricted /ask subset。静态 JSON 供索引与镜像；Ask 与 MCP 托管于 ask.refined-x.com，共用检索与限流策略。Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
+    "description": "Build-time read-only JSON APIs plus NLWeb v0.55-compatible restricted /ask subset. Static JSON is for indexing and mirrors; Ask/MCP are optional remote endpoints when configured. Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
   },
   "servers": [
     {
@@ -14,7 +14,7 @@
     "/ask": {
       "post": {
         "operationId": "askPublicContent",
-        "description": "按 NLWeb v0.55-compatible restricted /ask subset 查询 Refined-X 公开内容。匿名客户端只能使用 list；浏览器生成模式需逐请求提供 Turnstile token。响应最多 128 KiB，服务端时限为 45 秒。Accept: text/event-stream 时返回缓冲式标准 SSE。Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
+        "description": "Query public content via NLWeb v0.55-compatible restricted /ask subset. Anonymous clients are limited to list; browser summarize modes may require Turnstile. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
         "servers": [
           {
             "url": "https://ask.refined-x.com"
@@ -31,7 +31,7 @@
             "name": "cf-turnstile-response",
             "in": "header",
             "required": false,
-            "description": "浏览器使用 summarize 模式时必填的一次性 Turnstile token。",
+            "description": "One-time Turnstile token required for browser summarize mode when enabled.",
             "schema": {
               "type": "string"
             }
@@ -49,7 +49,7 @@
         },
         "responses": {
           "200": {
-            "description": "NLWeb answer 或 failure",
+            "description": "NLWeb answer or failure",
             "content": {
               "application/json": {
                 "schema": {
@@ -59,7 +59,7 @@
             }
           },
           "400": {
-            "description": "非法 NLWeb 请求",
+            "description": "Invalid NLWeb request",
             "content": {
               "application/json": {
                 "schema": {
@@ -69,7 +69,7 @@
             }
           },
           "401": {
-            "description": "缺失、无效或已撤销的机器 API Key",
+            "description": "Missing, invalid, or revoked machine API key",
             "content": {
               "application/json": {
                 "schema": {

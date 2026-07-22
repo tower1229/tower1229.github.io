@@ -42,6 +42,6 @@
   },
   "policy": {
     "access": "public-read-only",
-    "sourceOfTruth": "Published pages and generated static endpoints on refined-x.com"
+    "sourceOfTruth": "Published pages and generated static endpoints on https://refined-x.com/"
   }
 }

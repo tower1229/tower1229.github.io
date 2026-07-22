@@ -12,13 +12,13 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "可选 Bearer API Key。匿名默认 list；summarize 等模式需要凭据。",
+          "description": "Optional Bearer API key. Anonymous clients default to list; summarize modes may require credentials.",
           "isRequired": false,
           "isSecret": true,
           "value": "Bearer {token}",
           "variables": {
             "token": {
-              "description": "机器 API Key（可选）",
+              "description": "Machine API key (optional)",
               "isRequired": false,
               "isSecret": true
             }
