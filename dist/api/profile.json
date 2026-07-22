@@ -12,6 +12,32 @@
   ],
   "email": "tower1229@foxmail.com",
   "wechat": "refined_x",
+  "github": "https://github.com/tower1229",
+  "stats": [
+    {
+      "value": "15年",
+      "label": "前端与产品交付经验"
+    },
+    {
+      "value": "1k+",
+      "label": "开源项目 GitHub Star"
+    },
+    {
+      "value": "20+",
+      "label": "HybridStart 线上项目应用"
+    },
+    {
+      "value": "500+",
+      "label": "Flow UI 支撑项目复用"
+    }
+  ],
+  "knowsAbout": [
+    "前端架构",
+    "工程化",
+    "团队管理",
+    "AI 辅助研发",
+    "Agent 协作"
+  ],
   "cooperation": {
     "title": "合作联系",
     "description": "欢迎就资深前端架构师、技术负责人等工作机会，以及前端架构、工程化和团队建设进行交流。"

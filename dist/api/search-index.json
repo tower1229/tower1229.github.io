@@ -585,7 +585,7 @@
       "url": "/answers/agent-friendly/",
       "q": "本站有哪些 Agent 友好特性？",
       "a": "本站专为 AI 智能体打造了 Agent-friendly 特性，提供标准的 OpenAPI 接口、全站 Markdown 语料库（llms.txt）、以及符合 NLWeb 协议的自然语言交互接口。",
-      "full": "本站（师兄的林间小屋）在设计之初就深度融合了 AI 智能体的访问需求，是一座名副其实的 **Agent-friendly** 站点。\r\n\r\n主要特性包括：\r\n\r\n1. **机器可读数据**：全站核心内容均提供 JSON 格式的静态 API（如 `/api/profile.json`, `/api/articles.json`, `/api/topics.json` 等），无需解析 HTML 即可获取。\r\n2. **LLM 语料库**：通过 `/llms.txt` 暴露全站核心指引，并提供 `/llms-full.txt` 包含了站内所有公开文章的完整 Markdown 语料，方便大模型直接作为上下文补充。\r\n3. **OpenAPI 规范**：提供标准的 `/openapi.json` 规范，定义了站内所有公开数据 API 的使用方法，支持通过 Function Calling 或 Actions 直接接入。\r\n4. **自然语言问答**：网站的提问引擎提供了符合 NLWeb 协议（v0.55）标准的搜索和问答接口（`POST https://ask.refined-x.com/ask`），支持 AI 智能体通过结构化请求直接获取基于全站数据的检索和策展答案。"
+      "full": "本站（师兄的林间小屋）在设计之初就深度融合了 AI 智能体的访问需求，是一座名副其实的 **Agent-friendly** 站点。\n\n主要特性包括：\n\n1. **机器可读数据**：全站核心内容均提供 JSON 格式的静态 API（如 `/api/profile.json`, `/api/articles.json`, `/api/topics.json` 等），无需解析 HTML 即可获取。\n2. **LLM 语料库**：通过 `/llms.txt` 暴露全站核心指引，并提供 `/llms-full.txt` 包含了站内所有公开文章的完整 Markdown 语料，方便大模型直接作为上下文补充。\n3. **OpenAPI 规范**：提供标准的 `/openapi.json` 规范，定义了站内所有公开数据 API 的使用方法，支持通过 Function Calling 或 Actions 直接接入。\n4. **自然语言问答**：网站的提问引擎提供了符合 NLWeb 协议（v0.55）标准的搜索和问答接口（`POST https://ask.refined-x.com/ask`），支持 AI 智能体通过结构化请求直接获取基于全站数据的检索和策展答案。"
     },
     {
       "url": "/answers/contact/",
@@ -597,7 +597,7 @@
       "url": "/answers/cooperation/",
       "q": "如何与师兄合作？",
       "a": "可围绕前端架构、工程化、团队建设、AI 辅助研发或相关工作机会展开交流；联系时请说明背景、目标、时间范围和预期合作方式。",
-      "full": "欢迎就以下方向交流或合作：\r\n\r\n- 前端架构、工程化与复杂项目交付\r\n- 研发流程、质量体系与团队建设\r\n- AI 辅助研发、VibeCoding 与 Agent 协作\r\n- 资深前端架构师、技术负责人等工作机会\r\n\r\n为了更快判断是否匹配，联系时建议附上项目背景、希望解决的问题、时间范围和预期合作方式。可通过邮箱 [tower1229@foxmail.com](mailto:tower1229@foxmail.com)、微信 refined_x 或 [GitHub](https://github.com/tower1229) 联系；更完整的经历见[关于师兄](/about/)。"
+      "full": "欢迎就以下方向交流或合作：\n\n- 前端架构、工程化与复杂项目交付\n- 研发流程、质量体系与团队建设\n- AI 辅助研发、VibeCoding 与 Agent 协作\n- 资深前端架构师、技术负责人等工作机会\n\n为了更快判断是否匹配，联系时建议附上项目背景、希望解决的问题、时间范围和预期合作方式。可通过邮箱 [tower1229@foxmail.com](mailto:tower1229@foxmail.com)、微信 refined_x 或 [GitHub](https://github.com/tower1229) 联系；更完整的经历见[关于师兄](/about/)。"
     },
     {
       "url": "/answers/who-is-shixiong/",
@@ -609,13 +609,13 @@
       "url": "/answers/ai-practice/",
       "q": "师兄有哪些 AI 实践？",
       "a": "目前的公开实践主要包括 Cursor 与 Codex 辅助研发、复杂任务的上下文与规则管理、任务拆分和人工验收，以及借助 AI 学习企业级 Agent 开发。",
-      "full": "师兄的 AI 实践不是“把需求丢给模型”，而是把工程经验用于定义问题、补齐上下文、拆分任务、约束过程和验收结果。\r\n\r\n公开记录主要包括：\r\n\r\n- [一个 VibeCoder 的自我修养](/2026/02/27/一个VibeCoder的自我修养/)：复盘一年多 Cursor 与 AI IDE 使用经验，以及复杂任务中的规则、上下文和验收方法。\r\n- [AI 不止能 10 倍速开发，还能 10 倍速学习](/2026/05/23/AI 不止能10倍速开发，还能10倍速学习/)：记录借助 ChatGPT 与 Codex 学习企业级 Agent 开发的过程、收益和代价。\r\n- [AI 实践专栏](/writing/ai/)：集中浏览 AI 辅助研发与 Agent 协作相关内容。"
+      "full": "师兄的 AI 实践不是“把需求丢给模型”，而是把工程经验用于定义问题、补齐上下文、拆分任务、约束过程和验收结果。\n\n公开记录主要包括：\n\n- [一个 VibeCoder 的自我修养](/2026/02/27/一个VibeCoder的自我修养/)：复盘一年多 Cursor 与 AI IDE 使用经验，以及复杂任务中的规则、上下文和验收方法。\n- [AI 不止能 10 倍速开发，还能 10 倍速学习](/2026/05/23/AI 不止能10倍速开发，还能10倍速学习/)：记录借助 ChatGPT 与 Codex 学习企业级 Agent 开发的过程、收益和代价。\n- [AI 实践专栏](/writing/ai/)：集中浏览 AI 辅助研发与 Agent 协作相关内容。"
     },
     {
       "url": "/answers/open-source-projects/",
       "q": "师兄有哪些开源项目？",
       "a": "代表项目包括 Vue Access Control、HybridStart、Vue Tree Chart、Flow CLI 与 Flow UI，覆盖权限控制、混合应用、前端组件和工程化工具。",
-      "full": "比较有代表性的公开项目包括：\r\n\r\n- [Vue Access Control](https://github.com/tower1229/Vue-Access-Control)：基于动态路由的 Vue 权限管理方案。\r\n- [HybridStart](https://github.com/tower1229/HybridStart)：基于 APICloud 的混合应用开发框架。\r\n- [Vue Tree Chart](https://github.com/tower1229/Vue-Tree-Chart)：轻量的 Vue 组织结构图组件。\r\n- [Flow CLI](https://flow-ui.github.io/Flow-CLI/) 与 [Flow UI](https://flow-ui.github.io/)：前端自动化工具与 UI 框架。\r\n\r\n完整清单及项目状态见[公开项目](/projects/)。"
+      "full": "比较有代表性的公开项目包括：\n\n- [Vue Access Control](https://github.com/tower1229/Vue-Access-Control)：基于动态路由的 Vue 权限管理方案。\n- [HybridStart](https://github.com/tower1229/HybridStart)：基于 APICloud 的混合应用开发框架。\n- [Vue Tree Chart](https://github.com/tower1229/Vue-Tree-Chart)：轻量的 Vue 组织结构图组件。\n- [Flow CLI](https://flow-ui.github.io/Flow-CLI/) 与 [Flow UI](https://flow-ui.github.io/)：前端自动化工具与 UI 框架。\n\n完整清单及项目状态见[公开项目](/projects/)。"
     }
   ],
   "items": [
