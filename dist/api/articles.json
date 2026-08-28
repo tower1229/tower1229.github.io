@@ -1,6 +1,21 @@
 {
-  "count": 50,
+  "count": 51,
   "articles": [
+    {
+      "id": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+      "title": "了解 Openclaw 的模型上下文",
+      "description": "大模型没有记忆，连续对话本质是上下文重传。本文深入拆解 Openclaw 的上下文组装机制、Cache Boundary 缓存边界与 Project Context 的预算分配规则，为构建私人 Agent 建立清晰的底层心智模型。",
+      "llmSummary": "本文讨论了大模型连续对话的物理本质与 Openclaw 上下文组装的具体机制。核心结论是，大模型是无状态函数，所谓的记忆依赖每轮上下文打包重传，而 Openclaw 通过 Cache Boundary 将提示词拆分为稳定前缀与动态后缀以保护缓存，并在严格预算下按顺序加载 Project Context。如果你正在构建私人 Agent 或希望理清 Agent 底层工作流，可以优先关注本文的机制拆解；但如果你仅仅寻找一键安装脚本或图形界面教程，则不建议阅读。",
+      "url": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+      "pubDate": "2026-08-28T01:48:00.000Z",
+      "tags": [
+        "Agent",
+        "Openclaw",
+        "模型上下文",
+        "Prompt Cache"
+      ],
+      "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
+    },
     {
       "id": "https://refined-x.com/2026/07/20/ai-era-personal-digital-sovereignty/",
       "title": "AI 时代，重新成为自己数字生活的主体",

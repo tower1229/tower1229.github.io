@@ -250,6 +250,21 @@
     "sha256": "0b02613e1b3da965e99f6073506e9bbae84d8fb2aa1513d0d552cf5e456675ea"
   },
   {
+    "file": "openclaw-context-01-function-fitting.png",
+    "source": "../99_System/Assets/openclaw-context-01-function-fitting.png",
+    "sha256": "81a1e526f7fb8155934bfbc1d4f41b357e65ca2c2e47c75c1af0133998d42453"
+  },
+  {
+    "file": "openclaw-context-02-context-replay.png",
+    "source": "../99_System/Assets/openclaw-context-02-context-replay.png",
+    "sha256": "ff8ee375d5ff21b910c94347b9dcf64684592a037cb5ada73c89dd781824f846"
+  },
+  {
+    "file": "openclaw-context-03-cache-boundary.png",
+    "source": "../99_System/Assets/openclaw-context-03-cache-boundary.png",
+    "sha256": "07af1f66c13a9e8f092c5bada1c85eb5f6254d91b517d09d316229f0515216d6"
+  },
+  {
     "file": "point-center.png",
     "source": "../99_System/Assets/point-center.png",
     "sha256": "351d66fefd156e74133fdf2533621ac1a31d8fa064fc2f71c3075851849d9400"

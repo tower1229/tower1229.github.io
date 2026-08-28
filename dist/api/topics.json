@@ -1,5 +1,5 @@
 {
-  "count": 43,
+  "count": 46,
   "topics": [
     {
       "name": "对话",
@@ -222,6 +222,29 @@
             "蓝牙定位"
           ],
           "markdownUrl": "https://refined-x.com/2019/03/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FiBeacon%E6%B5%8B%E8%B7%9D%E5%8F%8A%E7%A8%B3%E5%AE%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E7%8E%B0.md"
+        }
+      ]
+    },
+    {
+      "name": "模型上下文",
+      "slug": "模型上下文",
+      "url": "https://refined-x.com/topics/%E6%A8%A1%E5%9E%8B%E4%B8%8A%E4%B8%8B%E6%96%87/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "title": "了解 Openclaw 的模型上下文",
+          "description": "大模型没有记忆，连续对话本质是上下文重传。本文深入拆解 Openclaw 的上下文组装机制、Cache Boundary 缓存边界与 Project Context 的预算分配规则，为构建私人 Agent 建立清晰的底层心智模型。",
+          "llmSummary": "本文讨论了大模型连续对话的物理本质与 Openclaw 上下文组装的具体机制。核心结论是，大模型是无状态函数，所谓的记忆依赖每轮上下文打包重传，而 Openclaw 通过 Cache Boundary 将提示词拆分为稳定前缀与动态后缀以保护缓存，并在严格预算下按顺序加载 Project Context。如果你正在构建私人 Agent 或希望理清 Agent 底层工作流，可以优先关注本文的机制拆解；但如果你仅仅寻找一键安装脚本或图形界面教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "pubDate": "2026-08-28T01:48:00.000Z",
+          "tags": [
+            "Agent",
+            "Openclaw",
+            "模型上下文",
+            "Prompt Cache"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         }
       ]
     },
@@ -582,8 +605,23 @@
       "name": "Agent",
       "slug": "agent",
       "url": "https://refined-x.com/topics/agent/",
-      "articleCount": 1,
+      "articleCount": 2,
       "articles": [
+        {
+          "id": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "title": "了解 Openclaw 的模型上下文",
+          "description": "大模型没有记忆，连续对话本质是上下文重传。本文深入拆解 Openclaw 的上下文组装机制、Cache Boundary 缓存边界与 Project Context 的预算分配规则，为构建私人 Agent 建立清晰的底层心智模型。",
+          "llmSummary": "本文讨论了大模型连续对话的物理本质与 Openclaw 上下文组装的具体机制。核心结论是，大模型是无状态函数，所谓的记忆依赖每轮上下文打包重传，而 Openclaw 通过 Cache Boundary 将提示词拆分为稳定前缀与动态后缀以保护缓存，并在严格预算下按顺序加载 Project Context。如果你正在构建私人 Agent 或希望理清 Agent 底层工作流，可以优先关注本文的机制拆解；但如果你仅仅寻找一键安装脚本或图形界面教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "pubDate": "2026-08-28T01:48:00.000Z",
+          "tags": [
+            "Agent",
+            "Openclaw",
+            "模型上下文",
+            "Prompt Cache"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
+        },
         {
           "id": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent/",
           "title": "我们为什么需要一个私人 Agent",
@@ -1194,6 +1232,29 @@
       ]
     },
     {
+      "name": "Openclaw",
+      "slug": "openclaw",
+      "url": "https://refined-x.com/topics/openclaw/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "title": "了解 Openclaw 的模型上下文",
+          "description": "大模型没有记忆，连续对话本质是上下文重传。本文深入拆解 Openclaw 的上下文组装机制、Cache Boundary 缓存边界与 Project Context 的预算分配规则，为构建私人 Agent 建立清晰的底层心智模型。",
+          "llmSummary": "本文讨论了大模型连续对话的物理本质与 Openclaw 上下文组装的具体机制。核心结论是，大模型是无状态函数，所谓的记忆依赖每轮上下文打包重传，而 Openclaw 通过 Cache Boundary 将提示词拆分为稳定前缀与动态后缀以保护缓存，并在严格预算下按顺序加载 Project Context。如果你正在构建私人 Agent 或希望理清 Agent 底层工作流，可以优先关注本文的机制拆解；但如果你仅仅寻找一键安装脚本或图形界面教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "pubDate": "2026-08-28T01:48:00.000Z",
+          "tags": [
+            "Agent",
+            "Openclaw",
+            "模型上下文",
+            "Prompt Cache"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
+        }
+      ]
+    },
+    {
       "name": "Portrait",
       "slug": "portrait",
       "url": "https://refined-x.com/topics/portrait/",
@@ -1212,6 +1273,29 @@
             "Portrait"
           ],
           "markdownUrl": "https://refined-x.com/2026/01/04/GitPortrait%20-%20AI%20%E9%A9%B1%E5%8A%A8%E7%9A%84%20GitHub%20%E5%BC%80%E5%8F%91%E8%80%85%E7%94%BB%E5%83%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7.md"
+        }
+      ]
+    },
+    {
+      "name": "Prompt Cache",
+      "slug": "prompt-cache",
+      "url": "https://refined-x.com/topics/prompt-cache/",
+      "articleCount": 1,
+      "articles": [
+        {
+          "id": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "title": "了解 Openclaw 的模型上下文",
+          "description": "大模型没有记忆，连续对话本质是上下文重传。本文深入拆解 Openclaw 的上下文组装机制、Cache Boundary 缓存边界与 Project Context 的预算分配规则，为构建私人 Agent 建立清晰的底层心智模型。",
+          "llmSummary": "本文讨论了大模型连续对话的物理本质与 Openclaw 上下文组装的具体机制。核心结论是，大模型是无状态函数，所谓的记忆依赖每轮上下文打包重传，而 Openclaw 通过 Cache Boundary 将提示词拆分为稳定前缀与动态后缀以保护缓存，并在严格预算下按顺序加载 Project Context。如果你正在构建私人 Agent 或希望理清 Agent 底层工作流，可以优先关注本文的机制拆解；但如果你仅仅寻找一键安装脚本或图形界面教程，则不建议阅读。",
+          "url": "https://refined-x.com/2026/08/28/openclaw-model-context/",
+          "pubDate": "2026-08-28T01:48:00.000Z",
+          "tags": [
+            "Agent",
+            "Openclaw",
+            "模型上下文",
+            "Prompt Cache"
+          ],
+          "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         }
       ]
     },
