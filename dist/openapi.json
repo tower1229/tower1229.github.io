@@ -2,185 +2,15 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Refined-X Public APIs",
-    "version": "1.2.0",
+    "version": "1.3.1",
     "description": "Build-time read-only JSON APIs plus NLWeb v0.55-compatible restricted /ask subset. Static JSON is for indexing and mirrors; Ask/MCP are optional remote endpoints when configured. Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
   },
   "servers": [
     {
-      "url": "https://refined-x.com/"
+      "url": "https://refined-x.com"
     }
   ],
   "paths": {
-    "/ask": {
-      "post": {
-        "operationId": "askPublicContent",
-        "description": "Query public content via NLWeb v0.55-compatible restricted /ask subset. Anonymous clients are limited to list; browser summarize modes may require Turnstile. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
-        "servers": [
-          {
-            "url": "https://ask.refined-x.com"
-          }
-        ],
-        "security": [
-          {},
-          {
-            "PublicAskApiKey": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "cf-turnstile-response",
-            "in": "header",
-            "required": false,
-            "description": "One-time Turnstile token required for browser summarize mode when enabled.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NlWebAskRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "NLWeb answer or failure",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NlWebResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid NLWeb request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NlWebResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing, invalid, or revoked machine API key",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NlWebResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "需要或未通过浏览器挑战",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NlWebResponse"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "请求或预算限流",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NlWebResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/mcp": {
-      "post": {
-        "operationId": "mcpStreamableHttp",
-        "summary": "MCP Streamable HTTP",
-        "description": "Model Context Protocol 无状态端点（Streamable HTTP）。JSON-RPC 2.0 方法：initialize、tools/list、tools/call。当前暴露 ask 工具，语义与 NLWeb v0.55-compatible restricted /ask subset 一致。匿名客户端默认 list 模式；summarize 需 Bearer API Key。端点 URL：https://ask.refined-x.com/mcp。Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
-        "servers": [
-          {
-            "url": "https://ask.refined-x.com"
-          }
-        ],
-        "security": [
-          {},
-          {
-            "PublicAskApiKey": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "jsonrpc",
-                  "method"
-                ],
-                "properties": {
-                  "jsonrpc": {
-                    "const": "2.0"
-                  },
-                  "id": {},
-                  "method": {
-                    "enum": [
-                      "initialize",
-                      "tools/list",
-                      "tools/call"
-                    ]
-                  },
-                  "params": {
-                    "type": "object"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "JSON-RPC result 或 error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "未授权的模式或凭据",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "请求或预算限流",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/profile.json": {
       "get": {
         "operationId": "getProfile",
@@ -248,6 +78,252 @@
           }
         }
       }
+    },
+    "/ask": {
+      "post": {
+        "operationId": "askPublicContent",
+        "description": "Query public content via NLWeb v0.55-compatible restricted /ask subset. Anonymous clients are limited to list; browser summarize modes may require Turnstile. Streaming: set prefer.streaming=true and/or Accept: text/event-stream for buffered SSE. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
+        "servers": [
+          {
+            "url": "https://ask.refined-x.com"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "PublicAskApiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "description": "Include text/event-stream to request buffered SSE when prefer.streaming is also honored by the Worker.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "application/json",
+                "text/event-stream"
+              ]
+            }
+          },
+          {
+            "name": "cf-turnstile-response",
+            "in": "header",
+            "required": false,
+            "description": "One-time Turnstile token required for browser summarize mode when enabled.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NlWebAskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "NLWeb answer or failure. Buffered JSON by default; when prefer.streaming is true or Accept includes text/event-stream, the Worker may return buffered SSE (events: start, result, complete).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              },
+              "text/event-stream": {
+                "schema": {
+                  "type": "string",
+                  "description": "Server-Sent Events stream. event:start (meta), event:result (index + item), event:complete (meta). Each event data payload is JSON."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid NLWeb request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, or revoked machine API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "需要或未通过浏览器挑战",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "请求或预算限流",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NlWebResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "operationId": "mcpStreamableHttp",
+        "summary": "MCP Streamable HTTP",
+        "description": "Model Context Protocol Streamable HTTP endpoint (dual-era profile accepted). Exposes ask tool aligned with NLWeb v0.55-compatible restricted /ask subset. Anonymous clients default to list; summarize may require Bearer API Key. Endpoint: https://ask.refined-x.com/mcp. This OpenAPI path is an endpoint map for humans and generators — prefer an MCP SDK for wire protocol details. Legacy example: JSON-RPC initialize then tools/list / tools/call without modern MCP-* headers. Modern example: MCP-Protocol-Version: 2026-07-28 with MCP-Method / MCP-Name as required by the 2026-07-28 Streamable HTTP transport, plus matching request _meta when applicable. Modern protocol headers are conditional — they must not be treated as required for every POST. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
+        "servers": [
+          {
+            "url": "https://ask.refined-x.com"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "PublicAskApiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "MCP-Protocol-Version",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Modern (2026-07-28) clients send this with the negotiated protocol version. Legacy initialize clients may omit it or send a 2025-* version after handshake. Do not require this header for all requests.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2026-07-28",
+                "2025-06-18"
+              ]
+            }
+          },
+          {
+            "name": "MCP-Method",
+            "in": "header",
+            "required": false,
+            "description": "Optional modern routing header (e.g. tools/call, tools/list, server/discover). Required only for modern Streamable HTTP self-describing calls, not for legacy initialize sessions.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MCP-Name",
+            "in": "header",
+            "required": false,
+            "description": "Optional modern tool name header for tools/call (e.g. ask). Aligns with request _meta when present. Not required for legacy clients.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "ask"
+              ]
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "description": "Streamable HTTP clients typically send application/json, text/event-stream. Not all responses are SSE.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "application/json, text/event-stream"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "jsonrpc",
+                  "method"
+                ],
+                "properties": {
+                  "jsonrpc": {
+                    "const": "2.0"
+                  },
+                  "id": {},
+                  "method": {
+                    "type": "string"
+                  },
+                  "params": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC result 或 error（含工具 result.isError）",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted notification (e.g. notifications/initialized); empty body per Streamable HTTP."
+          },
+          "401": {
+            "description": "Missing, invalid, or revoked machine API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "未授权的模式或凭据",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "请求或预算限流",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -298,21 +374,43 @@
       "NlWebAskRequest": {
         "type": "object",
         "description": "NLWeb v0.55-compatible restricted /ask subset. Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.",
-        "required": [
-          "query"
-        ],
-        "additionalProperties": false,
         "properties": {
           "query": {
             "type": "object",
-            "required": [
-              "text"
-            ],
             "properties": {
               "text": {
                 "type": "string",
-                "minLength": 1,
-                "maxLength": 500
+                "description": "Question text. After trim, must contain 1–500 Unicode code points (not UTF-16 length)."
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "prefer": {
+            "type": "object",
+            "properties": {
+              "streaming": {
+                "type": "boolean"
+              },
+              "mode": {
+                "type": "string",
+                "description": "Comma-separated modes: list, summarize. Entry defaults: HTTP Ask uses list, summarize; MCP Ask uses list (including empty string).",
+                "examples": [
+                  "list",
+                  "summarize",
+                  "list, summarize"
+                ]
+              },
+              "response_format": {
+                "const": "conversational_search"
+              },
+              "accept-language": {
+                "type": "string"
+              },
+              "user-agent": {
+                "type": "string"
               }
             },
             "additionalProperties": false
@@ -321,31 +419,6 @@
             "type": "object",
             "maxProperties": 0,
             "additionalProperties": false
-          },
-          "prefer": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "streaming": {
-                "type": "boolean"
-              },
-              "response_format": {
-                "const": "conversational_search"
-              },
-              "mode": {
-                "enum": [
-                  "list",
-                  "summarize",
-                  "list, summarize"
-                ]
-              },
-              "accept-language": {
-                "type": "string"
-              },
-              "user-agent": {
-                "type": "string"
-              }
-            }
           },
           "meta": {
             "type": "object",
@@ -356,44 +429,111 @@
             },
             "additionalProperties": false
           }
-        }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
       },
-      "NlWebResponse": {
+      "NlWebAnswer": {
         "type": "object",
         "required": [
-          "_meta"
+          "_meta",
+          "results"
         ],
         "properties": {
           "_meta": {
             "type": "object",
             "required": [
               "response_type",
-              "version"
+              "response_format",
+              "version",
+              "request_id"
             ],
             "properties": {
               "response_type": {
-                "enum": [
-                  "answer",
-                  "failure"
-                ]
+                "const": "answer"
+              },
+              "response_format": {
+                "const": "conversational_search"
               },
               "version": {
                 "const": "0.55"
+              },
+              "request_id": {
+                "type": "string"
+              },
+              "streaming": {
+                "type": "boolean"
               }
-            }
+            },
+            "additionalProperties": false
           },
           "results": {
             "type": "array",
             "items": {
               "type": "object",
+              "required": [
+                "@type"
+              ],
+              "properties": {
+                "@type": {
+                  "type": "string"
+                }
+              },
               "additionalProperties": true
             }
+          }
+        },
+        "additionalProperties": false
+      },
+      "NlWebFailure": {
+        "type": "object",
+        "required": [
+          "_meta",
+          "error"
+        ],
+        "properties": {
+          "_meta": {
+            "type": "object",
+            "required": [
+              "response_type",
+              "response_format",
+              "version",
+              "request_id"
+            ],
+            "properties": {
+              "response_type": {
+                "const": "failure"
+              },
+              "response_format": {
+                "const": "conversational_search"
+              },
+              "version": {
+                "const": "0.55"
+              },
+              "request_id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           },
           "error": {
             "type": "object",
             "additionalProperties": true
           }
-        }
+        },
+        "additionalProperties": false
+      },
+      "NlWebResponse": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/NlWebAnswer"
+          },
+          {
+            "$ref": "#/components/schemas/NlWebFailure"
+          }
+        ]
       }
     },
     "securitySchemes": {

@@ -1,5 +1,6 @@
 {
   "schemaVersion": "1.0",
+  "format": "refined-x-about",
   "name": "师兄",
   "canonicalUrl": "https://refined-x.com/about",
   "profileUrl": "https://refined-x.com/api/profile.json",
@@ -9,9 +10,7 @@
   "openapiUrl": "https://refined-x.com/openapi.json",
   "llmsTxtUrl": "https://refined-x.com/llms.txt",
   "llmsFullTxtUrl": "https://refined-x.com/llms-full.txt",
-  "mcpCatalogUrl": "https://refined-x.com/.well-known/mcp/catalog.json",
-  "mcpServerCardUrl": "https://refined-x.com/.well-known/mcp/server-card.json",
-  "mcpJsonUrl": "https://refined-x.com/.well-known/mcp.json",
+  "mcpUrl": "https://ask.refined-x.com/mcp",
   "nlweb": {
     "version": "0.55",
     "capability": "NLWeb v0.55-compatible restricted /ask subset",
@@ -38,7 +37,8 @@
     "notes": [
       "Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP.",
       "Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory."
-    ]
+    ],
+    "protocolProfile": "dual-era"
   },
   "policy": {
     "access": "public-read-only",

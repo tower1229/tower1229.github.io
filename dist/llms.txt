@@ -8,14 +8,14 @@
 - [Projects](https://refined-x.com/projects/)
 - [Answers](https://refined-x.com/answers/)
 - [Profile JSON](https://refined-x.com/api/profile.json)
-- [OpenAPI](https://refined-x.com/openapi.json)
 - [Full corpus](https://refined-x.com/llms-full.txt)
-- [MCP Catalog](https://refined-x.com/.well-known/mcp/catalog.json)
-- [MCP Server Card](https://refined-x.com/.well-known/mcp/server-card.json)
-- [MCP discovery shim](https://refined-x.com/.well-known/mcp.json)
+- [OpenAPI](https://refined-x.com/openapi.json)
+- [About index](https://refined-x.com/.well-known/about.json)
+- MCP endpoint (primary): POST https://ask.refined-x.com/mcp
 - NLWeb v0.55-compatible restricted /ask subset: POST https://ask.refined-x.com/ask
 - MCP ask: POST https://ask.refined-x.com/mcp (tool: ask, Streamable HTTP)
 - Capability boundary: Supports POST /ask with conversational_search, list, summarize, buffered SSE, and MCP ask over Streamable HTTP. Does not support /await, promise responses, elicitation, chatgpt_app, arbitrary extension fields, result actions, or long-term memory.
+- Protocol profile: dual-era
 
 ## Series
 
