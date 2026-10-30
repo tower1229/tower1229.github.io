@@ -1,5 +1,5 @@
 {
-  "count": 46,
+  "count": 44,
   "topics": [
     {
       "name": "对话",
@@ -244,6 +244,7 @@
             "模型上下文",
             "Prompt Cache"
           ],
+          "seoImage": "https://refined-x.com/asset/openclaw-context-01-function-fitting.png",
           "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         }
       ]
@@ -370,6 +371,7 @@
             "去中心化",
             "MCP"
           ],
+          "seoImage": "https://refined-x.com/asset/private-agent-01-economic-network.png",
           "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
@@ -414,6 +416,7 @@
             "去中心化",
             "MCP"
           ],
+          "seoImage": "https://refined-x.com/asset/private-agent-01-economic-network.png",
           "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
@@ -437,26 +440,6 @@
             "AI"
           ],
           "markdownUrl": "https://refined-x.com/2026/02/26/%E4%B8%8EGemini_3.1_Pro%E7%9A%84%E4%B8%80%E6%AC%A1%E6%B7%B1%E5%BA%A6%E5%AF%B9%E8%B0%88.md"
-        }
-      ]
-    },
-    {
-      "name": "推广",
-      "slug": "推广",
-      "url": "https://refined-x.com/topics/%E6%8E%A8%E5%B9%BF/",
-      "articleCount": 1,
-      "articles": [
-        {
-          "id": "https://refined-x.com/2019/08/02/vip-kaikeba-vue-lesson/",
-          "title": "阿里P7前端高级工程师，都需要掌握哪些技术栈？",
-          "description": "大家都知道，阿里P7前端高级工程师，基本上是一线前端技术人能达到的最高职级，也是很多程序员追求的目标。达到年薪50W+股票的P7级别，不仅要具备优秀的编程能力，在系统设计能力和技术视野方面，也要有较深的积淀。 最近技术大牛廖雪峰邀请他一位在阿里做前端架构师的朋友，整理出一份xmind——“Web全栈架构师所需技术栈”…",
-          "llmSummary": "本文主要分享了一份面向前端开发者的进阶学习资料与课程推广。核心结论是：要达到阿里 P7 级别的高级前端工程师，不仅需要扎实的编程能力，还必须在 Vue 等框架的源码层面（如响应式原理、依赖收集、编译追加等）以及组件架构设计上有深厚的积淀。如果你正处于初中级阶段并渴望突破技术瓶颈，可以优先关注文中提供的“Web全栈架构师所需技术栈”思维导图及免费 VIP 课程资源；但如果你对商业推广内容或当前技术栈进阶暂无需求，则不建议继续阅读。本文列出的核心知识大纲也为自学 Vue 源码指明了方向。",
-          "url": "https://refined-x.com/2019/08/02/vip-kaikeba-vue-lesson/",
-          "pubDate": "2019-08-02T08:32:39.000Z",
-          "tags": [
-            "推广"
-          ],
-          "markdownUrl": "https://refined-x.com/2019/08/02/vip-kaikeba-vue-lesson.md"
         }
       ]
     },
@@ -620,6 +603,7 @@
             "模型上下文",
             "Prompt Cache"
           ],
+          "seoImage": "https://refined-x.com/asset/openclaw-context-01-function-fitting.png",
           "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         },
         {
@@ -635,6 +619,7 @@
             "去中心化",
             "MCP"
           ],
+          "seoImage": "https://refined-x.com/asset/private-agent-01-economic-network.png",
           "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
@@ -865,20 +850,8 @@
       "name": "Hexo",
       "slug": "hexo",
       "url": "https://refined-x.com/topics/hexo/",
-      "articleCount": 3,
+      "articleCount": 2,
       "articles": [
-        {
-          "id": "https://refined-x.com/2023/05/06/HelloHexoAgain/",
-          "title": "Hello Hexo Again",
-          "description": "本文详细记录了 Hexo 博客源文件意外丢失后的完整重建与恢复过程。涵盖从 HTML 逆向转换为 Markdown 的实用工具推荐、如何利用分离分支部署策略安全备份源文件，到深度定制 NexT 主题的实战技巧，包括自定义独立页面、植入底部版权锚文本、精确控制首页摘要展现及修复字数统计异常。为你提供详实可行的 Hexo 深度优化指南。",
-          "llmSummary": "本文回答了Hexo博客源文件丢失后如何重建，以及在此过程中如何优化博客配置的问题。核心结论是：源文件丢失后只能依赖工具将HTML手动转回Markdown；在重建时，建议通过分离分支部署来备份源文件，同时可以通过修改主题模板实现自定义独立页面、插入底部版权锚文本、控制首页摘要以及修复字数统计Bug。如果你正在经历Hexo博客的数据重建，或者希望对NexT主题进行深度的客制化改造，可以优先关注本文的踩坑记录与代码示例；但如果你使用的是其他博客引擎，则不建议阅读。",
-          "url": "https://refined-x.com/2023/05/06/HelloHexoAgain/",
-          "pubDate": "2023-05-06T02:27:47.000Z",
-          "tags": [
-            "Hexo"
-          ],
-          "markdownUrl": "https://refined-x.com/2023/05/06/HelloHexoAgain.md"
-        },
         {
           "id": "https://refined-x.com/2019/08/02/%E4%BB%8EHexo%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6%E7%9C%8B%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/",
           "title": "从Hexo文章置顶看需求分析思路",
@@ -928,7 +901,7 @@
         {
           "id": "https://refined-x.com/2018/04/27/HybridStart%20v1.2.0%20%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/",
           "title": "HybridStart v1.2.0 更新日志",
-          "description": "HybridStart v1.2.0 更新日志",
+          "description": "记录 HybridStart v1.2.0 的插件热插拔、沉浸式界面、样式与页面动画改进，以及 iOS 事件委托修复，供维护该版本混合应用的开发者查阅。",
           "llmSummary": "本文介绍了 HybridStart v1.2.0 的版本更新日志。核心结论是：新版本主要新增了基于 zip 模块的热插拔插件机制以及沉浸式 UI 支持，同时通过优化页面样式文件和进场动画提升了加载性能，并修复了 iOS 环境下的事件委托 BUG。如果你正在使用 HybridStart 开发项目，可以优先关注这些新特性以提升用户体验和开发效率；但如果你不使用该框架，则不建议花费过多时间阅读。阅读本文可以帮助你全面了解该版本的技术改进及实操方法。",
           "url": "https://refined-x.com/2018/04/27/HybridStart%20v1.2.0%20%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/",
           "pubDate": "2018-04-27T02:30:11.000Z",
@@ -1129,6 +1102,7 @@
             "去中心化",
             "MCP"
           ],
+          "seoImage": "https://refined-x.com/asset/private-agent-01-economic-network.png",
           "markdownUrl": "https://refined-x.com/2026/07/13/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A7%81%E4%BA%BAAgent.md"
         }
       ]
@@ -1212,26 +1186,6 @@
       ]
     },
     {
-      "name": "Obsidian",
-      "slug": "obsidian",
-      "url": "https://refined-x.com/topics/obsidian/",
-      "articleCount": 1,
-      "articles": [
-        {
-          "id": "https://refined-x.com/2026/03/17/Hello-Obsidian/",
-          "title": "Hello Obsidian",
-          "description": "这是关于 Obsidian 的初次发布测试与内容占位。本文通过简短的图文形式记录了对 Obsidian 知识库工具的初步接触与应用尝试。尽管暂无深入的插件配置或高阶使用技巧解析，但你可以由此窥见作者在个人知识管理与数字花园建设过程中的工具流向变迁。欢迎持续关注博客后续带来的更详尽、更有深度的笔记方法论与高效工作流分享。",
-          "llmSummary": "本文是一篇展示Obsidian初次发布测试的简短图文。核心结论是：本文仅包含一张“Hello Obsidian”的图片，作为作者相关主题的欢迎或占位内容，无深入探讨。如果你正在围观作者的博客更新动态或了解其使用的工具流向，可以简单浏览；但如果你希望获取Obsidian的具体使用技巧、插件配置等深度教程，则不建议在此花费时间。",
-          "url": "https://refined-x.com/2026/03/17/Hello-Obsidian/",
-          "pubDate": "2026-03-17T07:08:49.000Z",
-          "tags": [
-            "Obsidian"
-          ],
-          "markdownUrl": "https://refined-x.com/2026/03/17/Hello-Obsidian.md"
-        }
-      ]
-    },
-    {
       "name": "Openclaw",
       "slug": "openclaw",
       "url": "https://refined-x.com/topics/openclaw/",
@@ -1250,6 +1204,7 @@
             "模型上下文",
             "Prompt Cache"
           ],
+          "seoImage": "https://refined-x.com/asset/openclaw-context-01-function-fitting.png",
           "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         }
       ]
@@ -1295,6 +1250,7 @@
             "模型上下文",
             "Prompt Cache"
           ],
+          "seoImage": "https://refined-x.com/asset/openclaw-context-01-function-fitting.png",
           "markdownUrl": "https://refined-x.com/2026/08/28/openclaw-model-context.md"
         }
       ]
@@ -1351,7 +1307,7 @@
         {
           "id": "https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/",
           "title": "基于Vue实现动态组织结构图",
-          "description": "基于Vue实现动态组织结构图",
+          "description": "基于 Vue 实现可增删节点的组织结构图和家谱图。文章介绍 Vue-Tree-Chart 的布局思路、使用方式与组件封装，适合需要展示树形层级关系的前端开发者。",
           "llmSummary": "本文探讨了如何摆脱 jQuery 依赖，纯基于 Vue 框架实现动态组织结构图（家谱图）的问题。核心结论是：相较于复杂的 DIV+CSS 计算或 Canvas 绘制，巧妙利用 HTML 原生 <table> 标签的行列嵌套特性，可以极简且完美地实现多层级树形结构的布局与连线。如果你正在开发基于 Vue 的前端项目，且需要渲染带上下级关系的组织架构图、家谱图，可以优先关注本文提供的开源组件 Vue-Tree-Chart 及其实现思路；但如果你需要呈现极其庞大、包含数万节点的复杂图谱，则不建议使用 DOM 渲染方案而应考虑 Canvas/WebGL。继续阅读可以详细了解放弃常规布局思路的过程、利用 Table 特性实现连线的神来之笔，以及借助 vue-cli 3.0 快速构建独立库组件的技巧。",
           "url": "https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/",
           "pubDate": "2018-08-03T02:34:28.000Z",
@@ -1465,7 +1421,7 @@
         {
           "id": "https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/",
           "title": "基于Vue实现动态组织结构图",
-          "description": "基于Vue实现动态组织结构图",
+          "description": "基于 Vue 实现可增删节点的组织结构图和家谱图。文章介绍 Vue-Tree-Chart 的布局思路、使用方式与组件封装，适合需要展示树形层级关系的前端开发者。",
           "llmSummary": "本文探讨了如何摆脱 jQuery 依赖，纯基于 Vue 框架实现动态组织结构图（家谱图）的问题。核心结论是：相较于复杂的 DIV+CSS 计算或 Canvas 绘制，巧妙利用 HTML 原生 <table> 标签的行列嵌套特性，可以极简且完美地实现多层级树形结构的布局与连线。如果你正在开发基于 Vue 的前端项目，且需要渲染带上下级关系的组织架构图、家谱图，可以优先关注本文提供的开源组件 Vue-Tree-Chart 及其实现思路；但如果你需要呈现极其庞大、包含数万节点的复杂图谱，则不建议使用 DOM 渲染方案而应考虑 Canvas/WebGL。继续阅读可以详细了解放弃常规布局思路的过程、利用 Table 特性实现连线的神来之笔，以及借助 vue-cli 3.0 快速构建独立库组件的技巧。",
           "url": "https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/",
           "pubDate": "2018-08-03T02:34:28.000Z",

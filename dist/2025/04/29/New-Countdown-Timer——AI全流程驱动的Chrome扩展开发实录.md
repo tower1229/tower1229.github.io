@@ -28,9 +28,9 @@ tags: ["AI","ChromeExtension","NewCountdownTimer"]
 把它的界面截图下来：
 
 <div style="text-align:center">
-<img src="/asset/%E7%AB%9E%E5%93%811.png" style="display:inline-block;height:220px">
-<img src="/asset/%E7%AB%9E%E5%93%812.png" style="display:inline-block;height:220px">
-<img src="/asset/%E7%AB%9E%E5%93%813.png" style="display:inline-block;height:220px">
+<img alt="作为设计参考的倒计时扩展界面截图" src="/asset/%E7%AB%9E%E5%93%811.png" style="display:inline-block;height:220px">
+<img alt="作为设计参考的倒计时扩展界面截图" src="/asset/%E7%AB%9E%E5%93%812.png" style="display:inline-block;height:220px">
+<img alt="作为设计参考的倒计时扩展界面截图" src="/asset/%E7%AB%9E%E5%93%813.png" style="display:inline-block;height:220px">
 </div>
 
 交给 AI：
@@ -308,9 +308,9 @@ _locales目录下的消息文件
 放几个插件截图
 
 <div style="text-align:center">
-<img src="/asset/s1.png" style="display:inline-block;height:220px">
-<img src="/asset/s2.png" style="display:inline-block;height:220px">
-<img src="/asset/s3.png" style="display:inline-block;height:220px">
+<img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/s1.png" style="display:inline-block;height:220px">
+<img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/s2.png" style="display:inline-block;height:220px">
+<img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/s3.png" style="display:inline-block;height:220px">
 </div>
 
 **回顾与总结。**

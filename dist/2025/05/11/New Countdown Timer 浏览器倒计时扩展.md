@@ -34,10 +34,10 @@ New Countdown Timer 是一款多功能的浏览器倒计时工具，帮助你以
 ### 界面截图
 
 <div style="display: flex; gap: 24px; align-items: center; justify-content: flex-start; margin-top: 24px;flex-wrap:wrap">
-    <img src="/asset/1.png" style="width: 300px;" />
-    <img src="/asset/2.png" style="width: 300px;" />
-    <img src="/asset/3.png" style="width: 300px;" />
-    <img src="/asset/4.png" style="width: 300px;" />
+    <img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/1.png" style="width: 300px;" />
+    <img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/2.png" style="width: 300px;" />
+    <img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/3.png" style="width: 300px;" />
+    <img alt="New Countdown Timer 倒计时扩展的界面截图" src="/asset/4.png" style="width: 300px;" />
 </div>
 
 ### 隐私优先

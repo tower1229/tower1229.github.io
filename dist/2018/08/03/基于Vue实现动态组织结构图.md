@@ -1,6 +1,6 @@
 ---
 title: "基于Vue实现动态组织结构图"
-description: "基于Vue实现动态组织结构图"
+description: "基于 Vue 实现可增删节点的组织结构图和家谱图。文章介绍 Vue-Tree-Chart 的布局思路、使用方式与组件封装，适合需要展示树形层级关系的前端开发者。"
 pubDate: 2018-08-03T02:34:28.000Z
 tags: ["Vue","Vue-Tree-Chart"]
 ---

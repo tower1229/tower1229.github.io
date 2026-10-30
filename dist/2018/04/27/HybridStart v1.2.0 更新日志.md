@@ -1,6 +1,6 @@
 ---
 title: "HybridStart v1.2.0 更新日志"
-description: "HybridStart v1.2.0 更新日志"
+description: "记录 HybridStart v1.2.0 的插件热插拔、沉浸式界面、样式与页面动画改进，以及 iOS 事件委托修复，供维护该版本混合应用的开发者查阅。"
 pubDate: 2018-04-27T02:30:11.000Z
 tags: ["HybridStart"]
 ---
