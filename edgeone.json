@@ -2,6 +2,26 @@
   "outputDirectory": "./dist",
   "redirects": [
     {
+      "source": "/page/6",
+      "destination": "/writing/page/5/",
+      "statusCode": 301
+    },
+    {
+      "source": "/page/6/",
+      "destination": "/writing/page/5/",
+      "statusCode": 301
+    },
+    {
+      "source": "/writing/page/6",
+      "destination": "/writing/page/5/",
+      "statusCode": 301
+    },
+    {
+      "source": "/writing/page/6/",
+      "destination": "/writing/page/5/",
+      "statusCode": 301
+    },
+    {
       "source": "/navigation",
       "destination": "/",
       "statusCode": 301
@@ -88,33 +108,332 @@
     },
     {
       "source": "/writing/agent",
-      "destination": "/writing/digital-sovereignty",
+      "destination": "/writing/digital-sovereignty/",
       "statusCode": 301
     },
     {
       "source": "/writing/agent/",
-      "destination": "/writing/digital-sovereignty",
+      "destination": "/writing/digital-sovereignty/",
       "statusCode": 301
     },
     {
       "source": "/series/agent",
-      "destination": "/series/digital-sovereignty",
+      "destination": "/writing/digital-sovereignty/",
       "statusCode": 301
     },
     {
       "source": "/series/agent/",
-      "destination": "/series/digital-sovereignty",
+      "destination": "/writing/digital-sovereignty/",
       "statusCode": 301
     },
     {
-      "source": "/topics/agent",
-      "destination": "/topics/digital-sovereignty",
+      "source": "/archives/page/5",
+      "destination": "/writing/page/5/",
       "statusCode": 301
     },
     {
-      "source": "/topics/agent/",
-      "destination": "/topics/digital-sovereignty",
+      "source": "/archives/page/5/",
+      "destination": "/writing/page/5/",
       "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue",
+      "destination": "/topics/vue/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue/",
+      "destination": "/topics/vue/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Portrait",
+      "destination": "/topics/portrait/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Portrait/",
+      "destination": "/topics/portrait/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/GitHub-Card",
+      "destination": "/topics/github-card/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/GitHub-Card/",
+      "destination": "/topics/github-card/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/APICloud",
+      "destination": "/topics/apicloud/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/APICloud/",
+      "destination": "/topics/apicloud/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/学习方法",
+      "destination": "/topics/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/学习方法/",
+      "destination": "/topics/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/NewCountdownTimer",
+      "destination": "/topics/newcountdowntimer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/NewCountdownTimer/",
+      "destination": "/topics/newcountdowntimer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/canvas",
+      "destination": "/topics/canvas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/canvas/",
+      "destination": "/topics/canvas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue-CLI",
+      "destination": "/topics/vue-cli/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue-CLI/",
+      "destination": "/topics/vue-cli/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/前端加密",
+      "destination": "/topics/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/前端加密/",
+      "destination": "/topics/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/RESTful",
+      "destination": "/topics/restful/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/RESTful/",
+      "destination": "/topics/restful/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/看风景",
+      "destination": "/topics/%E7%9C%8B%E9%A3%8E%E6%99%AF/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/看风景/",
+      "destination": "/topics/%E7%9C%8B%E9%A3%8E%E6%99%AF/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/人脸识别",
+      "destination": "/topics/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/人脸识别/",
+      "destination": "/topics/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/前端",
+      "destination": "/topics/%E5%89%8D%E7%AB%AF/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/前端/",
+      "destination": "/topics/%E5%89%8D%E7%AB%AF/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/年度总结",
+      "destination": "/topics/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/年度总结/",
+      "destination": "/topics/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/ChromeExtension",
+      "destination": "/topics/chromeextension/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/ChromeExtension/",
+      "destination": "/topics/chromeextension/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Javascript",
+      "destination": "/topics/javascript/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Javascript/",
+      "destination": "/topics/javascript/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Github",
+      "destination": "/topics/github/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Github/",
+      "destination": "/topics/github/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/小程序",
+      "destination": "/topics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/小程序/",
+      "destination": "/topics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue-Tree-Chart",
+      "destination": "/topics/vue-tree-chart/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/Vue-Tree-Chart/",
+      "destination": "/topics/vue-tree-chart/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/JavaScript",
+      "destination": "/topics/javascript/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/JavaScript/",
+      "destination": "/topics/javascript/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/AI",
+      "destination": "/topics/ai/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/AI/",
+      "destination": "/topics/ai/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/npm",
+      "destination": "/topics/npm/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/npm/",
+      "destination": "/topics/npm/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/VibeCode",
+      "destination": "/topics/vibecode/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tags/VibeCode/",
+      "destination": "/topics/vibecode/",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=0,must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/asset/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/asset/optimized/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=31536000,immutable"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=31536000,immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/*.woff2",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=31536000,immutable"
+        }
+      ]
+    }
+  ],
+  "caches": [
+    {
+      "source": "/*",
+      "cacheTtl": 0
+    },
+    {
+      "source": "/asset/*",
+      "cacheTtl": 86400
+    },
+    {
+      "source": "/asset/optimized/*",
+      "cacheTtl": 31536000
+    },
+    {
+      "source": "/_astro/*",
+      "cacheTtl": 31536000
+    },
+    {
+      "source": "/fonts/*.woff2",
+      "cacheTtl": 31536000
     }
   ]
 }
