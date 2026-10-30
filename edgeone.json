@@ -177,12 +177,12 @@
       "statusCode": 301
     },
     {
-      "source": "/tags/学习方法",
+      "source": "/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95",
       "destination": "/topics/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/",
       "statusCode": 301
     },
     {
-      "source": "/tags/学习方法/",
+      "source": "/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/",
       "destination": "/topics/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/",
       "statusCode": 301
     },
@@ -217,12 +217,12 @@
       "statusCode": 301
     },
     {
-      "source": "/tags/前端加密",
+      "source": "/tags/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86",
       "destination": "/topics/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86/",
       "statusCode": 301
     },
     {
-      "source": "/tags/前端加密/",
+      "source": "/tags/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86/",
       "destination": "/topics/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86/",
       "statusCode": 301
     },
@@ -237,42 +237,42 @@
       "statusCode": 301
     },
     {
-      "source": "/tags/看风景",
+      "source": "/tags/%E7%9C%8B%E9%A3%8E%E6%99%AF",
       "destination": "/topics/%E7%9C%8B%E9%A3%8E%E6%99%AF/",
       "statusCode": 301
     },
     {
-      "source": "/tags/看风景/",
+      "source": "/tags/%E7%9C%8B%E9%A3%8E%E6%99%AF/",
       "destination": "/topics/%E7%9C%8B%E9%A3%8E%E6%99%AF/",
       "statusCode": 301
     },
     {
-      "source": "/tags/人脸识别",
+      "source": "/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB",
       "destination": "/topics/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
       "statusCode": 301
     },
     {
-      "source": "/tags/人脸识别/",
+      "source": "/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
       "destination": "/topics/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/",
       "statusCode": 301
     },
     {
-      "source": "/tags/前端",
+      "source": "/tags/%E5%89%8D%E7%AB%AF",
       "destination": "/topics/%E5%89%8D%E7%AB%AF/",
       "statusCode": 301
     },
     {
-      "source": "/tags/前端/",
+      "source": "/tags/%E5%89%8D%E7%AB%AF/",
       "destination": "/topics/%E5%89%8D%E7%AB%AF/",
       "statusCode": 301
     },
     {
-      "source": "/tags/年度总结",
+      "source": "/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93",
       "destination": "/topics/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/",
       "statusCode": 301
     },
     {
-      "source": "/tags/年度总结/",
+      "source": "/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/",
       "destination": "/topics/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/",
       "statusCode": 301
     },
@@ -307,12 +307,12 @@
       "statusCode": 301
     },
     {
-      "source": "/tags/小程序",
+      "source": "/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F",
       "destination": "/topics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/",
       "statusCode": 301
     },
     {
-      "source": "/tags/小程序/",
+      "source": "/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/",
       "destination": "/topics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/",
       "statusCode": 301
     },
@@ -412,28 +412,15 @@
           "value": "public,max-age=31536000,immutable"
         }
       ]
-    }
-  ],
-  "caches": [
-    {
-      "source": "/*",
-      "cacheTtl": 0
     },
     {
-      "source": "/asset/*",
-      "cacheTtl": 86400
-    },
-    {
-      "source": "/asset/optimized/*",
-      "cacheTtl": 31536000
-    },
-    {
-      "source": "/_astro/*",
-      "cacheTtl": 31536000
-    },
-    {
-      "source": "/fonts/*.woff2",
-      "cacheTtl": 31536000
+      "source": "/projects/codes/assets/*.mjs",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        }
+      ]
     }
   ]
 }
